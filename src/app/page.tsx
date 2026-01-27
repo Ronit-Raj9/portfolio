@@ -416,12 +416,6 @@ export default function Home() {
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-2 md:mb-3">
                   {profile.name}
                 </h1>
-
-                {/* Title/Tagline */}
-                <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6 leading-relaxed">
-                  {profile.title}, Building Generative AI solutions at Scale
-                </p>
-
                 {/* Social Links */}
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
                   <a
