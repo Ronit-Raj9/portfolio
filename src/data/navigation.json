@@ -33,15 +33,5 @@
     { "name": "Featured", "href": "/#featured", "icon": "RiBookOpenLine" },
     { "name": "Achievements", "href": "/#achievements", "icon": "RiAwardLine" },
     { "name": "More", "href": "/#projects", "icon": "RiApps2Line" }
-  ],
-  "footer": {
-    "copyright": "Ronit Raj",
-    "email": "dev.ronitraj@gmail.com",
-    "socialLinks": [
-      { "icon": "FaGithub", "url": "https://github.com/Ronit-Raj9", "label": "GitHub" },
-      { "icon": "FaLinkedin", "url": "https://www.linkedin.com/in/ronitrajai/", "label": "LinkedIn" },
-      { "icon": "FaXTwitter", "url": "https://x.com/ronit__raj", "label": "X" },
-      { "icon": "SiKaggle", "url": "https://www.kaggle.com/ronitraj1", "label": "Kaggle" }
-    ]
-  }
+  ]
 }

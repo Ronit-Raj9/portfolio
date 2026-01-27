@@ -1,5 +1,12 @@
 [
   {
+  "id": "lnmhacks8.0",
+  "year": "2026",
+  "title": "LNMHacks 8.0",
+  "subtitle": "Blockchain Monad Hackathon",
+  "description": "Developed competitive typing game on Monad blockchain with PvP staking mechanics. Players compete in 1-minute duels where speed and accuracy determine winners"
+  },
+  {
   "id": "gitmesh",
   "year": "2025",
   "title": "OSS Maintainer - GitMesh",
@@ -17,15 +24,15 @@
     "id": "tso2025",
     "year": "2025",
     "title": "2nd Place - Trillion Dollar GenAI Hackathon",
-    "subtitle": "IIT Bhubaneswar • Team AlphaQ",
+    "subtitle": "IIT Bhubaneswar",
     "description": "Won Overall 2nd Position and 4 awards (Best Innovative Use Case, Best Technical Implementation, Best Presentation) for LegalEase - AI-powered legal compliance automation system addressing GST filing challenges in India"
   },
   {
     "id": "hackhazards",
     "year": "2025",
     "title": "HackHazards 25' Winner",
-    "subtitle": "Full-stack AI",
-    "description": "AI-Powered CRISPR Intelligence Platform"
+    "subtitle": "Blockchain Hackathon",
+    "description": "AI-Powered CRISPR Intelligence Platform. Came first out of 800+ projects."
   },
   {
     "id": "garudex-labs",
