@@ -1,23 +1,24 @@
 {
   "featured": [
     {
-      "id": "shakti",
-      "title": "Project SHAKTI",
-      "subtitle": "Military AI Intelligence System",
-      "badge": "SIH 2024 Winner",
-      "badgeColor": "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+      "id": "ionia",
+      "title": "iONIA Platform",
+      "subtitle": "AI-Powered Competitive Exam Preparation System",
+      "badge": "Featured Project",
+      "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
       "highlights": [
-        "Vision-language RAG with memory retrieval architecture",
-        "85% OCR accuracy on scanned military documents",
-        "Team BeGANs leadership - 6 members, 48-hour hackathon"
+        "Built NTA-replica exam interface with adaptive testing for 1,360+ precision-targeted questions",
+        "OCR-powered handwritten answer assessment with real-time evaluation",
+        "Complete admin panel with test, question bank, and user management serving 50+ active students",
+        "Selected for CrftHQ Cohort 1 accelerator program"
       ],
-      "tech": ["PyTorch", "RAG", "Vision-Language Models", "OCR"],
+      "tech": ["Next.js", "Express.js", "MongoDB", "NextJS", "FastAPI"],
       "links": {
-        "demo": "https://www.ionia.sbs/",
-        "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
+        "demo": "https://ionia-next.vercel.app/",
+        "github": "https://github.com/Ronit-Raj9/ionia-next"
       },
       "image": "/projects/ionia.png",
-      "category": "AI/ML"
+      "category": "EdTech"
     },
     {
       "id": "genetrust",
@@ -36,6 +37,24 @@
         "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
       },
       "image": "/projects/genetrust.png",
+      "category": "AI/ML"
+    },
+    {
+      "id": "shakti",
+      "title": "SHAKTI",
+      "subtitle": "Military AI Intelligence System",
+      "badge": "SIH 2024 Winner",
+      "badgeColor": "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+      "highlights": [
+        "Vision-language RAG with memory retrieval architecture",
+        "79% OCR accuracy on documents"
+      ],
+      "tech": ["PyTorch", "RAG", "Vision-Language Models", "OCR", "FastAPI"],
+      "links": {
+        "demo": "https://www.ionia.sbs/",
+        "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
+      },
+      "image": "/projects/ionia.png",
       "category": "AI/ML"
     }
   ],
