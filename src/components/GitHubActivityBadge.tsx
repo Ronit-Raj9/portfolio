@@ -190,14 +190,14 @@ export default function GitHubActivityBadge() {
           role="button"
         >
           {/* Compact Mobile View - Just number in circle */}
-          <div className={`sm:hidden ${isExpanded ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>
+          <div className={`md:hidden ${isExpanded ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>
             <span className="text-base font-bold">
               {stats.loading ? '-' : stats.todayCommits}
             </span>
           </div>
 
           {/* Expanded/Desktop View */}
-          <div className={`${isExpanded ? 'flex' : 'hidden'} sm:flex items-center gap-2`}>
+          <div className={`${isExpanded ? 'flex' : 'hidden'} md:flex items-center gap-2`}>
             {/* Pulsing Dot */}
             <div className="relative w-2.5 h-2.5 flex-shrink-0">
               <div className="absolute inset-0 bg-white rounded-full z-[2]" />
@@ -222,7 +222,7 @@ export default function GitHubActivityBadge() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-0 w-52 sm:w-56 bg-white dark:bg-[#1a1a1a] border border-[#e5e5e5] dark:border-[#374151] rounded-xl p-3 sm:p-4 shadow-lg"
+              className="absolute right-0 w-52 md:w-56 bg-white dark:bg-[#1a1a1a] border border-[#e5e5e5] dark:border-[#374151] rounded-xl p-3 md:p-4 shadow-lg"
               style={{
                 bottom: 'calc(100% + 12px)',
                 boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
