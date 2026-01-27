@@ -1,23 +1,44 @@
 [
   {
-    "id": "sih-2024",
-    "year": "2024",
-    "title": "Smart India Hackathon Winner",
-    "subtitle": "PS1604 RAG-MLLM",
-    "description": "Led Team BeGANs • 85% OCR accuracy • Military AI intelligence system"
+  "id": "gitmesh",
+  "year": "2025",
+  "title": "OSS Maintainer - GitMesh",
+  "subtitle": "Product Signal Aggregation",
+  "description": "Building open-source platform consolidating customer feedback from 5+ sources with intelligent deduplication and two-way project management sync"
+  },
+  {
+  "id": "crfthq2025",
+  "year": "2025",
+  "title": "CrftHQ Accelerator - Selected",
+  "subtitle": "iONIA",
+  "description": "Accepted into CrftHQ anti-incubator program for building AI-powered exam platform with adaptive learning"
+  },
+  {
+    "id": "tso2025",
+    "year": "2025",
+    "title": "2nd Place - Trillion Dollar GenAI Hackathon",
+    "subtitle": "IIT Bhubaneswar • Team AlphaQ",
+    "description": "Won Overall 2nd Position and 4 awards (Best Innovative Use Case, Best Technical Implementation, Best Presentation) for LegalEase - AI-powered legal compliance automation system addressing GST filing challenges in India"
+  },
+  {
+    "id": "hackhazards",
+    "year": "2025",
+    "title": "HackHazards 25' Winner",
+    "subtitle": "Full-stack AI",
+    "description": "AI-Powered CRISPR Intelligence Platform"
   },
   {
     "id": "garudex-labs",
     "year": "2025",
     "title": "Co-Founded Garudex Labs",
     "subtitle": "AI Startup",
-    "description": "Building AI solutions for entrepreneurs and founders"
+    "description": "Won IDE'25 Innovation Development & Entrepreneurship award, a national initiative by the Government of India"
   },
   {
-    "id": "projects-count",
+    "id": "sih-2024",
     "year": "2024",
-    "title": "Built 15+ Production Projects",
-    "subtitle": "Full Stack & AI",
-    "description": "From EdTech to LegalTech to Bioinformatics"
+    "title": "Smart India Hackathon Winner",
+    "subtitle": "PS1604 RAG-MLLM",
+    "description": "Runs Locally • 79% OCR accuracy • Military AI intelligence system"
   }
 ]

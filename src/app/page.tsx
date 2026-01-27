@@ -258,7 +258,7 @@ function GitHubSection() {
               <Badge variant="secondary">{githubData.profile.totalStars} stars</Badge>
             </div>
           </div>
-          
+
           {/* Arctic Code Vault Badge - Compact */}
           {githubData.achievements?.arcticCodeVault?.unlocked && (
             <a
@@ -279,7 +279,7 @@ function GitHubSection() {
               </div>
             </a>
           )}
-          
+
           <a href={githubData.profile.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackGitHubClick()}
             className="bg-foreground text-background px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
@@ -719,9 +719,12 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Right Side - Date */}
-                  <div className="shrink-0 md:text-right">
+                  {/* Right Side - Date & CGPA */}
+                  <div className="shrink-0 md:text-right flex md:flex-col items-center md:items-end gap-2 md:gap-1">
                     <span className="text-xs text-[#666666] whitespace-nowrap">2023 - 2027</span>
+                    <span className="px-2 py-0.5 text-[10px] font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
+                      CGPA: 8.35
+                    </span>
                   </div>
                 </div>
               </div>
