@@ -1,31 +1,32 @@
 [
   {
-    "id": "garudex",
-    "role": "Co-Founder & Lead Developer",
-    "company": "Garudex Labs",
-    "period": "January 2025 - Present",
-    "description": "Building next-generation AI solutions for entrepreneurs",
-    "highlights": [
-      "Leading product development and technical architecture",
-      "Building AI-powered tools for startup founders",
-      "Managing distributed team of developers"
-    ],
-    "current": false,
-    "icon": "/images/companies/garudex.png",
-    "badge": "Building a Startup",
-    "locationType": "Remote",
-    "link": "https://garudexlabs.com"
-  },
+  "id": "garudex",
+  "role": "Co-Founder & Lead Developer",
+  "company": "Garudex Labs",
+  "period": "November 2024 - March 2025",
+  "description": "Won IDE'25 Innovation Development & Entrepreneurship award, a national initiative by the Government of India. Led TRAFFIC GARUDEX LABS to build AI-powered product serving government needs, later pivoted to consumer and business markets for faster validation cycles.",
+  "highlights": [
+    "Worked on end-to-end product development for TRAFFIC - AI solution addressing government sector needs",
+    "Navigated 3+ year government validation cycles and procurement challenges",
+    "Gained critical insights on market selection and startup sustainability in regulated sectors"
+  ],
+  "current": false,
+  "icon": "/images/companies/garudex.png",
+  "badge": "Building a Startup",
+  "locationType": "Remote",
+  "link": "https://garudexlabs.com"
+}
+,
   {
     "id": "ionia",
-    "role": "Full Stack Developer",
-    "company": "Ionia Platform",
-    "period": "December 2024 - March 2025",
-    "description": "End-to-end JEE testing system with 1000+ active users",
+    "role": "Full AI Developer",
+    "company": "Ionia",
+    "period": "December 2024 - June 2025",
+    "description": "End-to-end Online Testing Infrastructure with pilot 50+ active users",
     "highlights": [
-      "Built complete testing platform from scratch",
-      "Implemented real-time analytics dashboard",
-      "Achieved 99.9% uptime in production"
+      "Built complete platform for exam preparation.",
+      "Ran pilot with 50+ students.",
+      "Developed Complete Admin Panel with Complete Test, Questions and User Management. "
     ],
     "current": false,
     "icon": "/images/companies/ionia.png",

@@ -187,12 +187,24 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
 }
 
 // GitHub Section
+interface ArcticCodeVault {
+  unlocked: boolean
+  unlockedDate?: string
+  repoName?: string
+  repoUrl?: string
+  contributingRepos?: number
+  badgeUrl?: string
+  programUrl?: string
+  verifyUrl?: string
+}
+
 interface GitHubData {
   profile: { name: string; avatarUrl: string; followers: number; publicRepos: number; totalStars: number; url: string; bio: string; createdAt: string }
   availableYears: number[]
   selectedYear: number | 'all'
   contributions: { total: number; code: number; issues: number; prs: number }
   contributionCalendar: { weeks: { days: { count: number; date: string; weekday: number }[] }[] }
+  achievements?: { arcticCodeVault?: ArcticCodeVault }
   lastUpdated: string
 }
 
@@ -246,6 +258,28 @@ function GitHubSection() {
               <Badge variant="secondary">{githubData.profile.totalStars} stars</Badge>
             </div>
           </div>
+          
+          {/* Arctic Code Vault Badge - Compact */}
+          {githubData.achievements?.arcticCodeVault?.unlocked && (
+            <a
+              href={githubData.achievements.arcticCodeVault.verifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-500/20 dark:to-cyan-500/20 border border-blue-500/20 hover:border-blue-500/40 transition-colors"
+              title="Arctic Code Vault Contributor · Verify on GitHub"
+            >
+              <img
+                src={githubData.achievements.arcticCodeVault.badgeUrl}
+                alt="Arctic Code Vault"
+                className="w-8 h-8"
+              />
+              <div className="hidden sm:block">
+                <p className="text-xs font-medium text-foreground leading-tight">Arctic Code Vault</p>
+                <p className="text-[10px] text-muted-foreground">Contributor</p>
+              </div>
+            </a>
+          )}
+          
           <a href={githubData.profile.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackGitHubClick()}
             className="bg-foreground text-background px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
