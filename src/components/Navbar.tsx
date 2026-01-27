@@ -108,7 +108,7 @@ export default function Navbar() {
 
       {/* Mobile Floating Bottom Navigation */}
       <nav
-        className="md:hidden fixed bottom-6 left-0 right-0 z-[100] px-4 pb-[env(safe-area-inset-bottom)]"
+        className="md:hidden fixed bottom-3 left-0 right-0 z-[100] px-4 pb-[env(safe-area-inset-bottom)]"
         style={{
           transform: 'translateZ(0)',
           willChange: 'transform',

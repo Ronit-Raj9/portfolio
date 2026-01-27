@@ -18,14 +18,15 @@ import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatDistanceToNow, format } from 'date-fns'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import GitHubActivityBadge from '@/components/GitHubActivityBadge'
 
 // Import centralized data
-import { 
-  profile, 
-  experience as WORK_EXPERIENCE, 
-  achievements as ACHIEVEMENTS, 
-  featuredProjects as FEATURED_PROJECTS, 
-  moreProjects as MORE_PROJECTS, 
+import {
+  profile,
+  experience as WORK_EXPERIENCE,
+  achievements as ACHIEVEMENTS,
+  featuredProjects as FEATURED_PROJECTS,
+  moreProjects as MORE_PROJECTS,
   technicalSkills as TECHNICAL_SKILLS,
   allSkills as ALL_SKILLS,
   type FeaturedProject
@@ -51,15 +52,15 @@ function StickyContactButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
+          initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          className="fixed right-6 bottom-6 z-50 flex flex-col gap-2"
+          exit={{ opacity: 0, x: -100 }}
+          className="fixed left-6 top-6 md:left-auto md:right-6 md:top-auto md:bottom-6 z-50 flex flex-col gap-2"
         >
           <a
             href={`mailto:${profile.email}`}
             onClick={trackEmailClick}
-            className="flex items-center gap-2 px-4 py-2.5 bg-foreground text-background rounded-md hover:opacity-90 transition-all text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2.5 bg-foreground text-background rounded-md hover:opacity-90 transition-all text-sm font-medium shadow-lg"
           >
             <HiOutlineMail className="w-4 h-4" />
             <span className="hidden sm:inline">Email Me</span>
@@ -71,8 +72,8 @@ function StickyContactButton() {
 }
 
 // Adithya-style Project Card with bullet points
-function ProjectCardDetailed({ project, index, isExpanded, onToggle }: { 
-  project: FeaturedProject, 
+function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
+  project: FeaturedProject,
   index: number,
   isExpanded: boolean,
   onToggle: () => void
@@ -311,8 +312,8 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.98])
   const [showAllExperiences, setShowAllExperiences] = useState(false)
-  const [expandedExperiences, setExpandedExperiences] = useState<{[key: string]: boolean}>({})
-  const [expandedProjects, setExpandedProjects] = useState<{[key: string]: boolean}>({})
+  const [expandedExperiences, setExpandedExperiences] = useState<{ [key: string]: boolean }>({})
+  const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({})
   const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
   const [selectedSkillFilter, setSelectedSkillFilter] = useState<string>("All Skills")
   const [showMoreAbout, setShowMoreAbout] = useState(false)
@@ -334,6 +335,7 @@ export default function Home() {
   return (
     <main ref={containerRef} className="relative flex min-h-screen flex-col pb-8 md:pb-0">
       <StickyContactButton />
+      <GitHubActivityBadge />
 
       {/* ================================================================== */}
       {/* 1. HERO - Adithya style: Name/Socials left, Image right, About below */}
@@ -344,8 +346,8 @@ export default function Home() {
             {/* Top Row: Name/Socials left, Image right */}
             <div className="flex gap-6 md:gap-10 items-start mb-6">
               {/* Left Side - Name, Title, Socials */}
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }} 
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 className="flex-1"
@@ -362,7 +364,7 @@ export default function Home() {
 
                 {/* Social Links */}
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                  <a 
+                  <a
                     href={`mailto:${profile.email}`}
                     onClick={trackEmailClick}
                     className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
@@ -370,7 +372,7 @@ export default function Home() {
                   >
                     <HiOutlineMail className="w-4 h-4 md:w-5 md:h-5" />
                   </a>
-                  <a 
+                  <a
                     href={profile.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -380,7 +382,7 @@ export default function Home() {
                   >
                     <FaGithub className="w-4 h-4 md:w-5 md:h-5" />
                   </a>
-                  <a 
+                  <a
                     href={profile.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -390,7 +392,7 @@ export default function Home() {
                   >
                     <FaLinkedin className="w-4 h-4 md:w-5 md:h-5" />
                   </a>
-                  <a 
+                  <a
                     href={profile.social.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -400,7 +402,7 @@ export default function Home() {
                   >
                     <FaXTwitter className="w-4 h-4 md:w-5 md:h-5" />
                   </a>
-                  <a 
+                  <a
                     href={profile.resumeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -422,20 +424,20 @@ export default function Home() {
                 className="flex-shrink-0"
               >
                 <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-border">
-                  <Image 
-                    src={profile.profileImage} 
-                    alt={profile.name} 
-                    fill 
-                    className="object-cover" 
-                    priority 
+                  <Image
+                    src={profile.profileImage}
+                    alt={profile.name}
+                    fill
+                    className="object-cover"
+                    priority
                   />
                 </div>
               </motion.div>
             </div>
 
             {/* About Section - Full Width Below */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
@@ -447,7 +449,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <button 
+                <button
                   onClick={() => setShowMoreAbout(!showMoreAbout)}
                   className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg hover:bg-accent/30 transition-colors"
                 >
@@ -485,7 +487,7 @@ export default function Home() {
       {/* ================================================================== */}
       {/* WORK EXPERIENCE - Vertical Timeline Design */}
       {/* ================================================================== */}
-      <section id="work" className="w-full py-20 px-6">
+      <section id="work" className="w-full py-12 px-6">
         <div className="max-w-[900px] mx-auto">
           <h2 className="text-[32px] font-bold mb-12">Work Experience</h2>
 
@@ -498,11 +500,11 @@ export default function Home() {
             {/* Experience Items */}
             <div className="space-y-6">
               {WORK_EXPERIENCE.slice(0, showAllExperiences ? undefined : 3).map((exp, index) => (
-                <motion.div 
-                  key={exp.company} 
-                  initial={{ opacity: 0, y: 20 }} 
+                <motion.div
+                  key={exp.company}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} 
+                  viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   className="relative"
                 >
@@ -515,12 +517,12 @@ export default function Home() {
                         exp.current ? "border-[#8b5cf6] shadow-[0_2px_8px_rgba(139,92,246,0.2)]" : "border-[#e5e5e5] shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
                       )}>
                         {exp.icon ? (
-                          <Image 
-                            src={exp.icon} 
-                            alt={exp.company} 
-                            width={40} 
-                            height={40} 
-                            className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] object-contain" 
+                          <Image
+                            src={exp.icon}
+                            alt={exp.company}
+                            width={40}
+                            height={40}
+                            className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] object-contain"
                           />
                         ) : (
                           <span className="text-base md:text-xl font-semibold text-gray-600">
@@ -533,13 +535,13 @@ export default function Home() {
                     {/* Content Card */}
                     <div className={cn(
                       "flex-1 md:ml-[100px] relative border rounded-lg p-4",
-                      exp.current 
-                        ? "bg-[#fafafa] dark:bg-[#1a1a1a] border-2 border-[#8b5cf6] shadow-[0_4px_12px_rgba(139,92,246,0.1)]" 
+                      exp.current
+                        ? "bg-[#fafafa] dark:bg-[#1a1a1a] border-2 border-[#8b5cf6] shadow-[0_4px_12px_rgba(139,92,246,0.1)]"
                         : "border-[#e5e5e5] dark:border-[#374151] bg-white dark:bg-[#1a1a1a]"
                     )}>
                       {/* External Link for Current Role */}
                       {exp.current && exp.link && (
-                        <a 
+                        <a
                           href={exp.link}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -615,9 +617,9 @@ export default function Home() {
 
           {/* Show More Button */}
           {WORK_EXPERIENCE.length > 3 && (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-center mt-8"
             >
@@ -649,7 +651,7 @@ export default function Home() {
       {/* ================================================================== */}
       {/* EDUCATION */}
       {/* ================================================================== */}
-      <section id="education" className="w-full py-20 px-6">
+      <section id="education" className="w-full py-12 px-6">
         <div className="max-w-[900px] mx-auto">
           <h2 className="text-[32px] font-bold mb-12">Education</h2>
 
@@ -685,7 +687,7 @@ export default function Home() {
 
                   {/* Right Side - Date */}
                   <div className="shrink-0 md:text-right">
-                    <span className="text-xs text-[#666666] whitespace-nowrap">2022 - 2026</span>
+                    <span className="text-xs text-[#666666] whitespace-nowrap">2023 - 2027</span>
                   </div>
                 </div>
               </div>
@@ -697,7 +699,7 @@ export default function Home() {
       {/* ================================================================== */}
       {/* 3. FEATURED PROJECTS - Minimal detailed format */}
       {/* ================================================================== */}
-      <section id="featured" className="w-full py-16">
+      <section id="featured" className="w-full py-12">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="max-w-4xl mx-auto">
@@ -710,9 +712,9 @@ export default function Home() {
 
             <div className="space-y-4">
               {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 3).map((project, index) => (
-                <ProjectCardDetailed 
-                  key={project.title} 
-                  project={project} 
+                <ProjectCardDetailed
+                  key={project.title}
+                  project={project}
                   index={index}
                   isExpanded={expandedProjects[project.title] || false}
                   onToggle={() => toggleProject(project.title)}
@@ -721,9 +723,9 @@ export default function Home() {
             </div>
 
             {FEATURED_PROJECTS.length > 3 && (
-              <motion.div 
-                initial={{ opacity: 0 }} 
-                whileInView={{ opacity: 1 }} 
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 className="text-center mt-8"
               >
@@ -834,7 +836,7 @@ export default function Home() {
             </div>
 
             {/* Skills Grid */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -842,8 +844,8 @@ export default function Home() {
             >
               <div className="flex flex-wrap gap-2 justify-center">
                 <AnimatePresence mode="popLayout">
-                  {(selectedSkillFilter === "All Skills" 
-                    ? ALL_SKILLS 
+                  {(selectedSkillFilter === "All Skills"
+                    ? ALL_SKILLS
                     : ALL_SKILLS.filter(skill => skill.category === selectedSkillFilter)
                   ).map((skill, index) => (
                     <motion.span
@@ -860,11 +862,11 @@ export default function Home() {
                   ))}
                 </AnimatePresence>
               </div>
-              
+
               {/* Count Footer */}
               <p className="text-center text-sm text-muted-foreground mt-6">
-                Showing {selectedSkillFilter === "All Skills" 
-                  ? ALL_SKILLS.length 
+                Showing {selectedSkillFilter === "All Skills"
+                  ? ALL_SKILLS.length
                   : ALL_SKILLS.filter(s => s.category === selectedSkillFilter).length
                 } total skills
               </p>
@@ -874,7 +876,7 @@ export default function Home() {
       </section>
 
       {/* ================================================================== */}
-      {/* 6. MORE PROJECTS - Minimal condensed cards */}
+      {/* 6. MORE PROJECTS - Enhanced card design */}
       {/* ================================================================== */}
       <section id="projects" className="w-full py-16">
         <div className="container px-4">
@@ -884,41 +886,54 @@ export default function Home() {
               <h2 className="text-[32px] font-bold">More Projects</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {MORE_PROJECTS.map((project, index) => (
                 <motion.div key={project.title}
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: index * 0.08 }}
-                  className="group p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors">
-                  {/* Category */}
-                  <span className="text-xs text-muted-foreground">
-                    {project.category}
-                  </span>
-                  
+                  className="group p-6 rounded-xl border border-[#e5e5e5] dark:border-[#374151] bg-background hover:shadow-lg hover:border-foreground/20 transition-all duration-300">
+                  {/* Category Badge */}
+                  <div className="inline-block mb-3">
+                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/40 text-muted-foreground border border-border">
+                      {project.category}
+                    </span>
+                  </div>
+
                   {/* Title & Subtitle */}
-                  <h3 className="font-medium mt-2 mb-1 group-hover:text-foreground/80 transition-colors">
+                  <h3 className="text-lg font-semibold mb-1 group-hover:text-foreground/80 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground mb-3">{project.subtitle}</p>
-                  
-                  {/* Tech Stack */}
+                  <p className="text-sm text-muted-foreground mb-1 leading-relaxed">
+                    {project.subtitle}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack - Compact */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tech.slice(0, 3).map(t => (
-                      <span key={t} className="px-2 py-0.5 text-xs rounded-full bg-accent/30 text-muted-foreground">{t}</span>
+                    {project.tech.map(t => (
+                      <span key={t} className="px-2 py-0.5 text-[11px] font-medium rounded bg-accent/50 text-muted-foreground border border-border">
+                        {t}
+                      </span>
                     ))}
                   </div>
-                  
-                  {/* Links */}
-                  <div className="flex items-center gap-3 text-xs">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer"
-                      onClick={() => trackProjectDemo(project.title)}
-                      className="text-muted-foreground hover:text-foreground transition-colors">
-                      Demo →
-                    </a>
+
+                  {/* Action Buttons - Compact */}
+                  <div className="flex items-center gap-2">
+                    {project.link && project.link !== "#" && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer"
+                        onClick={() => trackProjectDemo(project.title)}
+                        className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity">
+                        Demo →
+                      </a>
+                    )}
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noopener noreferrer"
                         onClick={() => trackGitHubClick(project.title)}
-                        className="text-muted-foreground hover:text-foreground transition-colors">
+                        className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent/50 transition-colors">
                         GitHub →
                       </a>
                     )}
@@ -930,8 +945,8 @@ export default function Home() {
             {/* View All Projects CTA */}
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               className="text-center mt-12">
-              <Link href="/projects" 
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full text-sm hover:border-foreground/30 transition-colors">
+              <Link href="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full text-sm font-medium hover:border-foreground/30 hover:shadow-sm transition-all">
                 View All Projects →
               </Link>
             </motion.div>

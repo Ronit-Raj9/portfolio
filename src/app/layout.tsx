@@ -4,7 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -142,7 +142,7 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
-            <Footer />
+
           </div>
         </ThemeProvider>
       </body>

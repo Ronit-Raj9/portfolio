@@ -23,6 +23,12 @@
       "value": "@ronit__raj",
       "icon": "FaTwitter",
       "href": "https://x.com/ronit__raj"
+    },
+    {
+      "name": "Kaggle",
+      "value": "@ronitraj1",
+      "icon": "SiKaggle",
+      "href": "https://www.kaggle.com/ronitraj1"
     }
   ],
   "formLabels": {

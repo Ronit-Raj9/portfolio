@@ -16,6 +16,11 @@
       "icon": "FaXTwitter"
     },
     {
+      "name": "Kaggle",
+      "url": "https://www.kaggle.com/ronitraj1",
+      "icon": "SiKaggle"
+    },
+    {
       "name": "Email",
       "url": "mailto:dev.ronitraj@gmail.com",
       "icon": "HiOutlineMail"

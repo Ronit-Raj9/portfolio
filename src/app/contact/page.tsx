@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { SiKaggle } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { contact } from "@/data"
 
@@ -11,6 +12,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaGithub,
   FaLinkedin,
   FaTwitter,
+  SiKaggle,
 }
 
 export default function Contact() {
