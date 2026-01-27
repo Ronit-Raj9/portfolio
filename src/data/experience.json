@@ -14,8 +14,22 @@
   "badge": "Open Source",
   "locationType": "Remote",
   "link": "https://gitmesh.dev"
-}
-,
+  },
+  {
+    "id": "ionia",
+    "role": "Freelance Full-Stack Developer",
+    "company": "Ionia",
+    "period": "December 2024 - June 2025",
+    "description": "End-to-end Online Testing Infrastructure with pilot 50+ active users",
+    "highlights": [
+      "Built complete platform for exam preparation.",
+      "Ran pilot with 50+ students.",
+      "Developed Complete Admin Panel with Complete Test, Questions and User Management. "
+    ],
+    "current": false,
+    "icon": "/images/companies/ionia.png",
+    "locationType": "Remote"
+  },
   {
   "id": "zentoro",
   "role": "Co-Founder & Lead Developer",
@@ -50,20 +64,5 @@
   "badge": "Building a Startup",
   "locationType": "Onsite",
   "link": ""
-  },
-  {
-    "id": "ionia",
-    "role": "Freelance Full-Stack Developer",
-    "company": "Ionia",
-    "period": "December 2024 - June 2025",
-    "description": "End-to-end Online Testing Infrastructure with pilot 50+ active users",
-    "highlights": [
-      "Built complete platform for exam preparation.",
-      "Ran pilot with 50+ students.",
-      "Developed Complete Admin Panel with Complete Test, Questions and User Management. "
-    ],
-    "current": false,
-    "icon": "/images/companies/ionia.png",
-    "locationType": "Remote"
   }
 ]
