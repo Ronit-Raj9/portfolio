@@ -2,314 +2,186 @@
 
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { FaGithub, FaExternalLinkAlt, FaSearch, FaFilter } from "react-icons/fa"
-import { BsArrowRight, BsGrid, BsList } from "react-icons/bs"
+import { FaGithub, FaSearch } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { trackProjectDemo, trackGitHubClick } from "@/lib/analytics"
+import { featuredProjects, moreProjects, type FeaturedProject, type MoreProject } from "@/data"
 
-// ============================================================================
-// ALL PROJECTS DATA - Tier 3: Complete Archive
-// ============================================================================
+// Combine all projects into a unified type for display
+interface DisplayProject {
+  id: string
+  title: string
+  subtitle: string
+  description?: string
+  highlights?: string[]
+  badge?: string
+  tech: string[]
+  image?: string
+  category: string
+  demoLink?: string
+  githubLink?: string
+  isFeatured: boolean
+}
 
-const ALL_PROJECTS = [
-  // TIER 1 - Featured (shown first)
-  {
-    title: "Project SHAKTI",
-    subtitle: "Military AI Intelligence System",
-    description: "Vision-language RAG with memory retrieval architecture. 85% OCR accuracy on scanned military documents. Led Team BeGANs to SIH 2024 victory.",
-    image: "/projects/ionia.png",
-    tech: ["PyTorch", "RAG", "Vision-Language Models", "OCR", "LangChain"],
-    category: "AI/ML",
-    status: "Production",
-    year: 2024,
-    featured: true,
-    badge: "🏆 SIH 2024 Winner",
-    demoLink: "https://www.ionia.sbs/",
-    githubLink: "",
-    metrics: "85% OCR accuracy"
-  },
-  {
-    title: "GeneTrust AI Studio",
-    subtitle: "AI-Powered CRISPR Intelligence Platform",
-    description: "DNABERT model integration for genetic sequence analysis. Real-time ranking and prediction system for CRISPR targets.",
-    image: "/projects/genetrust.png",
-    tech: ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT"],
-    category: "AI/ML",
-    status: "Production",
-    year: 2024,
-    featured: true,
-    badge: "⭐ Featured",
-    demoLink: "https://genetrust.vercel.app/",
-    githubLink: "https://github.com/Ronit-Raj9/hackhazard-project-genetrust",
-    metrics: "Featured project"
-  },
-  {
-    title: "EverydayApp",
-    subtitle: "Starknet DeFi Platform",
-    description: "Building decentralized finance tools on Starknet. Cairo smart contract development with React frontend.",
-    image: "/projects/legalease.png",
-    tech: ["Cairo", "Starknet", "React", "TypeScript", "Web3"],
-    category: "Blockchain",
-    status: "In Development",
-    year: 2025,
-    featured: true,
-    badge: "🚀 Building",
-    demoLink: "#",
-    githubLink: "https://github.com/Ronit-Raj9",
-    metrics: "Active development"
-  },
-  // TIER 2 - More Projects
-  {
-    title: "Ionia Testing Platform",
-    subtitle: "End-to-end JEE Testing System",
-    description: "Comprehensive JEE testing platform with real-time analytics, admin panel, and detailed performance tracking for 1000+ students.",
-    image: "/projects/ionia.png",
-    tech: ["Next.js", "Express.js", "MongoDB", "Cloudinary", "TailwindCSS"],
-    category: "EdTech",
-    status: "Production",
-    year: 2024,
-    featured: false,
-    badge: "💼 Production",
-    demoLink: "https://www.ionia.sbs/",
-    githubLink: "https://github.com/Ronit-Raj9/ionia-next",
-    metrics: "1000+ users • 99.9% uptime"
-  },
-  {
-    title: "LegalEase",
-    subtitle: "AI-Powered Legal Compliance Platform",
-    description: "Automated contract generation for Indian startups with GST management and blockchain notarization. AI agents for legal workflow automation.",
-    image: "/projects/legalease.png",
-    tech: ["Next.js", "FastAPI", "AI Agents", "Blockchain", "Playwright"],
-    category: "LegalTech",
-    status: "Production",
-    year: 2024,
-    featured: false,
-    badge: "🏢 Startup",
-    demoLink: "https://legalease-new.vercel.app/",
-    githubLink: "",
-    metrics: "Startup focused"
-  },
-  {
-    title: "E-Cell IIIT Gwalior",
-    subtitle: "Entrepreneurship Cell Website",
-    description: "Official website for IIIT Gwalior's Entrepreneurship Cell with event management and analytics dashboard.",
-    image: "/projects/ecell.png",
-    tech: ["Next.js", "MongoDB", "Chart.js", "Tailwind CSS"],
-    category: "Web Dev",
-    status: "Production",
-    year: 2024,
-    featured: false,
-    badge: "🎓 Academic",
-    demoLink: "https://ecell-puce.vercel.app/",
-    githubLink: "https://github.com/Ronit-Raj9/Ecell",
-    metrics: "College project"
-  },
-  {
-    title: "Graph Neural Networks Research",
-    subtitle: "Document Understanding with GNNs",
-    description: "PyTorch Geometric implementations for document layout analysis and understanding using graph neural networks.",
-    image: "/projects/graphml.png",
-    tech: ["PyTorch", "Python", "PyTorch Geometric", "GNNs"],
-    category: "Research",
-    status: "Research",
-    year: 2024,
-    featured: false,
-    badge: "🔬 Research",
-    demoLink: "https://github.com/Ronit-Raj9",
-    githubLink: "https://github.com/Ronit-Raj9",
-    metrics: "Research project"
-  },
-  {
-    title: "Token Analytics Dashboard",
-    subtitle: "Real-time Crypto Analytics",
-    description: "Data visualization platform for cryptocurrency analytics with real-time price tracking and portfolio management.",
-    image: "/projects/graphml.png",
-    tech: ["React", "D3.js", "Web3.js", "Chart.js"],
-    category: "Blockchain",
-    status: "Demo",
-    year: 2024,
-    featured: false,
-    badge: "📊 Analytics",
-    demoLink: "https://github.com/Ronit-Raj9",
-    githubLink: "https://github.com/Ronit-Raj9",
-    metrics: "Data visualization"
-  },
-  {
-    title: "Portfolio Website",
-    subtitle: "This very site!",
-    description: "Next.js 14 portfolio with 3D elements, dark mode, and comprehensive SEO. Built with React Three Fiber and Framer Motion.",
-    image: "/projects/genetrust.png",
-    tech: ["Next.js", "Three.js", "Tailwind", "Framer Motion"],
-    category: "Web Dev",
-    status: "Production",
-    year: 2025,
-    featured: false,
-    badge: "✨ Meta",
-    demoLink: "https://www.ronitraj.me/",
-    githubLink: "https://github.com/Ronit-Raj9/portfolio",
-    metrics: "You're looking at it!"
-  }
+// Convert featured projects to display format
+const convertFeaturedToDisplay = (projects: FeaturedProject[]): DisplayProject[] => {
+  if (!projects) return []
+  return projects.map(p => ({
+    id: p.id,
+    title: p.title,
+    subtitle: p.subtitle,
+    description: p.highlights?.[0] || p.subtitle,
+    highlights: p.highlights || [],
+    badge: p.badge,
+    tech: p.tech || [],
+    image: p.image,
+    category: p.category || "Other",
+    demoLink: p.links?.demo,
+    githubLink: p.links?.github,
+    isFeatured: true
+  }))
+}
+
+// Convert more projects to display format
+const convertMoreToDisplay = (projects: MoreProject[]): DisplayProject[] => {
+  if (!projects) return []
+  return projects.map(p => ({
+    id: p.id,
+    title: p.title,
+    subtitle: p.subtitle,
+    description: p.description || p.subtitle,
+    highlights: p.description ? [p.description] : [],
+    badge: p.badge,
+    tech: p.tech || [],
+    image: undefined,
+    category: p.category || "Other",
+    demoLink: p.link,
+    githubLink: p.github,
+    isFeatured: false
+  }))
+}
+
+// Combine all projects
+const ALL_PROJECTS: DisplayProject[] = [
+  ...convertFeaturedToDisplay(featuredProjects),
+  ...convertMoreToDisplay(moreProjects)
 ]
 
-const CATEGORIES = ["All", "AI/ML", "Blockchain", "EdTech", "LegalTech", "Web Dev", "Research"]
-const STATUSES = ["All", "Production", "In Development", "Research", "Demo"]
+// Get unique categories from projects
+const CATEGORIES = ["All", ...Array.from(new Set(ALL_PROJECTS.map(p => p.category).filter(Boolean)))]
 
 // ============================================================================
-// COMPONENTS
+// COMPONENTS - Matching home page featured projects style
 // ============================================================================
 
-function ProjectCard({ project, index, isGridView }: { 
-  project: typeof ALL_PROJECTS[0], 
+function ProjectCard({ project, index, isExpanded, onToggle }: { 
+  project: DisplayProject, 
   index: number,
-  isGridView: boolean 
+  isExpanded: boolean,
+  onToggle: () => void
 }) {
-  if (isGridView) {
-    // Grid view - compact cards
-    return (
-      <motion.div
-        layout
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ delay: index * 0.05, duration: 0.3 }}
-        className="group relative bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 hover:shadow-xl transition-all duration-300"
-      >
-        {/* Image */}
-        <div className="relative h-40 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10" />
-          {project.badge && (
-            <div className="absolute top-3 left-3 z-20">
-              <span className="px-2 py-1 text-xs font-medium rounded-full bg-background/80 backdrop-blur-sm border border-border/50">
-                {project.badge}
-              </span>
-            </div>
-          )}
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-              {project.category}
-            </span>
-            <span className="text-xs text-muted-foreground">{project.year}</span>
-          </div>
-          
-          <h3 className="font-bold mb-1 group-hover:text-primary transition-colors line-clamp-1">
-            {project.title}
-          </h3>
-          <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{project.description}</p>
-          
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1 mb-3">
-            {project.tech.slice(0, 3).map(t => (
-              <span key={t} className="px-1.5 py-0.5 text-[10px] font-medium rounded bg-accent/30">{t}</span>
-            ))}
-            {project.tech.length > 3 && (
-              <span className="text-[10px] text-muted-foreground">+{project.tech.length - 3}</span>
-            )}
-          </div>
-          
-          {/* Links */}
-          <div className="flex items-center gap-3">
-            {project.demoLink && project.demoLink !== "#" && (
-              <a href={project.demoLink} target="_blank" rel="noopener noreferrer"
-                onClick={() => trackProjectDemo(project.title)}
-                className="flex items-center gap-1 text-xs font-medium text-primary hover:underline">
-                Demo <FaExternalLinkAlt className="w-2 h-2" />
-              </a>
-            )}
-            {project.githubLink && (
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                onClick={() => trackGitHubClick(project.title)}
-                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
-                <FaGithub className="w-3 h-3" />
-              </a>
-            )}
-          </div>
-        </div>
-      </motion.div>
-    )
-  }
-
-  // List view - horizontal cards
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ delay: index * 0.05, duration: 0.3 }}
-      className="group flex flex-col md:flex-row gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.15, duration: 0.5 }}
+      className="group relative bg-background rounded-lg overflow-hidden border border-border hover:border-foreground/20 transition-colors"
     >
-      {/* Image */}
-      <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden shrink-0">
-        {project.badge && (
-          <div className="absolute top-2 left-2 z-20">
-            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-background/80 backdrop-blur-sm">
+      <div className="flex flex-col lg:flex-row">
+        {/* Image */}
+        {project.image ? (
+          <div className="relative w-full lg:w-1/3 h-28 lg:h-auto lg:min-h-[120px] overflow-hidden bg-accent/10">
+            {project.badge && (
+              <div className="absolute top-2 left-2 z-20">
+                <span className="px-2 py-0.5 text-[10px] rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground">
+                  {project.badge}
+                </span>
+              </div>
+            )}
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          </div>
+        ) : null}
+
+        {/* Content */}
+        <div className={cn("flex-1 p-4", !project.image && "lg:pl-0")}>
+          {!project.image && project.badge && (
+            <span className="inline-block px-2 py-0.5 text-[10px] rounded-full bg-accent/30 border border-border text-foreground mb-2">
               {project.badge}
             </span>
-          </div>
-        )}
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="200px"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-            {project.category}
-          </span>
-          <span className="text-xs text-muted-foreground">{project.year}</span>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-accent/30">{project.status}</span>
-        </div>
-        
-        <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-xs text-primary font-medium mb-1">{project.subtitle}</p>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{project.description}</p>
-        
-        <div className="mt-auto flex items-center justify-between">
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1">
-            {project.tech.slice(0, 4).map(t => (
-              <span key={t} className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/30">{t}</span>
-            ))}
-            {project.tech.length > 4 && (
-              <span className="text-xs text-muted-foreground">+{project.tech.length - 4}</span>
-            )}
-          </div>
+          )}
           
+          <h3 className="text-base font-medium mb-0.5">{project.title}</h3>
+          <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
+
+          {/* Highlights/Description */}
+          {project.highlights && project.highlights.length > 0 && (
+            <>
+              <ul className="space-y-0.5 mb-2">
+                {(isExpanded ? project.highlights : project.highlights.slice(0, 1)).map((highlight, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
+                    <span className="text-muted-foreground/50">—</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {project.highlights.length > 1 && (
+                <div className="mb-2">
+                  <button
+                    onClick={onToggle}
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {isExpanded ? '← Show less' : 'Read more →'}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            {project.tech.map((tech) => (
+              <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-md bg-gradient-to-r from-[#f9fafb] to-[#f3f4f6] dark:from-[#374151] dark:to-[#4b5563] text-foreground border border-[#e5e5e5] dark:border-[#4b5563] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200">
+                {tech}
+              </span>
+            ))}
+          </div>
+
           {/* Links */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap gap-2">
             {project.demoLink && project.demoLink !== "#" && (
-              <a href={project.demoLink} target="_blank" rel="noopener noreferrer"
+              <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => trackProjectDemo(project.title)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
-                Live Demo <BsArrowRight className="w-3 h-3" />
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
+              >
+                Demo
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             )}
             {project.githubLink && (
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => trackGitHubClick(project.title)}
-                className="flex items-center justify-center w-8 h-8 rounded-lg border border-border hover:bg-accent/50 transition-colors">
-                <FaGithub className="w-4 h-4" />
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-foreground/20 hover:bg-accent/50 transition-colors"
+              >
+                <FaGithub className="w-3.5 h-3.5" />
+                GitHub
               </a>
             )}
           </div>
@@ -325,43 +197,50 @@ function ProjectCard({ project, index, isGridView }: {
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [selectedStatus, setSelectedStatus] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
-  const [isGridView, setIsGridView] = useState(true)
+  const [expandedProjects, setExpandedProjects] = useState<Record<string, boolean>>({})
+
+  const toggleProject = (projectId: string) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }))
+  }
 
   const filteredProjects = useMemo(() => {
+    if (!ALL_PROJECTS || ALL_PROJECTS.length === 0) return []
+    
     return ALL_PROJECTS.filter(project => {
       const matchesCategory = selectedCategory === "All" || project.category === selectedCategory
-      const matchesStatus = selectedStatus === "All" || project.status === selectedStatus
       const matchesSearch = searchQuery === "" || 
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (project.description || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
       
-      return matchesCategory && matchesStatus && matchesSearch
+      return matchesCategory && matchesSearch
     })
-  }, [selectedCategory, selectedStatus, searchQuery])
+  }, [selectedCategory, searchQuery])
 
-  // Sort: Featured first, then by year
+  // Sort: Featured first
   const sortedProjects = useMemo(() => {
     return [...filteredProjects].sort((a, b) => {
-      if (a.featured && !b.featured) return -1
-      if (!a.featured && b.featured) return 1
-      return b.year - a.year
+      if (a.isFeatured && !b.isFeatured) return -1
+      if (!a.isFeatured && b.isFeatured) return 1
+      return 0
     })
   }, [filteredProjects])
 
   return (
-    <div className="min-h-screen py-20">
-      <div className="container px-4 max-w-6xl mx-auto">
+    <div className="min-h-screen pt-24 md:pt-28 pb-24 md:pb-16">
+      <div className="container px-4 max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">All Projects</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-[32px] font-bold mb-4">All Projects</h1>
+          <p className="text-sm text-muted-foreground max-w-2xl">
             Complete archive of my work across AI/ML, blockchain, web development, and research. 
             Filter by category or search for specific technologies.
           </p>
@@ -374,36 +253,20 @@ export default function ProjectsPage() {
           transition={{ delay: 0.1 }}
           className="mb-8 space-y-4"
         >
-          {/* Search & View Toggle */}
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+          {/* Search */}
+          <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
             <div className="relative flex-1 max-w-md w-full">
-              <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search projects, technologies..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-background border border-[#e5e5e5] dark:border-[#374151] rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-foreground/20 focus:border-foreground/30 transition-all"
               />
             </div>
             
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">{sortedProjects.length} projects</span>
-              <div className="flex border border-border rounded-lg overflow-hidden">
-                <button
-                  onClick={() => setIsGridView(true)}
-                  className={cn("p-2 transition-colors", isGridView ? "bg-primary text-primary-foreground" : "hover:bg-accent/50")}
-                >
-                  <BsGrid className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setIsGridView(false)}
-                  className={cn("p-2 transition-colors", !isGridView ? "bg-primary text-primary-foreground" : "hover:bg-accent/50")}
-                >
-                  <BsList className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+            <span className="text-xs text-muted-foreground">{sortedProjects.length} projects</span>
           </div>
 
           {/* Category Filters */}
@@ -413,62 +276,40 @@ export default function ProjectsPage() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  "px-3 py-1.5 text-sm font-medium rounded-full transition-all",
+                  "px-3 py-1.5 text-xs font-medium rounded-lg transition-all border",
                   selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-accent/30 hover:bg-accent/50 text-foreground/80"
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-background border-[#e5e5e5] dark:border-[#374151] hover:border-foreground/30"
                 )}
               >
                 {category}
                 {category !== "All" && (
-                  <span className="ml-1 text-xs opacity-70">
+                  <span className="ml-1 text-[10px] opacity-70">
                     ({ALL_PROJECTS.filter(p => p.category === category).length})
                   </span>
                 )}
               </button>
             ))}
           </div>
-
-          {/* Status Filters */}
-          <div className="flex flex-wrap gap-2">
-            <FaFilter className="w-4 h-4 text-muted-foreground self-center mr-1" />
-            {STATUSES.map((status) => (
-              <button
-                key={status}
-                onClick={() => setSelectedStatus(status)}
-                className={cn(
-                  "px-2.5 py-1 text-xs font-medium rounded-full transition-all",
-                  selectedStatus === status
-                    ? "bg-foreground text-background"
-                    : "bg-accent/20 hover:bg-accent/40 text-foreground/70"
-                )}
-              >
-                {status}
-              </button>
-            ))}
-          </div>
         </motion.div>
 
-        {/* Projects Grid/List */}
+        {/* Projects List - Same style as Featured Projects */}
         <AnimatePresence mode="wait">
           {sortedProjects.length > 0 ? (
             <motion.div
-              key={`${selectedCategory}-${selectedStatus}-${isGridView}`}
+              key={`${selectedCategory}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={cn(
-                isGridView 
-                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-                  : "flex flex-col gap-4"
-              )}
+              className="space-y-6"
             >
               {sortedProjects.map((project, index) => (
                 <ProjectCard 
-                  key={project.title} 
+                  key={project.id} 
                   project={project} 
                   index={index}
-                  isGridView={isGridView}
+                  isExpanded={expandedProjects[project.id] || false}
+                  onToggle={() => toggleProject(project.id)}
                 />
               ))}
             </motion.div>
@@ -482,10 +323,9 @@ export default function ProjectsPage() {
               <button
                 onClick={() => {
                   setSelectedCategory("All")
-                  setSelectedStatus("All")
                   setSearchQuery("")
                 }}
-                className="mt-4 text-primary hover:underline"
+                className="mt-4 text-sm text-foreground hover:underline"
               >
                 Clear filters
               </button>
@@ -498,10 +338,10 @@ export default function ProjectsPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-center mt-16"
+          className="mt-16"
         >
           <Link href="/#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-accent/50 hover:bg-accent rounded-full text-sm font-medium transition-colors">
+            className="inline-flex items-center gap-2 px-4 py-2 border border-[#e5e5e5] dark:border-[#374151] rounded-lg text-sm font-medium hover:bg-accent/50 transition-colors">
             ← Back to Home
           </Link>
         </motion.div>
@@ -509,3 +349,4 @@ export default function ProjectsPage() {
     </div>
   )
 }
+

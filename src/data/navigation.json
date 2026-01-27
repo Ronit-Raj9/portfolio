@@ -1,0 +1,42 @@
+{
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Ronit-Raj9",
+      "icon": "FaGithub"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ronitrajai/",
+      "icon": "FaLinkedin"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/ronit__raj",
+      "icon": "FaXTwitter"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:dev.ronitraj@gmail.com",
+      "icon": "HiOutlineMail"
+    }
+  ],
+  "navItems": [
+    { "name": "Home", "href": "/#hero", "icon": "RiHome5Line" },
+    { "name": "Work", "href": "/#work", "icon": "RiBriefcaseLine" },
+    { "name": "Education", "href": "/#education", "icon": "RiGraduationCapLine" },
+    { "name": "Featured", "href": "/#featured", "icon": "RiBookOpenLine" },
+    { "name": "Achievements", "href": "/#achievements", "icon": "RiAwardLine" },
+    { "name": "More", "href": "/#projects", "icon": "RiApps2Line" }
+  ],
+  "footer": {
+    "copyright": "Ronit Raj",
+    "email": "dev.ronitraj@gmail.com",
+    "socialLinks": [
+      { "icon": "FaGithub", "url": "https://github.com/Ronit-Raj9", "label": "GitHub" },
+      { "icon": "FaLinkedin", "url": "https://www.linkedin.com/in/ronitrajai/", "label": "LinkedIn" },
+      { "icon": "FaXTwitter", "url": "https://x.com/ronit__raj", "label": "X" },
+      { "icon": "SiKaggle", "url": "https://www.kaggle.com/ronitraj1", "label": "Kaggle" }
+    ]
+  }
+}

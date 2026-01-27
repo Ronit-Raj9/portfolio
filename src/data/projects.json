@@ -1,0 +1,107 @@
+{
+  "featured": [
+    {
+      "id": "shakti",
+      "title": "Project SHAKTI",
+      "subtitle": "Military AI Intelligence System",
+      "badge": "SIH 2024 Winner",
+      "badgeColor": "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+      "highlights": [
+        "Vision-language RAG with memory retrieval architecture",
+        "85% OCR accuracy on scanned military documents",
+        "Team BeGANs leadership - 6 members, 48-hour hackathon"
+      ],
+      "tech": ["PyTorch", "RAG", "Vision-Language Models", "OCR"],
+      "links": {
+        "demo": "https://www.ionia.sbs/",
+        "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
+      },
+      "image": "/projects/ionia.png",
+      "category": "AI/ML"
+    },
+    {
+      "id": "genetrust",
+      "title": "GeneTrust AI Studio",
+      "subtitle": "AI-Powered CRISPR Intelligence Platform",
+      "badge": "Featured Project",
+      "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+      "highlights": [
+        "DNABERT model integration for genetic sequence analysis",
+        "Next.js + TypeScript + PyTorch + FastAPI architecture",
+        "Real-time ranking and prediction system"
+      ],
+      "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI"],
+      "links": {
+        "demo": "https://genetrust.vercel.app/",
+        "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
+      },
+      "image": "/projects/genetrust.png",
+      "category": "AI/ML"
+    }
+  ],
+  "more": [
+    {
+      "id": "ionia",
+      "title": "Ionia Testing Platform",
+      "subtitle": "1000+ active users • 99.9% uptime",
+      "description": "End-to-end JEE testing system with real-time analytics",
+      "tech": ["Next.js", "Express.js", "MongoDB"],
+      "link": "https://www.ionia.sbs/",
+      "github": "https://github.com/Ronit-Raj9/ionia-next",
+      "category": "EdTech",
+      "badge": "Production"
+    },
+    {
+      "id": "legalease",
+      "title": "LegalEase",
+      "subtitle": "AI-powered legal compliance",
+      "description": "Automated contract generation for Indian startups with GST management",
+      "tech": ["Next.js", "FastAPI", "AI Agents"],
+      "link": "https://legalease-new.vercel.app/",
+      "category": "LegalTech",
+      "badge": "Startup"
+    },
+    {
+      "id": "ecell",
+      "title": "E-Cell IIIT Gwalior",
+      "subtitle": "College entrepreneurship platform",
+      "description": "Website with event management and analytics dashboard",
+      "tech": ["Next.js", "MongoDB", "Chart.js"],
+      "link": "https://ecell-puce.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/Ecell",
+      "category": "Web Dev",
+      "badge": "Academic"
+    },
+    {
+      "id": "gnn",
+      "title": "Graph Neural Networks",
+      "subtitle": "Research implementations",
+      "description": "PyTorch Geometric implementations for document understanding",
+      "tech": ["PyTorch", "Python", "GNNs"],
+      "link": "https://github.com/Ronit-Raj9",
+      "category": "Research",
+      "badge": "Research"
+    },
+    {
+      "id": "token-analytics",
+      "title": "Token Analytics Dashboard",
+      "subtitle": "Real-time crypto insights",
+      "description": "Data visualization platform for cryptocurrency analytics",
+      "tech": ["React", "D3.js", "Web3.js"],
+      "link": "https://github.com/Ronit-Raj9",
+      "category": "Blockchain",
+      "badge": "Analytics"
+    },
+    {
+      "id": "portfolio",
+      "title": "Portfolio Website",
+      "subtitle": "This very site!",
+      "description": "Next.js 14 portfolio with 3D elements and dark mode",
+      "tech": ["Next.js", "Three.js", "Tailwind"],
+      "link": "https://www.ronitraj.me/",
+      "github": "https://github.com/Ronit-Raj9/portfolio",
+      "category": "Web Dev",
+      "badge": "Meta"
+    }
+  ]
+}

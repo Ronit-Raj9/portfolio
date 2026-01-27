@@ -1,0 +1,34 @@
+[
+  {
+    "id": "garudex",
+    "role": "Co-Founder & Lead Developer",
+    "company": "Garudex Labs",
+    "period": "January 2025 - Present",
+    "description": "Building next-generation AI solutions for entrepreneurs",
+    "highlights": [
+      "Leading product development and technical architecture",
+      "Building AI-powered tools for startup founders",
+      "Managing distributed team of developers"
+    ],
+    "current": false,
+    "icon": "/images/companies/garudex.png",
+    "badge": "Building a Startup",
+    "locationType": "Remote",
+    "link": "https://garudexlabs.com"
+  },
+  {
+    "id": "ionia",
+    "role": "Full Stack Developer",
+    "company": "Ionia Platform",
+    "period": "December 2024 - March 2025",
+    "description": "End-to-end JEE testing system with 1000+ active users",
+    "highlights": [
+      "Built complete testing platform from scratch",
+      "Implemented real-time analytics dashboard",
+      "Achieved 99.9% uptime in production"
+    ],
+    "current": false,
+    "icon": "/images/companies/ionia.png",
+    "locationType": "Remote"
+  }
+]

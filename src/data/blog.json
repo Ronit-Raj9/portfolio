@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Understanding Mathematical Concepts in Machine Learning",
+      "excerpt": "Exploring the fundamental mathematical concepts that power modern machine learning algorithms...",
+      "date": "2024-03-15",
+      "readTime": "5 min read",
+      "category": "Machine Learning"
+    }
+  ],
+  "pageContent": {
+    "title": "Blog"
+  }
+}

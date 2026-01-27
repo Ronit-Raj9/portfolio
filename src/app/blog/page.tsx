@@ -1,41 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "Understanding Mathematical Concepts in Machine Learning",
-    excerpt: "Exploring the fundamental mathematical concepts that power modern machine learning algorithms...",
-    date: "2024-03-15",
-    readTime: "5 min read",
-    category: "Machine Learning",
-  },
-  {
-    id: 2,
-    title: "Scientific Computing with Python",
-    excerpt: "A deep dive into scientific computing libraries and their applications in solving complex problems...",
-    date: "2024-03-10",
-    readTime: "8 min read",
-    category: "Scientific Computing",
-  },
-  {
-    id: 3,
-    title: "Web Development Best Practices",
-    excerpt: "Essential tips and tricks for building modern, performant web applications...",
-    date: "2024-03-05",
-    readTime: "6 min read",
-    category: "Web Development",
-  },
-  // Add more blog posts as needed
-]
+import { blog } from "@/data"
 
 export default function Blog() {
   return (
     <section className="mt-24">
-      <h1 className="text-4xl font-bold text-center mb-8">Blog</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">{blog.pageContent.title}</h1>
       <div className="max-w-4xl mx-auto">
-        {blogPosts.map((post, index) => (
+        {blog.posts.map((post, index) => (
           <motion.article
             key={post.id}
             initial={{ opacity: 0, y: 20 }}

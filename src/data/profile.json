@@ -1,0 +1,52 @@
+{
+  "name": "Ronit Raj",
+  "title": "AI/ML Engineer",
+  "tagline": "AI/ML Engineer • SIH 2024 Winner • Co-Founder @ Garudex Labs",
+  "credentials": "SIH 2024 National Winner • Co-Founder @ Garudex Labs • IIIT Gwalior",
+  "email": "dev.ronitraj@gmail.com",
+  "location": "Gwalior, India",
+  "resumeUrl": "/resume_web.pdf",
+  "profileImage": "/images/profile.jpeg",
+  "social": {
+    "github": "https://github.com/Ronit-Raj9",
+    "linkedin": "https://www.linkedin.com/in/ronitrajai/",
+    "twitter": "https://x.com/ronit__raj",
+    "kaggle": "https://www.kaggle.com/ronitraj1",
+    "website": "https://www.ronitraj.me/"
+  },
+  "availability": {
+    "status": "available",
+    "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
+  },
+  "about": {
+    "summary": "4th-year student at IIIT Gwalior building production AI systems that bridge computer vision, natural language processing, and blockchain. Led Team BeGANs to win Smart India Hackathon 2024 with a RAG-based multimodal system for military document analysis. Currently co-founding Garudex Labs, where I'm scaling intelligent systems from research prototypes to real-world applications.",
+    "sections": [
+      {
+        "title": "My Journey in AI",
+        "paragraphs": [
+          "My fascination with AI began during my early undergraduate years when I first explored the intersection of computer vision and natural language processing. What started as curiosity quickly evolved into a passion for building practical AI solutions that solve real-world problems."
+        ]
+      },
+      {
+        "title": "The Vision-Language Connection",
+        "paragraphs": [
+          "I've always been intrigued by how machines can understand and interpret visual and textual information simultaneously. This interest led me to specialize in Vision-Language Models (VLMs), exploring how these multimodal systems can transform industries from military document analysis to creative content generation.",
+          "My work with RAG-based systems at SIH 2024 provided me with a strong foundation, allowing me to experiment with cutting-edge approaches to multimodal learning and representation."
+        ]
+      },
+      {
+        "title": "From Research to Production",
+        "paragraphs": [
+          "My philosophy is that AI research should translate into real-world impact. At Garudex Labs, I've had the opportunity to bridge this gap by developing production-ready AI systems that serve real users.",
+          "Working with startups and enterprises has given me valuable insights into the challenges of deploying AI in production environments - from model optimization and evaluation to addressing specific business requirements."
+        ]
+      },
+      {
+        "title": "Technical Approach",
+        "paragraphs": [
+          "I believe in building AI systems that are not just technically impressive but also practical and maintainable. My approach combines strong foundations in PyTorch and transformers with modern MLOps practices, ensuring that solutions can scale from prototype to production seamlessly."
+        ]
+      }
+    ]
+  }
+}

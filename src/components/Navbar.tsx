@@ -1,82 +1,150 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
 import { HiOutlineMail, HiOutlineDocumentDownload } from 'react-icons/hi'
+import {
+  RiHome5Line,
+  RiFileTextLine,
+  RiBriefcaseLine,
+  RiBookOpenLine,
+  RiCodeSSlashLine,
+  RiGraduationCapLine,
+  RiApps2Line,
+  RiAwardLine
+} from 'react-icons/ri'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { socialLinks as SOCIAL_LINKS_DATA, navItems as NAV_ITEMS_DATA } from '@/data'
 
-const SOCIAL_LINKS = [
-  {
-    name: "GitHub",
-    url: "https://github.com/Ronit-Raj9",
-    icon: FaGithub,
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/ronitrajai/",
-    icon: FaLinkedin,
-  },
-]
+// Icon mapping for dynamic icon rendering
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
+  HiOutlineMail,
+  RiHome5Line,
+  RiFileTextLine,
+  RiBriefcaseLine,
+  RiBookOpenLine,
+  RiCodeSSlashLine,
+  RiGraduationCapLine,
+  RiApps2Line,
+  RiAwardLine,
+}
+
+// Convert JSON data to component-ready format
+const SOCIAL_LINKS = SOCIAL_LINKS_DATA.map(link => ({
+  ...link,
+  icon: iconMap[link.icon] || FaGithub,
+}))
+
+const MOBILE_NAV_ITEMS = NAV_ITEMS_DATA.map(item => ({
+  ...item,
+  icon: iconMap[item.icon] || RiHome5Line,
+}))
 
 export default function Navbar() {
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/40 theme-transition">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-2xl flex items-center justify-center">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">RR</span>
-            </span>
-          </Link>
-        </div>
+  const [activeSection, setActiveSection] = useState('hero')
 
-        {/* Right side - Social links, CTAs, and theme toggle */}
-        <div className="flex items-center space-x-2 md:space-x-4">
-          {/* Social Links - Hidden on very small screens */}
-          <div className="hidden sm:flex items-center space-x-2">
-            {SOCIAL_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-foreground/60 hover:text-foreground transition-colors hover:scale-110 transform duration-200"
-                aria-label={link.name}
-              >
-                <link.icon className="h-5 w-5" />
-              </a>
-            ))}
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'work', 'education', 'featured', 'achievements', 'projects']
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetHeight = element.offsetHeight
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <>
+      {/* Desktop Floating Navbar - Navigation Links with Icons */}
+      <header className="hidden md:block fixed top-6 left-1/2 -translate-x-1/2 z-[100] animate-in fade-in slide-in-from-top-5 duration-500">
+        <nav className="flex items-center gap-2 px-4 py-2.5 bg-background/90 backdrop-blur-md border border-border rounded-full shadow-lg shadow-black/5">
+          {/* Navigation Links with Icons */}
+          <div className="flex items-center gap-1">
+            {MOBILE_NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.split('#')[1]
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-all",
+                    isActive
+                      ? "text-foreground bg-accent/50"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                  )}
+                >
+                  <item.icon className="h-4 w-4" />
+                  <span>{item.name}</span>
+                </Link>
+              )
+            })}
           </div>
 
+          {/* Theme Toggle */}
+          <div className="ml-1">
+            <ThemeToggle size="sm" variant="ghost" />
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Floating Bottom Navigation */}
+      <nav
+        className="md:hidden fixed bottom-6 left-0 right-0 z-[100] px-4 pb-[env(safe-area-inset-bottom)]"
+        style={{
+          transform: 'translateZ(0)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+        }}
+      >
+        <div className="flex items-center justify-center gap-1 px-3 py-2.5 bg-background/95 backdrop-blur-md border border-border rounded-full shadow-lg shadow-black/10 max-w-fit mx-auto">
+          {MOBILE_NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.href.split('#')[1]
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "p-2.5 rounded-full transition-all",
+                  isActive
+                    ? "text-foreground bg-accent/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                )}
+                aria-label={item.name}
+              >
+                <item.icon className="h-5 w-5" />
+              </Link>
+            )
+          })}
+
           {/* Divider */}
-          <div className="hidden sm:block h-6 w-px bg-border/50" />
-
-          {/* Resume Button */}
-          <a
-            href="/resume_web.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-          >
-            <HiOutlineDocumentDownload className="w-4 h-4" />
-            <span>Resume</span>
-          </a>
-
-          {/* Email Button */}
-          <a
-            href="mailto:ronitk964@gmail.com"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors"
-          >
-            <HiOutlineMail className="w-4 h-4" />
-            <span className="hidden sm:inline">Email</span>
-          </a>
+          <div className="h-5 w-px bg-border mx-1" />
 
           {/* Theme Toggle */}
-          <ThemeToggle size="md" variant="ghost" />
+          <div className="p-0.5">
+            <ThemeToggle size="sm" variant="ghost" />
+          </div>
         </div>
-      </div>
-    </header>
+      </nav>
+    </>
   )
 } 

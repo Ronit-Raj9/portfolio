@@ -1,0 +1,41 @@
+{
+  "methods": [
+    {
+      "name": "Email",
+      "value": "dev.ronitraj@gmail.com",
+      "icon": "FaEnvelope",
+      "href": "mailto:dev.ronitraj@gmail.com"
+    },
+    {
+      "name": "GitHub",
+      "value": "@Ronit-Raj9",
+      "icon": "FaGithub",
+      "href": "https://github.com/Ronit-Raj9"
+    },
+    {
+      "name": "LinkedIn",
+      "value": "Ronit Raj",
+      "icon": "FaLinkedin",
+      "href": "https://www.linkedin.com/in/ronitrajai/"
+    },
+    {
+      "name": "Twitter",
+      "value": "@ronit__raj",
+      "icon": "FaTwitter",
+      "href": "https://x.com/ronit__raj"
+    }
+  ],
+  "formLabels": {
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Your message",
+    "submitButton": "Send Message"
+  },
+  "pageContent": {
+    "title": "Get in Touch",
+    "description": "I'm always open to new opportunities and collaborations. Feel free to reach out through any of these channels."
+  }
+}

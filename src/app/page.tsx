@@ -5,7 +5,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { trackResumeDownload, trackEmailClick, trackProjectDemo, trackGitHubClick, trackSocialClick } from "@/lib/analytics"
-import { FaGithub, FaLinkedin, FaTwitter, FaGraduationCap, FaTrophy, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft, FaExternalLinkAlt } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaGraduationCap, FaTrophy, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft, FaExternalLinkAlt } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
 import { BsArrowRight, BsStars, BsLightningChargeFill, BsGraphUp, BsCodeSlash, BsCheckCircleFill } from "react-icons/bs"
 import { HiOutlineDocumentDownload, HiOutlineMail, HiAcademicCap, HiCode, HiLightningBolt } from "react-icons/hi"
@@ -18,209 +19,19 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { formatDistanceToNow, format } from 'date-fns'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
+// Import centralized data
+import { 
+  profile, 
+  experience as WORK_EXPERIENCE, 
+  achievements as ACHIEVEMENTS, 
+  featuredProjects as FEATURED_PROJECTS, 
+  moreProjects as MORE_PROJECTS, 
+  technicalSkills as TECHNICAL_SKILLS,
+  allSkills as ALL_SKILLS,
+  type FeaturedProject
+} from '@/data'
+
 const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false })
-
-// ============================================================================
-// DATA - Following Adithya's quantified impact approach
-// ============================================================================
-
-const WORK_EXPERIENCE = [
-  {
-    role: "Co-Founder & Lead Developer",
-    company: "Garudex Labs",
-    period: "January 2025 - Present",
-    description: "Building next-generation AI solutions for entrepreneurs",
-    highlights: [
-      "Leading product development and technical architecture",
-      "Building AI-powered tools for startup founders",
-      "Managing distributed team of developers"
-    ],
-    current: true
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Ionia Platform",
-    period: "December 2024 - March 2025",
-    description: "End-to-end JEE testing system with 1000+ active users",
-    highlights: [
-      "Built complete testing platform from scratch",
-      "Implemented real-time analytics dashboard",
-      "Achieved 99.9% uptime in production"
-    ],
-    current: false
-  }
-]
-
-const ACHIEVEMENTS = [
-  {
-    year: "2024",
-    title: "Smart India Hackathon Winner",
-    subtitle: "PS1604 RAG-MLLM",
-    description: "Led Team BeGANs • 85% OCR accuracy • Military AI intelligence system"
-  },
-  {
-    year: "2025",
-    title: "Co-Founded Garudex Labs",
-    subtitle: "AI Startup",
-    description: "Building AI solutions for entrepreneurs and founders"
-  },
-  {
-    year: "2024",
-    title: "Built 15+ Production Projects",
-    subtitle: "Full Stack & AI",
-    description: "From EdTech to LegalTech to Bioinformatics"
-  }
-]
-
-// Adithya-style project format with metrics
-// TIER 1: FEATURED PROJECTS (Top 3 - Maximum detail, award-winning work)
-const FEATURED_PROJECTS = [
-  {
-    title: "Project SHAKTI",
-    subtitle: "Military AI Intelligence System",
-    badge: "🏆 SIH 2024 Winner",
-    badgeColor: "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
-    highlights: [
-      "Vision-language RAG with memory retrieval architecture",
-      "85% OCR accuracy on scanned military documents",
-      "Multimodal LLM integration for image conversational AI",
-      "Team BeGANs leadership - 6 members, 48-hour hackathon"
-    ],
-    tech: ["PyTorch", "RAG", "Vision-Language Models", "OCR"],
-    links: { demo: "https://www.ionia.sbs/", caseStudy: "/projects/shakti" },
-    image: "/projects/ionia.png",
-    category: "AI/ML"
-  },
-  {
-    title: "GeneTrust AI Studio",
-    subtitle: "AI-Powered CRISPR Intelligence Platform",
-    badge: "⭐ Featured Project",
-    badgeColor: "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
-    highlights: [
-      "DNABERT model integration for genetic sequence analysis",
-      "Next.js + TypeScript + PyTorch + FastAPI architecture",
-      "Real-time ranking and prediction system",
-      "Featured in AI/Bioinformatics portfolio"
-    ],
-    tech: ["Next.js", "TypeScript", "PyTorch", "FastAPI"],
-    links: { demo: "https://genetrust.vercel.app/", github: "https://github.com/Ronit-Raj9/hackhazard-project-genetrust" },
-    image: "/projects/genetrust.png",
-    category: "AI/ML"
-  },
-  {
-    title: "EverydayApp",
-    subtitle: "Starknet DeFi Platform",
-    badge: "🚀 In Development",
-    badgeColor: "bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30",
-    highlights: [
-      "Building decentralized finance tools on Starknet",
-      "Cairo smart contract development",
-      "React + TypeScript frontend with Web3 integration",
-      "Focus on user-friendly DeFi experience"
-    ],
-    tech: ["Cairo", "Starknet", "React", "TypeScript"],
-    links: { demo: "#", github: "https://github.com/Ronit-Raj9" },
-    image: "/projects/legalease.png",
-    category: "Blockchain"
-  }
-]
-
-// TIER 2: MORE PROJECTS (Next 6 - Condensed cards, show versatility)
-const MORE_PROJECTS = [
-  {
-    title: "Ionia Testing Platform",
-    subtitle: "1000+ active users • 99.9% uptime",
-    description: "End-to-end JEE testing system with real-time analytics",
-    tech: ["Next.js", "Express.js", "MongoDB"],
-    link: "https://www.ionia.sbs/",
-    github: "https://github.com/Ronit-Raj9/ionia-next",
-    category: "EdTech",
-    badge: "💼 Production"
-  },
-  {
-    title: "LegalEase",
-    subtitle: "AI-powered legal compliance",
-    description: "Automated contract generation for Indian startups with GST management",
-    tech: ["Next.js", "FastAPI", "AI Agents"],
-    link: "https://legalease-new.vercel.app/",
-    category: "LegalTech",
-    badge: "🏢 Startup"
-  },
-  {
-    title: "E-Cell IIIT Gwalior",
-    subtitle: "College entrepreneurship platform",
-    description: "Website with event management and analytics dashboard",
-    tech: ["Next.js", "MongoDB", "Chart.js"],
-    link: "https://ecell-puce.vercel.app/",
-    github: "https://github.com/Ronit-Raj9/Ecell",
-    category: "Web Dev",
-    badge: "🎓 Academic"
-  },
-  {
-    title: "Graph Neural Networks",
-    subtitle: "Research implementations",
-    description: "PyTorch Geometric implementations for document understanding",
-    tech: ["PyTorch", "Python", "GNNs"],
-    link: "https://github.com/Ronit-Raj9",
-    category: "Research",
-    badge: "🔬 Research"
-  },
-  {
-    title: "Token Analytics Dashboard",
-    subtitle: "Real-time crypto insights",
-    description: "Data visualization platform for cryptocurrency analytics",
-    tech: ["React", "D3.js", "Web3.js"],
-    link: "https://github.com/Ronit-Raj9",
-    category: "Blockchain",
-    badge: "📊 Analytics"
-  },
-  {
-    title: "Portfolio Website",
-    subtitle: "This very site!",
-    description: "Next.js 14 portfolio with 3D elements and dark mode",
-    tech: ["Next.js", "Three.js", "Tailwind"],
-    link: "https://www.ronitraj.me/",
-    github: "https://github.com/Ronit-Raj9/portfolio",
-    category: "Web Dev",
-    badge: "✨ Meta"
-  }
-]
-
-// Adithya-style specific skills (not generic categories)
-const TECHNICAL_SKILLS = {
-  "Vision-Language Models": ["PaliGemma", "CLIP", "ViT architectures", "Multi-modal fusion"],
-  "Graph Neural Networks": ["PyTorch Geometric", "DGL", "Message passing algorithms"],
-  "LLM Fine-tuning & RAG": ["Retrieval-Augmented Generation", "LoRA/QLoRA", "Vector databases"],
-  "Production Infrastructure": ["FastAPI (99.9% uptime)", "Docker", "AWS/GCP", "CI/CD pipelines"]
-}
-
-const TESTIMONIALS = [
-  {
-    quote: "Ronit demonstrated exceptional problem-solving skills during SIH 2024. His ability to architect complex AI systems under pressure was remarkable.",
-    author: "Team BeGANs Mentor",
-    role: "SIH 2024 Judge Panel"
-  },
-  {
-    quote: "A dedicated developer with deep understanding of both frontend and AI/ML. Delivered the Ionia platform ahead of schedule with excellent quality.",
-    author: "Ionia Platform Stakeholder",
-    role: "EdTech Startup"
-  }
-]
-
-const BLOG_POSTS = [
-  {
-    title: "Building Production RAG Systems: Lessons from SIH 2024",
-    readTime: "8 min read",
-    date: "Jan 2025",
-    link: "#"
-  },
-  {
-    title: "Graph Neural Networks for Document Understanding",
-    readTime: "12 min read",
-    date: "Dec 2024",
-    link: "#"
-  }
-]
 
 // ============================================================================
 // COMPONENTS - Adithya-style minimalist approach
@@ -246,17 +57,13 @@ function StickyContactButton() {
           className="fixed right-6 bottom-6 z-50 flex flex-col gap-2"
         >
           <a
-            href="mailto:ronitk964@gmail.com"
+            href={`mailto:${profile.email}`}
             onClick={trackEmailClick}
-            className="flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2.5 bg-foreground text-background rounded-md hover:opacity-90 transition-all text-sm font-medium"
           >
             <HiOutlineMail className="w-4 h-4" />
             <span className="hidden sm:inline">Email Me</span>
           </a>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 rounded-full text-xs font-medium justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            Available
-          </div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -264,23 +71,26 @@ function StickyContactButton() {
 }
 
 // Adithya-style Project Card with bullet points
-function ProjectCardDetailed({ project, index }: { project: typeof FEATURED_PROJECTS[0], index: number }) {
+function ProjectCardDetailed({ project, index, isExpanded, onToggle }: { 
+  project: FeaturedProject, 
+  index: number,
+  isExpanded: boolean,
+  onToggle: () => void
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.15, duration: 0.5 }}
-      className="group relative bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300"
+      className="group relative bg-background rounded-lg overflow-hidden border border-border hover:border-foreground/20 transition-colors"
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image */}
-        <div className="relative w-full lg:w-1/3 h-40 lg:h-auto lg:min-h-[200px] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent z-10 hidden lg:block" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10 lg:hidden" />
+        <div className="relative w-full lg:w-1/3 h-24 lg:h-auto lg:min-h-[100px] overflow-hidden bg-accent/10">
           {project.badge && (
-            <div className="absolute top-3 left-3 z-20">
-              <span className={cn("px-2 py-0.5 text-xs font-medium rounded-full border", project.badgeColor || "bg-primary text-primary-foreground")}>
+            <div className="absolute top-2 left-2 z-20">
+              <span className="px-2 py-0.5 text-[10px] rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground">
                 {project.badge}
               </span>
             </div>
@@ -294,41 +104,55 @@ function ProjectCardDetailed({ project, index }: { project: typeof FEATURED_PROJ
           />
         </div>
 
-        {/* Content - Adithya's bullet format */}
-        <div className="flex-1 p-4 lg:p-5">
-          <h3 className="text-lg lg:text-xl font-bold mb-0.5">{project.title}</h3>
-          <p className="text-xs text-muted-foreground mb-3">{project.subtitle}</p>
+        {/* Content */}
+        <div className="flex-1 p-4">
+          <h3 className="text-base font-medium mb-0.5">{project.title}</h3>
+          <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
 
-          {/* Bullet points - Adithya style */}
-          <ul className="space-y-1 mb-4">
-            {project.highlights.map((highlight, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-foreground/80">
-                <span className="text-primary">↳</span>
+          {/* Bullet points */}
+          <ul className="space-y-0.5 mb-2">
+            {(isExpanded ? project.highlights : project.highlights.slice(0, 1)).map((highlight, i) => (
+              <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
+                <span className="text-muted-foreground/50">—</span>
                 <span>{highlight}</span>
               </li>
             ))}
           </ul>
 
+          {project.highlights.length > 1 && (
+            <div className="mb-2">
+              <button
+                onClick={onToggle}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {isExpanded ? '← Show less' : 'Read more →'}
+              </button>
+            </div>
+          )}
+
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-2 mb-3">
             {project.tech.map((tech) => (
-              <span key={tech} className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/50 text-foreground/80">
+              <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-md bg-gradient-to-r from-[#f9fafb] to-[#f3f4f6] dark:from-[#374151] dark:to-[#4b5563] text-foreground border border-[#e5e5e5] dark:border-[#4b5563] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200">
                 {tech}
               </span>
             ))}
           </div>
 
           {/* Links */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {project.links.demo && (
               <a
                 href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackProjectDemo(project.title)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
               >
-                Live Demo <BsArrowRight className="w-3 h-3" />
+                Demo
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             )}
             {project.links.github && (
@@ -337,16 +161,20 @@ function ProjectCardDetailed({ project, index }: { project: typeof FEATURED_PROJ
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackGitHubClick(project.title)}
-                className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border border-border rounded-lg hover:bg-accent/50 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-foreground/20 hover:bg-accent/50 transition-colors"
               >
-                <FaGithub className="w-3 h-3" /> GitHub
+                <FaGithub className="w-3.5 h-3.5" />
+                GitHub
               </a>
             )}
             {project.links.caseStudy && (
               <a
                 href={project.links.caseStudy}
-                className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border border-border rounded-lg hover:bg-accent/50 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-[#8b5cf6] text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors"
               >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 Case Study
               </a>
             )}
@@ -361,7 +189,7 @@ function ProjectCardDetailed({ project, index }: { project: typeof FEATURED_PROJ
 interface GitHubData {
   profile: { name: string; avatarUrl: string; followers: number; publicRepos: number; totalStars: number; url: string; bio: string; createdAt: string }
   availableYears: number[]
-  selectedYear: number
+  selectedYear: number | 'all'
   contributions: { total: number; code: number; issues: number; prs: number }
   contributionCalendar: { weeks: { days: { count: number; date: string; weekday: number }[] }[] }
   lastUpdated: string
@@ -378,18 +206,17 @@ function getColorLevel(count: number): string {
 function GitHubSection() {
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [selectedYear, setSelectedYear] = useState<number | null>(null)
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all')
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true)
       try {
-        const params = selectedYear ? `?year=${selectedYear}` : ''
+        const params = selectedYear === 'all' ? '?year=all' : `?year=${selectedYear}`
         const response = await fetch(`/api/github${params}`, { cache: 'no-store' })
         if (response.ok) {
           const data = await response.json()
           setGithubData(data)
-          if (!selectedYear) setSelectedYear(data.selectedYear)
         }
       } catch (error) {
         console.error('GitHub fetch error:', error)
@@ -439,7 +266,11 @@ function GitHubSection() {
           ))}
         </div>
 
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4 flex-wrap">
+          <button onClick={() => setSelectedYear('all')}
+            className={`px-3 py-1 text-sm rounded-md ${selectedYear === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'}`}>
+            All
+          </button>
           {githubData.availableYears.map(year => (
             <button key={year} onClick={() => setSelectedYear(year)}
               className={`px-3 py-1 text-sm rounded-md ${year === selectedYear ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'}`}>
@@ -479,142 +310,472 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] })
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.98])
+  const [showAllExperiences, setShowAllExperiences] = useState(false)
+  const [expandedExperiences, setExpandedExperiences] = useState<{[key: string]: boolean}>({})
+  const [expandedProjects, setExpandedProjects] = useState<{[key: string]: boolean}>({})
+  const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
+  const [selectedSkillFilter, setSelectedSkillFilter] = useState<string>("All Skills")
+  const [showMoreAbout, setShowMoreAbout] = useState(false)
+
+  const toggleExperience = (company: string) => {
+    setExpandedExperiences(prev => ({
+      ...prev,
+      [company]: !prev[company]
+    }))
+  }
+
+  const toggleProject = (title: string) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [title]: !prev[title]
+    }))
+  }
 
   return (
-    <main ref={containerRef} className="relative flex min-h-screen flex-col">
+    <main ref={containerRef} className="relative flex min-h-screen flex-col pb-8 md:pb-0">
       <StickyContactButton />
 
       {/* ================================================================== */}
-      {/* 1. HERO - Adithya's minimalist approach with email visible */}
+      {/* 1. HERO - Adithya style: Name/Socials left, Image right, About below */}
       {/* ================================================================== */}
-      <section className="relative min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-radial from-purple-900/10 via-background to-background -z-10" />
-        <Scene3D />
+      <section id="hero" className="relative flex items-start pt-16 md:pt-32 pb-8">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Top Row: Name/Socials left, Image right */}
+            <div className="flex gap-6 md:gap-10 items-start mb-6">
+              {/* Left Side - Name, Title, Socials */}
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }} 
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex-1"
+              >
+                {/* Name */}
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-2 md:mb-3">
+                  {profile.name}
+                </h1>
 
-        <div className="container px-4 pt-24 pb-12">
-          <motion.div style={{ opacity, scale }} className="max-w-4xl mx-auto text-center">
-            {/* Profile */}
-            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="relative w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
-              <Image src="/images/profile.jpeg" alt="Ronit Raj" fill className="object-cover" priority />
+                {/* Title/Tagline */}
+                <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6 leading-relaxed">
+                  {profile.title}, Building Generative AI solutions at Scale
+                </p>
+
+                {/* Social Links */}
+                <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                  <a 
+                    href={`mailto:${profile.email}`}
+                    onClick={trackEmailClick}
+                    className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                    aria-label="Email"
+                  >
+                    <HiOutlineMail className="w-4 h-4 md:w-5 md:h-5" />
+                  </a>
+                  <a 
+                    href={profile.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackSocialClick('GitHub')}
+                    className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub className="w-4 h-4 md:w-5 md:h-5" />
+                  </a>
+                  <a 
+                    href={profile.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackSocialClick('LinkedIn')}
+                    className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin className="w-4 h-4 md:w-5 md:h-5" />
+                  </a>
+                  <a 
+                    href={profile.social.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackSocialClick('Twitter')}
+                    className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                    aria-label="X (Twitter)"
+                  >
+                    <FaXTwitter className="w-4 h-4 md:w-5 md:h-5" />
+                  </a>
+                  <a 
+                    href={profile.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={trackResumeDownload}
+                    className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-2 md:py-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                    aria-label="Resume"
+                  >
+                    <HiOutlineDocumentDownload className="w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-xs md:text-sm font-medium">CV</span>
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Right Side - Profile Image */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex-shrink-0"
+              >
+                <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-border">
+                  <Image 
+                    src={profile.profileImage} 
+                    alt={profile.name} 
+                    fill 
+                    className="object-cover" 
+                    priority 
+                  />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* About Section - Full Width Below */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <div className="space-y-4 md:space-y-6">
+                <div>
+                  <h2 className="text-lg md:text-xl font-medium tracking-tight mb-3 md:mb-4">About</h2>
+                  <p className="text-sm text-foreground/70 leading-relaxed">
+                    {profile.about.summary}
+                  </p>
+                </div>
+
+                <button 
+                  onClick={() => setShowMoreAbout(!showMoreAbout)}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg hover:bg-accent/30 transition-colors"
+                >
+                  {showMoreAbout ? 'Show Less' : 'More About Me'}
+                </button>
+
+                <AnimatePresence>
+                  {showMoreAbout && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-4 md:space-y-6 overflow-hidden"
+                    >
+                      {profile.about.sections.map((section, index) => (
+                        <div key={index}>
+                          <h3 className="text-base font-medium mb-2">{section.title}</h3>
+                          {section.paragraphs.map((paragraph, pIndex) => (
+                            <p key={pIndex} className="text-sm text-foreground/70 leading-relaxed mb-2">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
-
-            {/* Name */}
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }} className="text-4xl md:text-5xl font-bold mb-4">
-              Ronit Raj
-            </motion.h1>
-
-            {/* One-line value prop - Adithya style */}
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }} className="text-lg md:text-xl text-foreground/80 mb-4 leading-relaxed">
-              AI/ML Engineer building production systems with Graph Neural Networks &amp; Multimodal LLMs
-            </motion.p>
-
-            {/* Credentials line with separators - Adithya style */}
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }} className="text-sm text-muted-foreground mb-6">
-              SIH 2024 National Winner • Co-Founder @ Garudex Labs • IIIT Gwalior
-            </motion.p>
-
-            {/* Contact info visible - Adithya's key insight */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }} className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-8">
-              <a href="mailto:ronitk964@gmail.com" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                <FaEnvelope className="w-4 h-4" /> ronitk964@gmail.com
-              </a>
-              <span className="hidden sm:inline">•</span>
-              <span className="flex items-center gap-1.5">
-                <FaMapMarkerAlt className="w-4 h-4" /> Gwalior, India
-              </span>
-            </motion.div>
-
-            {/* CTAs */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }} className="flex flex-wrap items-center justify-center gap-3">
-              <Link href="#work">
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium shadow-lg hover:shadow-xl transition-all">
-                  View Work <BsArrowRight />
-                </motion.button>
-              </Link>
-              <a href="/resume_web.pdf" target="_blank" rel="noopener noreferrer"
-                onClick={trackResumeDownload}
-                className="flex items-center gap-2 px-6 py-3 border border-border bg-background/80 rounded-full font-medium hover:bg-accent/50 transition-all">
-                <HiOutlineDocumentDownload className="w-5 h-5" /> Resume
-              </a>
-              <a href="mailto:ronitk964@gmail.com"
-                onClick={trackEmailClick}
-                className="flex items-center gap-2 px-6 py-3 border border-border bg-background/80 rounded-full font-medium hover:bg-accent/50 transition-all">
-                <HiOutlineMail className="w-5 h-5" /> Email Me
-              </a>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 2. WORK EXPERIENCE - Adithya's ordering (before projects) */}
+      {/* WORK EXPERIENCE - Vertical Timeline Design */}
       {/* ================================================================== */}
-      <section id="work" className="w-full py-20 bg-accent/5">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-10">Work Experience</h2>
+      <section id="work" className="w-full py-20 px-6">
+        <div className="max-w-[900px] mx-auto">
+          <h2 className="text-[32px] font-bold mb-12">Work Experience</h2>
 
-            <div className="space-y-8">
-              {WORK_EXPERIENCE.map((exp, index) => (
-                <motion.div key={exp.company} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="relative pl-8 border-l-2 border-primary/30">
-                  <div className="absolute left-0 top-0 w-3 h-3 -translate-x-[7px] rounded-full bg-primary" />
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="text-lg font-bold">{exp.role}</h3>
-                    {exp.current && <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30">Current</Badge>}
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-[30px] top-[30px] bottom-[30px] w-[2px] bg-[#e5e5e5] md:block hidden" />
+            <div className="absolute left-[20px] top-[20px] bottom-[20px] w-[1px] bg-[#e5e5e5] md:hidden block" />
+
+            {/* Experience Items */}
+            <div className="space-y-6">
+              {WORK_EXPERIENCE.slice(0, showAllExperiences ? undefined : 3).map((exp, index) => (
+                <motion.div 
+                  key={exp.company} 
+                  initial={{ opacity: 0, y: 20 }} 
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} 
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
+                >
+                  {/* Timeline Item Container */}
+                  <div className="flex items-start gap-4 md:gap-0">
+                    {/* Logo Circle on Timeline */}
+                    <div className="relative z-10 shrink-0 md:absolute md:left-0">
+                      <div className={cn(
+                        "w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-white border-2 flex items-center justify-center",
+                        exp.current ? "border-[#8b5cf6] shadow-[0_2px_8px_rgba(139,92,246,0.2)]" : "border-[#e5e5e5] shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                      )}>
+                        {exp.icon ? (
+                          <Image 
+                            src={exp.icon} 
+                            alt={exp.company} 
+                            width={40} 
+                            height={40} 
+                            className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] object-contain" 
+                          />
+                        ) : (
+                          <span className="text-base md:text-xl font-semibold text-gray-600">
+                            {exp.company.charAt(0)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Content Card */}
+                    <div className={cn(
+                      "flex-1 md:ml-[100px] relative border rounded-lg p-4",
+                      exp.current 
+                        ? "bg-[#fafafa] dark:bg-[#1a1a1a] border-2 border-[#8b5cf6] shadow-[0_4px_12px_rgba(139,92,246,0.1)]" 
+                        : "border-[#e5e5e5] dark:border-[#374151] bg-white dark:bg-[#1a1a1a]"
+                    )}>
+                      {/* External Link for Current Role */}
+                      {exp.current && exp.link && (
+                        <a 
+                          href={exp.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute top-3 right-3 w-7 h-7 rounded-full bg-[#8b5cf6] flex items-center justify-center text-white hover:bg-[#7c3aed] transition-colors"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4">
+                        {/* Left Content */}
+                        <div className="flex-1 min-w-0">
+                          {/* Company Name & Badge */}
+                          <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                            <h3 className="text-base font-semibold text-foreground">{exp.company}</h3>
+                            {exp.badge && (
+                              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-[#dbeafe] text-[#1e40af] dark:bg-[#1e40af]/20 dark:text-[#93c5fd]">
+                                {exp.badge}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Job Title */}
+                          <p className="text-sm font-medium font-mono text-muted-foreground mb-1">
+                            {exp.role}
+                          </p>
+
+                          {/* Description */}
+                          <p className="text-sm leading-relaxed text-[#444444] dark:text-[#a1a1aa]">
+                            {exp.description}
+                          </p>
+
+                          {/* Expanded Highlights */}
+                          {expandedExperiences[exp.company] && exp.highlights.length > 0 && (
+                            <ul className="mt-3 space-y-1.5">
+                              {exp.highlights.map((h, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-[#666666] dark:text-[#a1a1aa]">
+                                  <span className="text-[#8b5cf6]">•</span> {h}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {/* Read More Button */}
+                          {exp.highlights.length > 0 && (
+                            <button
+                              onClick={() => toggleExperience(exp.company)}
+                              className="mt-2 text-xs text-[#8b5cf6] hover:text-[#7c3aed] transition-colors font-medium"
+                            >
+                              {expandedExperiences[exp.company] ? '← Show less' : 'Read more →'}
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Right Side - Date & Location */}
+                        <div className="shrink-0 md:text-right flex md:flex-col items-center md:items-end gap-2 md:gap-1">
+                          <span className="text-xs text-[#666666] whitespace-nowrap">{exp.period}</span>
+                          {exp.locationType && (
+                            <span className="px-2 py-0.5 text-[10px] font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
+                              {exp.locationType}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-primary font-medium mb-1">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground mb-3">{exp.period}</p>
-                  <p className="text-foreground/80 mb-3">{exp.description}</p>
-                  <ul className="space-y-1">
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="text-primary">↳</span> {h}
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               ))}
+            </div>
+          </div>
+
+          {/* Show More Button */}
+          {WORK_EXPERIENCE.length > 3 && (
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              whileInView={{ opacity: 1 }} 
+              viewport={{ once: true }}
+              className="text-center mt-8"
+            >
+              <button
+                onClick={() => setShowAllExperiences(!showAllExperiences)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 mx-auto"
+              >
+                {showAllExperiences ? (
+                  <>
+                    Show less experiences
+                    <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    Show more experiences
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </>
+                )}
+              </button>
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* EDUCATION */}
+      {/* ================================================================== */}
+      <section id="education" className="w-full py-20 px-6">
+        <div className="max-w-[900px] mx-auto">
+          <h2 className="text-[32px] font-bold mb-12">Education</h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="flex items-start gap-4 md:gap-0">
+              {/* Logo Circle */}
+              <div className="relative z-10 shrink-0">
+                <div className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-white dark:bg-[#1a1a1a] border-2 border-[#e5e5e5] dark:border-[#374151] shadow-[0_2px_8px_rgba(0,0,0,0.08)] flex items-center justify-center">
+                  <HiAcademicCap className="w-[24px] h-[24px] md:w-[32px] md:h-[32px] text-foreground" />
+                </div>
+              </div>
+
+              {/* Content Card */}
+              <div className="flex-1 md:ml-[100px] relative border border-[#e5e5e5] dark:border-[#374151] rounded-lg p-4 bg-white dark:bg-[#1a1a1a]">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4">
+                  {/* Left Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-semibold text-foreground mb-0.5">
+                      Indian Institute of Information Technology Gwalior
+                    </h3>
+                    <p className="text-sm font-medium font-mono text-muted-foreground mb-1">
+                      B.Tech in Mathematics and Scientific Computing
+                    </p>
+                    <p className="text-sm leading-relaxed text-[#444444] dark:text-[#a1a1aa]">
+                      Specializing in AI/ML, Data Science, and Mathematical Modeling
+                    </p>
+                  </div>
+
+                  {/* Right Side - Date */}
+                  <div className="shrink-0 md:text-right">
+                    <span className="text-xs text-[#666666] whitespace-nowrap">2022 - 2026</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 3. ACHIEVEMENTS - Yash's dedicated section format */}
+      {/* 3. FEATURED PROJECTS - Minimal detailed format */}
       {/* ================================================================== */}
-      <section className="w-full py-20">
+      <section id="featured" className="w-full py-16">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-10">
-              Achievements & Recognition
+            <div className="flex justify-between items-center mb-12">
+              <h2 className="text-[32px] font-bold">Featured Projects</h2>
+              <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                View All →
+              </Link>
+            </div>
+
+            <div className="space-y-4">
+              {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 3).map((project, index) => (
+                <ProjectCardDetailed 
+                  key={project.title} 
+                  project={project} 
+                  index={index}
+                  isExpanded={expandedProjects[project.title] || false}
+                  onToggle={() => toggleProject(project.title)}
+                />
+              ))}
+            </div>
+
+            {FEATURED_PROJECTS.length > 3 && (
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                whileInView={{ opacity: 1 }} 
+                viewport={{ once: true }}
+                className="text-center mt-8"
+              >
+                <button
+                  onClick={() => setShowAllFeaturedProjects(!showAllFeaturedProjects)}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 mx-auto"
+                >
+                  {showAllFeaturedProjects ? (
+                    <>
+                      Show less projects
+                      <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </>
+                  ) : (
+                    <>
+                      Show more projects
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 4. ACHIEVEMENTS - Minimal clean format */}
+      {/* ================================================================== */}
+      <section id="achievements" className="w-full py-16">
+        <div className="container px-4">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            className="max-w-4xl mx-auto">
+            <h2 className="text-[32px] font-bold mb-12">
+              Achievements
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {ACHIEVEMENTS.map((achievement, index) => (
-                <motion.div key={achievement.title} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                <motion.div key={achievement.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/30 transition-all">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="text-sm font-bold text-primary">{achievement.year}</span>
-                      <span className="text-muted-foreground">•</span>
-                      <h3 className="font-bold">{achievement.title}</h3>
-                    </div>
-                    <p className="text-sm text-primary font-medium mb-1">{achievement.subtitle}</p>
-                    <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                  className="p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
+                    <span className="text-sm text-muted-foreground">{achievement.year}</span>
+                    <span className="text-muted-foreground/30">—</span>
+                    <h3 className="font-medium">{achievement.title}</h3>
                   </div>
+                  <p className="text-sm text-muted-foreground mb-1">{achievement.subtitle}</p>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{achievement.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -623,38 +784,104 @@ export default function Home() {
       </section>
 
       {/* ================================================================== */}
-      {/* 4. FEATURED PROJECTS - Adithya's detailed format with metrics */}
+      {/* 5. TECHNICAL SKILLS - Minimal filter tabs with skill badges */}
       {/* ================================================================== */}
-      <section id="projects" className="w-full py-20 bg-accent/5">
+      <section id="skills" className="w-full py-16">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-5xl mx-auto">
-            <div className="flex justify-between items-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold">Featured Projects</h2>
-              <Link href="/projects" className="text-sm text-primary hover:underline flex items-center gap-1">
-                View All <BsArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
+            className="max-w-4xl mx-auto">
+            <h2 className="text-[32px] font-bold mb-12">
+              Skills
+            </h2>
 
-            <div className="space-y-8">
-              {FEATURED_PROJECTS.map((project, index) => (
-                <ProjectCardDetailed key={project.title} project={project} index={index} />
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {[
+                { name: "All Skills", count: ALL_SKILLS.length },
+                { name: "AI/ML/DL", count: ALL_SKILLS.filter(s => s.category === "AI/ML/DL").length },
+                { name: "Python Libs", count: ALL_SKILLS.filter(s => s.category === "Python Libs").length },
+                { name: "Web", count: ALL_SKILLS.filter(s => s.category === "Web").length },
+                { name: "Cloud", count: ALL_SKILLS.filter(s => s.category === "Cloud").length },
+                { name: "Big Data", count: ALL_SKILLS.filter(s => s.category === "Big Data").length },
+                { name: "Databases", count: ALL_SKILLS.filter(s => s.category === "Databases").length },
+                { name: "Languages", count: ALL_SKILLS.filter(s => s.category === "Languages").length },
+              ].map((category, index) => (
+                <motion.button
+                  key={category.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => setSelectedSkillFilter(category.name)}
+                  className={cn(
+                    "px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 border",
+                    selectedSkillFilter === category.name
+                      ? "bg-foreground text-background border-foreground shadow-sm"
+                      : "bg-background hover:border-foreground/30 hover:shadow-sm border-border"
+                  )}
+                >
+                  {category.name}
+                  <span className={cn(
+                    "text-[10px] px-1.5 py-0.5 rounded-full font-medium",
+                    selectedSkillFilter === category.name
+                      ? "bg-background/20 text-background"
+                      : "bg-accent/50 text-muted-foreground"
+                  )}>
+                    {category.count}
+                  </span>
+                </motion.button>
               ))}
             </div>
+
+            {/* Skills Grid */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="p-6 bg-card/50 rounded-xl border border-border/50"
+            >
+              <div className="flex flex-wrap gap-2 justify-center">
+                <AnimatePresence mode="popLayout">
+                  {(selectedSkillFilter === "All Skills" 
+                    ? ALL_SKILLS 
+                    : ALL_SKILLS.filter(skill => skill.category === selectedSkillFilter)
+                  ).map((skill, index) => (
+                    <motion.span
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ delay: index * 0.02 }}
+                      className="px-2.5 py-1 rounded-full text-xs font-medium bg-background border border-border hover:border-foreground/30 hover:shadow-sm transition-all cursor-default flex items-center gap-1.5"
+                    >
+                      <span className="text-muted-foreground/40 text-[10px]">◇</span>
+                      {skill.name}
+                    </motion.span>
+                  ))}
+                </AnimatePresence>
+              </div>
+              
+              {/* Count Footer */}
+              <p className="text-center text-sm text-muted-foreground mt-6">
+                Showing {selectedSkillFilter === "All Skills" 
+                  ? ALL_SKILLS.length 
+                  : ALL_SKILLS.filter(s => s.category === selectedSkillFilter).length
+                } total skills
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 5. MORE PROJECTS - Tier 2: Condensed cards showing versatility */}
+      {/* 6. MORE PROJECTS - Minimal condensed cards */}
       {/* ================================================================== */}
-      <section className="w-full py-16">
+      <section id="projects" className="w-full py-16">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-5xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-xl font-bold">More Projects</h2>
-              <span className="text-xs text-muted-foreground">Showing versatility across domains</span>
+            className="max-w-4xl mx-auto">
+            <div className="flex justify-between items-center mb-12">
+              <h2 className="text-[32px] font-bold">More Projects</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -662,49 +889,38 @@ export default function Home() {
                 <motion.div key={project.title}
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: index * 0.08 }}
-                  className="group p-5 bg-card/50 rounded-xl border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
-                  {/* Badge & Category */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-accent/50 text-muted-foreground">
-                      {project.category}
-                    </span>
-                    {project.badge && (
-                      <span className="text-xs font-medium text-muted-foreground">
-                        {project.badge}
-                      </span>
-                    )}
-                  </div>
+                  className="group p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors">
+                  {/* Category */}
+                  <span className="text-xs text-muted-foreground">
+                    {project.category}
+                  </span>
                   
                   {/* Title & Subtitle */}
-                  <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="font-medium mt-2 mb-1 group-hover:text-foreground/80 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-primary font-medium mb-2">{project.subtitle}</p>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+                  <p className="text-xs text-muted-foreground mb-3">{project.subtitle}</p>
                   
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tech.map(t => (
-                      <span key={t} className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/30">{t}</span>
+                    {project.tech.slice(0, 3).map(t => (
+                      <span key={t} className="px-2 py-0.5 text-xs rounded-full bg-accent/30 text-muted-foreground">{t}</span>
                     ))}
                   </div>
                   
                   {/* Links */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3 text-xs">
                     <a href={project.link} target="_blank" rel="noopener noreferrer"
                       onClick={() => trackProjectDemo(project.title)}
-                      className="flex items-center gap-1 text-xs font-medium text-primary hover:underline">
-                      Live Demo <FaExternalLinkAlt className="w-2.5 h-2.5" />
+                      className="text-muted-foreground hover:text-foreground transition-colors">
+                      Demo →
                     </a>
                     {project.github && (
-                      <>
-                        <span className="text-muted-foreground">•</span>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer"
-                          onClick={() => trackGitHubClick(project.title)}
-                          className="flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground">
-                          <FaGithub className="w-3 h-3" /> GitHub
-                        </a>
-                      </>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer"
+                        onClick={() => trackGitHubClick(project.title)}
+                        className="text-muted-foreground hover:text-foreground transition-colors">
+                        GitHub →
+                      </a>
                     )}
                   </div>
                 </motion.div>
@@ -713,10 +929,10 @@ export default function Home() {
 
             {/* View All Projects CTA */}
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-              className="text-center mt-10">
+              className="text-center mt-12">
               <Link href="/projects" 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent/50 hover:bg-accent rounded-full text-sm font-medium transition-colors">
-                View All Projects <BsArrowRight className="w-4 h-4" />
+                className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full text-sm hover:border-foreground/30 transition-colors">
+                View All Projects →
               </Link>
             </motion.div>
           </motion.div>
@@ -724,144 +940,54 @@ export default function Home() {
       </section>
 
       {/* ================================================================== */}
-      {/* 6. TECHNICAL SKILLS - Adithya's specific format */}
+      {/* 7. GITHUB ACTIVITY */}
       {/* ================================================================== */}
-      <section id="skills" className="w-full py-20 bg-accent/5">
+      <section className="w-full py-16">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-10 flex items-center gap-3">
-              <HiCode className="text-primary" /> Technical Expertise
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {Object.entries(TECHNICAL_SKILLS).map(([category, skills], index) => (
-                <motion.div key={category} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="p-5 bg-card/50 rounded-xl border border-border/50">
-                  <h3 className="font-bold text-primary mb-3">{category}</h3>
-                  <ul className="space-y-1.5">
-                    {skills.map((skill, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-                        <span className="text-primary">↳</span> {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-              className="text-center mt-8">
-              <Link href="/skills" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-                View all skills <BsArrowRight className="w-3 h-3" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 7. TESTIMONIALS - Yash's approach */}
-      {/* ================================================================== */}
-      <section className="w-full py-20">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-10 flex items-center gap-3">
-              <FaQuoteLeft className="text-primary" /> What Others Say
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {TESTIMONIALS.map((testimonial, index) => (
-                <motion.div key={testimonial.author} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="p-6 bg-card/50 rounded-xl border border-border/50 relative">
-                  <FaQuoteLeft className="absolute top-4 right-4 w-8 h-8 text-primary/10" />
-                  <p className="text-foreground/80 italic mb-4 leading-relaxed">"{testimonial.quote}"</p>
-                  <div>
-                    <p className="font-bold">— {testimonial.author}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 8. BLOG POSTS - Adithya's thought leadership */}
-      {/* ================================================================== */}
-      <section className="w-full py-16 bg-accent/5">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold mb-8 flex items-center gap-3">
-              📝 Latest Writings
-            </h2>
-
-            <div className="space-y-4">
-              {BLOG_POSTS.map((post, index) => (
-                <motion.a key={post.title} href={post.link}
-                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="group flex items-center justify-between p-4 bg-card/50 rounded-xl border border-border/50 hover:border-primary/30 transition-all">
-                  <div>
-                    <h3 className="font-medium group-hover:text-primary transition-colors">{post.title}</h3>
-                    <p className="text-sm text-muted-foreground">{post.readTime} • {post.date}</p>
-                  </div>
-                  <BsArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 9. GITHUB ACTIVITY */}
-      {/* ================================================================== */}
-      <section className="w-full py-20">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-            <div className="text-center mb-10 max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold">Open Source Contributions</h2>
-            </div>
+            <h2 className="text-[32px] font-bold mb-12">Open Source Contributions</h2>
             <GitHubSection />
           </motion.div>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 10. CONTACT - Simplified with email prominent */}
+      {/* 8. CONTACT - Simplified with email prominent */}
       {/* ================================================================== */}
-      <section id="contact" className="w-full py-20 bg-accent/5">
+      <section id="contact" className="w-full py-12 bg-accent/5">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Let's Work Together</h2>
+            className="max-w-4xl mx-auto text-center">
+            <h2 className="text-[32px] font-bold mb-4">Let's Work Together</h2>
             <p className="text-muted-foreground mb-8">
               Open to discussing AI/ML projects, full-stack development, or startup collaborations.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href="mailto:ronitk964@gmail.com"
+              <a href="mailto:dev.ronitraj@gmail.com"
                 onClick={trackEmailClick}
-                className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
-                <HiOutlineMail className="w-5 h-5" /> ronitk964@gmail.com
+                className="flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-md font-medium hover:opacity-90 transition-all">
+                <HiOutlineMail className="w-5 h-5" /> dev.ronitraj@gmail.com
+              </a>
+              <a href="https://github.com/Ronit-Raj9" target="_blank" rel="noopener noreferrer"
+                onClick={() => trackSocialClick('github')}
+                className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
+                <FaGithub className="w-5 h-5" /> GitHub
               </a>
               <a href="https://www.linkedin.com/in/ronitrajai/" target="_blank" rel="noopener noreferrer"
                 onClick={() => trackSocialClick('linkedin')}
-                className="flex items-center gap-2 px-6 py-3 border border-border bg-background rounded-full font-medium hover:bg-accent/50 transition-all">
+                className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
                 <FaLinkedin className="w-5 h-5" /> LinkedIn
+              </a>
+              <a href="https://x.com/ronit__raj" target="_blank" rel="noopener noreferrer"
+                onClick={() => trackSocialClick('twitter')}
+                className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
+                <FaXTwitter className="w-5 h-5" /> X
               </a>
             </div>
 
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <span className="flex items-center gap-2">
-                <FaMapMarkerAlt className="w-4 h-4" /> Gwalior, India
-              </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Available for projects
               </span>

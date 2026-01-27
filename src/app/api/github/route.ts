@@ -110,9 +110,17 @@ export async function GET(request: Request) {
     }
 
     // Determine the time range based on the requested year
-    const selectedYear = year ? parseInt(year) : currentYear;
-    const from = `${selectedYear}-01-01T00:00:00Z`;
-    const to = `${selectedYear}-12-31T23:59:59Z`;
+    // Default to 'all' (last 1 year from today) if no year specified, similar to GitHub's default view
+    const isAllTime = !year || year === 'all';
+    const selectedYear = isAllTime ? 'all' : parseInt(year);
+    
+    // For "all time" view, use last 1 year from today (GitHub's default behavior)
+    const now = new Date();
+    const oneYearAgo = new Date(now);
+    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+    
+    const from = isAllTime ? oneYearAgo.toISOString() : `${selectedYear}-01-01T00:00:00Z`;
+    const to = isAllTime ? now.toISOString() : `${selectedYear}-12-31T23:59:59Z`;
 
     // Fetch contribution data using GitHub GraphQL API with date filter
     const graphqlQuery = {
