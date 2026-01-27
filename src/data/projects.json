@@ -1,6 +1,46 @@
 {
   "featured": [
     {
+      "id": "typenad",
+      "title": "TypeNad",
+      "subtitle": "Competitive On-Chain Typing Arena",
+      "badge": "LNMHacks 8.0",
+      "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+      "highlights": [
+        "Built PvP typing game on Monad blockchain with staking mechanics",
+        "Real-time 1v1 duels where speed and accuracy determine winners",
+        "Next.js + Monad architecture for high-speed transactions",
+        "Deployed on NodeOpsHQ"
+      ],
+      "tech": ["Next.js", "TypeScript", "Monad", "Solidity", "Postgres", "NodeOpsHQ"],
+      "links": {
+        "demo": "https://typenad.app/",
+        "github": "https://github.com/Ronit-Raj9/typenad"
+      },
+      "image": "/projects/typenad.png",
+      "category": "Blockchain"
+    },
+    {
+      "id": "param",
+      "title": "PARAM",
+      "subtitle": "Blockchain-Based Academic Credential Management System",
+      "badge": "ABV-IIITM Gwalior",
+      "badgeColor": "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+      "highlights": [
+        "ERC-721 NFT credentials on Base Sepolia for tamper-proof academic records",
+        "Multi-level approval workflows for semester results & degree certificates",
+        "Privy-managed wallets with zero crypto friction for students",
+        "Public verification via shareable links with QR codes & blockchain proof"
+      ],
+      "tech": ["Next.js", "Express.js", "PostgreSQL", "Prisma", "Redis", "Solidity", "Privy"],
+      "links": {
+        "demo": "https://param.iiitm.ac.in/",
+        "github": "https://github.com/iiitm-gwalior/param"
+      },
+      "image": "/projects/param.png",
+      "category": "EdTech/Blockchain"
+    },
+    {
       "id": "ionia",
       "title": "iONIA Platform",
       "subtitle": "AI-Powered Competitive Exam Preparation System",
@@ -24,52 +64,23 @@
       "id": "genetrust",
       "title": "GeneTrust AI Studio",
       "subtitle": "AI-Powered CRISPR Intelligence Platform",
-      "badge": "Featured Project",
+      "badge": "Hackhazard 25' Winner",
       "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
       "highlights": [
         "DNABERT model integration for genetic sequence analysis",
         "Next.js + TypeScript + PyTorch + FastAPI architecture",
-        "Real-time ranking and prediction system"
+        "Real-time ranking and prediction system with Base Chain"
       ],
-      "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI"],
+      "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "RAG","Base Chain"],
       "links": {
         "demo": "https://genetrust.vercel.app/",
         "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
       },
       "image": "/projects/genetrust.png",
       "category": "AI/ML"
-    },
-    {
-      "id": "shakti",
-      "title": "SHAKTI",
-      "subtitle": "Military AI Intelligence System",
-      "badge": "SIH 2024 Winner",
-      "badgeColor": "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
-      "highlights": [
-        "Vision-language RAG with memory retrieval architecture",
-        "79% OCR accuracy on documents"
-      ],
-      "tech": ["PyTorch", "RAG", "Vision-Language Models", "OCR", "FastAPI"],
-      "links": {
-        "demo": "https://www.ionia.sbs/",
-        "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
-      },
-      "image": "/projects/ionia.png",
-      "category": "AI/ML"
     }
   ],
   "more": [
-    {
-      "id": "ionia",
-      "title": "Ionia Testing Platform",
-      "subtitle": "1000+ active users • 99.9% uptime",
-      "description": "End-to-end JEE testing system with real-time analytics",
-      "tech": ["Next.js", "Express.js", "MongoDB"],
-      "link": "https://www.ionia.sbs/",
-      "github": "https://github.com/Ronit-Raj9/ionia-next",
-      "category": "EdTech",
-      "badge": "Production"
-    },
     {
       "id": "legalease",
       "title": "LegalEase",
@@ -92,6 +103,17 @@
       "badge": "Academic"
     },
     {
+      "id": "shakti",
+      "title": "SHAKTI",
+      "subtitle": "Vision-Language RAG System",
+      "description": "Military intelligence system with memory retrieval architecture. Won SIH 2024 with 79% OCR accuracy on military documents",
+      "tech": ["PyTorch", "RAG", "OCR", "FastAPI"],
+      "link": "https://shakti-ai.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/shakti-project",
+      "category": "AI/ML",
+      "badge": "SIH 2024"
+    },    
+    { 
       "id": "gnn",
       "title": "Graph Neural Networks",
       "subtitle": "Research implementations",
@@ -102,21 +124,11 @@
       "badge": "Research"
     },
     {
-      "id": "token-analytics",
-      "title": "Token Analytics Dashboard",
-      "subtitle": "Real-time crypto insights",
-      "description": "Data visualization platform for cryptocurrency analytics",
-      "tech": ["React", "D3.js", "Web3.js"],
-      "link": "https://github.com/Ronit-Raj9",
-      "category": "Blockchain",
-      "badge": "Analytics"
-    },
-    {
       "id": "portfolio",
       "title": "Portfolio Website",
       "subtitle": "This very site!",
-      "description": "Next.js 14 portfolio with 3D elements and dark mode",
-      "tech": ["Next.js", "Three.js", "Tailwind"],
+      "description": "Next.js 14 portfolio with dual theme",
+      "tech": ["Next.js", "Tailwind"],
       "link": "https://www.ronitraj.me/",
       "github": "https://github.com/Ronit-Raj9/portfolio",
       "category": "Web Dev",
