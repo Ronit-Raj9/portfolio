@@ -57,7 +57,7 @@ export interface Achievement {
   description: string
 }
 
-export interface FeaturedProject {
+export interface Project {
   id: string
   title: string
   subtitle: string
@@ -72,19 +72,13 @@ export interface FeaturedProject {
   }
   image: string
   category: string
+  featured: boolean
+  completeness: boolean
 }
 
-export interface MoreProject {
-  id: string
-  title: string
-  subtitle: string
-  description: string
-  tech: string[]
-  link: string
-  github?: string
-  category: string
-  badge: string
-}
+// Legacy types for backwards compatibility
+export type FeaturedProject = Project
+export type MoreProject = Project
 
 export interface ArchiveProject {
   title: string
@@ -103,9 +97,8 @@ export interface ArchiveProject {
 }
 
 export interface Projects {
-  featured: FeaturedProject[]
-  more: MoreProject[]
-  archive: ArchiveProject[]
+  all: Project[]
+  archive?: ArchiveProject[]
 }
 
 export interface Skill {
@@ -224,16 +217,15 @@ import navigationData from './navigation.json'
 export const profile: Profile = profileData as Profile
 export const experience: Experience[] = experienceData as Experience[]
 export const achievements: Achievement[] = achievementsData as Achievement[]
-export const projects: Projects = projectsData as Projects
+export const allProjects: Project[] = projectsData as Project[]
 export const skills: Skills = skillsData as Skills
 export const contact: ContactData = contactData as ContactData
 export const blog: BlogData = blogData as BlogData
 export const navigation: NavigationData = navigationData as NavigationData
 
 // Convenience exports for common use cases
-export const featuredProjects = projects.featured
-export const moreProjects = projects.more
-export const archiveProjects = projects.archive
+export const featuredProjects = allProjects.filter(p => p.featured && p.completeness)
+export const moreProjects = allProjects.filter(p => !p.featured && p.completeness)
 export const technicalSkills = skills.technical
 export const allSkills = skills.all
 export const contactMethods = contact.methods

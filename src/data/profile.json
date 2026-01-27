@@ -19,32 +19,30 @@
     "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
   },
   "about": {
-    "summary": "4th-year student at IIIT Gwalior building production AI systems that bridge computer vision, natural language processing, and blockchain. Led Team BeGANs to win Smart India Hackathon 2024 with a RAG-based multimodal system for military document analysis. Currently co-founding Garudex Labs, where I'm scaling intelligent systems from research prototypes to real-world applications.",
+    "summary": "Building AI systems that solve real problems! Currently exploring the intersection of AI/ML and blockchain, with hands-on experience shipping everything from military-grade RAG systems to on-chain gaming platforms. Love diving deep into multi-agent architectures, smart contract integration, and full-stack deployments. Big open-source advocate - you'll find me maintaining projects and contributing to tools that make building with AI more accessible for developers.",
     "sections": [
       {
         "title": "My Journey in AI",
         "paragraphs": [
-          "My fascination with AI began during my early undergraduate years when I first explored the intersection of computer vision and natural language processing. What started as curiosity quickly evolved into a passion for building practical AI solutions that solve real-world problems."
+          "My path into AI started with a simple question: how can we make complex systems actually work? What began as tinkering with neural networks at IIIT Gwalior evolved into building full-stack AI systems—from military intelligence platforms to blockchain applications. Winning Smart India Hackathon 2024 with a 79% accuracy RAG system taught me that great AI isn't about fancy architectures—it's about shipping solutions that work reliably in production."
         ]
       },
       {
-        "title": "The Vision-Language Connection",
+        "title": "AI Meets Blockchain",
         "paragraphs": [
-          "I've always been intrigued by how machines can understand and interpret visual and textual information simultaneously. This interest led me to specialize in Vision-Language Models (VLMs), exploring how these multimodal systems can transform industries from military document analysis to creative content generation.",
-          "My work with RAG-based systems at SIH 2024 provided me with a strong foundation, allowing me to experiment with cutting-edge approaches to multimodal learning and representation."
+          "I'm fascinated by systems that combine intelligence with decentralization. From on-chain gaming platforms on Monad to tamper-proof academic credentials using NFTs, I explore how AI and blockchain work together. It's about reimagining what's possible when you combine machine learning with cryptographic guarantees—not just putting AI in smart contracts, but building trustless systems where predictions and data provenance are verifiable on-chain."
         ]
       },
       {
-        "title": "From Research to Production",
+        "title": "From Hackathons to Production",
         "paragraphs": [
-          "My philosophy is that AI research should translate into real-world impact. At Garudex Labs, I've had the opportunity to bridge this gap by developing production-ready AI systems that serve real users.",
-          "Working with startups and enterprises has given me valuable insights into the challenges of deploying AI in production environments - from model optimization and evaluation to addressing specific business requirements."
+          "My philosophy: build fast, ship faster, iterate constantly. Co-founding Garudex Labs taught me that the gap between demo and production is where real engineering happens. Whether building EdTech platforms serving 50+ students or contributing to open-source projects like GitMesh, I've learned that shipping means handling errors, gathering feedback, and making sure your system doesn't break when real users hit it."
         ]
       },
       {
         "title": "Technical Approach",
         "paragraphs": [
-          "I believe in building AI systems that are not just technically impressive but also practical and maintainable. My approach combines strong foundations in PyTorch and transformers with modern MLOps practices, ensuring that solutions can scale from prototype to production seamlessly."
+          "I build AI systems with strong foundations and pragmatic choices—PyTorch and Transformers for models, FastAPI and Next.js for deployment, smart contracts when decentralization adds real value. As an open-source maintainer, I focus on creating solutions other developers can understand and deploy. Because the best AI is the one that ships and keeps working."
         ]
       }
     ]

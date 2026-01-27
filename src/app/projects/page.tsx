@@ -7,77 +7,17 @@ import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { trackProjectDemo, trackGitHubClick } from "@/lib/analytics"
-import { featuredProjects, moreProjects, type FeaturedProject, type MoreProject } from "@/data"
-
-// Combine all projects into a unified type for display
-interface DisplayProject {
-  id: string
-  title: string
-  subtitle: string
-  description?: string
-  highlights?: string[]
-  badge?: string
-  tech: string[]
-  image?: string
-  category: string
-  demoLink?: string
-  githubLink?: string
-  isFeatured: boolean
-}
-
-// Convert featured projects to display format
-const convertFeaturedToDisplay = (projects: FeaturedProject[]): DisplayProject[] => {
-  if (!projects) return []
-  return projects.map(p => ({
-    id: p.id,
-    title: p.title,
-    subtitle: p.subtitle,
-    description: p.highlights?.[0] || p.subtitle,
-    highlights: p.highlights || [],
-    badge: p.badge,
-    tech: p.tech || [],
-    image: p.image,
-    category: p.category || "Other",
-    demoLink: p.links?.demo,
-    githubLink: p.links?.github,
-    isFeatured: true
-  }))
-}
-
-// Convert more projects to display format
-const convertMoreToDisplay = (projects: MoreProject[]): DisplayProject[] => {
-  if (!projects) return []
-  return projects.map(p => ({
-    id: p.id,
-    title: p.title,
-    subtitle: p.subtitle,
-    description: p.description || p.subtitle,
-    highlights: p.description ? [p.description] : [],
-    badge: p.badge,
-    tech: p.tech || [],
-    image: undefined,
-    category: p.category || "Other",
-    demoLink: p.link,
-    githubLink: p.github,
-    isFeatured: false
-  }))
-}
-
-// Combine all projects
-const ALL_PROJECTS: DisplayProject[] = [
-  ...convertFeaturedToDisplay(featuredProjects),
-  ...convertMoreToDisplay(moreProjects)
-]
+import { allProjects, type Project } from "@/data"
 
 // Get unique categories from projects
-const CATEGORIES = ["All", ...Array.from(new Set(ALL_PROJECTS.map(p => p.category).filter(Boolean)))]
+const CATEGORIES = ["All", ...Array.from(new Set(allProjects.map(p => p.category).filter(Boolean)))]
 
 // ============================================================================
 // COMPONENTS - Matching home page featured projects style
 // ============================================================================
 
 function ProjectCard({ project, index, isExpanded, onToggle }: { 
-  project: DisplayProject, 
+  project: Project, 
   index: number,
   isExpanded: boolean,
   onToggle: () => void
@@ -92,37 +32,55 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image */}
-        {project.image ? (
-          <div className="relative w-full lg:w-1/3 h-28 lg:h-auto lg:min-h-[120px] overflow-hidden bg-accent/10">
+        <div className="relative w-full lg:w-1/3 h-20 lg:h-auto lg:min-h-[100px] overflow-hidden bg-accent/10">
+          <div className="absolute top-2 left-2 z-20 flex gap-1.5 flex-wrap">
             {project.badge && (
-              <div className="absolute top-2 left-2 z-20">
-                <span className="px-2 py-0.5 text-[10px] rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground">
-                  {project.badge}
-                </span>
-              </div>
+              <span 
+                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                  color: '#1f2937',
+                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                {project.badge}
+              </span>
             )}
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
+            {!project.completeness && (
+              <span 
+                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(255, 237, 213, 0.98)',
+                  color: '#c2410c',
+                  borderColor: 'rgba(234, 88, 12, 0.3)',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                In Progress
+              </span>
+            )}
           </div>
-        ) : null}
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
 
         {/* Content */}
-        <div className={cn("flex-1 p-4", !project.image && "lg:pl-0")}>
-          {!project.image && project.badge && (
-            <span className="inline-block px-2 py-0.5 text-[10px] rounded-full bg-accent/30 border border-border text-foreground mb-2">
-              {project.badge}
+        <div className="flex-1 p-3">
+          <div className="flex items-start justify-between gap-2 mb-0.5">
+            <h3 className="text-base font-medium flex-1">{project.title}</h3>
+            <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border shrink-0">
+              {project.category}
             </span>
-          )}
-          
-          <h3 className="text-base font-medium mb-0.5">{project.title}</h3>
+          </div>
           <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
 
-          {/* Highlights/Description */}
+          {/* Highlights */}
           {project.highlights && project.highlights.length > 0 && (
             <>
               <ul className="space-y-0.5 mb-2">
@@ -148,9 +106,9 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
           )}
 
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-2">
             {project.tech.map((tech) => (
-              <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-md bg-gradient-to-r from-[#f9fafb] to-[#f3f4f6] dark:from-[#374151] dark:to-[#4b5563] text-foreground border border-[#e5e5e5] dark:border-[#4b5563] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200">
+              <span key={tech} className="px-2 py-0.5 text-[10px] font-medium rounded bg-accent/80 text-foreground border border-border">
                 {tech}
               </span>
             ))}
@@ -158,9 +116,9 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
 
           {/* Links */}
           <div className="flex flex-wrap gap-2">
-            {project.demoLink && project.demoLink !== "#" && (
+            {project.links.demo && project.links.demo !== "" && (
               <a
-                href={project.demoLink}
+                href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackProjectDemo(project.title)}
@@ -172,9 +130,9 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
                 </svg>
               </a>
             )}
-            {project.githubLink && (
+            {project.links.github && project.links.github !== "" && (
               <a
-                href={project.githubLink}
+                href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackGitHubClick(project.title)}
@@ -208,24 +166,31 @@ export default function ProjectsPage() {
   }
 
   const filteredProjects = useMemo(() => {
-    if (!ALL_PROJECTS || ALL_PROJECTS.length === 0) return []
+    if (!allProjects || allProjects.length === 0) return []
     
-    return ALL_PROJECTS.filter(project => {
+    return allProjects.filter(project => {
       const matchesCategory = selectedCategory === "All" || project.category === selectedCategory
       const matchesSearch = searchQuery === "" || 
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (project.description || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.highlights.some(h => h.toLowerCase().includes(searchQuery.toLowerCase())) ||
         project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
       
       return matchesCategory && matchesSearch
     })
   }, [selectedCategory, searchQuery])
 
-  // Sort: Featured first
+  // Sort: Featured first, then complete before incomplete
   const sortedProjects = useMemo(() => {
     return [...filteredProjects].sort((a, b) => {
-      if (a.isFeatured && !b.isFeatured) return -1
-      if (!a.isFeatured && b.isFeatured) return 1
+      // First sort by featured status
+      if (a.featured && !b.featured) return -1
+      if (!a.featured && b.featured) return 1
+      
+      // Then sort by completeness (complete projects first)
+      if (a.completeness && !b.completeness) return -1
+      if (!a.completeness && b.completeness) return 1
+      
       return 0
     })
   }, [filteredProjects])
@@ -285,7 +250,7 @@ export default function ProjectsPage() {
                 {category}
                 {category !== "All" && (
                   <span className="ml-1 text-[10px] opacity-70">
-                    ({ALL_PROJECTS.filter(p => p.category === category).length})
+                    ({allProjects.filter(p => p.category === category).length})
                   </span>
                 )}
               </button>
@@ -301,7 +266,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="space-y-6"
+              className="space-y-3"
             >
               {sortedProjects.map((project, index) => (
                 <ProjectCard 

@@ -116,7 +116,7 @@ export default function Navbar() {
           WebkitBackfaceVisibility: 'hidden',
         }}
       >
-        <div className="flex items-center justify-center gap-1 px-3 py-2.5 bg-background/95 backdrop-blur-md border border-border rounded-full shadow-lg shadow-black/10 max-w-fit mx-auto">
+        <div className="flex items-center justify-center gap-1 px-2.5 py-1.5 bg-background/95 backdrop-blur-md border border-border rounded-full shadow-lg shadow-black/10 max-w-fit mx-auto">
           {MOBILE_NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.href.split('#')[1]
             return (
@@ -124,20 +124,20 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "p-2.5 rounded-full transition-all",
+                  "p-2 rounded-full transition-all",
                   isActive
                     ? "text-foreground bg-accent/50"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
                 )}
                 aria-label={item.name}
               >
-                <item.icon className="h-5 w-5" />
+                <item.icon className="h-4 w-4" />
               </Link>
             )
           })}
 
           {/* Divider */}
-          <div className="h-5 w-px bg-border mx-1" />
+          <div className="h-4 w-px bg-border mx-0.5" />
 
           {/* Theme Toggle */}
           <div className="p-0.5">

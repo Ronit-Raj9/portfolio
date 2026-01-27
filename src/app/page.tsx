@@ -29,7 +29,7 @@ import {
   moreProjects as MORE_PROJECTS,
   technicalSkills as TECHNICAL_SKILLS,
   allSkills as ALL_SKILLS,
-  type FeaturedProject
+  type Project
 } from '@/data'
 
 const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false })
@@ -73,7 +73,7 @@ function StickyContactButton() {
 
 // Adithya-style Project Card with bullet points
 function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
-  project: FeaturedProject,
+  project: Project,
   index: number,
   isExpanded: boolean,
   onToggle: () => void
@@ -88,14 +88,35 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image */}
-        <div className="relative w-full lg:w-1/3 h-24 lg:h-auto lg:min-h-[100px] overflow-hidden bg-accent/10">
-          {project.badge && (
-            <div className="absolute top-2 left-2 z-20">
-              <span className="px-2 py-0.5 text-[10px] rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground">
+        <div className="relative w-full lg:w-1/3 h-20 lg:h-auto lg:min-h-[90px] overflow-hidden bg-accent/10">
+          <div className="absolute top-2 left-2 z-20 flex gap-1.5 flex-wrap">
+            {project.badge && (
+              <span 
+                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                  color: '#1f2937',
+                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
+                }}
+              >
                 {project.badge}
               </span>
-            </div>
-          )}
+            )}
+            {!project.completeness && (
+              <span 
+                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(255, 237, 213, 0.98)',
+                  color: '#c2410c',
+                  borderColor: 'rgba(234, 88, 12, 0.3)',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                In Progress
+              </span>
+            )}
+          </div>
           <Image
             src={project.image}
             alt={project.title}
@@ -106,8 +127,13 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-4">
-          <h3 className="text-base font-medium mb-0.5">{project.title}</h3>
+        <div className="flex-1 p-3">
+          <div className="flex items-start justify-between gap-2 mb-0.5">
+            <h3 className="text-base font-medium flex-1">{project.title}</h3>
+            <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border shrink-0">
+              {project.category}
+            </span>
+          </div>
           <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
 
           {/* Bullet points */}
@@ -132,9 +158,9 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
           )}
 
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-2">
             {project.tech.map((tech) => (
-              <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-md bg-gradient-to-r from-[#f9fafb] to-[#f3f4f6] dark:from-[#374151] dark:to-[#4b5563] text-foreground border border-[#e5e5e5] dark:border-[#4b5563] shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200">
+              <span key={tech} className="px-2 py-0.5 text-[10px] font-medium rounded bg-accent/80 text-foreground border border-border">
                 {tech}
               </span>
             ))}
@@ -747,7 +773,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 3).map((project, index) => (
                 <ProjectCardDetailed
                   key={project.title}
@@ -913,7 +939,7 @@ export default function Home() {
       </section>
 
       {/* ================================================================== */}
-      {/* 6. MORE PROJECTS - Enhanced card design */}
+      {/* 6. MORE PROJECTS - Same card design as Featured */}
       {/* ================================================================== */}
       <section id="projects" className="w-full py-16">
         <div className="container px-4">
@@ -923,59 +949,15 @@ export default function Home() {
               <h2 className="text-[32px] font-bold">More Projects</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="space-y-3">
               {MORE_PROJECTS.map((project, index) => (
-                <motion.div key={project.title}
-                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.08 }}
-                  className="group p-6 rounded-xl border border-[#e5e5e5] dark:border-[#374151] bg-background hover:shadow-lg hover:border-foreground/20 transition-all duration-300">
-                  {/* Category Badge */}
-                  <div className="inline-block mb-3">
-                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/40 text-muted-foreground border border-border">
-                      {project.category}
-                    </span>
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <h3 className="text-lg font-semibold mb-1 group-hover:text-foreground/80 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-1 leading-relaxed">
-                    {project.subtitle}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack - Compact */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tech.map(t => (
-                      <span key={t} className="px-2 py-0.5 text-[11px] font-medium rounded bg-accent/50 text-muted-foreground border border-border">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons - Compact */}
-                  <div className="flex items-center gap-2">
-                    {project.link && project.link !== "#" && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer"
-                        onClick={() => trackProjectDemo(project.title)}
-                        className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity">
-                        Demo →
-                      </a>
-                    )}
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer"
-                        onClick={() => trackGitHubClick(project.title)}
-                        className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent/50 transition-colors">
-                        GitHub →
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
+                <ProjectCardDetailed
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  isExpanded={expandedProjects[project.title] || false}
+                  onToggle={() => toggleProject(project.title)}
+                />
               ))}
             </div>
 
