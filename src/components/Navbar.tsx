@@ -14,7 +14,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/ronit-raj-662485225/",
+    url: "https://www.linkedin.com/in/ronitrajai/",
     icon: FaLinkedin,
   },
 ]

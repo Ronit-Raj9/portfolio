@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             {[
               { icon: FaGithub, url: "https://github.com/Ronit-Raj9", label: "GitHub" },
-              { icon: FaLinkedin, url: "https://www.linkedin.com/in/ronit-raj-662485225/", label: "LinkedIn" },
+              { icon: FaLinkedin, url: "https://www.linkedin.com/in/ronitrajai/", label: "LinkedIn" },
               { icon: FaTwitter, url: "https://x.com/ronit__raj", label: "Twitter" },
               { icon: SiKaggle, url: "https://www.kaggle.com/ronitraj1", label: "Kaggle" }
             ].map((social) => (

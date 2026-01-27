@@ -21,7 +21,7 @@ const CONTACT_METHODS = [
     name: "LinkedIn",
     value: "Ronit Raj",
     icon: FaLinkedin,
-    href: "https://www.linkedin.com/in/ronit-raj-662485225/",
+    href: "https://www.linkedin.com/in/ronitrajai/",
   },
   {
     name: "Twitter",
