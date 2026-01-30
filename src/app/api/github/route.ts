@@ -32,7 +32,7 @@ export async function GET(request: Request) {
     // Fetch basic user data
     const userResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}`, { 
       headers,
-      next: { revalidate: 60 } // Revalidate cache every minute for real-time data
+      cache: 'no-store' // Always fetch fresh data
     });
     
     if (!userResponse.ok) {
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
     // Fetch repositories data 
     const reposResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}/repos?per_page=100&sort=updated`, { 
       headers,
-      next: { revalidate: 60 } // Revalidate cache every minute
+      cache: 'no-store' // Always fetch fresh data
     });
     
     if (!reposResponse.ok) {
@@ -181,7 +181,7 @@ export async function GET(request: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(graphqlQuery),
-      next: { revalidate: 60 } // Revalidate cache every minute
+      cache: 'no-store' // Always fetch fresh data
     });
 
     if (!graphqlResponse.ok) {
