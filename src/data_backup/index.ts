@@ -17,7 +17,6 @@ export interface Profile {
   title: string
   tagline: string
   credentials: string
-  proofPoints?: string[]
   email: string
   location: string
   resumeUrl: string
@@ -58,33 +57,12 @@ export interface Achievement {
   description: string
 }
 
-export type ProjectTrack = 'ml' | 'full-stack-ai' | 'web3'
-
-export interface CaseStudyMetric {
-  label: string
-  value: string
-}
-
-export interface CaseStudyDecision {
-  decision: string
-  why: string
-}
-
-export interface CaseStudy {
-  problem: string
-  approach: string
-  metrics: CaseStudyMetric[]
-  techDecisions: CaseStudyDecision[]
-  architectureImage?: string
-}
-
 export interface Project {
   id: string
   title: string
   subtitle: string
   badge: string
   badgeColor: string
-  track?: ProjectTrack
   highlights: string[]
   tech: string[]
   links: {
@@ -96,7 +74,6 @@ export interface Project {
   category: string
   featured: boolean
   completeness: boolean
-  caseStudy?: CaseStudy
 }
 
 // Legacy types for backwards compatibility
@@ -249,9 +226,6 @@ export const navigation: NavigationData = navigationData as NavigationData
 // Convenience exports for common use cases
 export const featuredProjects = allProjects.filter(p => p.featured && p.completeness)
 export const moreProjects = allProjects.filter(p => !p.featured && p.completeness)
-export const projectsWithCaseStudy = allProjects.filter(p => p.caseStudy)
-export const getProjectBySlug = (slug: string): Project | undefined =>
-  allProjects.find(p => p.id === slug)
 export const technicalSkills = skills.technical
 export const allSkills = skills.all
 export const contactMethods = contact.methods

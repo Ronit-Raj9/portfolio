@@ -130,9 +130,21 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
         <div className="flex-1 p-3">
           <div className="flex items-start justify-between gap-2 mb-0.5">
             <h3 className="text-base font-medium flex-1">{project.title}</h3>
-            <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border shrink-0">
-              {project.category}
-            </span>
+            <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
+              {project.track && (
+                <span className={cn(
+                  "px-2 py-0.5 text-[10px] font-medium rounded-full border",
+                  project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
+                  project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
+                  project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
+                )}>
+                  {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
+                </span>
+              )}
+              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
+                {project.category}
+              </span>
+            </div>
           </div>
           <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
 
@@ -195,7 +207,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
               </a>
             )}
             {project.links.caseStudy && (
-              <a
+              <Link
                 href={project.links.caseStudy}
                 className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-[#8b5cf6] text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors"
               >
@@ -203,7 +215,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 Case Study
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -413,9 +425,13 @@ export default function Home() {
                 className="flex-1"
               >
                 {/* Name */}
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-2 md:mb-3">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-1.5 md:mb-2">
                   {profile.name}
                 </h1>
+                {/* Title */}
+                <p className="text-sm md:text-base font-medium text-muted-foreground mb-2 md:mb-3">
+                  {profile.title}
+                </p>
                 {/* Social Links */}
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
                   <a
@@ -488,6 +504,30 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Tagline + Proof Points */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mb-6 md:mb-8"
+            >
+              <p className="text-sm md:text-base text-foreground/80 leading-relaxed mb-3 md:mb-4">
+                {profile.tagline}
+              </p>
+              {profile.proofPoints && profile.proofPoints.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 md:gap-2">
+                  {profile.proofPoints.map((point) => (
+                    <span
+                      key={point}
+                      className="px-2.5 py-1 text-[11px] md:text-xs font-medium rounded-full border border-border bg-accent/30 text-foreground/80"
+                    >
+                      {point}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
 
             {/* About Section - Full Width Below */}
             <motion.div

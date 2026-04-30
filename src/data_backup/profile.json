@@ -1,0 +1,50 @@
+{
+  "name": "Ronit Raj",
+  "title": "Full Stack AI Engineer",
+  "tagline": "AI/ML Engineer • SIH 2024 Winner • Co-Founder @ Garudex Labs",
+  "credentials": "SIH 2024 National Winner • Co-Founder @ Garudex Labs • IIIT Gwalior",
+  "email": "dev.ronitraj@gmail.com",
+  "location": "Gwalior, India",
+  "resumeUrl": "/resume_web.pdf",
+  "profileImage": "/images/profile.jpeg",
+  "social": {
+    "github": "https://github.com/Ronit-Raj9",
+    "linkedin": "https://www.linkedin.com/in/ronitrajai/",
+    "twitter": "https://x.com/ronit__raj",
+    "kaggle": "https://www.kaggle.com/ronitraj1",
+    "website": "https://www.ronitraj.me/"
+  },
+  "availability": {
+    "status": "available",
+    "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
+  },
+  "about": {
+    "summary": "Building AI systems that solve real problems! Currently exploring the intersection of AI/ML and blockchain, with hands-on experience shipping everything from military-grade RAG systems to on-chain gaming platforms. Love diving deep into multi-agent architectures, smart contract integration, and full-stack deployments. Big open-source advocate - you'll find me maintaining projects and contributing to tools that make building with AI more accessible for developers.",
+    "sections": [
+      {
+        "title": "My Journey in AI",
+        "paragraphs": [
+          "My path into AI started with a simple question: how can we make complex systems actually work? What began as tinkering with neural networks at IIIT Gwalior evolved into building full-stack AI systems—from military intelligence platforms to blockchain applications. Winning Smart India Hackathon 2024 with a 79% accuracy RAG system taught me that great AI isn't about fancy architectures—it's about shipping solutions that work reliably in production."
+        ]
+      },
+      {
+        "title": "AI Meets Blockchain",
+        "paragraphs": [
+          "I'm fascinated by systems that combine intelligence with decentralization. From on-chain gaming platforms on Monad to tamper-proof academic credentials using NFTs, I explore how AI and blockchain work together. It's about reimagining what's possible when you combine machine learning with cryptographic guarantees—not just putting AI in smart contracts, but building trustless systems where predictions and data provenance are verifiable on-chain."
+        ]
+      },
+      {
+        "title": "From Hackathons to Production",
+        "paragraphs": [
+          "My philosophy: build fast, ship faster, iterate constantly. Co-founding Garudex Labs taught me that the gap between demo and production is where real engineering happens. Whether building EdTech platforms serving 50+ students or contributing to open-source projects like GitMesh, I've learned that shipping means handling errors, gathering feedback, and making sure your system doesn't break when real users hit it."
+        ]
+      },
+      {
+        "title": "Technical Approach",
+        "paragraphs": [
+          "I build AI systems with strong foundations and pragmatic choices—PyTorch and Transformers for models, FastAPI and Next.js for deployment, smart contracts when decentralization adds real value. As an open-source maintainer, I focus on creating solutions other developers can understand and deploy. Because the best AI is the one that ships and keeps working."
+        ]
+      }
+    ]
+  }
+}

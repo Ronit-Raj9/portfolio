@@ -1,38 +1,46 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { blog } from "@/data"
+import Link from "next/link"
+import { FaXTwitter } from "react-icons/fa6"
+import { profile } from "@/data"
 
 export default function Blog() {
   return (
-    <section className="mt-24">
-      <h1 className="text-4xl font-bold text-center mb-8">{blog.pageContent.title}</h1>
-      <div className="max-w-4xl mx-auto">
-        {blog.posts.map((post, index) => (
-          <motion.article
-            key={post.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="mb-8 p-6 bg-white dark:bg-stone-900 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-sm text-teal-600 dark:text-teal-400">{post.category}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{post.date}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{post.readTime}</span>
-            </div>
-            <h2 className="text-2xl font-bold mb-2 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
-              {post.title}
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
-            <button className="text-teal-600 dark:text-teal-400 font-medium hover:text-teal-700 dark:hover:text-teal-300 transition-colors">
-              Read More →
-            </button>
-          </motion.article>
-        ))}
+    <div className="min-h-screen pt-24 md:pt-28 pb-24 md:pb-16">
+      <div className="container px-4 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-2xl"
+        >
+          <h1 className="text-[32px] font-bold mb-4">Writing soon</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+            I'm planning long-form posts on what I'm actually building — GRPO fine-tuning on AMD MI300X, vision-language RAG in production, x402 micropayments in CLI tools.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+            In the meantime, I post threads and shorter takes on X.
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={profile.social.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
+            >
+              <FaXTwitter className="w-4 h-4" />
+              Follow on X
+            </a>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-border hover:bg-accent/50 transition-colors"
+            >
+              ← Back home
+            </Link>
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </div>
   )
-} 
+}

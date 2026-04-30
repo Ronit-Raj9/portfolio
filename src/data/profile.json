@@ -1,8 +1,14 @@
 {
   "name": "Ronit Raj",
   "title": "Full Stack AI Engineer",
-  "tagline": "AI/ML Engineer • SIH 2024 Winner • Co-Founder @ Garudex Labs",
-  "credentials": "SIH 2024 National Winner • Co-Founder @ Garudex Labs • IIIT Gwalior",
+  "tagline": "Full Stack AI engineer who builds production systems end-to-end — from GRPO fine-tuning Qwen2.5-14B on AMD MI300X to 79%-OCR vision-language RAG pipelines.",
+  "credentials": "SIH 2024 Winner · AMD AI Hackathon · Monad Blitz 4th · Co-Founder @ Garudex Labs",
+  "proofPoints": [
+    "SIH 2024 Winner",
+    "AMD AI Hackathon",
+    "Monad Blitz 4th",
+    "Co-Founder @ Garudex Labs"
+  ],
   "email": "dev.ronitraj@gmail.com",
   "location": "Gwalior, India",
   "resumeUrl": "/resume_web.pdf",
@@ -19,30 +25,30 @@
     "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
   },
   "about": {
-    "summary": "Building AI systems that solve real problems! Currently exploring the intersection of AI/ML and blockchain, with hands-on experience shipping everything from military-grade RAG systems to on-chain gaming platforms. Love diving deep into multi-agent architectures, smart contract integration, and full-stack deployments. Big open-source advocate - you'll find me maintaining projects and contributing to tools that make building with AI more accessible for developers.",
+    "summary": "I build AI systems that solve real problems. From training a GRPO-fine-tuned Qwen2.5-14B agent on AMD MI300X to shipping a 79%-OCR military RAG that won Smart India Hackathon 2024, I work across the full stack — model training, fine-tuning, retrieval, agents, and the production infra that makes them ship. Open-source maintainer; co-founder at Garudex Labs.",
     "sections": [
       {
         "title": "My Journey in AI",
         "paragraphs": [
-          "My path into AI started with a simple question: how can we make complex systems actually work? What began as tinkering with neural networks at IIIT Gwalior evolved into building full-stack AI systems—from military intelligence platforms to blockchain applications. Winning Smart India Hackathon 2024 with a 79% accuracy RAG system taught me that great AI isn't about fancy architectures—it's about shipping solutions that work reliably in production."
+          "I started with a simple question at IIIT Gwalior: how do you make complex systems actually work? That curiosity grew into building production AI — from military intelligence platforms to on-chain applications. Winning Smart India Hackathon 2024 with a 79%-accuracy RAG system taught me the lesson that shapes everything I build: great AI isn't fancy architectures, it's shipping systems that hold up in production."
         ]
       },
       {
         "title": "AI Meets Blockchain",
         "paragraphs": [
-          "I'm fascinated by systems that combine intelligence with decentralization. From on-chain gaming platforms on Monad to tamper-proof academic credentials using NFTs, I explore how AI and blockchain work together. It's about reimagining what's possible when you combine machine learning with cryptographic guarantees—not just putting AI in smart contracts, but building trustless systems where predictions and data provenance are verifiable on-chain."
+          "I'm fascinated by systems that combine intelligence with decentralization — on-chain typing arenas on Monad, NFT-based academic credentials, AdSense for terminals settled in micropayments. The interesting work isn't AI in smart contracts; it's building trustless systems where predictions and data provenance are verifiable on-chain."
         ]
       },
       {
         "title": "From Hackathons to Production",
         "paragraphs": [
-          "My philosophy: build fast, ship faster, iterate constantly. Co-founding Garudex Labs taught me that the gap between demo and production is where real engineering happens. Whether building EdTech platforms serving 50+ students or contributing to open-source projects like GitMesh, I've learned that shipping means handling errors, gathering feedback, and making sure your system doesn't break when real users hit it."
+          "Build fast, ship faster, iterate. Co-founding Garudex Labs taught me the gap between demo and production is where engineering happens. Whether shipping EdTech serving 50+ students or maintaining open-source tools like GitMesh, the real work is error handling, feedback loops, and making sure the system doesn't break when real users hit it."
         ]
       },
       {
         "title": "Technical Approach",
         "paragraphs": [
-          "I build AI systems with strong foundations and pragmatic choices—PyTorch and Transformers for models, FastAPI and Next.js for deployment, smart contracts when decentralization adds real value. As an open-source maintainer, I focus on creating solutions other developers can understand and deploy. Because the best AI is the one that ships and keeps working."
+          "PyTorch and Transformers for models. FastAPI and Next.js for delivery. Smart contracts when decentralization adds real value. As an open-source maintainer I focus on solutions other developers can read, deploy, and extend — because the best AI is the one that ships and keeps working."
         ]
       }
     ]

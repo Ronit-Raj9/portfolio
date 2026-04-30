@@ -1,0 +1,68 @@
+[
+  {
+  "id": "gitmesh",
+  "role": "Maintainer",
+  "company": "GitMesh",
+  "period": "November 2024 - Present",
+  "description": "Open-source product signal aggregation platform that consolidates customer feedback from GitHub, Reddit, X, Discord, and Stack Overflow, with two-way sync to Jira, GitHub, and Linear.",
+  "highlights": [
+    "Contributed to multi-source feedback aggregation system integrating 5+ platforms (GitHub, Reddit, X, Discord, Stack Overflow)",
+    "Reduced manual triage and context switching by consolidating customer feedback alongside existing issues and sprints"
+  ],
+  "current": true,
+  "icon": "/images/companies/gitmesh.png",
+  "badge": "Open Source",
+  "locationType": "Remote",
+  "link": "https://gitmesh.dev"
+  },
+  {
+    "id": "ionia",
+    "role": "Freelance Full-Stack Developer",
+    "company": "Ionia",
+    "period": "December 2024 - June 2025",
+    "description": "End-to-end Online Testing Infrastructure with pilot 50+ active users",
+    "highlights": [
+      "Built complete platform for exam preparation.",
+      "Ran pilot with 50+ students.",
+      "Developed Complete Admin Panel with Complete Test, Questions and User Management. "
+    ],
+    "current": false,
+    "icon": "/images/companies/ionia.png",
+    "locationType": "Remote"
+  },
+  {
+  "id": "zentoro",
+  "role": "Co-Founder & Lead Developer",
+  "company": "Zentoro AI",
+  "period": "November 2024 - March 2025",
+  "description": "Built first autonomous AI project execution engine with multi-agent workflows to plan, build, and launch campaigns, apps, and financial models without manual oversight.",
+  "highlights": [
+    "Developed autonomous AI agent system for end-to-end project execution across campaigns, apps, and financial models",
+    "Achieved strong early validation with 700+ visitors from 44 countries and endorsement from 50+ YC alumni",
+    "Learned critical lesson on speed-to-market: launching fast over perfect iteration"
+  ],
+  "current": false,
+  "icon": "/images/companies/zentoro.png",
+  "badge": "Building a Startup",
+  "locationType": "Onsite",
+  "link": "https://garudexlabs.com"
+  },
+
+  {
+  "id": "garudex",
+  "role": "Co-Founder & Lead Developer",
+  "company": "Garudex Labs",
+  "period": "November 2024 - March 2025",
+  "description": "Won IDE'25 Innovation Development & Entrepreneurship award, a national initiative by the Government of India. Co-founded TRAFFIC GARUDEX LABS and built AI-powered product serving government needs, later pivoted to consumer and business markets for faster validation cycles.",
+  "highlights": [
+    "Worked on end-to-end product development for TRAFFIC - AI solution addressing government sector needs",
+    "Navigated 3+ year government validation cycles and procurement challenges",
+    "Gained critical insights on market selection and startup sustainability in regulated sectors"
+  ],
+  "current": false,
+  "icon": "/images/companies/garudex.png",
+  "badge": "Building a Startup",
+  "locationType": "Onsite",
+  "link": ""
+  }
+]

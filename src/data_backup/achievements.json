@@ -1,0 +1,72 @@
+[
+  {
+  "id": "ossindia2026",
+  "year": "2026",
+  "title": "Speaker - Open Source Summit India 2026",
+  "subtitle": "Linux Foundation · 40-Minute Session",
+  "description": "Accepted to speak at Open Source Summit India 2026 (June 16-17, Hyderabad) on 'Governing the Ungovernable: Security and Compliance for AI Agents in Open Source Projects'. Originally submitted as a lightning talk — upgraded to a full 40-minute session by the program committee."
+  },
+  {
+  "id": "monadblitz2026",
+  "year": "2026",
+  "title": "4th Place - Monad Blitz New Delhi",
+  "subtitle": "Consumer AI Agent Track",
+  "description": "Built ZeroKeyCLI — AdSense for the terminal. Watch a 5-second ASCII ad, earn $0.001 USDC on Monad, get a free AI coding response. Two x402 micropayment transactions settle on-chain before the ad finishes. No wallet setup, no subscription, no gas fees."
+  },
+  {
+    "id": "amdrlhackathon2026",
+    "year": "2026",
+    "title": "Special Mention - AMD AI RL Hackathon",
+    "subtitle": "IIT Delhi · Track 2: Deep RL for Minesweeper",
+    "description": "Built AlphaQ — a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
+  },
+  {
+  "id": "lnmhacks8.0",
+  "year": "2026",
+  "title": "LNMHacks 8.0",
+  "subtitle": "Blockchain Monad Hackathon",
+  "description": "Developed competitive typing game on Monad blockchain with PvP staking mechanics. Players compete in 1-minute duels where speed and accuracy determine winners"
+  },
+  {
+  "id": "gitmesh",
+  "year": "2025",
+  "title": "OSS Maintainer - GitMesh",
+  "subtitle": "Product Signal Aggregation",
+  "description": "Building open-source platform consolidating customer feedback from 5+ sources with intelligent deduplication and two-way project management sync"
+  },
+  {
+  "id": "crfthq2025",
+  "year": "2025",
+  "title": "CrftHQ Accelerator - Selected",
+  "subtitle": "iONIA",
+  "description": "Accepted into CrftHQ anti-incubator program for building AI-powered exam platform with adaptive learning"
+  },
+  {
+    "id": "tso2025",
+    "year": "2025",
+    "title": "2nd Place - Trillion Dollar GenAI Hackathon",
+    "subtitle": "IIT Bhubaneswar",
+    "description": "Won Overall 2nd Position and 4 awards (Best Innovative Use Case, Best Technical Implementation, Best Presentation) for LegalEase - AI-powered legal compliance automation system addressing GST filing challenges in India"
+  },
+  {
+    "id": "hackhazards",
+    "year": "2025",
+    "title": "HackHazards 25' Winner",
+    "subtitle": "Blockchain Hackathon",
+    "description": "AI-Powered CRISPR Intelligence Platform. Came first out of 800+ projects."
+  },
+  {
+    "id": "garudex-labs",
+    "year": "2025",
+    "title": "Co-Founded Garudex Labs",
+    "subtitle": "AI Startup",
+    "description": "Won IDE'25 Innovation Development & Entrepreneurship award, a national initiative by the Government of India"
+  },
+  {
+    "id": "sih-2024",
+    "year": "2024",
+    "title": "Smart India Hackathon Winner",
+    "subtitle": "PS1604 RAG-MLLM",
+    "description": "Runs Locally • 79% OCR accuracy • Military AI intelligence system"
+  }
+]

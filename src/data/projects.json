@@ -1,59 +1,141 @@
 [
   {
-  "id": "zerokey",
-  "title": "ZeroKeyCLI",
-  "subtitle": "AdSense for the Terminal",
-  "badge": "Monad Blitz · 4th Place",
-  "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
-  "highlights": [
-    "Watch a 5-second ASCII ad, earn $0.001 USDC, get a free AI coding response",
-    "Two x402 micropayment transactions settle on Monad before the ad finishes",
-    "AdPool.sol smart contract manages advertiser deposits and verified impressions",
-    "No wallet setup, no subscription, no gas fees for the end user"
-  ],
-  "tech": ["Node.js", "ink.js", "Solidity", "Monad", "x402", "Claude API"],
-  "links": {
-    "demo": "https://x.com/zerokey_cli/status/2037776989214695534",
-    "github": "https://github.com/Ronit-Raj9/ZeroKey"
+    "id": "zerokey",
+    "title": "ZeroKeyCLI",
+    "subtitle": "AdSense for the Terminal",
+    "badge": "Monad Blitz · 4th Place",
+    "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+    "track": "full-stack-ai",
+    "highlights": [
+      "Watch a 5s ASCII ad, earn $0.001 USDC, get a free Claude API response",
+      "Two x402 micropayments settle on Monad in under 5 seconds — no wallet, no gas, no subscription",
+      "AdPool.sol smart contract manages advertiser deposits + verified impressions",
+      "Built with Node.js + ink.js terminal UI, settled on Monad via the x402 HTTP-native payment standard"
+    ],
+    "tech": ["Node.js", "ink.js", "Solidity", "Monad", "x402", "Claude API"],
+    "links": {
+      "demo": "https://x.com/zerokey_cli/status/2037776989214695534",
+      "github": "https://github.com/Ronit-Raj9/ZeroKey",
+      "caseStudy": "/projects/zerokey"
+    },
+    "image": "/projects/zerokey.png",
+    "category": "Blockchain/AI",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Developer-tool monetization is broken: subscriptions exclude casual users, terminals can't show ads, and crypto payments are too high-friction (wallet, gas, sign). Pay-per-use AI inference needs sub-cent settlement that disappears into a normal CLI flow.",
+      "approach": "x402 micropayments on Monad. The user runs the CLI, sees a 5-second ASCII ad, and during those five seconds two micropayments settle on-chain — advertiser pays the user $0.001 USDC, user pays the AI provider for one Claude API response. AdPool.sol manages advertiser deposits and verified impressions. No wallet setup, no gas, no subscription.",
+      "metrics": [
+        { "label": "Settlement", "value": "2 tx in <5s" },
+        { "label": "Per-impression payout", "value": "$0.001 USDC" },
+        { "label": "Chain", "value": "Monad" },
+        { "label": "Standard", "value": "x402" },
+        { "label": "Recognition", "value": "Monad Blitz · 4th Place" }
+      ],
+      "techDecisions": [
+        { "decision": "x402 over plain ERC-20 transfers", "why": "HTTP-native payment standard composes cleanly with existing CLI tooling and HTTP middleware." },
+        { "decision": "Monad over Ethereum mainnet", "why": "Sub-cent settlement is only economical on a high-throughput L1." },
+        { "decision": "Ink.js terminal UI", "why": "Renders the ad inside the CLI itself — no browser handoff breaks the developer flow." },
+        { "decision": "AdPool.sol verified-impressions", "why": "Advertisers don't pay for fake renders; users aren't blocked by adversarial advertisers." }
+      ]
+    }
   },
-  "image": "/projects/zerokey.png",
-  "category": "Blockchain/AI",
-  "featured": true,
-  "completeness": true
-},
-{
-  "id": "alphaq-minesweeper",
-  "title": "AlphaQ",
-  "subtitle": "GRPO-Trained RL Agent for Minesweeper",
-  "badge": "AMD AI Hackathon · Special Mention",
-  "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
-  "highlights": [
-    "GRPO fine-tuned Qwen2.5-14B-Instruct to reason and play Minesweeper",
-    "Phase-stratified training across 6 difficulty levels on 4,000 samples",
-    "Custom reward engineering: JSON purity + gameplay correctness + strategic bonuses",
-    "Stack-based iterative engine supporting 50×50 grids on AMD Instinct MI300X (192GB HBM3)",
-    "Recognised by AMD team for sophisticated technical implementation"
-  ],
-  "tech": ["Python", "PyTorch", "Unsloth", "GRPO", "LoRA", "Qwen2.5", "ROCm", "BFloat16"],
-  "links": {
-    "demo": "",
-    "github": "https://github.com/Ronit-Raj9/AMD_RL_Hackathon"
+  {
+    "id": "alphaq-minesweeper",
+    "title": "AlphaQ",
+    "subtitle": "GRPO-Trained RL Agent for Minesweeper",
+    "badge": "AMD AI Hackathon · Special Mention",
+    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+    "track": "ml",
+    "highlights": [
+      "GRPO fine-tuned Qwen2.5-14B-Instruct to reason about probabilistic, partially-observable boards",
+      "Phase-stratified training across 6 difficulty levels on 4,000 samples",
+      "Custom reward = JSON output purity + gameplay correctness + strategic bonuses",
+      "Stack-based iterative engine supporting 50×50 grids on AMD Instinct MI300X (192GB HBM3, ROCm/BFloat16)",
+      "Recognised by AMD for sophisticated technical implementation"
+    ],
+    "tech": ["Python", "PyTorch", "Unsloth", "GRPO", "LoRA", "Qwen2.5", "ROCm", "BFloat16"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/AMD_RL_Hackathon",
+      "caseStudy": "/projects/alphaq-minesweeper"
+    },
+    "image": "/projects/alphaq.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "LLMs struggle with tasks requiring iterative reasoning under partial information. Minesweeper is a clean testbed: probabilistic, partially observable, and demands consistent JSON output across many turns. Most off-the-shelf models either hallucinate structure or fail to maintain constraints across moves.",
+      "approach": "GRPO (Group Relative Policy Optimization) fine-tuning on Qwen2.5-14B-Instruct via Unsloth + LoRA, with a custom reward combining JSON-output purity, gameplay correctness, and strategic bonuses. Phase-stratified curriculum across 6 difficulty levels on 4,000 samples. Trained on AMD Instinct MI300X (192GB HBM3) under ROCm in BFloat16. A stack-based iterative engine handles boards up to 50×50 without re-prompting full state.",
+      "metrics": [
+        { "label": "Base model", "value": "Qwen2.5-14B-Instruct" },
+        { "label": "Method", "value": "GRPO + LoRA" },
+        { "label": "Training samples", "value": "4,000" },
+        { "label": "Difficulty levels", "value": "6 (curriculum)" },
+        { "label": "Max grid", "value": "50×50" },
+        { "label": "Hardware", "value": "AMD MI300X · 192GB HBM3" }
+      ],
+      "techDecisions": [
+        { "decision": "GRPO over PPO", "why": "Sample-efficient on small datasets and no separate value-model overhead." },
+        { "decision": "Phase-stratified curriculum", "why": "Starting easy prevents reward collapse and unstable rollouts on hard boards." },
+        { "decision": "Composite reward (JSON + gameplay + strategy)", "why": "Single signal kept outputs both syntactically valid and strategically coherent." },
+        { "decision": "Stack-based iterative engine", "why": "Avoids re-prompting full state on every move; scales to 50×50 without context blow-up." },
+        { "decision": "AMD MI300X (192GB HBM3)", "why": "Fits the 14B model plus GRPO group rollouts in a single device." }
+      ]
+    }
   },
-  "image": "/projects/alphaq.png",
-  "category": "AI/ML",
-  "featured": true,
-  "completeness": true
-}, 
+  {
+    "id": "shakti",
+    "title": "SHAKTI",
+    "subtitle": "Vision-Language RAG System for Military Intelligence",
+    "badge": "SIH 2024 Winner",
+    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+    "track": "ml",
+    "highlights": [
+      "Smart India Hackathon 2024 Winner — deployed in defense sector",
+      "79% OCR accuracy on complex military documents using a custom-trained pipeline",
+      "Vision-Language model integration for multimodal document analysis (text + scans + imagery)",
+      "RAG pipeline enabling semantic search across classified document repositories",
+      "FastAPI service layer; LangChain + Transformers for swappable LLMs"
+    ],
+    "tech": ["PyTorch", "RAG", "OCR", "FastAPI", "Transformers", "LangChain"],
+    "links": {
+      "demo": "https://shakti-ai.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/shakti-project",
+      "caseStudy": "/projects/shakti"
+    },
+    "image": "/projects/shakti.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Defense intelligence relies on dense, multi-page mixed-format documents — scans, maps, captioned imagery — that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
+      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal — a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
+      "metrics": [
+        { "label": "OCR accuracy", "value": "79%" },
+        { "label": "Modality", "value": "Vision + Language" },
+        { "label": "Recognition", "value": "SIH 2024 Winner" },
+        { "label": "Domain", "value": "Defense / Military" }
+      ],
+      "techDecisions": [
+        { "decision": "Custom OCR over Tesseract", "why": "Military fonts and degraded scans dropped standard pipelines below usable threshold." },
+        { "decision": "Vision-Language embeddings", "why": "A single index serves both text and image queries — no separate image search to maintain." },
+        { "decision": "RAG over fine-tuning", "why": "Analyst queries are open-ended and document corpora rotate; retrieval beats memorization." },
+        { "decision": "LangChain abstraction", "why": "Easy swap of LLM provider as the program of record evolves." }
+      ]
+    }
+  },
   {
     "id": "typenad",
     "title": "TypeNad",
     "subtitle": "Competitive On-Chain Typing Arena",
     "badge": "LNMHacks 8.0",
     "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "web3",
     "highlights": [
-      "Built PvP typing game on Monad blockchain with staking mechanics",
-      "Real-time 1v1 duels where speed and accuracy determine winners",
-      "Next.js + Monad architecture for high-speed transactions",
+      "PvP typing game on Monad blockchain with staking mechanics",
+      "Real-time 1v1 duels — speed and accuracy determine on-chain winners",
+      "Next.js + Monad architecture for high-throughput transactions",
       "Deployed on NodeOpsHQ"
     ],
     "tech": ["Next.js", "TypeScript", "Monad", "Solidity", "Postgres", "NodeOpsHQ"],
@@ -72,11 +154,12 @@
     "subtitle": "Blockchain-Based Academic Credential Management System",
     "badge": "ABV-IIITM Gwalior",
     "badgeColor": "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+    "track": "web3",
     "highlights": [
       "ERC-721 NFT credentials on Base Sepolia for tamper-proof academic records",
-      "Multi-level approval workflows for semester results & degree certificates",
-      "Privy-managed wallets with zero crypto friction for students",
-      "Public verification via shareable links with QR codes & blockchain proof"
+      "Multi-level approval workflows for semester results and degree certificates",
+      "Privy-managed wallets — zero crypto friction for students",
+      "Public verification via shareable links with QR codes and on-chain proof"
     ],
     "tech": ["Next.js", "Express.js", "PostgreSQL", "Prisma", "Redis", "Solidity", "Privy"],
     "links": {
@@ -94,11 +177,12 @@
     "subtitle": "Blockchain-Powered Medical Records Management Platform",
     "badge": "Featured Project",
     "badgeColor": "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
+    "track": "web3",
     "highlights": [
       "AES-256-CBC encrypted medical records with IPFS decentralized storage",
       "Ethereum smart contracts for patient-controlled granular access permissions",
       "SHA-256 blockchain integrity verification with tamper detection",
-      "RainbowKit wallet integration for cryptographic record encryption & access control",
+      "RainbowKit wallet integration for cryptographic record encryption + access control",
       "Full transaction history with on-chain proof of all access and modifications"
     ],
     "tech": ["React", "Vite", "Node.js", "Express", "MongoDB", "Ethereum", "IPFS", "Solidity", "RainbowKit", "ethers.js"],
@@ -115,23 +199,41 @@
     "id": "ionia",
     "title": "iONIA Platform",
     "subtitle": "AI-Powered Competitive Exam Preparation System",
-    "badge": "Featured Project",
+    "badge": "CrftHQ Cohort 1",
     "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+    "track": "full-stack-ai",
     "highlights": [
-      "Built NTA-replica exam interface with adaptive testing for 1,360+ precision-targeted questions",
-      "OCR-powered handwritten answer assessment with real-time evaluation",
-      "Complete admin panel with test, question bank, and user management serving 50+ active students",
+      "NTA-replica exam interface with adaptive testing — 1,360+ precision-targeted questions",
+      "OCR-powered handwritten-answer assessment with real-time evaluation",
+      "Three-tier admin (super-admin / admin / student) serving 50+ active students",
       "Selected for CrftHQ Cohort 1 accelerator program"
     ],
-    "tech": ["Next.js", "Express.js", "MongoDB", "NextJS", "FastAPI"],
+    "tech": ["Next.js", "Express.js", "MongoDB", "FastAPI", "OCR"],
     "links": {
       "demo": "https://ionia-next.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/ionia-next"
+      "github": "https://github.com/Ronit-Raj9/ionia-next",
+      "caseStudy": "/projects/ionia"
     },
     "image": "/projects/ionia.png",
     "category": "EdTech",
     "featured": true,
-    "completeness": true
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Indian competitive exam prep (JEE, NEET, etc.) needs an NTA-replica testing experience plus assessment of handwritten subjective answers — not just MCQs. Existing platforms are MCQ-only or rely on manual grading that doesn't scale beyond a handful of students.",
+      "approach": "Next.js + Express + MongoDB stack with a dedicated FastAPI service for OCR-based evaluation of scanned handwritten responses. Adaptive testing engine across a 1,360+ question bank. Three-tier admin (super-admin / admin / student) for test, question, and user management. Selected for CrftHQ Cohort 1.",
+      "metrics": [
+        { "label": "Active students", "value": "50+" },
+        { "label": "Question bank", "value": "1,360+" },
+        { "label": "Admin tiers", "value": "3 (super / admin / student)" },
+        { "label": "Recognition", "value": "CrftHQ Cohort 1" }
+      ],
+      "techDecisions": [
+        { "decision": "Two-service split (Next.js + FastAPI)", "why": "Keeps ML dependencies off the Node runtime; OCR service scales independently of the web app." },
+        { "decision": "MongoDB for the question bank", "why": "Schema flexibility — questions are heterogeneous (numerical, MCQ, subjective with image)." },
+        { "decision": "Adaptive over fixed-test", "why": "Students see progress instead of hitting fixed-difficulty walls; better retention." },
+        { "decision": "OCR for handwriting", "why": "Students upload scans of their actual handwritten work — no forced switch to a tablet flow." }
+      ]
+    }
   },
   {
     "id": "genetrust",
@@ -139,20 +241,41 @@
     "subtitle": "AI-Powered CRISPR Intelligence Platform",
     "badge": "Hackhazard 25' Winner",
     "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+    "track": "ml",
     "highlights": [
-      "DNABERT model integration for genetic sequence analysis",
-      "Next.js + TypeScript + PyTorch + FastAPI architecture",
-      "Real-time ranking and prediction system with Base Chain"
+      "DNABERT-based genetic sequence analysis served via FastAPI + PyTorch",
+      "Next.js + TypeScript front-end with real-time ranking + prediction",
+      "RAG over published literature for cited-source results",
+      "On-chain provenance via Base Chain — every analysis hash anchored",
+      "Hackhazards 25' Winner — top of 800+ projects"
     ],
-    "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "RAG", "Base Chain"],
+    "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT", "RAG", "Base Chain"],
     "links": {
       "demo": "https://genetrust.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust"
+      "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust",
+      "caseStudy": "/projects/genetrust"
     },
     "image": "/projects/genetrust.png",
     "category": "AI/ML",
     "featured": true,
-    "completeness": true
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Researchers using CRISPR for gene editing need fast, structured analysis of genetic sequences and predicted edit outcomes. Existing tools either run heavy locally or require deep bioinformatics tooling. The gap: a web platform where biologists submit a sequence and get model-driven analysis with verifiable provenance.",
+      "approach": "DNABERT (a BERT pre-trained on the human genome) for sequence understanding, served via a FastAPI inference layer behind a Next.js + TypeScript front-end. Real-time ranking of edit candidates. Each analysis hash anchored on Base Chain for research-grade provenance. A RAG layer cites the published literature behind each prediction.",
+      "metrics": [
+        { "label": "Backbone", "value": "DNABERT" },
+        { "label": "Inference", "value": "PyTorch + FastAPI" },
+        { "label": "Provenance", "value": "Base Chain" },
+        { "label": "Front-end", "value": "Next.js + TypeScript" },
+        { "label": "Recognition", "value": "Hackhazard 25' Winner (800+ projects)" }
+      ],
+      "techDecisions": [
+        { "decision": "DNABERT over training from scratch", "why": "Pre-trained genome embeddings give a credible starting point for downstream classification with limited labeled data." },
+        { "decision": "FastAPI inference layer", "why": "Async by default; easy per-tenant scaling once research traffic grows." },
+        { "decision": "Base Chain anchoring", "why": "Research integrity matters more than tokenization; L2 economics keep cost per analysis well under $0.01." },
+        { "decision": "RAG over literature", "why": "Biologists need the cited paper, not just a number — RAG keeps the model honest." }
+      ]
+    }
   },
   {
     "id": "ecell-platform",
@@ -160,10 +283,11 @@
     "subtitle": "Entrepreneurship Cell Website & Admin System",
     "badge": "College Project",
     "badgeColor": "bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30",
+    "track": "web3",
     "highlights": [
       "Complete entrepreneurship cell ecosystem with public site and administrative CMS",
-      "Three-tier access system: Students, Admins, Super Admins with granular permissions",
-      "Event registration and management with real-time updates via Redux Toolkit",
+      "Three-tier access (Students, Admins, Super Admins) with granular permissions",
+      "Event registration and real-time updates via Redux Toolkit",
       "Team showcase, resource library, and gallery with Cloudinary integration",
       "Production-ready with TypeScript, JWT auth, and MongoDB Atlas"
     ],
@@ -183,12 +307,13 @@
     "subtitle": "AI-Powered Legal Compliance & Contract Automation",
     "badge": "Browser Automation",
     "badgeColor": "bg-teal-500/20 text-teal-600 dark:text-teal-400 border-teal-500/30",
+    "track": "full-stack-ai",
     "highlights": [
-      "Automated contract generation tailored for Indian startup compliance requirements",
-      "GST management system with intelligent tax calculation and filing",
-      "AI agent-powered document analysis and legal term extraction",
-      "Next.js frontend with FastAPI backend for real-time contract processing",
-      "Browser automation for seamless government portal interactions"
+      "Automated contract generation tailored for Indian startup compliance",
+      "GST management with intelligent tax calculation and filing",
+      "AI-agent-powered document analysis and legal-term extraction",
+      "Next.js front-end + FastAPI back-end for real-time contract processing",
+      "Browser automation (Puppeteer) for seamless government-portal interactions"
     ],
     "tech": ["Next.js", "FastAPI", "AI Agents", "Puppeteer", "MongoDB"],
     "links": {
@@ -200,16 +325,16 @@
     "featured": false,
     "completeness": true
   },
-
   {
     "id": "rescroll",
     "title": "ReScroll",
     "subtitle": "TikTok for Research Papers",
     "badge": "AI-Powered",
     "badgeColor": "bg-pink-500/20 text-pink-600 dark:text-pink-400 border-pink-500/30",
+    "track": "full-stack-ai",
     "highlights": [
       "Swipeable vertical feed transforming ArXiv papers into bite-sized summaries",
-      "Gemini Pro AI generates concise 50-line summaries from complex research",
+      "Gemini Pro generates concise 50-line summaries from complex research",
       "Interactive D3-Force Knowledge Graph visualizing topic connections",
       "Built with React Native + Expo for iOS, Android, and Web",
       "Redis-powered caching with PostgreSQL + MongoDB hybrid storage"
@@ -230,12 +355,13 @@
     "subtitle": "AI-Powered Knowledge Tracking & Learning Ecosystem",
     "badge": "Featured Project",
     "badgeColor": "bg-violet-500/20 text-violet-600 dark:text-violet-400 border-violet-500/30",
+    "track": "full-stack-ai",
     "highlights": [
       "Chrome extension tracking 30s+ browsing sessions to build personalized Knowledge Graphs",
-      "Groq LLM + Sentence-Transformers generate semantic embeddings for intelligent content analysis",
-      "Neo4j Knowledge Graph maps concept relationships with vector search via Qdrant",
+      "Groq LLM + Sentence-Transformers for semantic embeddings on browsed content",
+      "Neo4j Knowledge Graph maps concept relationships; Qdrant for vector search",
       "Dual-backend architecture (Node.js + FastAPI) processing real-time learning analytics",
-      "Social matching algorithm finds study partners based on Knowledge Graph overlap"
+      "Social-matching algorithm finds study partners by Knowledge Graph overlap"
     ],
     "tech": ["Next.js", "React", "FastAPI", "Node.js", "MongoDB", "Neo4j", "Qdrant", "Groq API", "PyTorch", "Chrome Extension"],
     "links": {
@@ -246,28 +372,5 @@
     "category": "EdTech/AI",
     "featured": false,
     "completeness": false
-  },
-  {
-    "id": "shakti",
-    "title": "SHAKTI",
-    "subtitle": "Vision-Language RAG System for Military Intelligence",
-    "badge": "SIH 2024 Winner",
-    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
-    "highlights": [
-      "Military intelligence system with advanced memory retrieval architecture",
-      "79% OCR accuracy on complex military documents using custom-trained models",
-      "Vision-Language model integration for multimodal document analysis",
-      "RAG pipeline enabling semantic search across classified document repositories",
-      "Won Smart India Hackathon 2024 with real-world deployment in defense sector"
-    ],
-    "tech": ["PyTorch", "RAG", "OCR", "FastAPI", "Transformers", "LangChain"],
-    "links": {
-      "demo": "https://shakti-ai.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/shakti-project"
-    },
-    "image": "/projects/shakti.png",
-    "category": "AI/ML",
-    "featured": false,
-    "completeness": true
   }
 ]
