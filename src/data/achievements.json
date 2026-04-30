@@ -21,6 +21,13 @@
     "description": "Built AlphaQ — a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
   },
   {
+    "id": "aisehack2026-phase2",
+    "year": "2026",
+    "title": "ANRF AISEHack Phase 2 - Team Vega",
+    "subtitle": "Pollution Forecasting (IIT Delhi) · Finalists at IIIT Hyderabad",
+    "description": "Built an episode-aware PM2.5 forecasting pipeline for India using WRF-Chem gridded data (10-hour lookback -> 16-hour forecasts). Team Vega recorded a 0.8384 leaderboard score and qualified for finals at IIIT Hyderabad."
+  },
+  {
   "id": "lnmhacks8.0",
   "year": "2026",
   "title": "LNMHacks 8.0",

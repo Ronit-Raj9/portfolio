@@ -133,7 +133,7 @@
 | Role | Organization | Period |
 |------|-------------|--------|
 | 🔧 **Open Source Maintainer** | [GitMesh](https://gitmesh.dev) | Nov 2024 — Present |
-| 💻 **Freelance Full-Stack Developer** | Ionia | Dec 2024 — Jun 2025 |
+| 💻 **Full-Stack Developer** | Ionia | Dec 2024 — Jun 2025 |
 | 🚀 **Co-Founder & Lead Developer** | Zentoro AI | Nov 2024 — Mar 2025 |
 | 🏢 **Co-Founder & Lead Developer** | Garudex Labs | Nov 2024 — Mar 2025 |
 

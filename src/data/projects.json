@@ -126,6 +126,92 @@
     }
   },
   {
+    "id": "inferencegym",
+    "title": "InferenceGym",
+    "subtitle": "OpenEnv RL Environment for LLM Inference Serving",
+    "badge": "Meta × PyTorch × Hugging Face Hackathon",
+    "badgeColor": "bg-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-500/30",
+    "track": "ml",
+    "highlights": [
+      "Submitted to the Meta × PyTorch × Hugging Face OpenEnv Hackathon ($30K prize pool; top finalists interview at Meta and Hugging Face AI teams)",
+      "OpenEnv-compliant RL environment modelling LLM serving as a control problem — batching, KV-cache budget, speculative decoding, quantization, prefill/decode split, priority routing",
+      "Reference PPO agent reliably outperforms Orca / vLLM-style hand-coded heuristics across static, bursty, and adversarial-multitenant workloads",
+      "Three deterministic tasks with per-step shaped rewards over throughput, SLO compliance, memory pressure, and cost",
+      "Deployed as a Hugging Face Docker Space with the full OpenEnv API surface (/reset, /step, /grader, /baseline, /web)"
+    ],
+    "tech": ["Python", "PyTorch", "PPO", "OpenEnv", "FastAPI", "Docker", "Hugging Face Spaces", "OpenAI"],
+    "links": {
+      "demo": "https://huggingface.co/spaces/ronitraj/vegarl",
+      "github": "https://github.com/Ronit-Raj9/InferenceGym",
+      "caseStudy": "/projects/inferencegym"
+    },
+    "image": "/projects/inferencegym.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "LLM serving systems make many interdependent decisions per second — batching, KV-cache budget, speculative decoding depth, quantization tier, prefill/decode disaggregation, priority routing — under non-stationary workloads. Hand-coded policies (Orca, vLLM-style heuristics) plateau because the trade-offs shift with every traffic pattern. The Meta × PyTorch × Hugging Face hackathon asked for a true RL environment that exposes this as a learnable control problem.",
+      "approach": "An OpenEnv-compliant environment modelling the serving control loop. Action space is a typed ServeAction (batch_cap, kv_budget_fraction, speculation_depth, quantization_tier, prefill_decode_split, priority_routing). Observations surface queue depth, p50/p99 TTFT, inter-token latency, throughput, KV occupancy, GPU memory, SLO compliance, and cost-per-1k. Per-step shaped reward over throughput + SLO + memory + cost. Three deterministic tasks (static / bursty / adversarial-multitenant). Reference PPO trained on CPU on the simulator; an OpenAI baseline path is wired in for submission compliance.",
+      "metrics": [
+        { "label": "Hackathon", "value": "Meta × PyTorch × HF · OpenEnv" },
+        { "label": "Prize pool", "value": "$30,000" },
+        { "label": "Tasks", "value": "Static / Bursty / Adversarial" },
+        { "label": "PPO vs heuristic (static)", "value": "0.55 vs 0.30" },
+        { "label": "PPO vs heuristic (adversarial)", "value": "0.38 vs 0.20" },
+        { "label": "Runtime", "value": "Docker Space on Hugging Face" }
+      ],
+      "techDecisions": [
+        { "decision": "OpenEnv typed Action / Observation contract", "why": "Round-1 grading is automated against the OpenEnv spec — typed schemas plus reset / step / grader / baseline endpoints are non-optional for submission." },
+        { "decision": "CPU-only deterministic simulator", "why": "Keeps training, grading, and reproducibility cheap and ships the environment as a small Docker image to a Hugging Face Space." },
+        { "decision": "Per-step shaped reward (throughput + SLO + memory + cost)", "why": "Pure terminal rewards collapse on bursty/adversarial workloads; per-step shaping gives the policy gradient a stable signal." },
+        { "decision": "PPO as the reference RL agent", "why": "Sample-efficient on the small simulator and a known-good baseline — the goal was demonstrating RL beats heuristics, not chasing SOTA." },
+        { "decision": "OpenAI baseline path via in-process runtime", "why": "Submission requires the official OpenAI client; in-process avoids the server having to call itself over HTTP and stays robust on Docker Spaces." }
+      ]
+    }
+  },
+  {
+    "id": "aisehack-pm25-forecasting",
+    "title": "AISEHack Phase 2 - PM2.5 Forecasting",
+    "subtitle": "Episode-Aware Country-Scale Air Pollution Forecasting",
+    "badge": "Team Vega · Finalists (IIIT Hyderabad)",
+    "badgeColor": "bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/30",
+    "track": "ml",
+    "highlights": [
+      "Built a country-scale PM2.5 forecasting system over India from WRF-Chem gridded data",
+      "Trained for Phase 2 constraints: only 10-hour historical inputs and 16-step future predictions",
+      "Optimized for both global accuracy and episode-aware performance during extreme pollution events",
+      "Reached 0.8384 leaderboard score with Team Vega and qualified for finals at IIIT Hyderabad",
+      "Baseline runs: https://wandb.ai/ronitraj/aisehack_final | Final benchmark: https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj"
+    ],
+    "tech": ["Python", "PyTorch", "NumPy", "FNO", "ConvLSTM", "Kaggle", "Weights & Biases"],
+    "links": {
+      "github": "https://github.com/Ronit-Raj9/aisehack_phase2_submission",
+      "demo": "https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj",
+      "caseStudy": "/projects/aisehack-pm25-forecasting"
+    },
+    "image": "/projects/aisehack-pm25.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Short-term PM2.5 forecasting over India is difficult because pollution dynamics are strongly nonlinear and performance on average conditions often breaks down during severe episodes. Phase 2 explicitly evaluates both global quality and episodic behavior while restricting inference to a 10-hour lookback window.",
+      "approach": "Built an episode-aware spatiotemporal forecasting pipeline over a fixed 140x124 India grid, predicting 16 future steps from 10-hour history. Trained on representative seasonal months from 2016 and inferred on unseen 2017 months. Used a hybrid deep-learning setup inspired by operator-learning and recurrent spatiotemporal modeling, with validation geared toward both global and episode metrics.",
+      "metrics": [
+        { "label": "Leaderboard score", "value": "0.8384" },
+        { "label": "Team", "value": "Team Vega" },
+        { "label": "Forecast horizon", "value": "16 timesteps" },
+        { "label": "Input history", "value": "10 hours" },
+        { "label": "Outcome", "value": "Finalists at IIIT Hyderabad" }
+      ],
+      "techDecisions": [
+        { "decision": "Episode-aware objective design", "why": "Phase 2 scoring emphasizes both global SMAPE and behavior on episodic grid points, so training/validation targeted this trade-off directly." },
+        { "decision": "Spatiotemporal modeling over fixed grid", "why": "The task is naturally a sequence-of-fields problem; learning spatial transport and temporal evolution jointly improves stability." },
+        { "decision": "Reproducibility via W&B benchmarks", "why": "Baseline and final experiments were tracked as separate runs to compare improvements and avoid overfitting to isolated submissions." },
+        { "decision": "Notebook-first end-to-end pipeline", "why": "Competition requires a single executable submission notebook producing `/kaggle/working/preds.npy` with exact shape constraints." }
+      ]
+    }
+  },
+  {
     "id": "typenad",
     "title": "TypeNad",
     "subtitle": "Competitive On-Chain Typing Arena",
