@@ -1,5 +1,50 @@
 [
   {
+  "id": "zerokey",
+  "title": "ZeroKeyCLI",
+  "subtitle": "AdSense for the Terminal",
+  "badge": "Monad Blitz · 4th Place",
+  "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+  "highlights": [
+    "Watch a 5-second ASCII ad, earn $0.001 USDC, get a free AI coding response",
+    "Two x402 micropayment transactions settle on Monad before the ad finishes",
+    "AdPool.sol smart contract manages advertiser deposits and verified impressions",
+    "No wallet setup, no subscription, no gas fees for the end user"
+  ],
+  "tech": ["Node.js", "ink.js", "Solidity", "Monad", "x402", "Claude API"],
+  "links": {
+    "demo": "https://x.com/zerokey_cli/status/2037776989214695534",
+    "github": "https://github.com/Ronit-Raj9/ZeroKey"
+  },
+  "image": "/projects/zerokey.png",
+  "category": "Blockchain/AI",
+  "featured": true,
+  "completeness": true
+},
+{
+  "id": "alphaq-minesweeper",
+  "title": "AlphaQ",
+  "subtitle": "GRPO-Trained RL Agent for Minesweeper",
+  "badge": "AMD AI Hackathon · Special Mention",
+  "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+  "highlights": [
+    "GRPO fine-tuned Qwen2.5-14B-Instruct to reason and play Minesweeper",
+    "Phase-stratified training across 6 difficulty levels on 4,000 samples",
+    "Custom reward engineering: JSON purity + gameplay correctness + strategic bonuses",
+    "Stack-based iterative engine supporting 50×50 grids on AMD Instinct MI300X (192GB HBM3)",
+    "Recognised by AMD team for sophisticated technical implementation"
+  ],
+  "tech": ["Python", "PyTorch", "Unsloth", "GRPO", "LoRA", "Qwen2.5", "ROCm", "BFloat16"],
+  "links": {
+    "demo": "",
+    "github": "https://github.com/Ronit-Raj9/AMD_RL_Hackathon"
+  },
+  "image": "/projects/alphaq.png",
+  "category": "AI/ML",
+  "featured": true,
+  "completeness": true
+}, 
+  {
     "id": "typenad",
     "title": "TypeNad",
     "subtitle": "Competitive On-Chain Typing Arena",
