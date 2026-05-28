@@ -7,12 +7,9 @@ import { ThemeProvider } from '@/components/theme-provider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Analytics from '@/components/Analytics'
-
+import { GA_MEASUREMENT_ID, isGoogleAnalyticsEnabled } from '@/lib/ga-config'
 
 const inter = Inter({ subsets: ['latin'] })
-
-// Google Analytics Measurement ID - Replace with your actual ID
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://roniii.vercel.app'),
@@ -75,8 +72,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* Google Analytics */}
-        {GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX' && (
+        {/* Google tag (gtag.js) — GA4 */}
+        {isGoogleAnalyticsEnabled && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

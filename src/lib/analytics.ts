@@ -1,5 +1,7 @@
 // Analytics utility functions for tracking events
 
+import { GA_MEASUREMENT_ID, isGoogleAnalyticsEnabled } from '@/lib/ga-config'
+
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void
@@ -8,11 +10,9 @@ declare global {
 
 // Track page views
 export const pageview = (url: string) => {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID
-  // No-op when GA ID is unset or still the placeholder
-  if (!gaId || gaId === 'G-XXXXXXXXXX') return
+  if (!isGoogleAnalyticsEnabled) return
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', gaId, {
+    window.gtag('config', GA_MEASUREMENT_ID, {
       page_path: url,
     })
   }
