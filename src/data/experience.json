@@ -4,7 +4,7 @@
   "role": "Maintainer",
   "company": "GitMesh",
   "period": "November 2024 - Present",
-  "description": "Maintainer on GitMesh: open-source platform for governed AI agents in OSS projects (Linux Foundation Decentralized Trust). Policy-as-code for agent actions, GitHub/GitLab sync, audit logging, maintainer approvals, and multi-source feedback aggregation. Helped grow the project to 130+ GitHub stars. Focus on collaboration, governance, and automation for maintainers.",
+  "description": "Maintainer of GitMesh — an AI-agent governance platform selected into the Linux Foundation Decentralized Trust (LFDT). Grew it to 130+ GitHub stars.",
   "highlights": [
     "Multi-agent orchestration on a governed MCP platform for OSS projects",
     "Selected into Linux Foundation Decentralized Trust",
@@ -22,7 +22,7 @@
     "role": "Software Engineer Intern",
     "company": "C3iHub, IIT Kanpur",
     "period": "May 2025 - August 2025",
-    "description": "Built PARAM (Portal for Academic Records and Management) - blockchain credential system for ABV-IIITM Gwalior: semester/degree NFT issuance, multi-level approvals, curriculum versioning, and public verification at production pilot scale.",
+    "description": "Built and shipped PARAM — a blockchain academic-credential platform for ABV-IIITM Gwalior, live at production-pilot scale.",
     "highlights": [
       "Monorepo: Next.js 16 + React 19 frontend (Privy, shadcn); Express 5 API; isolated BullMQ worker for CSV, mint, email, and cron on AWS EC2 eu-north-1",
       "End-to-end workflows - faculty grades → academic review → admin approve → mint on Base Sepolia; degree proposals with credit/backlog eligibility checks",
@@ -55,7 +55,7 @@
   "role": "Co-Founder & Lead Developer",
   "company": "Zentoro AI",
   "period": "November 2024 - March 2025",
-  "description": "Built first autonomous AI project execution engine with multi-agent workflows to plan, build, and launch campaigns, apps, and financial models without manual oversight.",
+  "description": "Co-founded Zentoro AI — an autonomous multi-agent engine that plans, builds, and launches projects end-to-end. 700+ visitors from 44 countries in early validation.",
   "highlights": [
     "Developed autonomous AI agent system for end-to-end project execution across campaigns, apps, and financial models",
     "Achieved strong early validation with 700+ visitors from 44 countries and endorsement from 50+ YC alumni",
@@ -73,7 +73,7 @@
   "role": "Co-Founder & Lead Developer",
   "company": "Garudex Labs",
   "period": "November 2024 - March 2025",
-  "description": "Won IDE'25 Innovation Development & Entrepreneurship award, a national initiative by the Government of India. Co-founded TRAFFIC GARUDEX LABS and built AI-powered product serving government needs, later pivoted to consumer and business markets for faster validation cycles.",
+  "description": "Co-founded Garudex Labs — built an AI product for the government sector and won the Government of India's national IDE'25 entrepreneurship award.",
   "highlights": [
     "Worked on end-to-end product development for TRAFFIC - AI solution addressing government sector needs",
     "Navigated 3+ year government validation cycles and procurement challenges",

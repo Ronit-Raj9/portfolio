@@ -69,155 +69,178 @@ function StickyContactButton() {
   )
 }
 
-// Adithya-style Project Card with bullet points
-function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
-  project: Project,
-  index: number,
-  isExpanded: boolean,
+// Compact project card — rectangular thumb, tags, all link buttons
+function ProjectCardCompact({ project, index }: { project: Project; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: Math.min(index * 0.05, 0.25) }}
+      className="group flex flex-col h-full bg-background rounded-lg border border-border hover:border-foreground/20 transition-colors overflow-hidden"
+    >
+      {/* Rectangular thumbnail */}
+      <div className="relative w-full h-[88px] shrink-0 overflow-hidden bg-accent/10">
+        {project.badge && (
+          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 text-[10px] font-semibold rounded-md bg-background/95 text-foreground border border-border backdrop-blur-sm">
+            {project.badge}
+          </span>
+        )}
+        {!project.completeness && (
+          <span className="absolute top-2 right-2 z-10 px-2 py-0.5 text-[10px] font-semibold rounded-md bg-orange-100 text-orange-700 border border-orange-200">
+            In Progress
+          </span>
+        )}
+        <Image
+          src={project.image}
+          alt={`${project.title} — ${project.subtitle}`}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
+
+      <div className="flex flex-col flex-1 p-3.5 gap-2">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-sm font-semibold leading-snug">{project.title}</h3>
+          <div className="flex items-center gap-1 shrink-0 flex-wrap justify-end">
+            {project.track && (
+              <span className={cn(
+                "px-1.5 py-0.5 text-[10px] font-medium rounded border",
+                project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
+                project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
+                project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
+              )}>
+                {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 flex-1">
+          {project.subtitle}
+        </p>
+
+        <div className="flex flex-wrap gap-1">
+          {project.tech.slice(0, 5).map((tech) => (
+            <span key={tech} className="px-1.5 py-0.5 text-[10px] font-medium rounded bg-accent/60 text-foreground/80 border border-border">
+              {tech}
+            </span>
+          ))}
+          {project.tech.length > 5 && (
+            <span className="px-1.5 py-0.5 text-[10px] text-muted-foreground">+{project.tech.length - 5}</span>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {project.links.demo && (
+            <a
+              href={project.links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackProjectDemo(project.title)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
+            >
+              Demo
+              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          )}
+          {project.links.github && (
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackGitHubClick(project.title)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md border border-foreground/20 hover:bg-accent/50 transition-colors"
+            >
+              <FaGithub className="w-3 h-3" />
+              GitHub
+            </a>
+          )}
+          {project.links.caseStudy && (
+            <Link
+              href={project.links.caseStudy}
+              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md border border-[#8b5cf6] text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors"
+            >
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Case Study
+            </Link>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// Collapsible achievement row
+function AchievementRow({
+  achievement,
+  index,
+  isExpanded,
+  onToggle,
+}: {
+  achievement: Achievement
+  index: number
+  isExpanded: boolean
   onToggle: () => void
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.15, duration: 0.5 }}
-      className="group relative bg-background rounded-lg overflow-hidden border border-border hover:border-foreground/20 transition-colors"
+      transition={{ delay: Math.min(index * 0.03, 0.2) }}
+      className="rounded-lg border border-border bg-background overflow-hidden hover:border-foreground/20 transition-colors"
     >
-      <div className="flex flex-col lg:flex-row">
-        {/* Image */}
-        <div className="relative w-full lg:w-1/3 h-20 lg:h-auto lg:min-h-[90px] overflow-hidden bg-accent/10">
-          <div className="absolute top-2 left-2 z-20 flex gap-1.5 flex-wrap">
-            {project.badge && (
-              <span 
-                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                  color: '#1f2937',
-                  borderColor: 'rgba(0, 0, 0, 0.1)',
-                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
-                }}
-              >
-                {project.badge}
-              </span>
-            )}
-            {!project.completeness && (
-              <span 
-                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
-                style={{
-                  backgroundColor: 'rgba(255, 237, 213, 0.98)',
-                  color: '#c2410c',
-                  borderColor: 'rgba(234, 88, 12, 0.3)',
-                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
-                }}
-              >
-                In Progress
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isExpanded}
+        className="w-full flex items-center gap-3 px-3 py-2.5 text-left"
+      >
+        <span className="text-xs text-muted-foreground shrink-0 w-9 tabular-nums">{achievement.year}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+            <span className="text-sm font-medium">{achievement.title}</span>
+            {achievement.prize && (
+              <span className="px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+                {achievement.prize}
               </span>
             )}
           </div>
-          <Image
-            src={project.image}
-            alt={`${project.title} — ${project.subtitle}`}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 p-3">
-          <div className="flex items-start justify-between gap-2 mb-0.5">
-            <h3 className="text-base font-medium flex-1">{project.title}</h3>
-            <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
-              {project.track && (
-                <span className={cn(
-                  "px-2 py-0.5 text-xs font-medium rounded-full border",
-                  project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
-                  project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
-                  project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
-                )}>
-                  {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
-                </span>
-              )}
-              <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
-                {project.category}
-              </span>
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground mb-2">{project.subtitle}</p>
-
-          {/* Bullet points */}
-          <ul className="space-y-0.5 mb-2">
-            {(isExpanded ? project.highlights : project.highlights.slice(0, 1)).map((highlight, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
-                <span className="text-muted-foreground/50">-</span>
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-
-          {project.highlights.length > 1 && (
-            <div className="mb-2">
-              <button
-                onClick={onToggle}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {isExpanded ? '← Show less' : 'Read more →'}
-              </button>
-            </div>
+          {!isExpanded && (
+            <p className="text-xs text-muted-foreground truncate mt-0.5">{achievement.subtitle}</p>
           )}
-
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1.5 mb-2">
-            {project.tech.map((tech) => (
-              <span key={tech} className="px-2 py-0.5 text-xs font-medium rounded bg-accent/80 text-foreground border border-border">
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Links */}
-          <div className="flex flex-wrap gap-2">
-            {project.links.demo && (
-              <a
-                href={project.links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackProjectDemo(project.title)}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
-                Demo
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            )}
-            {project.links.github && (
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackGitHubClick(project.title)}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-foreground/20 hover:bg-accent/50 transition-colors"
-              >
-                <FaGithub className="w-3.5 h-3.5" />
-                GitHub
-              </a>
-            )}
-            {project.links.caseStudy && (
-              <Link
-                href={project.links.caseStudy}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-[#8b5cf6] text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Case Study
-              </Link>
-            )}
-          </div>
         </div>
-      </div>
+        <svg
+          className={cn("w-4 h-4 shrink-0 text-muted-foreground transition-transform", isExpanded && "rotate-180")}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="px-3 pb-3 pt-0 border-t border-border/50">
+              <p className="text-xs text-muted-foreground mt-2 mb-1.5">{achievement.subtitle}</p>
+              <p className="text-sm text-foreground/70 leading-relaxed">{achievement.description}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
@@ -392,33 +415,6 @@ function GitHubSection() {
   )
 }
 
-// Achievement Card
-function AchievementCard({ achievement, index }: { achievement: Achievement; index: number }) {
-  return (
-    <motion.div
-      key={achievement.id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: Math.min(index * 0.05, 0.3) }}
-      className="p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors"
-    >
-      <div className="flex flex-wrap items-center gap-3 mb-2">
-        <span className="text-sm text-muted-foreground">{achievement.year}</span>
-        <span className="text-muted-foreground/30">-</span>
-        <h3 className="font-medium">{achievement.title}</h3>
-        {achievement.prize && (
-          <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
-            {achievement.prize}
-          </span>
-        )}
-      </div>
-      <p className="text-sm text-muted-foreground mb-1">{achievement.subtitle}</p>
-      <p className="text-sm text-foreground/70 leading-relaxed">{achievement.description}</p>
-    </motion.div>
-  )
-}
-
 // ============================================================================
 // MAIN PAGE - Adithya's optimal ordering
 // ============================================================================
@@ -430,7 +426,7 @@ export default function Home() {
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.98])
   const [showAllExperiences, setShowAllExperiences] = useState(false)
   const [expandedExperiences, setExpandedExperiences] = useState<{ [key: string]: boolean }>({})
-  const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({})
+  const [expandedAchievements, setExpandedAchievements] = useState<{ [key: string]: boolean }>({})
   const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
   const [showAllAchievements, setShowAllAchievements] = useState(false)
   const otherAchievements = ACHIEVEMENT_GROUPS.find((g) => g.key === 'other')?.items ?? []
@@ -444,10 +440,10 @@ export default function Home() {
     }))
   }
 
-  const toggleProject = (title: string) => {
-    setExpandedProjects(prev => ({
+  const toggleAchievement = (id: string) => {
+    setExpandedAchievements(prev => ({
       ...prev,
-      [title]: !prev[title]
+      [id]: !prev[id]
     }))
   }
 
@@ -478,6 +474,10 @@ export default function Home() {
                 {/* Title */}
                 <p className="text-sm md:text-base font-medium text-muted-foreground mb-2 md:mb-3">
                   {profile.title}
+                </p>
+                {/* Location */}
+                <p className="flex items-center gap-1.5 text-xs md:text-sm text-muted-foreground mb-2 md:mb-3">
+                  <FaMapMarkerAlt className="w-3 h-3" /> {profile.location} · Remote
                 </p>
                 {/* Social Links */}
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
@@ -842,27 +842,25 @@ export default function Home() {
       <section id="featured" className="w-full py-12">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-12">
+            className="max-w-6xl mx-auto">
+            <div className="flex justify-between items-center mb-8">
               <h2 className="text-[32px] font-bold">Featured Projects</h2>
               <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 View All →
               </Link>
             </div>
 
-            <div className="space-y-3">
-              {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 3).map((project, index) => (
-                <ProjectCardDetailed
-                  key={project.title}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 6).map((project, index) => (
+                <ProjectCardCompact
+                  key={project.id}
                   project={project}
                   index={index}
-                  isExpanded={expandedProjects[project.title] || false}
-                  onToggle={() => toggleProject(project.title)}
                 />
               ))}
             </div>
 
-            {FEATURED_PROJECTS.length > 3 && (
+            {FEATURED_PROJECTS.length > 6 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -906,15 +904,21 @@ export default function Home() {
               Achievements
             </h2>
 
-            <div className="space-y-10">
+            <div className="space-y-8">
               {ACHIEVEMENT_GROUPS.filter((group) => group.key !== 'other').map((group) => (
                 <div key={group.key}>
-                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                     {group.label}
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-1.5">
                     {group.items.map((achievement, index) => (
-                      <AchievementCard key={achievement.id} achievement={achievement} index={index} />
+                      <AchievementRow
+                        key={achievement.id}
+                        achievement={achievement}
+                        index={index}
+                        isExpanded={expandedAchievements[achievement.id] || false}
+                        onToggle={() => toggleAchievement(achievement.id)}
+                      />
                     ))}
                   </div>
                 </div>
@@ -922,12 +926,18 @@ export default function Home() {
 
               {otherAchievements.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                     More Achievements
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-1.5">
                     {(showAllAchievements ? otherAchievements : otherAchievements.slice(0, 3)).map((achievement, index) => (
-                      <AchievementCard key={achievement.id} achievement={achievement} index={index} />
+                      <AchievementRow
+                        key={achievement.id}
+                        achievement={achievement}
+                        index={index}
+                        isExpanded={expandedAchievements[achievement.id] || false}
+                        onToggle={() => toggleAchievement(achievement.id)}
+                      />
                     ))}
                   </div>
 
@@ -1049,19 +1059,17 @@ export default function Home() {
       <section id="projects" className="w-full py-16">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            className="max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-12">
+            className="max-w-6xl mx-auto">
+            <div className="flex justify-between items-center mb-8">
               <h2 className="text-[32px] font-bold">More Projects</h2>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {MORE_PROJECTS.map((project, index) => (
-                <ProjectCardDetailed
+                <ProjectCardCompact
                   key={project.id}
                   project={project}
                   index={index}
-                  isExpanded={expandedProjects[project.title] || false}
-                  onToggle={() => toggleProject(project.title)}
                 />
               ))}
             </div>

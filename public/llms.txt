@@ -1,11 +1,11 @@
 # Ronit Raj
 
-> Open Source Developer & Full Stack AI Engineer — building production AI and full-stack systems, from GRPO on AMD MI300X to 79%-OCR RAG pipelines.
+> Full-Stack AI & ML Engineer — building production AI and full-stack systems, from GRPO on AMD MI300X to 79%-OCR RAG pipelines.
 
 Ronit Raj is an open source developer and a speaker at Open Source Summit India 2026 (Linux Foundation, Mumbai) on AI agent security and compliance in OSS projects (a 40-minute breakout session). He builds production AI systems end-to-end — NHA x IISc PM-JAY Runner-Up for STG claim adjudication, PARAM blockchain credentials for ABV-IIITM Gwalior, GRPO on AMD MI300X, and a 79%-OCR military RAG (Smart India Hackathon 2024 Winner). He maintains GitMesh and co-founded Garudex Labs.
 
 ## Key facts
-- Role: Open Source Developer & Full Stack AI Engineer
+- Role: Full-Stack AI & ML Engineer
 - Location: Gwalior, India
 - Education: B.Tech Mathematics & Scientific Computing, IIIT Gwalior (2023–2027), CGPA 8.35
 - Credentials: OSS India 2026 Speaker · NHA PM-JAY Runner-Up · SIH 2024 Winner · GitMesh Maintainer

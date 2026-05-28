@@ -1,12 +1,12 @@
 {
   "name": "Ronit Raj",
-  "title": "Open Source Developer & Full Stack AI Engineer",
-  "tagline": "Open source developer and speaker at Open Source Summit India 2026 (Mumbai) - building production AI and full-stack systems from GRPO on AMD MI300X to 79%-OCR RAG pipelines.",
-  "credentials": "OSS India 2026 Speaker · NHA PM-JAY Runner-Up · SIH 2024 Winner · GitMesh Maintainer",
+  "title": "Full-Stack AI & ML Engineer",
+  "tagline": "Full-stack AI & ML engineer who likes shipping — from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 8+ hackathon podiums, two startups, and GitMesh — a Linux Foundation (LFDT) project I maintain.",
+  "credentials": "SIH 2024 Winner · NHA PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh Maintainer",
   "proofPoints": [
-    "OSS India 2026 Speaker",
-    "NHA PM-JAY Runner-Up",
     "SIH 2024 Winner",
+    "NHA PM-JAY Runner-Up",
+    "OSS India 2026 Speaker",
     "GitMesh Maintainer"
   ],
   "email": "dev.ronitraj@gmail.com",
@@ -22,10 +22,10 @@
   },
   "availability": {
     "status": "available",
-    "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
+    "message": "Open to Full-Stack AI / ML Engineer roles and startup collaborations."
   },
   "about": {
-    "summary": "I'm an open source developer and speaker at Open Source Summit India 2026 in Mumbai (Linux Foundation) on AI agent security and compliance in OSS projects - upgraded from lightning talk to a 40-minute session. I build production AI systems end-to-end: NHA × IISc PM-JAY Runner-Up for STG claim adjudication; PARAM blockchain credentials for ABV-IIITM Gwalior; GRPO on AMD MI300X; 79%-OCR military RAG (Smart India Hackathon 2024). Maintainer of GitMesh; co-founder at Garudex Labs. On the web since 2019 - my first project was a static HTML/CSS site; the arc since then is what matters.",
+    "summary": "I'm a builder first. Hand me a hard problem and I'll have something running by the weekend — that instinct took me from my first static HTML site in 2019 to training LLMs on AMD MI300X and shipping production AI end-to-end. I've placed at 8+ hackathons (Smart India Hackathon 2024 winner, HackHazards '25 winner, NHA × IISc PM-JAY runner-up), co-founded two startups, and built GitMesh — an AI-agent governance platform selected into the Linux Foundation Decentralized Trust (LFDT) that I now maintain. What I care about is the unglamorous part: the model that actually serves traffic, the pipeline that survives messy real-world data, the system that doesn't fall over when real users hit it. I'm focused on full-stack AI and AI-infra work — training, fine-tuning, serving, and the engineering that turns a demo into something people depend on. I'll also be speaking at Open Source Summit India 2026 on securing AI agents in open source.",
     "sections": [
       {
         "title": "Where It Started",
@@ -40,9 +40,9 @@
         ]
       },
       {
-        "title": "AI Meets Blockchain",
+        "title": "The Infra Underneath",
         "paragraphs": [
-          "I'm fascinated by systems that combine intelligence with decentralization - on-chain typing arenas on Monad, NFT-based academic credentials, AdSense for terminals settled in micropayments. The interesting work isn't AI in smart contracts; it's building trustless systems where predictions and data provenance are verifiable on-chain."
+          "The part I keep coming back to is the infrastructure beneath the model. I built InferenceGym, an RL environment that treats LLM serving as a control problem - batching, KV-cache budgets, speculative decoding, prefill/decode splits - and trained a policy that beats hand-tuned heuristics. I've fine-tuned with GRPO and LoRA on AMD MI300X, deployed models as Docker Spaces on Hugging Face, and built RAG pipelines over Qdrant and FAISS. I've shipped on-chain systems too - academic credentials, a micropayment CLI - when decentralization actually earns its place. But what pulls me in is making inference fast, cheap, and reliable at scale."
         ]
       },
       {
@@ -54,7 +54,7 @@
       {
         "title": "Technical Approach",
         "paragraphs": [
-          "PyTorch and Transformers for models. FastAPI and Next.js for delivery. Smart contracts when decentralization adds real value. As an open source developer and OSS India 2026 speaker, I focus on secure, compliant agent tooling and code other developers can read, deploy, and extend - because the best AI is the one that ships and keeps working."
+          "PyTorch and Transformers for the models; FastAPI and Next.js for delivery; whatever serving stack keeps latency and cost sane. I reach for smart contracts only when decentralization adds real value. Mostly I optimize for one thing: code other engineers can read, deploy, and extend - because the best system is the one that ships and keeps working when I'm not watching it."
         ]
       }
     ]

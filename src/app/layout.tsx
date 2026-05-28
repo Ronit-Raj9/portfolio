@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://roniii.vercel.app'),
   title: {
-    default: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
+    default: 'Ronit Raj — Full-Stack AI & ML Engineer',
     template: '%s | Ronit Raj'
   },
-  description: 'Full-stack AI engineer & open source developer. OSS India 2026 speaker, SIH 2024 winner, NHA PM-JAY runner-up, GitMesh maintainer. Production AI & on-chain systems.',
+  description: 'Full-stack AI & ML engineer. SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer. Production AI & on-chain systems.',
   authors: [{ name: 'Ronit Raj', url: 'https://roniii.vercel.app' }],
   creator: 'Ronit Raj',
   publisher: 'Ronit Raj',
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://roniii.vercel.app',
     siteName: 'Ronit Raj Portfolio',
-    title: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
-    description: 'OSS India 2026 speaker · SIH 2024 winner · GitMesh maintainer. Building production AI and on-chain systems.',
+    title: 'Ronit Raj — Full-Stack AI & ML Engineer',
+    description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
-    description: 'OSS India 2026 speaker · SIH 2024 winner · GitMesh maintainer. Building production AI and on-chain systems.',
+    title: 'Ronit Raj — Full-Stack AI & ML Engineer',
+    description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
     creator: '@ronit__raj',
   },
   alternates: {
@@ -100,8 +100,8 @@ export default function RootLayout({
                 'https://www.linkedin.com/in/ronitrajai/',
                 'https://x.com/ronit__raj'
               ],
-              jobTitle: 'Full-Stack AI Engineer & Open Source Developer',
-              description: 'Open source developer and OSS India 2026 speaker building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. SIH 2024 winner, NHA PM-JAY runner-up, GitMesh maintainer.',
+              jobTitle: 'Full-Stack AI & ML Engineer',
+              description: 'Full-stack AI & ML engineer building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer.',
               worksFor: {
                 '@type': 'Organization',
                 name: 'Garudex Labs'

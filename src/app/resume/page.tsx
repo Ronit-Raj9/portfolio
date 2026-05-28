@@ -10,7 +10,7 @@ import {
 export const metadata = {
   title: 'Resume',
   description:
-    'Resume of Ronit Raj — Full-Stack AI Engineer & Open Source Developer. Experience, projects, skills, education, and awards.',
+    'Resume of Ronit Raj — Full-Stack AI & ML Engineer. Experience, projects, skills, education, and awards.',
   alternates: { canonical: '/resume' },
 }
 
