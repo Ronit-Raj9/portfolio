@@ -6,7 +6,7 @@ Ronit Raj is an open source developer and a speaker at Open Source Summit India 
 
 ## Key facts
 - Role: Full-Stack AI & ML Engineer
-- Location: Gwalior, India
+- Location: India
 - Education: B.Tech Mathematics & Scientific Computing, IIIT Gwalior (2023–2027), CGPA 8.35
 - Credentials: OSS India 2026 Speaker · NHA PM-JAY Runner-Up · SIH 2024 Winner · GitMesh Maintainer
 - Site: https://roniii.vercel.app

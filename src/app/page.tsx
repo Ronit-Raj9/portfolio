@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { trackResumeDownload, trackEmailClick, trackProjectDemo, trackGitHubClick, trackSocialClick } from "@/lib/analytics"
+import { trackResumeDownload, trackProjectDemo, trackGitHubClick, trackSocialClick } from "@/lib/analytics"
 import { FaGithub, FaLinkedin, FaGraduationCap, FaTrophy, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft, FaExternalLinkAlt } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
@@ -18,6 +18,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { formatDistanceToNow, format } from 'date-fns'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import GitHubActivityBadge from '@/components/GitHubActivityBadge'
+import { EmailLink } from '@/components/EmailLink'
 
 // Import centralized data
 import {
@@ -36,13 +37,14 @@ import {
 // COMPONENTS - Adithya-style minimalist approach
 // ============================================================================
 
-// Sticky Contact Button
+// Sticky Contact Button — bottom-right FAB, above mobile nav
 function StickyContactButton() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setIsVisible(window.scrollY > 300)
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -50,19 +52,28 @@ function StickyContactButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          className="fixed left-6 top-6 md:left-auto md:right-6 md:top-auto md:bottom-6 z-50 flex flex-col gap-2"
+          initial={{ opacity: 0, y: 16, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className={cn(
+            "fixed z-[95] right-4 md:right-6",
+            "bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] md:bottom-6"
+          )}
         >
-          <a
-            href={`mailto:${profile.email}`}
-            onClick={trackEmailClick}
-            className="flex items-center gap-2 px-4 py-2.5 bg-foreground text-background rounded-md hover:opacity-90 transition-all text-sm font-medium shadow-lg"
+          <EmailLink
+            email={profile.email}
+            aria-label={`Email ${profile.name}`}
+            className={cn(
+              "flex items-center justify-center gap-2 bg-foreground text-background",
+              "hover:opacity-90 active:scale-95 transition-all text-sm font-medium shadow-lg",
+              "rounded-full md:rounded-md",
+              "h-12 w-12 md:h-auto md:w-auto md:px-4 md:py-2.5"
+            )}
           >
-            <HiOutlineMail className="w-4 h-4" />
-            <span className="hidden sm:inline">Email Me</span>
-          </a>
+            <HiOutlineMail className="w-5 h-5 md:w-4 md:h-4 shrink-0" />
+            <span className="hidden md:inline">Email Me</span>
+          </EmailLink>
         </motion.div>
       )}
     </AnimatePresence>
@@ -71,78 +82,106 @@ function StickyContactButton() {
 
 // Compact project card — rectangular thumb, tags, all link buttons
 function ProjectCardCompact({ project, index }: { project: Project; index: number }) {
+  const trackLabel =
+    project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : project.track === 'web3' ? 'Web3' : null
+
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: Math.min(index * 0.05, 0.25) }}
-      className="group flex flex-col h-full bg-background rounded-lg border border-border hover:border-foreground/20 transition-colors overflow-hidden"
+      className="group flex flex-col h-full rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md hover:border-foreground/25 transition-all duration-200"
     >
-      {/* Rectangular thumbnail */}
-      <div className="relative w-full h-[88px] shrink-0 overflow-hidden bg-accent/10">
-        {project.badge && (
-          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 text-[10px] font-semibold rounded-md bg-background/95 text-foreground border border-border backdrop-blur-sm">
-            {project.badge}
-          </span>
-        )}
-        {!project.completeness && (
-          <span className="absolute top-2 right-2 z-10 px-2 py-0.5 text-[10px] font-semibold rounded-md bg-orange-100 text-orange-700 border border-orange-200">
-            In Progress
-          </span>
-        )}
+      {/* Rectangular preview */}
+      <div className="relative w-full aspect-[2.1/1] shrink-0 overflow-hidden bg-muted/40">
         <Image
           src={project.image}
           alt={`${project.title} — ${project.subtitle}`}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-2.5">
+          {project.badge ? (
+            <span
+              className="px-2 py-0.5 text-[10px] font-semibold rounded-md border border-white/30 bg-black/75 text-white backdrop-blur-md max-w-[85%] truncate shadow-sm"
+            >
+              {project.badge}
+            </span>
+          ) : (
+            <span />
+          )}
+          {!project.completeness && (
+            <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-orange-500/90 text-white shrink-0">
+              In Progress
+            </span>
+          )}
+        </div>
       </div>
 
-      <div className="flex flex-col flex-1 p-3.5 gap-2">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-sm font-semibold leading-snug">{project.title}</h3>
-          <div className="flex items-center gap-1 shrink-0 flex-wrap justify-end">
-            {project.track && (
+      <div className="flex flex-col flex-1 p-4">
+        {/* Title + meta */}
+        <div className="mb-2">
+          <h3 className="text-[15px] font-semibold leading-snug text-foreground mb-1.5 group-hover:text-foreground/90">
+            {project.title}
+          </h3>
+          <div className="flex flex-wrap items-center gap-1.5">
+            {trackLabel && (
               <span className={cn(
-                "px-1.5 py-0.5 text-[10px] font-medium rounded border",
-                project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
-                project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
-                project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
+                "px-2 py-0.5 text-[10px] font-medium rounded-full border",
+                project.track === 'ml' && "bg-violet-500/12 text-violet-700 dark:text-violet-300 border-violet-500/25",
+                project.track === 'full-stack-ai' && "bg-emerald-500/12 text-emerald-700 dark:text-emerald-300 border-emerald-500/25",
+                project.track === 'web3' && "bg-slate-500/12 text-slate-700 dark:text-slate-300 border-slate-500/25",
               )}>
-                {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
+                {trackLabel}
+              </span>
+            )}
+            {project.category && (
+              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-muted text-muted-foreground border border-border">
+                {project.category}
               </span>
             )}
           </div>
         </div>
 
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 flex-1">
+        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3 flex-1">
           {project.subtitle}
         </p>
 
-        <div className="flex flex-wrap gap-1">
-          {project.tech.slice(0, 5).map((tech) => (
-            <span key={tech} className="px-1.5 py-0.5 text-[10px] font-medium rounded bg-accent/60 text-foreground/80 border border-border">
-              {tech}
-            </span>
-          ))}
-          {project.tech.length > 5 && (
-            <span className="px-1.5 py-0.5 text-[10px] text-muted-foreground">+{project.tech.length - 5}</span>
-          )}
+        {/* Tech stack */}
+        <div className="rounded-lg bg-muted/40 border border-border/60 px-2.5 py-2 mb-3">
+          <p className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground/70 mb-1.5">Stack</p>
+          <div className="flex flex-wrap gap-1">
+            {project.tech.slice(0, 4).map((tech) => (
+              <span
+                key={tech}
+                className="px-1.5 py-0.5 text-[10px] font-medium rounded bg-background text-foreground/80 border border-border/80"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.tech.length > 4 && (
+              <span className="px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                +{project.tech.length - 4}
+              </span>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 pt-1">
+        {/* Actions — pinned to bottom */}
+        <div className="flex flex-wrap gap-1.5 pt-3 mt-auto border-t border-border/70">
           {project.links.demo && (
             <a
               href={project.links.demo}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackProjectDemo(project.title)}
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
             >
               Demo
-              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
@@ -153,7 +192,7 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackGitHubClick(project.title)}
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md border border-foreground/20 hover:bg-accent/50 transition-colors"
+              className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium rounded-md border border-border bg-background hover:bg-muted/60 transition-colors"
             >
               <FaGithub className="w-3 h-3" />
               GitHub
@@ -162,9 +201,9 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
           {project.links.caseStudy && (
             <Link
               href={project.links.caseStudy}
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium rounded-md border border-[#8b5cf6] text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors"
+              className="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium rounded-md border border-violet-500/40 text-violet-600 dark:text-violet-400 bg-violet-500/5 hover:bg-violet-500/10 transition-colors"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Case Study
@@ -172,7 +211,7 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
           )}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   )
 }
 
@@ -481,14 +520,13 @@ export default function Home() {
                 </p>
                 {/* Social Links */}
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                  <a
-                    href={`mailto:${profile.email}`}
-                    onClick={trackEmailClick}
+                  <EmailLink
+                    email={profile.email}
                     className="p-2 md:p-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
                     aria-label="Email"
                   >
                     <HiOutlineMail className="w-4 h-4 md:w-5 md:h-5" />
-                  </a>
+                  </EmailLink>
                   <a
                     href={profile.social.github}
                     target="_blank"
@@ -818,7 +856,7 @@ export default function Home() {
                       B.Tech in Mathematics and Scientific Computing
                     </p>
                     <p className="text-sm leading-relaxed text-[#444444] dark:text-[#a1a1aa]">
-                      Specializing in AI/ML, Data Science, and Mathematical Modeling
+                      Specializing in AI/ML and Data Science
                     </p>
                   </div>
 
@@ -839,18 +877,26 @@ export default function Home() {
       {/* ================================================================== */}
       {/* 3. FEATURED PROJECTS - Minimal detailed format */}
       {/* ================================================================== */}
-      <section id="featured" className="w-full py-12">
+      <section id="featured" className="w-full py-12 md:py-14">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-[32px] font-bold">Featured Projects</h2>
-              <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-8">
+              <div>
+                <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight">Featured Projects</h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Production AI, full-stack apps, and on-chain systems — with demos and case studies.
+                </p>
+              </div>
+              <Link
+                href="/projects"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors shrink-0"
+              >
                 View All →
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
               {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 6).map((project, index) => (
                 <ProjectCardCompact
                   key={project.id}
@@ -907,9 +953,19 @@ export default function Home() {
             <div className="space-y-8">
               {ACHIEVEMENT_GROUPS.filter((group) => group.key !== 'other').map((group) => (
                 <div key={group.key}>
-                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
-                    {group.label}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                      {group.label}
+                    </h3>
+                    {group.key === 'featured' && group.items.length > 0 && (
+                      <span
+                        className="inline-flex items-center justify-center min-w-[2.25rem] px-2.5 py-1 text-sm font-bold leading-none rounded-lg bg-foreground text-background tabular-nums"
+                        aria-label={`${group.items.length} hackathon wins`}
+                      >
+                        {group.items.length}×
+                      </span>
+                    )}
+                  </div>
                   <div className="space-y-1.5">
                     {group.items.map((achievement, index) => (
                       <AchievementRow
@@ -979,11 +1035,12 @@ export default function Home() {
               {[
                 { name: "All Skills", count: ALL_SKILLS.length },
                 { name: "AI/ML/DL", count: ALL_SKILLS.filter(s => s.category === "AI/ML/DL").length },
+                { name: "AI Infra & MLOps", count: ALL_SKILLS.filter(s => s.category === "AI Infra & MLOps").length },
                 { name: "Python Libs", count: ALL_SKILLS.filter(s => s.category === "Python Libs").length },
                 { name: "Web", count: ALL_SKILLS.filter(s => s.category === "Web").length },
-                { name: "Cloud", count: ALL_SKILLS.filter(s => s.category === "Cloud").length },
-                { name: "Big Data", count: ALL_SKILLS.filter(s => s.category === "Big Data").length },
                 { name: "Databases", count: ALL_SKILLS.filter(s => s.category === "Databases").length },
+                { name: "Blockchain", count: ALL_SKILLS.filter(s => s.category === "Blockchain").length },
+                { name: "Cloud", count: ALL_SKILLS.filter(s => s.category === "Cloud").length },
                 { name: "Languages", count: ALL_SKILLS.filter(s => s.category === "Languages").length },
               ].map((category, index) => (
                 <motion.button
@@ -1056,15 +1113,16 @@ export default function Home() {
       {/* ================================================================== */}
       {/* 6. MORE PROJECTS - Same card design as Featured */}
       {/* ================================================================== */}
-      <section id="projects" className="w-full py-16">
+      <section id="projects" className="w-full py-12 md:py-14">
         <div className="container px-4">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-[32px] font-bold">More Projects</h2>
+            <div className="mb-8">
+              <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight">More Projects</h2>
+              <p className="text-sm text-muted-foreground mt-1">Additional builds across legal tech, web3, and early experiments.</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
               {MORE_PROJECTS.map((project, index) => (
                 <ProjectCardCompact
                   key={project.id}
@@ -1112,11 +1170,12 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href={`mailto:${profile.email}`}
-                onClick={trackEmailClick}
-                className="flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-md font-medium hover:opacity-90 transition-all">
+              <EmailLink
+                email={profile.email}
+                className="flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-md font-medium hover:opacity-90 transition-all"
+              >
                 <HiOutlineMail className="w-5 h-5" /> {profile.email}
-              </a>
+              </EmailLink>
               <a href={profile.social.github} target="_blank" rel="noopener noreferrer"
                 onClick={() => trackSocialClick('github')}
                 className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">

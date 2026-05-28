@@ -1,5 +1,49 @@
 [
   {
+    "id": "gitmesh",
+    "title": "GitMesh",
+    "subtitle": "Policy-as-Code Engine for Open-Source AI Agent Orchestration",
+    "badge": "Linux Foundation · LFDT",
+    "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+    "track": "full-stack-ai",
+    "highlights": [
+      "Official Linux Foundation Decentralized Trust (LFDT) lab project - 140★, 48 forks, 562 commits, Apache-2.0; co-maintainer",
+      "Multi-agent orchestration runtime + governed MCP server: Triage, PR Review, Docs, Security, Community, Onboarding, and Release agents handle maintainer work autonomously",
+      "Policy-as-Code via OPA - maintainers write YAML that compiles to Rego; no agent merges a PR, edits CI, or files a CVE without human approval",
+      "Led the Phase Two pivot (v0.4.0) to an LF-aligned pnpm monorepo; native GitHub/GitLab webhook sync, ACP (JSON-RPC 2.0) agent-to-agent coordination, immutable audit log",
+      "Adopt with one YAML file + one CI step; MCP-compatible with Claude Code, Copilot, Cursor, Codex, and Gemini CLI"
+    ],
+    "tech": ["TypeScript", "Node.js", "OPA / Rego", "MCP", "ACP (JSON-RPC 2.0)", "PostgreSQL", "Drizzle", "pnpm", "Docker", "GitHub/GitLab API"],
+    "links": {
+      "demo": "https://gitmesh.dev",
+      "github": "https://github.com/LF-Decentralized-Trust-labs/gitmesh",
+      "caseStudy": "/projects/gitmesh"
+    },
+    "image": "/images/companies/gitmesh.png",
+    "category": "AI Infrastructure",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Open-source maintainers drown in triage, review, docs, and security work - and AI coding agents (Claude Code, Copilot, Cursor, Gemini CLI) make it harder to govern: every tool acts with its own permissions, no shared policy, no audit trail. Letting autonomous agents touch a repo unsupervised risks runaway automation - an agent merging a bad PR, editing CI, or publishing a security advisory without a human in the loop.",
+      "approach": "GitMesh is a multi-agent orchestration runtime and governed MCP server for OSS projects. Pre-defined agent roles (Triage, PR Review, Docs, Security, Community, Onboarding, Release) run on heartbeat schedules with token budgets and permission scopes. A single maintainer-defined Policy-as-Code layer - YAML compiled to OPA/Rego - governs every connected tool through MCP, so no agent merges a PR, edits CI/CD, or files a CVE without human approval. Native GitHub/GitLab webhook sync pushes agent actions to the forge; an ACP (JSON-RPC 2.0) orchestrator coordinates agents without conflicts or double work; every action is logged immutably with actor, policy version, and allow/block outcome. Any project adopts it with one YAML file and one CI step.",
+      "metrics": [
+        { "label": "Org", "value": "LF Decentralized Trust lab" },
+        { "label": "Traction", "value": "140★ · 48 forks" },
+        { "label": "Commits", "value": "562" },
+        { "label": "Latest", "value": "v0.4.0-alpha (Phase Two)" },
+        { "label": "License", "value": "Apache-2.0 · OpenSSF" },
+        { "label": "Codebase", "value": "97% TypeScript monorepo" }
+      ],
+      "techDecisions": [
+        { "decision": "Policy-as-Code via OPA (YAML → Rego)", "why": "Maintainers express governance in simple YAML; compiling to Rego gives a battle-tested, auditable policy engine instead of ad-hoc permission checks." },
+        { "decision": "Governed MCP server over per-tool integrations", "why": "One MCP endpoint governs every AI coding tool (Claude Code, Copilot, Cursor, Codex, Gemini) under the same policy - connect once, governed everywhere." },
+        { "decision": "ACP (JSON-RPC 2.0) agent-to-agent orchestration", "why": "Lets multiple agents work simultaneously without double work, conflicts, or runaway cost." },
+        { "decision": "LF-aligned pnpm monorepo (Phase Two pivot)", "why": "Restructured cli / server / lib / agents / governance into one workspace to meet Linux Foundation lab standards and lower the barrier for external contributors." },
+        { "decision": "Embedded PostgreSQL by default", "why": "Zero-config local dev with no external database, while supporting external Postgres via DATABASE_URL for production." }
+      ]
+    }
+  },
+  {
     "id": "pmjay-adjudication",
     "title": "PM-JAY Claim Adjudication",
     "subtitle": "Automated STG Compliance for Ayushman Bharat",
@@ -38,6 +82,50 @@
         { "decision": "Dual VLM pass with disk cache", "why": "Separates doc taxonomy from clinical fields; reruns cost zero tokens under the 25.5M budget." },
         { "decision": "Filename + multi-page rank hints", "why": "Cheap signals recovered mandatory-doc F1 the VLM missed on Indian hospital naming conventions." },
         { "decision": "Per-package schema strip", "why": "HI.txt rejects any key-order or link-field mismatch-output is compliance-critical, not approximate JSON." }
+      ]
+    }
+  },
+  {
+    "id": "regulatory-intelligence-engine",
+    "title": "ClauseMark",
+    "subtitle": "Verified Regulatory Evidence Engine — UN Digital Trade (RDTII)",
+    "badge": "UN Digital Trade Hackathon · 2026",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "ml",
+    "highlights": [
+      "UN Global Hackathon (Using AI for Digital Trade Regulatory Analysis) - clause-level evidence engine for RDTII governance indicators",
+      "15-package hexagonal monorepo (uv workspace), frozen Pydantic contracts; all 12 RDTII pillars as YAML, depth on Pillars 6 & 7",
+      "LangGraph pipeline (Postgres checkpointer + HITL interrupts): Docling/PyMuPDF/VLM-OCR extract → BGE-M3 + Qdrant hybrid + RRF + rerank → constrained-decoding classify → 4-gate verify → 3-state coverage",
+      "Anti-hallucination: the model emits only span IDs; deterministic ID-replacement citations; Layer-2 score is a human-confirmed recommendation, not an automated verdict",
+      "rie-eval gold-set runner with RAGAS metrics + ablations; FastAPI API + Streamlit audit UI; ruff / pyright / pre-commit and enforced architecture tests"
+    ],
+    "tech": ["Python", "LangGraph", "FastAPI", "Qdrant", "BGE-M3", "Docling", "PyMuPDF", "RAGAS", "Pydantic", "Streamlit", "Postgres", "Docker"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/ClauseMark-Verified-Regulatory-Evidence-Engine",
+      "caseStudy": "/projects/regulatory-intelligence-engine"
+    },
+    "image": "/projects/regulatory-intelligence-engine.png",
+    "category": "LegalTech/AI",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "UN digital-trade benchmarking (RDTII) requires mapping real statutes to policy indicators with defensible evidence. Legal RAG systems routinely hallucinate citations; isolated clause retrieval misses exceptions and definitions in other sections; a confident \"0\" without measured recall is epistemically unsafe for regulators.",
+      "approach": "Regulatory Intelligence Engine (RIE): parent-document hybrid retrieval over a legal structure graph; constrained decoding for indicator IDs; four verification gates (deterministic span checks + NLI + second LLM + self-consistency). Layer 1 is verifiable extraction; Layer 2 is a recommended score band that always requires human confirmation. Pillars and indicators live in YAML-not Python-so all 12 RDTII pillars extend by configuration.",
+      "metrics": [
+        { "label": "Event", "value": "UN Digital Trade · 2026" },
+        { "label": "Pillars", "value": "12 (6 & 7 to depth)" },
+        { "label": "Packages", "value": "15 (uv monorepo)" },
+        { "label": "Verification", "value": "4 gates + HITL" },
+        { "label": "Retrieval", "value": "BGE-M3 + Qdrant + RRF + rerank" },
+        { "label": "Eval", "value": "RAGAS + ablations" }
+      ],
+      "techDecisions": [
+        { "decision": "ID-replacement citations", "why": "The model never authors citation strings-only span IDs resolved by deterministic code, blocking ghost references." },
+        { "decision": "Two-layer output", "why": "Extraction is automatable and gate-checked; scoring is legal judgment and stays a reviewer-confirmed recommendation." },
+        { "decision": "Parent-document retrieval", "why": "Child-chunk search with parent+neighbourhood context recovers cross-section exceptions standard chunking severs." },
+        { "decision": "Pillar-as-data", "why": "Engine stays generic; legal expertise ships in validated YAML + gold sets-add a pillar without refactoring core code." },
+        { "decision": "LangGraph + Postgres checkpointer", "why": "Durable state and interrupt-based human review for flagged claims and absence cases." }
       ]
     }
   },
@@ -297,49 +385,6 @@
     }
   },
   {
-    "id": "regulatory-intelligence-engine",
-    "title": "Regulatory Intelligence Engine",
-    "subtitle": "AI-Assisted RDTII Digital Trade Compliance",
-    "badge": "UN Digital Trade Hackathon · 2026",
-    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
-    "track": "ml",
-    "highlights": [
-      "UN Global Hackathon on Using AI for Digital Trade Regulatory Analysis - evidence engine for RDTII indicators",
-      "15-package hexagonal monorepo: frozen contracts, pillar YAML as legal knowledge (12 pillars, depth on 6 & 7)",
-      "LangGraph pipeline: ingest → extract (structure graph) → hybrid RAG → classify → 4-gate verify → HITL review → coverage",
-      "Anti-hallucination design: LLM emits span IDs only; deterministic ID-replacement citations; Layer-2 scores are recommendations",
-      "FastAPI + Postgres + Qdrant; Streamlit and React audit viewers with Accept/Correct/Reject"
-    ],
-    "tech": ["Python", "LangGraph", "FastAPI", "Qdrant", "BGE-M3", "Docling", "PyMuPDF", "Pydantic", "React", "Postgres"],
-    "links": {
-      "demo": "",
-      "github": "",
-      "caseStudy": "/projects/regulatory-intelligence-engine"
-    },
-    "image": "/projects/regulatory-intelligence-engine.png",
-    "category": "LegalTech/AI",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "UN digital-trade benchmarking (RDTII) requires mapping real statutes to policy indicators with defensible evidence. Legal RAG systems routinely hallucinate citations; isolated clause retrieval misses exceptions and definitions in other sections; a confident \"0\" without measured recall is epistemically unsafe for regulators.",
-      "approach": "Regulatory Intelligence Engine (RIE): parent-document hybrid retrieval over a legal structure graph; constrained decoding for indicator IDs; four verification gates (deterministic span checks + NLI + second LLM + self-consistency). Layer 1 is verifiable extraction; Layer 2 is a recommended score band that always requires human confirmation. Pillars and indicators live in YAML-not Python-so all 12 RDTII pillars extend by configuration.",
-      "metrics": [
-        { "label": "Event", "value": "UN Digital Trade · 2026" },
-        { "label": "MVP pillars", "value": "6 & 7 (data governance)" },
-        { "label": "Packages", "value": "15 (uv workspace)" },
-        { "label": "Verification", "value": "4 gates + HITL" },
-        { "label": "Pillar config", "value": "12 (YAML-driven)" }
-      ],
-      "techDecisions": [
-        { "decision": "ID-replacement citations", "why": "The model never authors citation strings-only span IDs resolved by deterministic code, blocking ghost references." },
-        { "decision": "Two-layer output", "why": "Extraction is automatable and gate-checked; scoring is legal judgment and stays a reviewer-confirmed recommendation." },
-        { "decision": "Parent-document retrieval", "why": "Child-chunk search with parent+neighbourhood context recovers cross-section exceptions standard chunking severs." },
-        { "decision": "Pillar-as-data", "why": "Engine stays generic; legal expertise ships in validated YAML + gold sets-add a pillar without refactoring core code." },
-        { "decision": "LangGraph + Postgres checkpointer", "why": "Durable state and interrupt-based human review for flagged claims and absence cases." }
-      ]
-    }
-  },
-  {
     "id": "aisehack-pm25-forecasting",
     "title": "AISEHack Phase 2 - PM2.5 Forecasting",
     "subtitle": "Episode-Aware Country-Scale Air Pollution Forecasting",
@@ -399,7 +444,7 @@
     "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind", "shadcn/ui", "SWR", "Express 5", "Prisma", "PostgreSQL", "Redis", "BullMQ", "ethers.js", "Solidity", "Foundry", "Privy", "Puppeteer", "Base Sepolia"],
     "links": {
       "demo": "https://param-iiitm.vercel.app",
-      "github": "https://github.com/iiitm-gwalior/param",
+      "github": "https://github.com/Ronit-Raj9/param-new",
       "caseStudy": "/projects/param"
     },
     "image": "/projects/param.png",
@@ -446,7 +491,7 @@
     "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Octokit", "GraphQL", "Drizzle ORM", "SQLite", "better-sqlite3", "diff2html", "Recharts", "TanStack Virtual"],
     "links": {
       "demo": "",
-      "github": "https://github.com/Ronit-Raj9/PRism",
+      "github": "https://github.com/Ronit-Raj9/gitGambit",
       "caseStudy": "/projects/gitgambit"
     },
     "image": "/projects/gitgambit.png",
@@ -631,28 +676,88 @@
     "completeness": false
   },
   {
+    "id": "recommendation-system-gnn",
+    "title": "GraphRec Social Recommender",
+    "subtitle": "Attention-Based GNN for Social Recommendation (from scratch)",
+    "badge": "Graph Neural Networks",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "ml",
+    "highlights": [
+      "From-scratch PyTorch implementation of GraphRec (Fan et al., 2019) - no graph library, hand-built attention aggregators",
+      "Models two graphs jointly: the user-item interaction graph and the user-user social trust network",
+      "Item-space + social-space user aggregation with item-level and social-level attention; item model aggregates rating users",
+      "Rating-aware opinion embeddings (user, item, and rating) fused through an MLP for rating prediction",
+      "Trained on the Epinions dataset (ratings + trust network); evaluated with MAE and RMSE on an 80/10/10 split"
+    ],
+    "tech": ["Python", "PyTorch", "NumPy", "Pandas", "SciPy", "Graph Neural Networks"],
+    "links": {
+      "github": "https://github.com/Ronit-Raj9/recommendation-system-gnn"
+    },
+    "image": "/projects/recommendation-system-gnn.svg",
+    "category": "AI/ML",
+    "featured": false,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Classic collaborative filtering ignores who users trust. On a platform like Epinions, a rating is shaped both by the items a user has rated and by the opinions of people in their social network. Capturing both signals - interactions and social trust - in one model is the core challenge of social recommendation.",
+      "approach": "A from-scratch PyTorch implementation of GraphRec (Fan et al., 2019). Two coordinated GNN modules: a User model that aggregates the user's rated items (item-space) and their trusted friends' opinions (social-space), each with attention so more relevant items/friends weigh more; and an Item model that aggregates the users who rated an item. Rating-aware opinion embeddings combine item identity with the score given. User and item latent factors are concatenated and passed through an MLP to predict the rating. No graph library - the message passing, masking, and attention are built by hand in nn.Module.",
+      "metrics": [
+        { "label": "Model", "value": "GraphRec (from scratch)" },
+        { "label": "Dataset", "value": "Epinions (ratings + trust)" },
+        { "label": "Graphs", "value": "User-item + user-user trust" },
+        { "label": "Attention", "value": "Item-level + social-level" },
+        { "label": "Eval", "value": "MAE · RMSE" },
+        { "label": "Stack", "value": "Pure PyTorch" }
+      ],
+      "techDecisions": [
+        { "decision": "Implement GraphRec from scratch (no PyG / DGL)", "why": "Building the attention aggregators by hand forced a real understanding of message passing, masking, and opinion embeddings instead of treating the GNN as a black box." },
+        { "decision": "Dual item-space + social-space aggregation", "why": "A user's preferences come from both what they've rated and whom they trust; modeling only one loses the signal social recommendation depends on." },
+        { "decision": "Attention over items and friends", "why": "Not every rated item or trusted friend is equally informative for a prediction; learned attention weights the relevant ones." },
+        { "decision": "Rating-aware opinion embeddings", "why": "Encoding the score alongside item identity lets the model distinguish a 5-star from a 1-star interaction on the same item." }
+      ]
+    }
+  },
+  {
     "id": "legalease",
     "title": "LegalEase",
-    "subtitle": "AI-Powered Legal Compliance & Contract Automation",
-    "badge": "Browser Automation",
+    "subtitle": "AI-Powered Legal Compliance & Tax Automation for Indian SMEs",
+    "badge": "Trillion Dollar GenAI · 2nd Place",
     "badgeColor": "bg-teal-500/20 text-teal-600 dark:text-teal-400 border-teal-500/30",
     "track": "full-stack-ai",
     "highlights": [
-      "Automated contract generation tailored for Indian startup compliance",
-      "GST management with intelligent tax calculation and filing",
-      "AI-agent-powered document analysis and legal-term extraction",
-      "Next.js front-end + FastAPI back-end for real-time contract processing",
-      "Browser automation (Puppeteer) for seamless government-portal interactions"
+      "2nd overall + 3 category awards (Best Innovative Use Case, Best Technical Implementation, Best Presentation) at the Trillion Dollar GenAI Hackathon, IIT Bhubaneswar",
+      "6 specialized AI agents — Tax Filing Copilot, Compliance Health, Notice Responder, Document Generator, Trademark Assistant, and General Assistant",
+      "Automated ITR filing, GST returns, and compliance tracking with deadline alerts and a real-time compliance score",
+      "Blockchain document notarization — SHA-256 hashes anchored on Base via LegalEaseDocRegistry.sol for immutable verification",
+      "Next.js + FastAPI microservices with WebSocket live automation, OCR document management, and MongoDB Atlas"
     ],
-    "tech": ["Next.js", "FastAPI", "AI Agents", "Puppeteer", "MongoDB"],
+    "tech": ["Next.js", "FastAPI", "Python", "LangChain", "OpenAI", "MongoDB", "Solidity", "Base", "WebSocket", "OCR"],
     "links": {
       "demo": "https://legalease-new.vercel.app/",
-      "github": ""
+      "github": "https://github.com/Ronit-Raj9/Legalease-new",
+      "caseStudy": "/projects/legalease"
     },
     "image": "/projects/legalease.png",
-    "category": "AI",
+    "category": "LegalTech/AI",
     "featured": false,
-    "completeness": true
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Indian startups and SMEs juggle contracts, ITR/GST filing, legal notices, and compliance deadlines across disconnected tools and manual paperwork - slow, error-prone, and easy to miss a filing that triggers penalties. They need legal and accounting automation trustworthy enough to act on real documents, with proof the documents weren't tampered with.",
+      "approach": "LegalEase is a microservices platform: a Next.js frontend, a FastAPI backend, MongoDB Atlas, and a Solidity contract on Base. Six specialized AI agents (Tax Filing Copilot, Compliance Health, Notice Responder, Document Generator, Trademark Assistant, General Assistant) automate filings, drafting, and monitoring instead of one general prompt. Documents are OCR'd, smart-categorized, and notarized on-chain - SHA-256 hashes stored via LegalEaseDocRegistry.sol on Base Sepolia for immutable verification. WebSockets stream live automation status, a GST Verification API validates returns, and a step-by-step onboarding flow sets up the entity, registrations, and required documents.",
+      "metrics": [
+        { "label": "Recognition", "value": "Trillion Dollar GenAI · 2nd + 3 awards" },
+        { "label": "AI agents", "value": "6 specialized" },
+        { "label": "Chain", "value": "Base Sepolia · 84532" },
+        { "label": "Stack", "value": "Next.js + FastAPI microservices" },
+        { "label": "Codebase", "value": "84% TypeScript · 13% Python" },
+        { "label": "Domain", "value": "Legal + Tax for Indian SMEs" }
+      ],
+      "techDecisions": [
+        { "decision": "On-chain notarization (hashes only) on Base", "why": "Store SHA-256 hashes via LegalEaseDocRegistry.sol for immutable proof-of-existence - without putting sensitive legal documents on a public chain." },
+        { "decision": "Six role-scoped agents over one general LLM", "why": "Tax, compliance, notices, and drafting need different tools and guardrails; scoped agents are more accurate and auditable than a single prompt." },
+        { "decision": "WebSocket live automation", "why": "Filing and compliance runs are long-running; streaming status keeps users informed instead of blocking on a request." },
+        { "decision": "Microservices split (Next.js / FastAPI / Solidity / GST API)", "why": "Keeps the Python automation services, the web app, and the on-chain layer independently deployable and scalable." }
+      ]
+    }
   },
   {
     "id": "rescroll",

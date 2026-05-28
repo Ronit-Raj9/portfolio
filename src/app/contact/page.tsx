@@ -5,7 +5,10 @@ import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
 import { cn } from "@/lib/utils"
-import { contact } from "@/data"
+import { contact, profile } from "@/data"
+import { openEmailClient } from "@/lib/email"
+import { trackEmailClick } from "@/lib/analytics"
+import { EmailLink } from "@/components/EmailLink"
 
 // Icon mapping for dynamic icon rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -27,9 +30,12 @@ export default function Contact() {
     const subject = `Portfolio contact from ${name}`
     const body = `Name: ${name}\nEmail: ${email}\n\n${message}`
 
-    window.location.href = `mailto:dev.ronitraj@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`
+    trackEmailClick()
+    openEmailClient({
+      email: profile.email,
+      subject,
+      body,
+    })
   }
 
   return (
@@ -51,6 +57,39 @@ export default function Contact() {
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {contact.methods.map((method, index) => {
           const IconComponent = iconMap[method.icon]
+          const isEmail = method.href.startsWith('mailto:')
+          const cardClassName = cn(
+            "group flex flex-col items-center gap-4 p-6 rounded-lg",
+            "border shadow-sm hover:shadow-md transition-all duration-200",
+            "bg-background"
+          )
+          const cardContent = (
+            <>
+              <div className="p-3 rounded-full bg-primary/10 text-primary">
+                {IconComponent && <IconComponent className="w-6 h-6" />}
+              </div>
+              <div className="text-center">
+                <h3 className="font-semibold">{method.name}</h3>
+                <p className="text-sm text-muted-foreground">{method.value}</p>
+              </div>
+            </>
+          )
+
+          if (isEmail) {
+            return (
+              <motion.div
+                key={method.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <EmailLink email={method.href.replace('mailto:', '')} className={cardClassName}>
+                  {cardContent}
+                </EmailLink>
+              </motion.div>
+            )
+          }
+
           return (
             <motion.a
               key={method.name}
@@ -60,19 +99,9 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={cn(
-                "group flex flex-col items-center gap-4 p-6 rounded-lg",
-                "border shadow-sm hover:shadow-md transition-all duration-200",
-                "bg-background"
-              )}
+              className={cardClassName}
             >
-              <div className="p-3 rounded-full bg-primary/10 text-primary">
-                {IconComponent && <IconComponent className="w-6 h-6" />}
-              </div>
-              <div className="text-center">
-                <h3 className="font-semibold">{method.name}</h3>
-                <p className="text-sm text-muted-foreground">{method.value}</p>
-              </div>
+              {cardContent}
             </motion.a>
           )
         })}

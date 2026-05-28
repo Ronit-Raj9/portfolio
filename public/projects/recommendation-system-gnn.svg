@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="GraphRec social recommendation graph">
+  <rect width="800" height="450" fill="#0a0a0a"/>
+
+  <!-- edges -->
+  <g stroke-linecap="round" fill="none">
+    <!-- trust edges (user-user) -->
+    <g stroke="#8b5cf6" stroke-opacity="0.35" stroke-width="2">
+      <line x1="400" y1="225" x2="230" y2="120"/>
+      <line x1="400" y1="225" x2="210" y2="300"/>
+      <line x1="400" y1="225" x2="300" y2="370"/>
+      <line x1="230" y1="120" x2="210" y2="300"/>
+    </g>
+    <!-- interaction edges (user-item) -->
+    <g stroke="#10b981" stroke-opacity="0.4" stroke-width="2">
+      <line x1="400" y1="225" x2="580" y2="110"/>
+      <line x1="400" y1="225" x2="620" y2="230"/>
+      <line x1="400" y1="225" x2="560" y2="350"/>
+      <line x1="230" y1="120" x2="580" y2="110"/>
+      <line x1="210" y1="300" x2="560" y2="350"/>
+      <line x1="300" y1="370" x2="620" y2="230"/>
+    </g>
+  </g>
+
+  <!-- item nodes (emerald squares) -->
+  <g fill="#10b981">
+    <rect x="568" y="98" width="24" height="24" rx="5"/>
+    <rect x="608" y="218" width="24" height="24" rx="5"/>
+    <rect x="548" y="338" width="24" height="24" rx="5"/>
+  </g>
+
+  <!-- user nodes (violet circles) -->
+  <g fill="#8b5cf6">
+    <circle cx="230" cy="120" r="13"/>
+    <circle cx="210" cy="300" r="13"/>
+    <circle cx="300" cy="370" r="13"/>
+  </g>
+
+  <!-- central user node, highlighted -->
+  <circle cx="400" cy="225" r="26" fill="#a78bfa"/>
+  <circle cx="400" cy="225" r="26" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
+
+  <!-- labels -->
+  <text x="56" y="70" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="700">GraphRec</text>
+  <text x="56" y="100" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="400">Attention GNN for social recommendation</text>
+
+  <!-- legend -->
+  <g font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500">
+    <circle cx="66" cy="404" r="7" fill="#8b5cf6"/>
+    <text x="80" y="409" fill="#d4d4d8">Users · trust</text>
+    <rect x="206" y="397" width="14" height="14" rx="3" fill="#10b981"/>
+    <text x="228" y="409" fill="#d4d4d8">Items · ratings</text>
+  </g>
+</svg>

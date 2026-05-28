@@ -1,16 +1,15 @@
 {
   "name": "Ronit Raj",
   "title": "Full-Stack AI & ML Engineer",
-  "tagline": "Full-stack AI & ML engineer who likes shipping — from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 8+ hackathon podiums, two startups, and GitMesh — a Linux Foundation (LFDT) project I maintain.",
+  "tagline": "Full-stack AI & ML engineer who likes shipping — from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 9x hackathon podiums, two startups, and GitMesh — a Linux Foundation (LFDT) project I maintain.",
   "credentials": "SIH 2024 Winner · NHA PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh Maintainer",
   "proofPoints": [
-    "SIH 2024 Winner",
-    "NHA PM-JAY Runner-Up",
-    "OSS India 2026 Speaker",
+    "OSS Mumbai India 2026 Speaker",
+    "9x Hackathon Winner",
     "GitMesh Maintainer"
   ],
   "email": "dev.ronitraj@gmail.com",
-  "location": "Gwalior, India",
+  "location": "India",
   "resumeUrl": "/Ronit_Raj_Resume.pdf",
   "profileImage": "/images/profile.jpeg",
   "social": {
@@ -25,7 +24,7 @@
     "message": "Open to Full-Stack AI / ML Engineer roles and startup collaborations."
   },
   "about": {
-    "summary": "I'm a builder first. Hand me a hard problem and I'll have something running by the weekend — that instinct took me from my first static HTML site in 2019 to training LLMs on AMD MI300X and shipping production AI end-to-end. I've placed at 8+ hackathons (Smart India Hackathon 2024 winner, HackHazards '25 winner, NHA × IISc PM-JAY runner-up), co-founded two startups, and built GitMesh — an AI-agent governance platform selected into the Linux Foundation Decentralized Trust (LFDT) that I now maintain. What I care about is the unglamorous part: the model that actually serves traffic, the pipeline that survives messy real-world data, the system that doesn't fall over when real users hit it. I'm focused on full-stack AI and AI-infra work — training, fine-tuning, serving, and the engineering that turns a demo into something people depend on. I'll also be speaking at Open Source Summit India 2026 on securing AI agents in open source.",
+    "summary": "I build because I can't not — give me a hard problem and a weekend and I'll have something running. That took me from a static HTML site in 2019 to fine-tuning LLMs on AMD MI300X and shipping production AI that holds up under real traffic and messy data. Along the way: 9 hackathon wins, two startups, and GitMesh — an LFDT AI-agent governance project I maintain. Now focused on full-stack AI and AI-infra — turning demos into systems people depend on.",
     "sections": [
       {
         "title": "Where It Started",

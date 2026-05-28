@@ -13,6 +13,8 @@
 # testing
 /coverage
 
+MASTERY.md
+
 # next.js
 /.next/
 /out/

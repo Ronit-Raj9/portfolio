@@ -6,6 +6,7 @@ import {
   featuredProjects,
   allSkills,
 } from '@/data'
+import { EmailLink } from '@/components/EmailLink'
 
 export const metadata = {
   title: 'Resume',
@@ -54,12 +55,12 @@ export default function ResumePage() {
 
           <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
             <li>
-              <a
-                href={`mailto:${profile.email}`}
+              <EmailLink
+                email={profile.email}
                 className="text-foreground hover:underline underline-offset-4"
               >
                 {profile.email}
-              </a>
+              </EmailLink>
             </li>
             <li>
               <a

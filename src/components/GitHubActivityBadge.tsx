@@ -157,7 +157,7 @@ export default function GitHubActivityBadge() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, delay: 1 }}
-        className="fixed z-[100] bottom-[100px] right-4 md:bottom-[120px] md:right-8 pointer-events-auto"
+        className="fixed z-[100] bottom-[calc(8.25rem+env(safe-area-inset-bottom,0px))] right-4 md:bottom-[120px] md:right-8 pointer-events-auto"
         style={{ isolation: 'isolate' }}
       >
         <motion.div

@@ -55,9 +55,9 @@
   {
     "id": "crfthq2025",
     "year": "2025",
-    "title": "CrftHQ Accelerator - Selected",
-    "subtitle": "iONIA",
-    "description": "Accepted into CrftHQ anti-incubator program for building an AI-powered exam platform with adaptive learning. Pitched to angel investors as part of the program.",
+    "title": "Winner - CrftHQ Hackathon",
+    "subtitle": "iONIA · Anti-Incubator Accelerator",
+    "description": "Won the CrftHQ hackathon and was selected into its anti-incubator program for building an AI-powered exam platform with adaptive learning. Pitched to angel investors as part of the program.",
     "category": "featured"
   },
   {
@@ -66,7 +66,8 @@
     "title": "Smart India Hackathon Winner",
     "subtitle": "PS1604 RAG-MLLM",
     "description": "Runs Locally • 79% OCR accuracy • Military AI intelligence system",
-    "category": "featured"
+    "category": "featured",
+    "prize": "$300"
   },
   {
     "id": "amdrlhackathon2026",

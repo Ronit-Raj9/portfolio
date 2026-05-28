@@ -5,6 +5,7 @@ import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
 import Link from "next/link"
 import { footerData } from "@/data"
+import { EmailLink } from "@/components/EmailLink"
 
 // Icon mapping for dynamic icon rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -24,12 +25,12 @@ export default function Footer() {
           {/* Copyright & Email - Minimal */}
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-sm text-muted-foreground">
             <span>© {currentYear} {footerData.copyright}</span>
-            <a 
-              href={`mailto:${footerData.email}`} 
+            <EmailLink
+              email={footerData.email}
               className="hover:text-foreground transition-colors"
             >
               {footerData.email}
-            </a>
+            </EmailLink>
           </div>
           
           {/* Social Links */}
