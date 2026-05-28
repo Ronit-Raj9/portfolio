@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { allProjects } from '@/data'
 
-const BASE_URL = 'https://ronitraj.me'
+const BASE_URL = 'https://roniii.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()

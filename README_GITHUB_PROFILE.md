@@ -4,7 +4,7 @@
 
 ### AI/ML Engineer · Full-Stack Builder · Open Source Contributor
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-ronitraj.me-000?style=for-the-badge&logo=vercel&logoColor=white)](https://ronitraj.me)
+[![Portfolio](https://img.shields.io/badge/Portfolio-roniii.vercel.app-000?style=for-the-badge&logo=vercel&logoColor=white)](https://roniii.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ronitrajai-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronitrajai/)
 [![X](https://img.shields.io/badge/X-@ronit__raj-000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/ronit__raj)
 [![Email](https://img.shields.io/badge/Email-dev.ronitraj@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dev.ronitraj@gmail.com)
@@ -262,8 +262,8 @@
 
 I'm always open to discussing **AI/ML projects**, **full-stack development**, or **startup collaborations**.
 
-[![Portfolio](https://img.shields.io/badge/🌐_ronitraj.me-000?style=for-the-badge)](https://ronitraj.me)
-[![Resume](https://img.shields.io/badge/📄_Resume-4285F4?style=for-the-badge)](https://ronitraj.me/resume_web.pdf)
+[![Portfolio](https://img.shields.io/badge/🌐_roniii.vercel.app-000?style=for-the-badge)](https://roniii.vercel.app)
+[![Resume](https://img.shields.io/badge/📄_Resume-4285F4?style=for-the-badge)](https://roniii.vercel.app/resume_web.pdf)
 [![Email](https://img.shields.io/badge/📧_Email_Me-EA4335?style=for-the-badge)](mailto:dev.ronitraj@gmail.com)
 
 ---

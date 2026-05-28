@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ronitraj.me'),
+  metadataBase: new URL('https://roniii.vercel.app'),
   title: {
     default: 'Ronit Raj | AI/ML Engineer | SIH 2024 Winner',
     template: '%s | Ronit Raj'
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     'IIIT Gwalior',
     'Ronit Raj'
   ],
-  authors: [{ name: 'Ronit Raj', url: 'https://ronitraj.me' }],
+  authors: [{ name: 'Ronit Raj', url: 'https://roniii.vercel.app' }],
   creator: 'Ronit Raj',
   publisher: 'Ronit Raj',
   robots: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ronitraj.me',
+    url: 'https://roniii.vercel.app',
     siteName: 'Ronit Raj Portfolio',
     title: 'Ronit Raj | AI/ML Engineer',
     description: 'SIH 2024 Winner building production AI systems with GNNs and Multimodal LLMs',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     creator: '@ronit__raj',
   },
   alternates: {
-    canonical: 'https://ronitraj.me',
+    canonical: 'https://roniii.vercel.app',
   },
 }
 
@@ -109,8 +109,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Ronit Raj',
-              url: 'https://ronitraj.me',
-              image: 'https://ronitraj.me/images/profile.jpeg',
+              url: 'https://roniii.vercel.app',
+              image: 'https://roniii.vercel.app/images/profile.jpeg',
               sameAs: [
                 'https://github.com/Ronit-Raj9',
                 'https://www.linkedin.com/in/ronitrajai/',

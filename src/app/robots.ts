@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://ronitraj.me/sitemap.xml',
-    host: 'https://ronitraj.me',
+    sitemap: 'https://roniii.vercel.app/sitemap.xml',
+    host: 'https://roniii.vercel.app',
   }
 }
