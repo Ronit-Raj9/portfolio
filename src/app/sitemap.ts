@@ -20,10 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/blog`,
+      url: `${BASE_URL}/resume`,
       lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.7,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/contact`,

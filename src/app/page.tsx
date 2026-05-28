@@ -89,7 +89,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
           <div className="absolute top-2 left-2 z-20 flex gap-1.5 flex-wrap">
             {project.badge && (
               <span 
-                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.98)',
                   color: '#1f2937',
@@ -102,7 +102,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
             )}
             {!project.completeness && (
               <span 
-                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
                 style={{
                   backgroundColor: 'rgba(255, 237, 213, 0.98)',
                   color: '#c2410c',
@@ -116,7 +116,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
           </div>
           <Image
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} — ${project.subtitle}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -130,7 +130,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
             <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
               {project.track && (
                 <span className={cn(
-                  "px-2 py-0.5 text-[10px] font-medium rounded-full border",
+                  "px-2 py-0.5 text-xs font-medium rounded-full border",
                   project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
                   project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
                   project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
@@ -138,7 +138,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
                   {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
                 </span>
               )}
-              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
+              <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
                 {project.category}
               </span>
             </div>
@@ -169,7 +169,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-1.5 mb-2">
             {project.tech.map((tech) => (
-              <span key={tech} className="px-2 py-0.5 text-[10px] font-medium rounded bg-accent/80 text-foreground border border-border">
+              <span key={tech} className="px-2 py-0.5 text-xs font-medium rounded bg-accent/80 text-foreground border border-border">
                 {tech}
               </span>
             ))}
@@ -330,7 +330,7 @@ function GitHubSection() {
               />
               <div className="hidden sm:block">
                 <p className="text-xs font-medium text-foreground leading-tight">Arctic Code Vault</p>
-                <p className="text-[10px] text-muted-foreground">Contributor</p>
+                <p className="text-xs text-muted-foreground">Contributor</p>
               </div>
             </a>
           )}
@@ -537,7 +537,7 @@ export default function Home() {
                   {profile.proofPoints.map((point) => (
                     <span
                       key={point}
-                      className="px-2.5 py-1 text-[11px] md:text-xs font-medium rounded-full border border-border bg-accent/30 text-foreground/80"
+                      className="px-2.5 py-1 text-xs md:text-xs font-medium rounded-full border border-border bg-accent/30 text-foreground/80"
                     >
                       {point}
                     </span>
@@ -567,28 +567,24 @@ export default function Home() {
                   {showMoreAbout ? 'Show Less' : 'More About Me'}
                 </button>
 
-                <AnimatePresence>
-                  {showMoreAbout && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="space-y-4 md:space-y-6 overflow-hidden"
-                    >
-                      {profile.about.sections.map((section, index) => (
-                        <div key={index}>
-                          <h3 className="text-base font-medium mb-2">{section.title}</h3>
-                          {section.paragraphs.map((paragraph, pIndex) => (
-                            <p key={pIndex} className="text-sm text-foreground/70 leading-relaxed mb-2">
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
+                <motion.div
+                  initial={false}
+                  animate={{ height: showMoreAbout ? 'auto' : 0, opacity: showMoreAbout ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4 md:space-y-6 overflow-hidden"
+                  aria-hidden={!showMoreAbout}
+                >
+                  {profile.about.sections.map((section, index) => (
+                    <div key={index}>
+                      <h3 className="text-base font-medium mb-2">{section.title}</h3>
+                      {section.paragraphs.map((paragraph, pIndex) => (
+                        <p key={pIndex} className="text-sm text-foreground/70 leading-relaxed mb-2">
+                          {paragraph}
+                        </p>
                       ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -671,7 +667,7 @@ export default function Home() {
                           <div className="flex flex-wrap items-center gap-2 mb-0.5">
                             <h3 className="text-base font-semibold text-foreground">{exp.company}</h3>
                             {exp.badge && (
-                              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-[#dbeafe] text-[#1e40af] dark:bg-[#1e40af]/20 dark:text-[#93c5fd]">
+                              <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-[#dbeafe] text-[#1e40af] dark:bg-[#1e40af]/20 dark:text-[#93c5fd]">
                                 {exp.badge}
                               </span>
                             )}
@@ -713,7 +709,7 @@ export default function Home() {
                         <div className="shrink-0 md:text-right flex md:flex-col items-center md:items-end gap-2 md:gap-1">
                           <span className="text-xs text-[#666666] whitespace-nowrap">{exp.period}</span>
                           {exp.locationType && (
-                            <span className="px-2 py-0.5 text-[10px] font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
+                            <span className="px-2 py-0.5 text-xs font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
                               {exp.locationType}
                             </span>
                           )}
@@ -799,7 +795,7 @@ export default function Home() {
                   {/* Right Side - Date & CGPA */}
                   <div className="shrink-0 md:text-right flex md:flex-col items-center md:items-end gap-2 md:gap-1">
                     <span className="text-xs text-[#666666] whitespace-nowrap">2023 - 2027</span>
-                    <span className="px-2 py-0.5 text-[10px] font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
+                    <span className="px-2 py-0.5 text-xs font-bold rounded border border-[#e5e5e5] dark:border-[#374151] text-foreground">
                       CGPA: 8.35
                     </span>
                   </div>
@@ -938,7 +934,7 @@ export default function Home() {
                 >
                   {category.name}
                   <span className={cn(
-                    "text-[10px] px-1.5 py-0.5 rounded-full font-medium",
+                    "text-xs px-1.5 py-0.5 rounded-full font-medium",
                     selectedSkillFilter === category.name
                       ? "bg-background/20 text-background"
                       : "bg-accent/50 text-muted-foreground"
@@ -970,7 +966,7 @@ export default function Home() {
                       transition={{ delay: index * 0.02 }}
                       className="px-2.5 py-1 rounded-full text-xs font-medium bg-background border border-border hover:border-foreground/30 hover:shadow-sm transition-all cursor-default flex items-center gap-1.5"
                     >
-                      <span className="text-muted-foreground/40 text-[10px]">◇</span>
+                      <span className="text-muted-foreground/40 text-xs">◇</span>
                       {skill.name}
                     </motion.span>
                   ))}

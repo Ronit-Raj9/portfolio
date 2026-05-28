@@ -1,0 +1,69 @@
+# Ronit Raj
+
+> Open Source Developer & Full Stack AI Engineer — building production AI and full-stack systems, from GRPO on AMD MI300X to 79%-OCR RAG pipelines.
+
+Ronit Raj is an open source developer and a speaker at Open Source Summit India 2026 (Linux Foundation, Mumbai) on AI agent security and compliance in OSS projects (a 40-minute breakout session). He builds production AI systems end-to-end — NHA x IISc PM-JAY Runner-Up for STG claim adjudication, PARAM blockchain credentials for ABV-IIITM Gwalior, GRPO on AMD MI300X, and a 79%-OCR military RAG (Smart India Hackathon 2024 Winner). He maintains GitMesh and co-founded Garudex Labs.
+
+## Key facts
+- Role: Open Source Developer & Full Stack AI Engineer
+- Location: Gwalior, India
+- Education: B.Tech Mathematics & Scientific Computing, IIIT Gwalior (2023–2027), CGPA 8.35
+- Credentials: OSS India 2026 Speaker · NHA PM-JAY Runner-Up · SIH 2024 Winner · GitMesh Maintainer
+- Site: https://roniii.vercel.app
+
+## Awards & recognition
+- Runner-Up — AB PM-JAY Healthcare Hackathon (NHA x IISc Bangalore, Clinical Document Classification & STG Compliance) (2026)
+- UN Global Hackathon — Digital Trade Regulatory Analysis (Regulatory Intelligence Engine, RDTII Pillars 6 & 7) (2026)
+- Shortlisted — CSIC 1.0 Stage III (DSCI), Privacy-Preserving KYC, Cryptography Track, Top 50 Nationwide (2026)
+- META Hugging Face RL Hackathon Finalist (OpenEnv, Quantum Error Correction) (2026)
+- Speaker — Open Source Summit India 2026 (Linux Foundation, Mumbai, 40-Minute Session) (2026)
+- 4th Place — Monad Blitz New Delhi (Consumer AI Agent Track) (2026)
+- Special Mention — AMD AI RL Hackathon (IIT Delhi, Deep RL for Minesweeper) (2026)
+- ANRF AISEHack Phase 2 — Team Vega (Pollution Forecasting, IIT Delhi; Finalists at IIIT Hyderabad) (2026)
+- LNMHacks 8.0 (Blockchain Monad Hackathon) (2026)
+- PARAM Production Pilot — ABV-IIITM Gwalior (C3iHub, IIT Kanpur; Blockchain Academic Credentials) (2025)
+- OSS Maintainer — GitMesh (Linux Foundation Decentralized Trust, Agent Governance) (2025)
+- CrftHQ Accelerator — Selected (iONIA) (2025)
+- 2nd Place — Trillion Dollar GenAI Hackathon (IIT Bhubaneswar) (2025)
+- HackHazards '25 Winner (Blockchain Hackathon, 1st of 800+ projects) (2025)
+- Co-Founded Garudex Labs (AI Startup, IDE'25 award) (2025)
+- Smart India Hackathon 2024 Winner (PS1604 RAG-MLLM, 79% OCR, military AI intelligence) (2024)
+
+## Featured projects
+- [ZeroKeyCLI](https://roniii.vercel.app/projects/zerokey) — AdSense for the Terminal. Watch a 5s ASCII ad, earn $0.001 USDC on Monad, get a free Claude API response; two x402 micropayments settle on-chain in under 5 seconds.
+- [PM-JAY Claim Adjudication](https://roniii.vercel.app/projects/pmjay-adjudication) — Automated STG Compliance for Ayushman Bharat. NHA x IISc Runner-Up (~0.77 F1); dual Gemma 3 12B pass per page across four PM-JAY packages.
+- [Aadhaar-Zero](https://roniii.vercel.app/projects/aadhaar-zero) — Privacy-Preserving KYC with Zero-Knowledge Proofs. Groth16 age verification in-browser, six contracts on Base Sepolia, DPDP-aligned consent/revocation; CSIC 1.0 Stage III shortlist.
+- [Regulatory Intelligence Engine](https://roniii.vercel.app/projects/regulatory-intelligence-engine) — AI-Assisted RDTII Digital Trade Compliance. Hexagonal monorepo mapping statutes to indicators with span-level citations; LangGraph + 4-gate verification + HITL review.
+- [AlphaQ](https://roniii.vercel.app/projects/alphaq-minesweeper) — GRPO-Trained RL Agent for Minesweeper. Qwen2.5-14B fine-tuned with GRPO+LoRA on AMD Instinct MI300X (192GB HBM3), 50×50 grids; AMD Special Mention.
+- [SHAKTI](https://roniii.vercel.app/projects/shakti) — Vision-Language RAG System for Military Intelligence. SIH 2024 Winner; 79% OCR accuracy on military documents with cross-modal RAG retrieval.
+- [InferenceGym](https://roniii.vercel.app/projects/inferencegym) — OpenEnv RL Environment for LLM Inference Serving. Reference PPO agent beats Orca/vLLM-style heuristics across static, bursty, and adversarial workloads.
+- [QuantumScribe](https://roniii.vercel.app/projects/quantumscribe) — OpenEnv RL Environment for LLM Quantum Error Correction. Qwen2.5-3B decodes surface-code syndromes with Stim-verified rewards; 96.4% logical correction at L2_target.
+- [AISEHack Phase 2 — PM2.5 Forecasting](https://roniii.vercel.app/projects/aisehack-pm25-forecasting) — Episode-Aware Country-Scale Air Pollution Forecasting. WRF-Chem gridded data, 10-hour lookback → 16-step forecasts; 0.8384 leaderboard, finalists at IIIT Hyderabad.
+- [TypeNad](https://roniii.vercel.app/projects/typenad) — Competitive On-Chain Typing Arena. PvP 1v1 typing duels on Monad with staking mechanics; Next.js + Monad architecture.
+- [PARAM](https://roniii.vercel.app/projects/param) — Blockchain-Based Academic Credential Verification for ABV-IIITM Gwalior. ERC-721 transcripts/degrees on Base Sepolia, 30+ Prisma models, public verification; production pilot at param-iiitm.vercel.app.
+- [GitGambit](https://roniii.vercel.app/projects/gitgambit) — One Place for a Developer's Public GitHub Story. Unified GitHub profile/PR/diff viewer with external-work-first analytics and a 5-sub-score GitGambit Score.
+- [HealthBooker](https://roniii.vercel.app/projects/healthbooker) — Blockchain-Powered Medical Records Management. AES-256 encrypted records on IPFS, Ethereum smart contracts for patient-controlled access, SHA-256 integrity verification.
+- [iONIA Platform](https://roniii.vercel.app/projects/ionia) — AI-Powered Competitive Exam Preparation. NTA-replica adaptive testing over 1,360+ questions with OCR handwritten-answer assessment; 50+ active students; CrftHQ Cohort 1.
+- [GeneTrust AI Studio](https://roniii.vercel.app/projects/genetrust) — AI-Powered CRISPR Intelligence Platform. DNABERT sequence analysis via FastAPI + PyTorch, RAG over literature, on-chain provenance on Base Chain; HackHazards '25 Winner (800+ projects).
+
+## Experience
+- Maintainer @ GitMesh (November 2024 – Present) — Open-source platform for governed AI agents in OSS projects (Linux Foundation Decentralized Trust); policy-as-code, audit logging, grew to 130+ GitHub stars.
+- Software Engineer Intern @ C3iHub, IIT Kanpur (May 2025 – August 2025) — Built PARAM, a blockchain academic credential system for ABV-IIITM Gwalior with NFT issuance, multi-level approvals, and public verification at pilot scale.
+- Full-Stack Developer @ Ionia (December 2024 – June 2025) — Built end-to-end online testing infrastructure and admin panel; pilot with 50+ active students.
+- Co-Founder & Lead Developer @ Zentoro AI (November 2024 – March 2025) — Built an autonomous AI project-execution engine with multi-agent workflows; 700+ visitors from 44 countries, 50+ YC-alumni endorsements.
+- Co-Founder & Lead Developer @ Garudex Labs (November 2024 – March 2025) — Co-founded TRAFFIC; built AI-powered product for government needs (IDE'25 award), later pivoted to consumer/business markets.
+
+## Skills
+- AI/ML: PyTorch, Transformers, PEFT, Bitsandbytes, LoRA/QLoRA, RAG, GRPO, Vision-Language Models (PaliGemma, CLIP, ViT), Graph Neural Networks (PyTorch Geometric, DGL), Langchain
+- Web: React.js, Next.js, Express, Node.js, Vue.js, Tailwind, FastAPI, Flask, Django
+- Cloud: AWS, AWS SageMaker, Azure, Docker, Kubernetes, Cloudflare
+- Databases: PostgreSQL, MongoDB, Redis, MySQL, Supabase, Pinecone, FAISS, Qdrant, ChromaDB
+- Languages: Python, TypeScript, JavaScript, C/C++, SQL, HTML, CSS
+
+## Links
+- GitHub: https://github.com/Ronit-Raj9
+- LinkedIn: https://www.linkedin.com/in/ronitrajai/
+- X: https://x.com/ronit__raj
+- Kaggle: https://www.kaggle.com/ronitraj1
+- Email: dev.ronitraj@gmail.com
+- Resume: https://roniii.vercel.app/resume

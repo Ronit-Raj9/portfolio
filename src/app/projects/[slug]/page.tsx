@@ -13,9 +13,29 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const project = getProjectBySlug(params.slug)
   if (!project) return { title: "Project not found" }
+
+  const fullTitle = `${project.title} — ${project.subtitle}`
+  const desc = (
+    [project.subtitle, project.highlights?.[0]].filter(Boolean).join(" — ") ||
+    project.subtitle
+  ).slice(0, 160)
+
   return {
-    title: `${project.title} - ${project.subtitle}`,
-    description: project.caseStudy?.problem ?? project.subtitle,
+    title: fullTitle,
+    description: desc,
+    alternates: { canonical: `/projects/${project.id}` },
+    openGraph: {
+      title: fullTitle,
+      description: desc,
+      type: "article",
+      images: [project.image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: desc,
+      images: [project.image],
+    },
   }
 }
 
@@ -37,8 +57,56 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   const cs = project.caseStudy
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://roniii.vercel.app/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: "https://roniii.vercel.app/projects",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `https://roniii.vercel.app/projects/${project.id}`,
+      },
+    ],
+  }
+
+  const creativeWorkJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: (cs?.problem ?? project.subtitle).slice(0, 200),
+    author: {
+      "@type": "Person",
+      name: "Ronit Raj",
+      url: "https://roniii.vercel.app",
+    },
+    url: `https://roniii.vercel.app/projects/${project.id}`,
+    image: `https://roniii.vercel.app${project.image}`,
+    keywords: project.tech.join(", "),
+  }
+
   return (
     <div className="min-h-screen pt-24 md:pt-28 pb-24 md:pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+      />
       <div className="container px-4 max-w-4xl mx-auto">
         {/* Back link */}
         <Link
@@ -52,19 +120,19 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <div className="mb-8">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {project.badge && (
-              <span className="px-2.5 py-1 text-[11px] font-semibold rounded-full bg-foreground text-background">
+              <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-foreground text-background">
                 {project.badge}
               </span>
             )}
             {project.track && (
               <span className={cn(
-                "px-2.5 py-1 text-[11px] font-medium rounded-full border",
+                "px-2.5 py-1 text-xs font-medium rounded-full border",
                 TRACK_PILL[project.track],
               )}>
                 {TRACK_LABEL[project.track]}
               </span>
             )}
-            <span className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
+            <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
               {project.category}
             </span>
           </div>
@@ -78,7 +146,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden border border-border bg-accent/10 mb-10">
           <Image
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} — ${project.subtitle}`}
             fill
             priority
             className="object-cover"
@@ -117,7 +185,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                       key={m.label}
                       className="border border-border rounded-lg p-3 bg-background"
                     >
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-1">
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
                         {m.label}
                       </p>
                       <p className="text-sm font-semibold">{m.value}</p>
@@ -192,7 +260,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="px-2 py-0.5 text-[10px] font-medium rounded bg-accent/80 text-foreground border border-border"
+                className="px-2 py-0.5 text-xs font-medium rounded bg-accent/80 text-foreground border border-border"
               >
                 {t}
               </span>

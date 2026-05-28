@@ -36,7 +36,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
           <div className="absolute top-2 left-2 z-20 flex gap-1.5 flex-wrap">
             {project.badge && (
               <span 
-                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.98)',
                   color: '#1f2937',
@@ -49,7 +49,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
             )}
             {!project.completeness && (
               <span 
-                className="px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
+                className="px-2.5 py-1 text-xs font-semibold rounded-full border-2 backdrop-blur-xl shadow-lg"
                 style={{
                   backgroundColor: 'rgba(255, 237, 213, 0.98)',
                   color: '#c2410c',
@@ -63,7 +63,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
           </div>
           <Image
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} — ${project.subtitle}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -77,7 +77,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
             <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
               {project.track && (
                 <span className={cn(
-                  "px-2 py-0.5 text-[10px] font-medium rounded-full border",
+                  "px-2 py-0.5 text-xs font-medium rounded-full border",
                   project.track === 'ml' && "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/30",
                   project.track === 'full-stack-ai' && "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
                   project.track === 'web3' && "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/30",
@@ -85,7 +85,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
                   {project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : 'Web3'}
                 </span>
               )}
-              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
+              <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/60 text-foreground/80 border border-border">
                 {project.category}
               </span>
             </div>
@@ -120,7 +120,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-1.5 mb-2">
             {project.tech.map((tech) => (
-              <span key={tech} className="px-2 py-0.5 text-[10px] font-medium rounded bg-accent/80 text-foreground border border-border">
+              <span key={tech} className="px-2 py-0.5 text-xs font-medium rounded bg-accent/80 text-foreground border border-border">
                 {tech}
               </span>
             ))}
@@ -272,7 +272,7 @@ export default function ProjectsPage() {
               >
                 {category}
                 {category !== "All" && (
-                  <span className="ml-1 text-[10px] opacity-70">
+                  <span className="ml-1 text-xs opacity-70">
                     ({allProjects.filter(p => p.category === category).length})
                   </span>
                 )}

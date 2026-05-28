@@ -14,23 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://roniii.vercel.app'),
   title: {
-    default: 'Ronit Raj | AI/ML Engineer | SIH 2024 Winner',
+    default: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
     template: '%s | Ronit Raj'
   },
-  description: 'AI/ML Engineer specializing in Graph Neural Networks and Multimodal LLMs. SIH 2024 National Winner. Building production AI systems at Garudex Labs.',
-  keywords: [
-    'AI/ML Engineer',
-    'Graph Neural Networks',
-    'Multimodal LLMs',
-    'SIH 2024 Winner',
-    'Smart India Hackathon',
-    'Garudex Labs',
-    'Full Stack Developer',
-    'RAG Systems',
-    'Vision-Language Models',
-    'IIIT Gwalior',
-    'Ronit Raj'
-  ],
+  description: 'Full-stack AI engineer & open source developer. OSS India 2026 speaker, SIH 2024 winner, NHA PM-JAY runner-up, GitMesh maintainer. Production AI & on-chain systems.',
   authors: [{ name: 'Ronit Raj', url: 'https://roniii.vercel.app' }],
   creator: 'Ronit Raj',
   publisher: 'Ronit Raj',
@@ -50,17 +37,17 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://roniii.vercel.app',
     siteName: 'Ronit Raj Portfolio',
-    title: 'Ronit Raj | AI/ML Engineer',
-    description: 'SIH 2024 Winner building production AI systems with GNNs and Multimodal LLMs',
+    title: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
+    description: 'OSS India 2026 speaker · SIH 2024 winner · GitMesh maintainer. Building production AI and on-chain systems.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ronit Raj | AI/ML Engineer',
-    description: 'SIH 2024 Winner building production AI systems with GNNs and Multimodal LLMs',
+    title: 'Ronit Raj — Full-Stack AI Engineer & Open Source Developer',
+    description: 'OSS India 2026 speaker · SIH 2024 winner · GitMesh maintainer. Building production AI and on-chain systems.',
     creator: '@ronit__raj',
   },
   alternates: {
-    canonical: 'https://roniii.vercel.app',
+    canonical: '/',
   },
 }
 
@@ -113,7 +100,8 @@ export default function RootLayout({
                 'https://www.linkedin.com/in/ronitrajai/',
                 'https://x.com/ronit__raj'
               ],
-              jobTitle: 'AI/ML Engineer',
+              jobTitle: 'Full-Stack AI Engineer & Open Source Developer',
+              description: 'Open source developer and OSS India 2026 speaker building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. SIH 2024 winner, NHA PM-JAY runner-up, GitMesh maintainer.',
               worksFor: {
                 '@type': 'Organization',
                 name: 'Garudex Labs'
@@ -122,7 +110,25 @@ export default function RootLayout({
                 '@type': 'CollegeOrUniversity',
                 name: 'IIIT Gwalior'
               },
-              knowsAbout: ['Graph Neural Networks', 'Multimodal LLMs', 'RAG Systems', 'Full Stack Development']
+              knowsAbout: ['Graph Neural Networks', 'Multimodal LLMs', 'RAG Systems', 'LLM Fine-tuning', 'Full Stack Development', 'Open Source AI Agents', 'Blockchain'],
+              award: [
+                'Smart India Hackathon 2024 Winner',
+                "HackHazards '25 Winner",
+                "IDE'25 Innovation Development & Entrepreneurship Award (Government of India)",
+                'NHA × IISc PM-JAY Healthcare Hackathon Runner-Up',
+                'Trillion Dollar GenAI Hackathon 2nd Place (IIT Bhubaneswar)',
+                'Monad Blitz New Delhi 4th Place',
+                'AMD AI RL Hackathon Special Mention (IIT Delhi)',
+                'META × Hugging Face RL Hackathon Finalist',
+                'DSCI CSIC 1.0 Stage III Shortlist',
+                'Open Source Summit India 2026 Speaker (Linux Foundation)'
+              ],
+              hasOccupation: {
+                '@type': 'Occupation',
+                name: 'AI/ML & Full-Stack Engineer',
+                occupationLocation: { '@type': 'Country', name: 'India' },
+                skills: 'PyTorch, Transformers, RAG, LLM fine-tuning, Graph Neural Networks, FastAPI, Next.js, Solidity'
+              }
             })
           }}
         />
