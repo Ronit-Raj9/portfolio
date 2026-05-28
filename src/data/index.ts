@@ -112,6 +112,7 @@ export interface Project {
   }
   image: string
   category: string
+  year: number
   featured: boolean
   completeness: boolean
   caseStudy?: CaseStudy

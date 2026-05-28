@@ -1,6 +1,7 @@
 [
   {
     "id": "gitmesh",
+    "year": 2025,
     "title": "GitMesh",
     "subtitle": "Policy-as-Code Engine for Open-Source AI Agent Orchestration",
     "badge": "Linux Foundation · LFDT",
@@ -45,6 +46,7 @@
   },
   {
     "id": "pmjay-adjudication",
+    "year": 2026,
     "title": "PM-JAY Claim Adjudication",
     "subtitle": "Automated STG Compliance for Ayushman Bharat",
     "badge": "NHA × IISc · Runner-Up",
@@ -87,6 +89,7 @@
   },
   {
     "id": "regulatory-intelligence-engine",
+    "year": 2026,
     "title": "ClauseMark",
     "subtitle": "Verified Regulatory Evidence Engine — UN Digital Trade (RDTII)",
     "badge": "UN Digital Trade Hackathon · 2026",
@@ -130,304 +133,8 @@
     }
   },
   {
-    "id": "shakti",
-    "title": "SHAKTI",
-    "subtitle": "Vision-Language RAG System for Military Intelligence",
-    "badge": "SIH 2024 Winner",
-    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
-    "track": "ml",
-    "highlights": [
-      "Smart India Hackathon 2024 Winner - deployed in defense sector",
-      "79% OCR accuracy on complex military documents using a custom-trained pipeline",
-      "Vision-Language model integration for multimodal document analysis (text + scans + imagery)",
-      "RAG pipeline enabling semantic search across classified document repositories",
-      "FastAPI service layer; LangChain + Transformers for swappable LLMs"
-    ],
-    "tech": ["PyTorch", "RAG", "OCR", "FastAPI", "Transformers", "LangChain"],
-    "links": {
-      "demo": "https://shakti-ai.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/shakti-project",
-      "caseStudy": "/projects/shakti"
-    },
-    "image": "/projects/shakti.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "Defense intelligence relies on dense, multi-page mixed-format documents - scans, maps, captioned imagery - that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
-      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal - a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
-      "metrics": [
-        { "label": "OCR accuracy", "value": "79%" },
-        { "label": "Modality", "value": "Vision + Language" },
-        { "label": "Recognition", "value": "SIH 2024 Winner" },
-        { "label": "Domain", "value": "Defense / Military" }
-      ],
-      "techDecisions": [
-        { "decision": "Custom OCR over Tesseract", "why": "Military fonts and degraded scans dropped standard pipelines below usable threshold." },
-        { "decision": "Vision-Language embeddings", "why": "A single index serves both text and image queries - no separate image search to maintain." },
-        { "decision": "RAG over fine-tuning", "why": "Analyst queries are open-ended and document corpora rotate; retrieval beats memorization." },
-        { "decision": "LangChain abstraction", "why": "Easy swap of LLM provider as the program of record evolves." }
-      ]
-    }
-  },
-  {
-    "id": "ionia",
-    "title": "iONIA Platform",
-    "subtitle": "AI-Powered Competitive Exam Preparation System",
-    "badge": "CrftHQ Cohort 1",
-    "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
-    "track": "full-stack-ai",
-    "highlights": [
-      "NTA-replica exam interface with adaptive testing - 1,360+ precision-targeted questions",
-      "OCR-powered handwritten-answer assessment with real-time evaluation",
-      "Three-tier admin (super-admin / admin / student) serving 50+ active students",
-      "Selected for CrftHQ Cohort 1 accelerator program"
-    ],
-    "tech": ["Next.js", "Express.js", "MongoDB", "FastAPI", "OCR"],
-    "links": {
-      "demo": "https://ionia-next.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/ionia-next",
-      "caseStudy": "/projects/ionia"
-    },
-    "image": "/projects/ionia.png",
-    "category": "EdTech",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "Indian competitive exam prep (JEE, NEET, etc.) needs an NTA-replica testing experience plus assessment of handwritten subjective answers - not just MCQs. Existing platforms are MCQ-only or rely on manual grading that doesn't scale beyond a handful of students.",
-      "approach": "Next.js + Express + MongoDB stack with a dedicated FastAPI service for OCR-based evaluation of scanned handwritten responses. Adaptive testing engine across a 1,360+ question bank. Three-tier admin (super-admin / admin / student) for test, question, and user management. Selected for CrftHQ Cohort 1.",
-      "metrics": [
-        { "label": "Active students", "value": "50+" },
-        { "label": "Question bank", "value": "1,360+" },
-        { "label": "Admin tiers", "value": "3 (super / admin / student)" },
-        { "label": "Recognition", "value": "CrftHQ Cohort 1" }
-      ],
-      "techDecisions": [
-        { "decision": "Two-service split (Next.js + FastAPI)", "why": "Keeps ML dependencies off the Node runtime; OCR service scales independently of the web app." },
-        { "decision": "MongoDB for the question bank", "why": "Schema flexibility - questions are heterogeneous (numerical, MCQ, subjective with image)." },
-        { "decision": "Adaptive over fixed-test", "why": "Students see progress instead of hitting fixed-difficulty walls; better retention." },
-        { "decision": "OCR for handwriting", "why": "Students upload scans of their actual handwritten work - no forced switch to a tablet flow." }
-      ]
-    }
-  },
-  {
-    "id": "genetrust",
-    "title": "GeneTrust AI Studio",
-    "subtitle": "AI-Powered CRISPR Intelligence Platform",
-    "badge": "HackHazards '25 Winner",
-    "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
-    "track": "ml",
-    "highlights": [
-      "DNABERT-based genetic sequence analysis served via FastAPI + PyTorch",
-      "Next.js + TypeScript front-end with real-time ranking + prediction",
-      "RAG over published literature for cited-source results",
-      "On-chain provenance via Base Chain - every analysis hash anchored",
-      "HackHazards '25 Winner — top of 800+ projects"
-    ],
-    "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT", "RAG", "Base Chain"],
-    "links": {
-      "demo": "https://genetrust.vercel.app/",
-      "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust",
-      "caseStudy": "/projects/genetrust"
-    },
-    "image": "/projects/genetrust.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "Researchers using CRISPR for gene editing need fast, structured analysis of genetic sequences and predicted edit outcomes. Existing tools either run heavy locally or require deep bioinformatics tooling. The gap: a web platform where biologists submit a sequence and get model-driven analysis with verifiable provenance.",
-      "approach": "DNABERT (a BERT pre-trained on the human genome) for sequence understanding, served via a FastAPI inference layer behind a Next.js + TypeScript front-end. Real-time ranking of edit candidates. Each analysis hash anchored on Base Chain for research-grade provenance. A RAG layer cites the published literature behind each prediction.",
-      "metrics": [
-        { "label": "Backbone", "value": "DNABERT" },
-        { "label": "Inference", "value": "PyTorch + FastAPI" },
-        { "label": "Provenance", "value": "Base Chain" },
-        { "label": "Front-end", "value": "Next.js + TypeScript" },
-        { "label": "Recognition", "value": "HackHazards '25 Winner (800+ projects)" }
-      ],
-      "techDecisions": [
-        { "decision": "DNABERT over training from scratch", "why": "Pre-trained genome embeddings give a credible starting point for downstream classification with limited labeled data." },
-        { "decision": "FastAPI inference layer", "why": "Async by default; easy per-tenant scaling once research traffic grows." },
-        { "decision": "Base Chain anchoring", "why": "Research integrity matters more than tokenization; L2 economics keep cost per analysis well under $0.01." },
-        { "decision": "RAG over literature", "why": "Biologists need the cited paper, not just a number - RAG keeps the model honest." }
-      ]
-    }
-  },
-  {
-    "id": "alphaq-minesweeper",
-    "title": "AlphaQ",
-    "subtitle": "GRPO-Trained RL Agent for Minesweeper",
-    "badge": "AMD AI Hackathon · Special Mention",
-    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
-    "track": "ml",
-    "highlights": [
-      "GRPO fine-tuned Qwen2.5-14B-Instruct to reason about probabilistic, partially-observable boards",
-      "Phase-stratified training across 6 difficulty levels on 4,000 samples",
-      "Custom reward = JSON output purity + gameplay correctness + strategic bonuses",
-      "Stack-based iterative engine supporting 50×50 grids on AMD Instinct MI300X (192GB HBM3, ROCm/BFloat16)",
-      "Recognised by AMD for sophisticated technical implementation"
-    ],
-    "tech": ["Python", "PyTorch", "Unsloth", "GRPO", "LoRA", "Qwen2.5", "ROCm", "BFloat16"],
-    "links": {
-      "demo": "",
-      "github": "https://github.com/Ronit-Raj9/AMD_RL_Hackathon",
-      "caseStudy": "/projects/alphaq-minesweeper"
-    },
-    "image": "/projects/alphaq.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "LLMs struggle with tasks requiring iterative reasoning under partial information. Minesweeper is a clean testbed: probabilistic, partially observable, and demands consistent JSON output across many turns. Most off-the-shelf models either hallucinate structure or fail to maintain constraints across moves.",
-      "approach": "GRPO (Group Relative Policy Optimization) fine-tuning on Qwen2.5-14B-Instruct via Unsloth + LoRA, with a custom reward combining JSON-output purity, gameplay correctness, and strategic bonuses. Phase-stratified curriculum across 6 difficulty levels on 4,000 samples. Trained on AMD Instinct MI300X (192GB HBM3) under ROCm in BFloat16. A stack-based iterative engine handles boards up to 50×50 without re-prompting full state.",
-      "metrics": [
-        { "label": "Base model", "value": "Qwen2.5-14B-Instruct" },
-        { "label": "Method", "value": "GRPO + LoRA" },
-        { "label": "Training samples", "value": "4,000" },
-        { "label": "Difficulty levels", "value": "6 (curriculum)" },
-        { "label": "Max grid", "value": "50×50" },
-        { "label": "Hardware", "value": "AMD MI300X · 192GB HBM3" }
-      ],
-      "techDecisions": [
-        { "decision": "GRPO over PPO", "why": "Sample-efficient on small datasets and no separate value-model overhead." },
-        { "decision": "Phase-stratified curriculum", "why": "Starting easy prevents reward collapse and unstable rollouts on hard boards." },
-        { "decision": "Composite reward (JSON + gameplay + strategy)", "why": "Single signal kept outputs both syntactically valid and strategically coherent." },
-        { "decision": "Stack-based iterative engine", "why": "Avoids re-prompting full state on every move; scales to 50×50 without context blow-up." },
-        { "decision": "AMD MI300X (192GB HBM3)", "why": "Fits the 14B model plus GRPO group rollouts in a single device." }
-      ]
-    }
-  },
-  {
-    "id": "quantumscribe",
-    "title": "QuantumScribe",
-    "subtitle": "OpenEnv RL Environment for LLM Quantum Error Correction",
-    "badge": "META RL Phase 2 · OpenEnv",
-    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
-    "track": "ml",
-    "highlights": [
-      "OpenEnv-compliant RL environment that teaches Qwen2.5-3B-Instruct to decode rotated surface-code syndromes using Stim ground truth and PyMatching baselines",
-      "Two-stage training on a free Colab T4: SFT on 3k PyMatching-labeled syndromes, then 1,500 GRPO steps with five independent verifiable rewards (no learned reward model)",
-      "96.4% logical correction rate at L2_target (d=3, 3 rounds, p=1e-3) - up from 92% base Qwen with the same prompt template; 73.4% exact-match with PyMatching",
-      "Deployed Hugging Face Docker Space with full OpenEnv API (/reset, /step, /healthz) plus published LoRA weights on the Hub",
-      "Inspired by DeepMind AlphaQubit (Nature 2024); honest eval discloses 0% PyMatching beat-rate on the primary slice"
-    ],
-    "tech": ["Python", "PyTorch", "GRPO", "LoRA", "Unsloth", "Qwen2.5", "Stim", "PyMatching", "OpenEnv", "FastAPI", "TRL", "Hugging Face Spaces"],
-    "links": {
-      "demo": "https://huggingface.co/spaces/ronitraj/QuantumScribe",
-      "github": "https://github.com/Ronit-Raj9/Meta_RL_Phase2",
-      "caseStudy": "/projects/quantumscribe"
-    },
-    "image": "/projects/quantumscribe.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "Quantum processors need decoders that map stabilizer syndromes to Pauli corrections without measuring data qubits directly. PyMatching is a strong classical baseline (sparse blossom on detector graphs). DeepMind's AlphaQubit showed a transformer can beat it on hard cases, but at large-scale TPU training cost. The META RL Phase 2 track asked for an OpenEnv environment where an off-the-shelf LLM learns decoding from verifiable physics rewards.",
-      "approach": "Built QuantumScribe (Qubit-Medic): a FastAPI OpenEnv server over Stim's surface_code:rotated_memory_z circuits with SI1000 noise. The LLM emits a terminal Pauli frame (X_ERRORS / Z_ERRORS); five independent rewards score logical correction, final-round syndrome consistency, Jaccard overlap vs PyMatching, format compliance, and a pymatching_beat bonus only when the model is right and PyMatching is wrong. Curriculum runs L1_warmup → L2_target → L3_stretch. Training: LoRA SFT on PyMatching labels, then GRPO with diversity-focused rollouts (temperature 1.2) so reward variance does not collapse.",
-      "metrics": [
-        { "label": "Logical correction (GRPO)", "value": "96.4%" },
-        { "label": "Base Qwen (same prompt)", "value": "92.0%" },
-        { "label": "Exact-match PyMatching", "value": "73.4%" },
-        { "label": "PyMatching beat-rate", "value": "0% (disclosed)" },
-        { "label": "Training", "value": "Colab T4 · ~3 h" },
-        { "label": "Model", "value": "Qwen2.5-3B + LoRA" }
-      ],
-      "techDecisions": [
-        { "decision": "Five independent verifiable rewards", "why": "GRPO games single scalars; decomposed Stim/PyMatching checks block empty-collapse, mimicry, and format spam by construction." },
-        { "decision": "GRPO over offline labels only", "why": "SFT ceiling is PyMatching imitation; RL needs on-policy rollouts against real syndromes to sharpen format and logical correction." },
-        { "decision": "OpenEnv HTTP contract", "why": "Same submission pattern as InferenceGym - typed reset/step, deployable Docker Space, trainer swaps local vs remote client." },
-        { "decision": "Stim + PyMatching (not a custom simulator)", "why": "Aligns with AlphaQubit/Willow literature and gives unfakeable logical_correction ground truth." },
-        { "decision": "Honest pymatching_beat reporting", "why": "Primary eval shows match-not-beat; portfolio claims stay defensible for reviewers." }
-      ]
-    }
-  },
-  {
-    "id": "inferencegym",
-    "title": "InferenceGym",
-    "subtitle": "OpenEnv RL Environment for LLM Inference Serving",
-    "badge": "Meta × PyTorch × Hugging Face Hackathon",
-    "badgeColor": "bg-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-500/30",
-    "track": "ml",
-    "highlights": [
-      "Submitted to the Meta × PyTorch × Hugging Face OpenEnv Hackathon ($30K prize pool; top finalists interview at Meta and Hugging Face AI teams)",
-      "OpenEnv-compliant RL environment modelling LLM serving as a control problem - batching, KV-cache budget, speculative decoding, quantization, prefill/decode split, priority routing",
-      "Reference PPO agent reliably outperforms Orca / vLLM-style hand-coded heuristics across static, bursty, and adversarial-multitenant workloads",
-      "Three deterministic tasks with per-step shaped rewards over throughput, SLO compliance, memory pressure, and cost",
-      "Deployed as a Hugging Face Docker Space with the full OpenEnv API surface (/reset, /step, /grader, /baseline, /web)"
-    ],
-    "tech": ["Python", "PyTorch", "PPO", "OpenEnv", "FastAPI", "Docker", "Hugging Face Spaces", "OpenAI"],
-    "links": {
-      "demo": "https://huggingface.co/spaces/ronitraj/vegarl",
-      "github": "https://github.com/Ronit-Raj9/InferenceGym",
-      "caseStudy": "/projects/inferencegym"
-    },
-    "image": "/projects/inferencegym.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "LLM serving systems make many interdependent decisions per second - batching, KV-cache budget, speculative decoding depth, quantization tier, prefill/decode disaggregation, priority routing - under non-stationary workloads. Hand-coded policies (Orca, vLLM-style heuristics) plateau because the trade-offs shift with every traffic pattern. The Meta × PyTorch × Hugging Face hackathon asked for a true RL environment that exposes this as a learnable control problem.",
-      "approach": "An OpenEnv-compliant environment modelling the serving control loop. Action space is a typed ServeAction (batch_cap, kv_budget_fraction, speculation_depth, quantization_tier, prefill_decode_split, priority_routing). Observations surface queue depth, p50/p99 TTFT, inter-token latency, throughput, KV occupancy, GPU memory, SLO compliance, and cost-per-1k. Per-step shaped reward over throughput + SLO + memory + cost. Three deterministic tasks (static / bursty / adversarial-multitenant). Reference PPO trained on CPU on the simulator; an OpenAI baseline path is wired in for submission compliance.",
-      "metrics": [
-        { "label": "Hackathon", "value": "Meta × PyTorch × HF · OpenEnv" },
-        { "label": "Prize pool", "value": "$30,000" },
-        { "label": "Tasks", "value": "Static / Bursty / Adversarial" },
-        { "label": "PPO vs heuristic (static)", "value": "0.55 vs 0.30" },
-        { "label": "PPO vs heuristic (adversarial)", "value": "0.38 vs 0.20" },
-        { "label": "Runtime", "value": "Docker Space on Hugging Face" }
-      ],
-      "techDecisions": [
-        { "decision": "OpenEnv typed Action / Observation contract", "why": "Round-1 grading is automated against the OpenEnv spec - typed schemas plus reset / step / grader / baseline endpoints are non-optional for submission." },
-        { "decision": "CPU-only deterministic simulator", "why": "Keeps training, grading, and reproducibility cheap and ships the environment as a small Docker image to a Hugging Face Space." },
-        { "decision": "Per-step shaped reward (throughput + SLO + memory + cost)", "why": "Pure terminal rewards collapse on bursty/adversarial workloads; per-step shaping gives the policy gradient a stable signal." },
-        { "decision": "PPO as the reference RL agent", "why": "Sample-efficient on the small simulator and a known-good baseline - the goal was demonstrating RL beats heuristics, not chasing SOTA." },
-        { "decision": "OpenAI baseline path via in-process runtime", "why": "Submission requires the official OpenAI client; in-process avoids the server having to call itself over HTTP and stays robust on Docker Spaces." }
-      ]
-    }
-  },
-  {
-    "id": "aisehack-pm25-forecasting",
-    "title": "AISEHack Phase 2 - PM2.5 Forecasting",
-    "subtitle": "Episode-Aware Country-Scale Air Pollution Forecasting",
-    "badge": "Team Vega · Finalists (IIIT Hyderabad)",
-    "badgeColor": "bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/30",
-    "track": "ml",
-    "highlights": [
-      "Built a country-scale PM2.5 forecasting system over India from WRF-Chem gridded data",
-      "Trained for Phase 2 constraints: only 10-hour historical inputs and 16-step future predictions",
-      "Optimized for both global accuracy and episode-aware performance during extreme pollution events",
-      "Reached 0.8384 leaderboard score with Team Vega and qualified for finals at IIIT Hyderabad",
-      "Baseline runs: https://wandb.ai/ronitraj/aisehack_final | Final benchmark: https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj"
-    ],
-    "tech": ["Python", "PyTorch", "NumPy", "FNO", "ConvLSTM", "Kaggle", "Weights & Biases"],
-    "links": {
-      "github": "https://github.com/Ronit-Raj9/aisehack_phase2_submission",
-      "demo": "https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj",
-      "caseStudy": "/projects/aisehack-pm25-forecasting"
-    },
-    "image": "/projects/aisehack-pm25.png",
-    "category": "AI/ML",
-    "featured": true,
-    "completeness": true,
-    "caseStudy": {
-      "problem": "Short-term PM2.5 forecasting over India is difficult because pollution dynamics are strongly nonlinear and performance on average conditions often breaks down during severe episodes. Phase 2 explicitly evaluates both global quality and episodic behavior while restricting inference to a 10-hour lookback window.",
-      "approach": "Built an episode-aware spatiotemporal forecasting pipeline over a fixed 140x124 India grid, predicting 16 future steps from 10-hour history. Trained on representative seasonal months from 2016 and inferred on unseen 2017 months. Used a hybrid deep-learning setup inspired by operator-learning and recurrent spatiotemporal modeling, with validation geared toward both global and episode metrics.",
-      "metrics": [
-        { "label": "Leaderboard score", "value": "0.8384" },
-        { "label": "Team", "value": "Team Vega" },
-        { "label": "Forecast horizon", "value": "16 timesteps" },
-        { "label": "Input history", "value": "10 hours" },
-        { "label": "Outcome", "value": "Finalists at IIIT Hyderabad" }
-      ],
-      "techDecisions": [
-        { "decision": "Episode-aware objective design", "why": "Phase 2 scoring emphasizes both global SMAPE and behavior on episodic grid points, so training/validation targeted this trade-off directly." },
-        { "decision": "Spatiotemporal modeling over fixed grid", "why": "The task is naturally a sequence-of-fields problem; learning spatial transport and temporal evolution jointly improves stability." },
-        { "decision": "Reproducibility via W&B benchmarks", "why": "Baseline and final experiments were tracked as separate runs to compare improvements and avoid overfitting to isolated submissions." },
-        { "decision": "Notebook-first end-to-end pipeline", "why": "Competition requires a single executable submission notebook producing `/kaggle/working/preds.npy` with exact shape constraints." }
-      ]
-    }
-  },
-  {
     "id": "param",
+    "year": 2026,
     "title": "PARAM",
     "subtitle": "Blockchain-Based Academic Credential Verification for ABV-IIITM Gwalior",
     "badge": "C3iHub · ABV-IIITM Gwalior",
@@ -474,7 +181,185 @@
     }
   },
   {
+    "id": "shakti",
+    "year": 2024,
+    "title": "SHAKTI",
+    "subtitle": "Vision-Language RAG System for Military Intelligence",
+    "badge": "SIH 2024 Winner",
+    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+    "track": "ml",
+    "highlights": [
+      "Smart India Hackathon 2024 Winner - deployed in defense sector",
+      "79% OCR accuracy on complex military documents using a custom-trained pipeline",
+      "Vision-Language model integration for multimodal document analysis (text + scans + imagery)",
+      "RAG pipeline enabling semantic search across classified document repositories",
+      "FastAPI service layer; LangChain + Transformers for swappable LLMs"
+    ],
+    "tech": ["PyTorch", "RAG", "OCR", "FastAPI", "Transformers", "LangChain"],
+    "links": {
+      "demo": "https://shakti-ai.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/shakti-project",
+      "caseStudy": "/projects/shakti"
+    },
+    "image": "/projects/shakti.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Defense intelligence relies on dense, multi-page mixed-format documents - scans, maps, captioned imagery - that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
+      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal - a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
+      "metrics": [
+        { "label": "OCR accuracy", "value": "79%" },
+        { "label": "Modality", "value": "Vision + Language" },
+        { "label": "Recognition", "value": "SIH 2024 Winner" },
+        { "label": "Domain", "value": "Defense / Military" }
+      ],
+      "techDecisions": [
+        { "decision": "Custom OCR over Tesseract", "why": "Military fonts and degraded scans dropped standard pipelines below usable threshold." },
+        { "decision": "Vision-Language embeddings", "why": "A single index serves both text and image queries - no separate image search to maintain." },
+        { "decision": "RAG over fine-tuning", "why": "Analyst queries are open-ended and document corpora rotate; retrieval beats memorization." },
+        { "decision": "LangChain abstraction", "why": "Easy swap of LLM provider as the program of record evolves." }
+      ]
+    }
+  },
+  {
+    "id": "inferencegym",
+    "year": 2026,
+    "title": "InferenceGym",
+    "subtitle": "OpenEnv RL Environment for LLM Inference Serving",
+    "badge": "Meta × PyTorch × Hugging Face Hackathon",
+    "badgeColor": "bg-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-500/30",
+    "track": "ml",
+    "highlights": [
+      "Submitted to the Meta × PyTorch × Hugging Face OpenEnv Hackathon ($30K prize pool; top finalists interview at Meta and Hugging Face AI teams)",
+      "OpenEnv-compliant RL environment modelling LLM serving as a control problem - batching, KV-cache budget, speculative decoding, quantization, prefill/decode split, priority routing",
+      "Reference PPO agent reliably outperforms Orca / vLLM-style hand-coded heuristics across static, bursty, and adversarial-multitenant workloads",
+      "Three deterministic tasks with per-step shaped rewards over throughput, SLO compliance, memory pressure, and cost",
+      "Deployed as a Hugging Face Docker Space with the full OpenEnv API surface (/reset, /step, /grader, /baseline, /web)"
+    ],
+    "tech": ["Python", "PyTorch", "PPO", "OpenEnv", "FastAPI", "Docker", "Hugging Face Spaces", "OpenAI"],
+    "links": {
+      "demo": "https://huggingface.co/spaces/ronitraj/vegarl",
+      "github": "https://github.com/Ronit-Raj9/InferenceGym",
+      "caseStudy": "/projects/inferencegym"
+    },
+    "image": "/projects/inferencegym.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "LLM serving systems make many interdependent decisions per second - batching, KV-cache budget, speculative decoding depth, quantization tier, prefill/decode disaggregation, priority routing - under non-stationary workloads. Hand-coded policies (Orca, vLLM-style heuristics) plateau because the trade-offs shift with every traffic pattern. The Meta × PyTorch × Hugging Face hackathon asked for a true RL environment that exposes this as a learnable control problem.",
+      "approach": "An OpenEnv-compliant environment modelling the serving control loop. Action space is a typed ServeAction (batch_cap, kv_budget_fraction, speculation_depth, quantization_tier, prefill_decode_split, priority_routing). Observations surface queue depth, p50/p99 TTFT, inter-token latency, throughput, KV occupancy, GPU memory, SLO compliance, and cost-per-1k. Per-step shaped reward over throughput + SLO + memory + cost. Three deterministic tasks (static / bursty / adversarial-multitenant). Reference PPO trained on CPU on the simulator; an OpenAI baseline path is wired in for submission compliance.",
+      "metrics": [
+        { "label": "Hackathon", "value": "Meta × PyTorch × HF · OpenEnv" },
+        { "label": "Prize pool", "value": "$30,000" },
+        { "label": "Tasks", "value": "Static / Bursty / Adversarial" },
+        { "label": "PPO vs heuristic (static)", "value": "0.55 vs 0.30" },
+        { "label": "PPO vs heuristic (adversarial)", "value": "0.38 vs 0.20" },
+        { "label": "Runtime", "value": "Docker Space on Hugging Face" }
+      ],
+      "techDecisions": [
+        { "decision": "OpenEnv typed Action / Observation contract", "why": "Round-1 grading is automated against the OpenEnv spec - typed schemas plus reset / step / grader / baseline endpoints are non-optional for submission." },
+        { "decision": "CPU-only deterministic simulator", "why": "Keeps training, grading, and reproducibility cheap and ships the environment as a small Docker image to a Hugging Face Space." },
+        { "decision": "Per-step shaped reward (throughput + SLO + memory + cost)", "why": "Pure terminal rewards collapse on bursty/adversarial workloads; per-step shaping gives the policy gradient a stable signal." },
+        { "decision": "PPO as the reference RL agent", "why": "Sample-efficient on the small simulator and a known-good baseline - the goal was demonstrating RL beats heuristics, not chasing SOTA." },
+        { "decision": "OpenAI baseline path via in-process runtime", "why": "Submission requires the official OpenAI client; in-process avoids the server having to call itself over HTTP and stays robust on Docker Spaces." }
+      ]
+    }
+  },
+  {
+    "id": "quantumscribe",
+    "year": 2026,
+    "title": "QuantumScribe",
+    "subtitle": "OpenEnv RL Environment for LLM Quantum Error Correction",
+    "badge": "META RL Phase 2 · OpenEnv",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "ml",
+    "highlights": [
+      "OpenEnv-compliant RL environment that teaches Qwen2.5-3B-Instruct to decode rotated surface-code syndromes using Stim ground truth and PyMatching baselines",
+      "Two-stage training on a free Colab T4: SFT on 3k PyMatching-labeled syndromes, then 1,500 GRPO steps with five independent verifiable rewards (no learned reward model)",
+      "96.4% logical correction rate at L2_target (d=3, 3 rounds, p=1e-3) - up from 92% base Qwen with the same prompt template; 73.4% exact-match with PyMatching",
+      "Deployed Hugging Face Docker Space with full OpenEnv API (/reset, /step, /healthz) plus published LoRA weights on the Hub",
+      "Inspired by DeepMind AlphaQubit (Nature 2024); honest eval discloses 0% PyMatching beat-rate on the primary slice"
+    ],
+    "tech": ["Python", "PyTorch", "GRPO", "LoRA", "Unsloth", "Qwen2.5", "Stim", "PyMatching", "OpenEnv", "FastAPI", "TRL", "Hugging Face Spaces"],
+    "links": {
+      "demo": "https://huggingface.co/spaces/ronitraj/QuantumScribe",
+      "github": "https://github.com/Ronit-Raj9/Meta_RL_Phase2",
+      "caseStudy": "/projects/quantumscribe"
+    },
+    "image": "/projects/quantumscribe.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Quantum processors need decoders that map stabilizer syndromes to Pauli corrections without measuring data qubits directly. PyMatching is a strong classical baseline (sparse blossom on detector graphs). DeepMind's AlphaQubit showed a transformer can beat it on hard cases, but at large-scale TPU training cost. The META RL Phase 2 track asked for an OpenEnv environment where an off-the-shelf LLM learns decoding from verifiable physics rewards.",
+      "approach": "Built QuantumScribe (Qubit-Medic): a FastAPI OpenEnv server over Stim's surface_code:rotated_memory_z circuits with SI1000 noise. The LLM emits a terminal Pauli frame (X_ERRORS / Z_ERRORS); five independent rewards score logical correction, final-round syndrome consistency, Jaccard overlap vs PyMatching, format compliance, and a pymatching_beat bonus only when the model is right and PyMatching is wrong. Curriculum runs L1_warmup → L2_target → L3_stretch. Training: LoRA SFT on PyMatching labels, then GRPO with diversity-focused rollouts (temperature 1.2) so reward variance does not collapse.",
+      "metrics": [
+        { "label": "Logical correction (GRPO)", "value": "96.4%" },
+        { "label": "Base Qwen (same prompt)", "value": "92.0%" },
+        { "label": "Exact-match PyMatching", "value": "73.4%" },
+        { "label": "PyMatching beat-rate", "value": "0% (disclosed)" },
+        { "label": "Training", "value": "Colab T4 · ~3 h" },
+        { "label": "Model", "value": "Qwen2.5-3B + LoRA" }
+      ],
+      "techDecisions": [
+        { "decision": "Five independent verifiable rewards", "why": "GRPO games single scalars; decomposed Stim/PyMatching checks block empty-collapse, mimicry, and format spam by construction." },
+        { "decision": "GRPO over offline labels only", "why": "SFT ceiling is PyMatching imitation; RL needs on-policy rollouts against real syndromes to sharpen format and logical correction." },
+        { "decision": "OpenEnv HTTP contract", "why": "Same submission pattern as InferenceGym - typed reset/step, deployable Docker Space, trainer swaps local vs remote client." },
+        { "decision": "Stim + PyMatching (not a custom simulator)", "why": "Aligns with AlphaQubit/Willow literature and gives unfakeable logical_correction ground truth." },
+        { "decision": "Honest pymatching_beat reporting", "why": "Primary eval shows match-not-beat; portfolio claims stay defensible for reviewers." }
+      ]
+    }
+  },
+  {
+    "id": "alphaq-minesweeper",
+    "year": 2026,
+    "title": "AlphaQ",
+    "subtitle": "GRPO-Trained RL Agent for Minesweeper",
+    "badge": "AMD AI Hackathon · Special Mention",
+    "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
+    "track": "ml",
+    "highlights": [
+      "GRPO fine-tuned Qwen2.5-14B-Instruct to reason about probabilistic, partially-observable boards",
+      "Phase-stratified training across 6 difficulty levels on 4,000 samples",
+      "Custom reward = JSON output purity + gameplay correctness + strategic bonuses",
+      "Stack-based iterative engine supporting 50×50 grids on AMD Instinct MI300X (192GB HBM3, ROCm/BFloat16)",
+      "Recognised by AMD for sophisticated technical implementation"
+    ],
+    "tech": ["Python", "PyTorch", "Unsloth", "GRPO", "LoRA", "Qwen2.5", "ROCm", "BFloat16"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/AMD_RL_Hackathon",
+      "caseStudy": "/projects/alphaq-minesweeper"
+    },
+    "image": "/projects/alphaq.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "LLMs struggle with tasks requiring iterative reasoning under partial information. Minesweeper is a clean testbed: probabilistic, partially observable, and demands consistent JSON output across many turns. Most off-the-shelf models either hallucinate structure or fail to maintain constraints across moves.",
+      "approach": "GRPO (Group Relative Policy Optimization) fine-tuning on Qwen2.5-14B-Instruct via Unsloth + LoRA, with a custom reward combining JSON-output purity, gameplay correctness, and strategic bonuses. Phase-stratified curriculum across 6 difficulty levels on 4,000 samples. Trained on AMD Instinct MI300X (192GB HBM3) under ROCm in BFloat16. A stack-based iterative engine handles boards up to 50×50 without re-prompting full state.",
+      "metrics": [
+        { "label": "Base model", "value": "Qwen2.5-14B-Instruct" },
+        { "label": "Method", "value": "GRPO + LoRA" },
+        { "label": "Training samples", "value": "4,000" },
+        { "label": "Difficulty levels", "value": "6 (curriculum)" },
+        { "label": "Max grid", "value": "50×50" },
+        { "label": "Hardware", "value": "AMD MI300X · 192GB HBM3" }
+      ],
+      "techDecisions": [
+        { "decision": "GRPO over PPO", "why": "Sample-efficient on small datasets and no separate value-model overhead." },
+        { "decision": "Phase-stratified curriculum", "why": "Starting easy prevents reward collapse and unstable rollouts on hard boards." },
+        { "decision": "Composite reward (JSON + gameplay + strategy)", "why": "Single signal kept outputs both syntactically valid and strategically coherent." },
+        { "decision": "Stack-based iterative engine", "why": "Avoids re-prompting full state on every move; scales to 50×50 without context blow-up." },
+        { "decision": "AMD MI300X (192GB HBM3)", "why": "Fits the 14B model plus GRPO group rollouts in a single device." }
+      ]
+    }
+  },
+  {
     "id": "gitgambit",
+    "year": 2026,
     "title": "GitGambit",
     "subtitle": "One Place for a Developer's Public GitHub Story",
     "badge": "Developer Analytics",
@@ -520,31 +405,135 @@
     }
   },
   {
-    "id": "healthbooker",
-    "title": "HealthBooker",
-    "subtitle": "Blockchain-Powered Medical Records Management Platform",
-    "badge": "Featured Project",
-    "badgeColor": "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
-    "track": "web3",
+    "id": "ionia",
+    "year": 2025,
+    "title": "iONIA Platform",
+    "subtitle": "AI-Powered Competitive Exam Preparation System",
+    "badge": "CrftHQ Cohort 1",
+    "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+    "track": "full-stack-ai",
     "highlights": [
-      "AES-256-CBC encrypted medical records with IPFS decentralized storage",
-      "Ethereum smart contracts for patient-controlled granular access permissions",
-      "SHA-256 blockchain integrity verification with tamper detection",
-      "RainbowKit wallet integration for cryptographic record encryption + access control",
-      "Full transaction history with on-chain proof of all access and modifications"
+      "NTA-replica exam interface with adaptive testing - 1,360+ precision-targeted questions",
+      "OCR-powered handwritten-answer assessment with real-time evaluation",
+      "Three-tier admin (super-admin / admin / student) serving 50+ active students",
+      "Selected for CrftHQ Cohort 1 accelerator program"
     ],
-    "tech": ["React", "Vite", "Node.js", "Express", "MongoDB", "Ethereum", "IPFS", "Solidity", "RainbowKit", "ethers.js"],
+    "tech": ["Next.js", "Express.js", "MongoDB", "FastAPI", "OCR"],
     "links": {
-      "demo": "",
-      "github": "https://github.com/Ronit-Raj9/HealthCares"
+      "demo": "https://ionia-next.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/ionia-next",
+      "caseStudy": "/projects/ionia"
     },
-    "image": "/projects/healthbooker.png",
-    "category": "Healthcare/Blockchain",
+    "image": "/projects/ionia.png",
+    "category": "EdTech",
     "featured": true,
-    "completeness": true
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Indian competitive exam prep (JEE, NEET, etc.) needs an NTA-replica testing experience plus assessment of handwritten subjective answers - not just MCQs. Existing platforms are MCQ-only or rely on manual grading that doesn't scale beyond a handful of students.",
+      "approach": "Next.js + Express + MongoDB stack with a dedicated FastAPI service for OCR-based evaluation of scanned handwritten responses. Adaptive testing engine across a 1,360+ question bank. Three-tier admin (super-admin / admin / student) for test, question, and user management. Selected for CrftHQ Cohort 1.",
+      "metrics": [
+        { "label": "Active students", "value": "50+" },
+        { "label": "Question bank", "value": "1,360+" },
+        { "label": "Admin tiers", "value": "3 (super / admin / student)" },
+        { "label": "Recognition", "value": "CrftHQ Cohort 1" }
+      ],
+      "techDecisions": [
+        { "decision": "Two-service split (Next.js + FastAPI)", "why": "Keeps ML dependencies off the Node runtime; OCR service scales independently of the web app." },
+        { "decision": "MongoDB for the question bank", "why": "Schema flexibility - questions are heterogeneous (numerical, MCQ, subjective with image)." },
+        { "decision": "Adaptive over fixed-test", "why": "Students see progress instead of hitting fixed-difficulty walls; better retention." },
+        { "decision": "OCR for handwriting", "why": "Students upload scans of their actual handwritten work - no forced switch to a tablet flow." }
+      ]
+    }
+  },
+  {
+    "id": "genetrust",
+    "year": 2025,
+    "title": "GeneTrust AI Studio",
+    "subtitle": "AI-Powered CRISPR Intelligence Platform",
+    "badge": "HackHazards '25 Winner",
+    "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+    "track": "ml",
+    "highlights": [
+      "DNABERT-based genetic sequence analysis served via FastAPI + PyTorch",
+      "Next.js + TypeScript front-end with real-time ranking + prediction",
+      "RAG over published literature for cited-source results",
+      "On-chain provenance via Base Chain - every analysis hash anchored",
+      "HackHazards '25 Winner — top of 800+ projects"
+    ],
+    "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT", "RAG", "Base Chain"],
+    "links": {
+      "demo": "https://genetrust.vercel.app/",
+      "github": "https://github.com/Ronit-Raj9/hackhazard-project-genetrust",
+      "caseStudy": "/projects/genetrust"
+    },
+    "image": "/projects/genetrust.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Researchers using CRISPR for gene editing need fast, structured analysis of genetic sequences and predicted edit outcomes. Existing tools either run heavy locally or require deep bioinformatics tooling. The gap: a web platform where biologists submit a sequence and get model-driven analysis with verifiable provenance.",
+      "approach": "DNABERT (a BERT pre-trained on the human genome) for sequence understanding, served via a FastAPI inference layer behind a Next.js + TypeScript front-end. Real-time ranking of edit candidates. Each analysis hash anchored on Base Chain for research-grade provenance. A RAG layer cites the published literature behind each prediction.",
+      "metrics": [
+        { "label": "Backbone", "value": "DNABERT" },
+        { "label": "Inference", "value": "PyTorch + FastAPI" },
+        { "label": "Provenance", "value": "Base Chain" },
+        { "label": "Front-end", "value": "Next.js + TypeScript" },
+        { "label": "Recognition", "value": "HackHazards '25 Winner (800+ projects)" }
+      ],
+      "techDecisions": [
+        { "decision": "DNABERT over training from scratch", "why": "Pre-trained genome embeddings give a credible starting point for downstream classification with limited labeled data." },
+        { "decision": "FastAPI inference layer", "why": "Async by default; easy per-tenant scaling once research traffic grows." },
+        { "decision": "Base Chain anchoring", "why": "Research integrity matters more than tokenization; L2 economics keep cost per analysis well under $0.01." },
+        { "decision": "RAG over literature", "why": "Biologists need the cited paper, not just a number - RAG keeps the model honest." }
+      ]
+    }
+  },
+  {
+    "id": "aisehack-pm25-forecasting",
+    "year": 2026,
+    "title": "AISEHack Phase 2 - PM2.5 Forecasting",
+    "subtitle": "Episode-Aware Country-Scale Air Pollution Forecasting",
+    "badge": "Team Vega · Finalists (IIIT Hyderabad)",
+    "badgeColor": "bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/30",
+    "track": "ml",
+    "highlights": [
+      "Built a country-scale PM2.5 forecasting system over India from WRF-Chem gridded data",
+      "Trained for Phase 2 constraints: only 10-hour historical inputs and 16-step future predictions",
+      "Optimized for both global accuracy and episode-aware performance during extreme pollution events",
+      "Reached 0.8384 leaderboard score with Team Vega and qualified for finals at IIIT Hyderabad",
+      "Baseline runs: https://wandb.ai/ronitraj/aisehack_final | Final benchmark: https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj"
+    ],
+    "tech": ["Python", "PyTorch", "NumPy", "FNO", "ConvLSTM", "Kaggle", "Weights & Biases"],
+    "links": {
+      "github": "https://github.com/Ronit-Raj9/aisehack_phase2_submission",
+      "demo": "https://wandb.ai/ronitraj/aisehack?nw=nwuserronitraj",
+      "caseStudy": "/projects/aisehack-pm25-forecasting"
+    },
+    "image": "/projects/aisehack-pm25.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Short-term PM2.5 forecasting over India is difficult because pollution dynamics are strongly nonlinear and performance on average conditions often breaks down during severe episodes. Phase 2 explicitly evaluates both global quality and episodic behavior while restricting inference to a 10-hour lookback window.",
+      "approach": "Built an episode-aware spatiotemporal forecasting pipeline over a fixed 140x124 India grid, predicting 16 future steps from 10-hour history. Trained on representative seasonal months from 2016 and inferred on unseen 2017 months. Used a hybrid deep-learning setup inspired by operator-learning and recurrent spatiotemporal modeling, with validation geared toward both global and episode metrics.",
+      "metrics": [
+        { "label": "Leaderboard score", "value": "0.8384" },
+        { "label": "Team", "value": "Team Vega" },
+        { "label": "Forecast horizon", "value": "16 timesteps" },
+        { "label": "Input history", "value": "10 hours" },
+        { "label": "Outcome", "value": "Finalists at IIIT Hyderabad" }
+      ],
+      "techDecisions": [
+        { "decision": "Episode-aware objective design", "why": "Phase 2 scoring emphasizes both global SMAPE and behavior on episodic grid points, so training/validation targeted this trade-off directly." },
+        { "decision": "Spatiotemporal modeling over fixed grid", "why": "The task is naturally a sequence-of-fields problem; learning spatial transport and temporal evolution jointly improves stability." },
+        { "decision": "Reproducibility via W&B benchmarks", "why": "Baseline and final experiments were tracked as separate runs to compare improvements and avoid overfitting to isolated submissions." },
+        { "decision": "Notebook-first end-to-end pipeline", "why": "Competition requires a single executable submission notebook producing `/kaggle/working/preds.npy` with exact shape constraints." }
+      ]
+    }
   },
   {
     "id": "zerokey",
+    "year": 2026,
     "title": "ZeroKeyCLI",
     "subtitle": "AdSense for the Terminal",
     "badge": "Monad Blitz · 4th Place",
@@ -585,7 +574,57 @@
     }
   },
   {
+    "id": "typenad",
+    "year": 2026,
+    "title": "TypeNad",
+    "subtitle": "Competitive On-Chain Typing Arena",
+    "badge": "LNMHacks 8.0",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "web3",
+    "highlights": [
+      "PvP typing game on Monad blockchain with staking mechanics",
+      "Real-time 1v1 duels - speed and accuracy determine on-chain winners",
+      "Next.js + Monad architecture for high-throughput transactions",
+      "Deployed on NodeOpsHQ"
+    ],
+    "tech": ["Next.js", "TypeScript", "Monad", "Solidity", "Postgres", "NodeOpsHQ"],
+    "links": {
+      "demo": "https://typenad.app/",
+      "github": "https://github.com/Ronit-Raj9/typenad"
+    },
+    "image": "/projects/typenad.png",
+    "category": "Blockchain",
+    "featured": true,
+    "completeness": true
+  },
+  {
+    "id": "healthbooker",
+    "year": 2025,
+    "title": "HealthBooker",
+    "subtitle": "Blockchain-Powered Medical Records Management Platform",
+    "badge": "Featured Project",
+    "badgeColor": "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
+    "track": "web3",
+    "highlights": [
+      "AES-256-CBC encrypted medical records with IPFS decentralized storage",
+      "Ethereum smart contracts for patient-controlled granular access permissions",
+      "SHA-256 blockchain integrity verification with tamper detection",
+      "RainbowKit wallet integration for cryptographic record encryption + access control",
+      "Full transaction history with on-chain proof of all access and modifications"
+    ],
+    "tech": ["React", "Vite", "Node.js", "Express", "MongoDB", "Ethereum", "IPFS", "Solidity", "RainbowKit", "ethers.js"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/HealthCares"
+    },
+    "image": "/projects/healthbooker.png",
+    "category": "Healthcare/Blockchain",
+    "featured": true,
+    "completeness": true
+  },
+  {
     "id": "aadhaar-zero",
+    "year": 2026,
     "title": "Aadhaar-Zero",
     "subtitle": "Privacy-Preserving KYC with Zero-Knowledge Proofs",
     "badge": "DSCI CSIC 1.0 · Stage III Shortlist",
@@ -629,30 +668,8 @@
     }
   },
   {
-    "id": "typenad",
-    "title": "TypeNad",
-    "subtitle": "Competitive On-Chain Typing Arena",
-    "badge": "LNMHacks 8.0",
-    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
-    "track": "web3",
-    "highlights": [
-      "PvP typing game on Monad blockchain with staking mechanics",
-      "Real-time 1v1 duels - speed and accuracy determine on-chain winners",
-      "Next.js + Monad architecture for high-throughput transactions",
-      "Deployed on NodeOpsHQ"
-    ],
-    "tech": ["Next.js", "TypeScript", "Monad", "Solidity", "Postgres", "NodeOpsHQ"],
-    "links": {
-      "demo": "https://typenad.app/",
-      "github": "https://github.com/Ronit-Raj9/typenad"
-    },
-    "image": "/projects/typenad.png",
-    "category": "Blockchain",
-    "featured": true,
-    "completeness": true
-  },
-  {
     "id": "ecell-platform",
+    "year": 2025,
     "title": "E-Cell Management Platform",
     "subtitle": "Entrepreneurship Cell Website & Admin System",
     "badge": "College Project",
@@ -677,6 +694,7 @@
   },
   {
     "id": "recommendation-system-gnn",
+    "year": 2024,
     "title": "GraphRec Social Recommender",
     "subtitle": "Attention-Based GNN for Social Recommendation (from scratch)",
     "badge": "Graph Neural Networks",
@@ -718,6 +736,7 @@
   },
   {
     "id": "legalease",
+    "year": 2025,
     "title": "LegalEase",
     "subtitle": "AI-Powered Legal Compliance & Tax Automation for Indian SMEs",
     "badge": "Trillion Dollar GenAI · 2nd Place",
@@ -761,6 +780,7 @@
   },
   {
     "id": "rescroll",
+    "year": 2025,
     "title": "ReScroll",
     "subtitle": "TikTok for Research Papers",
     "badge": "AI-Powered",
@@ -785,6 +805,7 @@
   },
   {
     "id": "mindsera",
+    "year": 2025,
     "title": "Mindsera",
     "subtitle": "AI-Powered Knowledge Tracking & Learning Ecosystem",
     "badge": "Featured Project",
@@ -809,6 +830,7 @@
   },
   {
     "id": "first-website",
+    "year": 2019,
     "title": "First Website",
     "subtitle": "Where It All Started - Static HTML/CSS, 2019",
     "badge": "First Commit · 2019",

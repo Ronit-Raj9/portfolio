@@ -94,11 +94,11 @@
     "category": "other"
   },
   {
-    "id": "un-digital-trade-rie-2026",
+    "id": "aisehack2026-phase2",
     "year": "2026",
-    "title": "UN Global Hackathon - Digital Trade Regulatory Analysis",
-    "subtitle": "Regulatory Intelligence Engine (RIE) · RDTII Pillars 6 & 7",
-    "description": "Built a hexagonal monorepo that maps statutory legal text to RDTII digital-governance indicators with span-level citations: Docling/PyMuPDF extraction, BGE-M3 + Qdrant hybrid retrieval, constrained LLM classification, 4-gate verification (span/verbatim/NLI/self-consistency), and two-layer output (verified evidence + human-confirmed score recommendation). LangGraph orchestration with HITL audit UI (Streamlit + React) and FastAPI.",
+    "title": "ANRF AISEHack Phase 2 - Team Vega",
+    "subtitle": "Pollution Forecasting (IIT Delhi) · Finalists at IIIT Hyderabad",
+    "description": "Built an episode-aware PM2.5 forecasting pipeline for India using WRF-Chem gridded data (10-hour lookback -> 16-hour forecasts). Team Vega recorded a 0.8384 leaderboard score and qualified for finals at IIIT Hyderabad.",
     "category": "other"
   },
   {
@@ -118,19 +118,19 @@
     "category": "other"
   },
   {
-    "id": "aisehack2026-phase2",
-    "year": "2026",
-    "title": "ANRF AISEHack Phase 2 - Team Vega",
-    "subtitle": "Pollution Forecasting (IIT Delhi) · Finalists at IIIT Hyderabad",
-    "description": "Built an episode-aware PM2.5 forecasting pipeline for India using WRF-Chem gridded data (10-hour lookback -> 16-hour forecasts). Team Vega recorded a 0.8384 leaderboard score and qualified for finals at IIIT Hyderabad.",
-    "category": "other"
-  },
-  {
     "id": "param-pilot-2025",
     "year": "2025",
     "title": "PARAM Production Pilot - ABV-IIITM Gwalior",
     "subtitle": "C3iHub, IIT Kanpur · Blockchain Academic Credentials",
     "description": "Shipped and piloted PARAM during a Software Engineer internship at C3iHub, IIT Kanpur - a blockchain academic credential platform for ABV-IIITM Gwalior. Covers semester transcripts and degree certificates (CSV bulk upload → DRAFT → REVIEWED → APPROVED → ISSUED), curriculum versioning, SGPA/CGPA, correction/revaluation flows, ERC-721 mint on Base Sepolia (84532) with document-hash anchoring, Privy-managed student wallets, and public verification (share links, QR, API). Production stack: Vercel (Next.js 16) + EC2 (Caddy, Express 5, BullMQ worker, Redis) + Supabase Postgres; 30+ Prisma models; Vitest, Forge, and Playwright test tiers in CI.",
+    "category": "other"
+  },
+  {
+    "id": "un-digital-trade-rie-2026",
+    "year": "2026",
+    "title": "UN Global Hackathon - Digital Trade Regulatory Analysis",
+    "subtitle": "Regulatory Intelligence Engine (RIE) · RDTII Pillars 6 & 7",
+    "description": "Built a hexagonal monorepo that maps statutory legal text to RDTII digital-governance indicators with span-level citations: Docling/PyMuPDF extraction, BGE-M3 + Qdrant hybrid retrieval, constrained LLM classification, 4-gate verification (span/verbatim/NLI/self-consistency), and two-layer output (verified evidence + human-confirmed score recommendation). LangGraph orchestration with HITL audit UI (Streamlit + React) and FastAPI.",
     "category": "other"
   }
 ]

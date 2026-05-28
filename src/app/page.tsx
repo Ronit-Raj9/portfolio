@@ -898,11 +898,12 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
               {FEATURED_PROJECTS.slice(0, showAllFeaturedProjects ? undefined : 6).map((project, index) => (
-                <ProjectCardCompact
+                <div
                   key={project.id}
-                  project={project}
-                  index={index}
-                />
+                  className={!showAllFeaturedProjects && index >= 3 ? "hidden sm:block" : ""}
+                >
+                  <ProjectCardCompact project={project} index={index} />
+                </div>
               ))}
             </div>
 
