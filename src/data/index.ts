@@ -50,12 +50,30 @@ export interface Experience {
   link?: string
 }
 
+export type AchievementCategory = 'featured' | 'speaker' | 'other'
+
 export interface Achievement {
   id: string
   year: string
   title: string
   subtitle: string
   description: string
+  category: AchievementCategory
+  prize?: string
+}
+
+export interface AchievementCategoryGroup {
+  key: AchievementCategory
+  label: string
+  items: Achievement[]
+}
+
+const ACHIEVEMENT_CATEGORY_ORDER: AchievementCategory[] = ['speaker', 'featured', 'other']
+
+export const ACHIEVEMENT_CATEGORY_LABELS: Record<AchievementCategory, string> = {
+  featured: 'Hackathon Wins',
+  speaker: 'Speaking',
+  other: 'More Achievements',
 }
 
 export type ProjectTrack = 'ml' | 'full-stack-ai' | 'web3'
@@ -239,7 +257,15 @@ import navigationData from './navigation.json'
 
 export const profile: Profile = profileData as Profile
 export const experience: Experience[] = experienceData as Experience[]
-export const achievements: Achievement[] = achievementsData as Achievement[]
+const achievementsRaw: Achievement[] = achievementsData as Achievement[]
+
+export const achievementGroups: AchievementCategoryGroup[] = ACHIEVEMENT_CATEGORY_ORDER.map((key) => ({
+  key,
+  label: ACHIEVEMENT_CATEGORY_LABELS[key],
+  items: achievementsRaw.filter((a) => a.category === key),
+}))
+
+export const achievements: Achievement[] = achievementGroups.flatMap((group) => group.items)
 export const allProjects: Project[] = projectsData as Project[]
 export const skills: Skills = skillsData as Skills
 export const contact: ContactData = contactData as ContactData

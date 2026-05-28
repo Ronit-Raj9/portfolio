@@ -23,12 +23,13 @@ import GitHubActivityBadge from '@/components/GitHubActivityBadge'
 import {
   profile,
   experience as WORK_EXPERIENCE,
-  achievements as ACHIEVEMENTS,
+  achievementGroups as ACHIEVEMENT_GROUPS,
   featuredProjects as FEATURED_PROJECTS,
   moreProjects as MORE_PROJECTS,
   technicalSkills as TECHNICAL_SKILLS,
   allSkills as ALL_SKILLS,
-  type Project
+  type Project,
+  type Achievement
 } from '@/data'
 
 // ============================================================================
@@ -391,6 +392,33 @@ function GitHubSection() {
   )
 }
 
+// Achievement Card
+function AchievementCard({ achievement, index }: { achievement: Achievement; index: number }) {
+  return (
+    <motion.div
+      key={achievement.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: Math.min(index * 0.05, 0.3) }}
+      className="p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors"
+    >
+      <div className="flex flex-wrap items-center gap-3 mb-2">
+        <span className="text-sm text-muted-foreground">{achievement.year}</span>
+        <span className="text-muted-foreground/30">-</span>
+        <h3 className="font-medium">{achievement.title}</h3>
+        {achievement.prize && (
+          <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+            {achievement.prize}
+          </span>
+        )}
+      </div>
+      <p className="text-sm text-muted-foreground mb-1">{achievement.subtitle}</p>
+      <p className="text-sm text-foreground/70 leading-relaxed">{achievement.description}</p>
+    </motion.div>
+  )
+}
+
 // ============================================================================
 // MAIN PAGE - Adithya's optimal ordering
 // ============================================================================
@@ -404,6 +432,8 @@ export default function Home() {
   const [expandedExperiences, setExpandedExperiences] = useState<{ [key: string]: boolean }>({})
   const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({})
   const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
+  const [showAllAchievements, setShowAllAchievements] = useState(false)
+  const otherAchievements = ACHIEVEMENT_GROUPS.find((g) => g.key === 'other')?.items ?? []
   const [selectedSkillFilter, setSelectedSkillFilter] = useState<string>("All Skills")
   const [showMoreAbout, setShowMoreAbout] = useState(false)
 
@@ -876,20 +906,48 @@ export default function Home() {
               Achievements
             </h2>
 
-            <div className="space-y-4">
-              {ACHIEVEMENTS.map((achievement, index) => (
-                <motion.div key={achievement.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  className="p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className="text-sm text-muted-foreground">{achievement.year}</span>
-                    <span className="text-muted-foreground/30">-</span>
-                    <h3 className="font-medium">{achievement.title}</h3>
+            <div className="space-y-10">
+              {ACHIEVEMENT_GROUPS.filter((group) => group.key !== 'other').map((group) => (
+                <div key={group.key}>
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                    {group.label}
+                  </h3>
+                  <div className="space-y-4">
+                    {group.items.map((achievement, index) => (
+                      <AchievementCard key={achievement.id} achievement={achievement} index={index} />
+                    ))}
                   </div>
-                  <p className="text-sm text-muted-foreground mb-1">{achievement.subtitle}</p>
-                  <p className="text-sm text-foreground/70 leading-relaxed">{achievement.description}</p>
-                </motion.div>
+                </div>
               ))}
+
+              {otherAchievements.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                    More Achievements
+                  </h3>
+                  <div className="space-y-4">
+                    {(showAllAchievements ? otherAchievements : otherAchievements.slice(0, 3)).map((achievement, index) => (
+                      <AchievementCard key={achievement.id} achievement={achievement} index={index} />
+                    ))}
+                  </div>
+
+                  {otherAchievements.length > 3 && (
+                    <div className="text-center mt-8">
+                      <button
+                        onClick={() => setShowAllAchievements(!showAllAchievements)}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mx-auto"
+                      >
+                        {showAllAchievements
+                          ? 'Show fewer achievements'
+                          : `Show all ${otherAchievements.length} more achievements`}
+                        <svg className={cn("w-4 h-4 transition-transform", showAllAchievements && "rotate-180")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
