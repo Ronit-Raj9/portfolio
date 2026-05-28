@@ -30,9 +30,9 @@ export async function GET(request: Request) {
     }
 
     // Fetch basic user data
-    const userResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}`, { 
+    const userResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}`, {
       headers,
-      cache: 'no-store' // Always fetch fresh data
+      next: { revalidate: 3600 } // ISR: revalidate hourly
     });
     
     if (!userResponse.ok) {
@@ -51,9 +51,9 @@ export async function GET(request: Request) {
     }
 
     // Fetch repositories data 
-    const reposResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}/repos?per_page=100&sort=updated`, { 
+    const reposResponse = await fetch(`${GITHUB_API_URL}/users/${USERNAME}/repos?per_page=100&sort=updated`, {
       headers,
-      cache: 'no-store' // Always fetch fresh data
+      next: { revalidate: 3600 } // ISR: revalidate hourly
     });
     
     if (!reposResponse.ok) {
@@ -181,7 +181,7 @@ export async function GET(request: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(graphqlQuery),
-      cache: 'no-store' // Always fetch fresh data
+      next: { revalidate: 3600 } // ISR: revalidate hourly
     });
 
     if (!graphqlResponse.ok) {
@@ -284,9 +284,7 @@ export async function GET(request: Request) {
       lastUpdated: new Date().toISOString(),
     }, {
       headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
       }
     });
   } catch (error) {

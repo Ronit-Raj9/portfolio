@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { contact } from "@/data"
@@ -11,11 +12,26 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaEnvelope,
   FaGithub,
   FaLinkedin,
-  FaTwitter,
+  FaXTwitter,
   SiKaggle,
 }
 
 export default function Contact() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const name = String(formData.get("name") ?? "")
+    const email = String(formData.get("email") ?? "")
+    const message = String(formData.get("message") ?? "")
+
+    const subject = `Portfolio contact from ${name}`
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`
+
+    window.location.href = `mailto:dev.ronitraj@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`
+  }
+
   return (
     <div className="container py-12 px-4">
       <motion.div
@@ -68,13 +84,14 @@ export default function Contact() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mt-16 max-w-2xl mx-auto"
       >
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium">
               {contact.formLabels.name}
             </label>
             <input
               id="name"
+              name="name"
               type="text"
               placeholder={contact.formLabels.namePlaceholder}
               className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-accent/10 focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -86,6 +103,7 @@ export default function Contact() {
             </label>
             <input
               id="email"
+              name="email"
               type="email"
               placeholder={contact.formLabels.emailPlaceholder}
               className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-accent/10 focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -97,6 +115,7 @@ export default function Contact() {
             </label>
             <textarea
               id="message"
+              name="message"
               placeholder={contact.formLabels.messagePlaceholder}
               rows={5}
               className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-accent/10 focus:outline-none focus:ring-2 focus:ring-primary/50"

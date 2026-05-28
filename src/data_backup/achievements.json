@@ -4,21 +4,21 @@
   "year": "2026",
   "title": "Speaker - Open Source Summit India 2026",
   "subtitle": "Linux Foundation · 40-Minute Session",
-  "description": "Accepted to speak at Open Source Summit India 2026 (June 16-17, Hyderabad) on 'Governing the Ungovernable: Security and Compliance for AI Agents in Open Source Projects'. Originally submitted as a lightning talk — upgraded to a full 40-minute session by the program committee."
+  "description": "Accepted to speak at Open Source Summit India 2026 (June 16-17, Hyderabad) on 'Governing the Ungovernable: Security and Compliance for AI Agents in Open Source Projects'. Originally submitted as a lightning talk - upgraded to a full 40-minute session by the program committee."
   },
   {
   "id": "monadblitz2026",
   "year": "2026",
   "title": "4th Place - Monad Blitz New Delhi",
   "subtitle": "Consumer AI Agent Track",
-  "description": "Built ZeroKeyCLI — AdSense for the terminal. Watch a 5-second ASCII ad, earn $0.001 USDC on Monad, get a free AI coding response. Two x402 micropayment transactions settle on-chain before the ad finishes. No wallet setup, no subscription, no gas fees."
+  "description": "Built ZeroKeyCLI - AdSense for the terminal. Watch a 5-second ASCII ad, earn $0.001 USDC on Monad, get a free AI coding response. Two x402 micropayment transactions settle on-chain before the ad finishes. No wallet setup, no subscription, no gas fees."
   },
   {
     "id": "amdrlhackathon2026",
     "year": "2026",
     "title": "Special Mention - AMD AI RL Hackathon",
     "subtitle": "IIT Delhi · Track 2: Deep RL for Minesweeper",
-    "description": "Built AlphaQ — a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
+    "description": "Built AlphaQ - a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
   },
   {
   "id": "lnmhacks8.0",

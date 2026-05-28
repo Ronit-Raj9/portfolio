@@ -1,13 +1,13 @@
 {
   "name": "Ronit Raj",
-  "title": "Full Stack AI Engineer",
-  "tagline": "Full Stack AI engineer who builds production systems end-to-end — from GRPO fine-tuning Qwen2.5-14B on AMD MI300X to 79%-OCR vision-language RAG pipelines.",
-  "credentials": "SIH 2024 Winner · AMD AI Hackathon · Monad Blitz 4th · Co-Founder @ Garudex Labs",
+  "title": "Open Source Developer & Full Stack AI Engineer",
+  "tagline": "Open source developer and speaker at Open Source Summit India 2026 (Mumbai) - building production AI and full-stack systems from GRPO on AMD MI300X to 79%-OCR RAG pipelines.",
+  "credentials": "OSS India 2026 Speaker · NHA PM-JAY Runner-Up · SIH 2024 Winner · GitMesh Maintainer",
   "proofPoints": [
+    "OSS India 2026 Speaker",
+    "NHA PM-JAY Runner-Up",
     "SIH 2024 Winner",
-    "AMD AI Hackathon",
-    "Monad Blitz 4th",
-    "Co-Founder @ Garudex Labs"
+    "GitMesh Maintainer"
   ],
   "email": "dev.ronitraj@gmail.com",
   "location": "Gwalior, India",
@@ -18,25 +18,31 @@
     "linkedin": "https://www.linkedin.com/in/ronitrajai/",
     "twitter": "https://x.com/ronit__raj",
     "kaggle": "https://www.kaggle.com/ronitraj1",
-    "website": "https://www.ronitraj.me/"
+    "website": "https://ronitraj.me/"
   },
   "availability": {
     "status": "available",
     "message": "Open to discussing AI/ML projects, full-stack development, or startup collaborations."
   },
   "about": {
-    "summary": "I build AI systems that solve real problems. From training a GRPO-fine-tuned Qwen2.5-14B agent on AMD MI300X to shipping a 79%-OCR military RAG that won Smart India Hackathon 2024, I work across the full stack — model training, fine-tuning, retrieval, agents, and the production infra that makes them ship. Open-source maintainer; co-founder at Garudex Labs.",
+    "summary": "I'm an open source developer and speaker at Open Source Summit India 2026 in Mumbai (Linux Foundation) on AI agent security and compliance in OSS projects - upgraded from lightning talk to a 40-minute session. I build production AI systems end-to-end: NHA × IISc PM-JAY Runner-Up for STG claim adjudication; PARAM blockchain credentials for ABV-IIITM Gwalior; GRPO on AMD MI300X; 79%-OCR military RAG (Smart India Hackathon 2024). Maintainer of GitMesh; co-founder at Garudex Labs. On the web since 2019 - my first project was a static HTML/CSS site; the arc since then is what matters.",
     "sections": [
+      {
+        "title": "Where It Started",
+        "paragraphs": [
+          "In 2019 I shipped my first website - a static hotel landing page with responsive layout, a mobile side nav, and vanilla JavaScript (still on GitHub as first-website). No framework, no backend - just HTML, CSS, and curiosity. That foundation is the through-line to today: PARAM on Base Sepolia, GitGambit over the GitHub API, PM-JAY pipelines on Gemma, and a 40-minute session at OSS India 2026."
+        ]
+      },
       {
         "title": "My Journey in AI",
         "paragraphs": [
-          "I started with a simple question at IIIT Gwalior: how do you make complex systems actually work? That curiosity grew into building production AI — from military intelligence platforms to on-chain applications. Winning Smart India Hackathon 2024 with a 79%-accuracy RAG system taught me the lesson that shapes everything I build: great AI isn't fancy architectures, it's shipping systems that hold up in production."
+          "I started with a simple question at IIIT Gwalior: how do you make complex systems actually work? That curiosity grew into building production AI - from military intelligence platforms to on-chain applications. Winning Smart India Hackathon 2024 with a 79%-accuracy RAG system taught me the lesson that shapes everything I build: great AI isn't fancy architectures, it's shipping systems that hold up in production."
         ]
       },
       {
         "title": "AI Meets Blockchain",
         "paragraphs": [
-          "I'm fascinated by systems that combine intelligence with decentralization — on-chain typing arenas on Monad, NFT-based academic credentials, AdSense for terminals settled in micropayments. The interesting work isn't AI in smart contracts; it's building trustless systems where predictions and data provenance are verifiable on-chain."
+          "I'm fascinated by systems that combine intelligence with decentralization - on-chain typing arenas on Monad, NFT-based academic credentials, AdSense for terminals settled in micropayments. The interesting work isn't AI in smart contracts; it's building trustless systems where predictions and data provenance are verifiable on-chain."
         ]
       },
       {
@@ -48,7 +54,7 @@
       {
         "title": "Technical Approach",
         "paragraphs": [
-          "PyTorch and Transformers for models. FastAPI and Next.js for delivery. Smart contracts when decentralization adds real value. As an open-source maintainer I focus on solutions other developers can read, deploy, and extend — because the best AI is the one that ships and keeps working."
+          "PyTorch and Transformers for models. FastAPI and Next.js for delivery. Smart contracts when decentralization adds real value. As an open source developer and OSS India 2026 speaker, I focus on secure, compliant agent tooling and code other developers can read, deploy, and extend - because the best AI is the one that ships and keeps working."
         ]
       }
     ]

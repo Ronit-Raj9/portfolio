@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const project = getProjectBySlug(params.slug)
   if (!project) return { title: "Project not found" }
   return {
-    title: `${project.title} — ${project.subtitle}`,
+    title: `${project.title} - ${project.subtitle}`,
     description: project.caseStudy?.problem ?? project.subtitle,
   }
 }
@@ -174,7 +174,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                     key={i}
                     className="flex items-start gap-2 text-[15px] text-foreground/85 leading-relaxed"
                   >
-                    <span className="text-muted-foreground/50 mt-1">—</span>
+                    <span className="text-muted-foreground/50 mt-1">-</span>
                     <span>{h}</span>
                   </li>
                 ))}

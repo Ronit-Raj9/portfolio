@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import Analytics from '@/components/Analytics'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -52,24 +55,12 @@ export const metadata: Metadata = {
     siteName: 'Ronit Raj Portfolio',
     title: 'Ronit Raj | AI/ML Engineer',
     description: 'SIH 2024 Winner building production AI systems with GNNs and Multimodal LLMs',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Ronit Raj - AI/ML Engineer | SIH 2024 Winner',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ronit Raj | AI/ML Engineer',
     description: 'SIH 2024 Winner building production AI systems with GNNs and Multimodal LLMs',
-    images: ['/twitter-card.jpg'],
     creator: '@ronit__raj',
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
   alternates: {
     canonical: 'https://ronitraj.me',
@@ -85,20 +76,24 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         {/* Google Analytics */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
+        {GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX' && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
         {/* Rybbit Analytics */}
         <Script
           src="https://app.rybbit.io/api/script.js"
@@ -142,9 +137,12 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
-
+            <Footer />
           </div>
         </ThemeProvider>
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
       </body>
     </html>
   )

@@ -8,7 +8,7 @@
     "track": "full-stack-ai",
     "highlights": [
       "Watch a 5s ASCII ad, earn $0.001 USDC, get a free Claude API response",
-      "Two x402 micropayments settle on Monad in under 5 seconds — no wallet, no gas, no subscription",
+      "Two x402 micropayments settle on Monad in under 5 seconds - no wallet, no gas, no subscription",
       "AdPool.sol smart contract manages advertiser deposits + verified impressions",
       "Built with Node.js + ink.js terminal UI, settled on Monad via the x402 HTTP-native payment standard"
     ],
@@ -24,7 +24,7 @@
     "completeness": true,
     "caseStudy": {
       "problem": "Developer-tool monetization is broken: subscriptions exclude casual users, terminals can't show ads, and crypto payments are too high-friction (wallet, gas, sign). Pay-per-use AI inference needs sub-cent settlement that disappears into a normal CLI flow.",
-      "approach": "x402 micropayments on Monad. The user runs the CLI, sees a 5-second ASCII ad, and during those five seconds two micropayments settle on-chain — advertiser pays the user $0.001 USDC, user pays the AI provider for one Claude API response. AdPool.sol manages advertiser deposits and verified impressions. No wallet setup, no gas, no subscription.",
+      "approach": "x402 micropayments on Monad. The user runs the CLI, sees a 5-second ASCII ad, and during those five seconds two micropayments settle on-chain - advertiser pays the user $0.001 USDC, user pays the AI provider for one Claude API response. AdPool.sol manages advertiser deposits and verified impressions. No wallet setup, no gas, no subscription.",
       "metrics": [
         { "label": "Settlement", "value": "2 tx in <5s" },
         { "label": "Per-impression payout", "value": "$0.001 USDC" },
@@ -35,8 +35,137 @@
       "techDecisions": [
         { "decision": "x402 over plain ERC-20 transfers", "why": "HTTP-native payment standard composes cleanly with existing CLI tooling and HTTP middleware." },
         { "decision": "Monad over Ethereum mainnet", "why": "Sub-cent settlement is only economical on a high-throughput L1." },
-        { "decision": "Ink.js terminal UI", "why": "Renders the ad inside the CLI itself — no browser handoff breaks the developer flow." },
+        { "decision": "Ink.js terminal UI", "why": "Renders the ad inside the CLI itself - no browser handoff breaks the developer flow." },
         { "decision": "AdPool.sol verified-impressions", "why": "Advertisers don't pay for fake renders; users aren't blocked by adversarial advertisers." }
+      ]
+    }
+  },
+  {
+    "id": "pmjay-adjudication",
+    "title": "PM-JAY Claim Adjudication",
+    "subtitle": "Automated STG Compliance for Ayushman Bharat",
+    "badge": "NHA × IISc · Runner-Up",
+    "badgeColor": "bg-teal-500/20 text-teal-600 dark:text-teal-400 border-teal-500/30",
+    "track": "ml",
+    "highlights": [
+      "Runner-Up at NHA × IISc AB PM-JAY Healthcare Hackathon (April 2026) - ₹3L prize",
+      "Dual Gemma 3 12B pass per page: document OCR/classification + per-package clinical assessment",
+      "Keyword ∩ VLM intersection fusion (+3.4 clinical F1 vs pure-VLM override on live evaluator)",
+      "Four PM-JAY packages (Severe Anemia, Cholecystectomy, Enteric Fever, TKR) with strict per-page JSON schemas",
+      "Negation-aware extraction, blur scoring, multilingual OCR, filename hints, multi-page rank consistency"
+    ],
+    "tech": ["Gemma 3 12B", "PyMuPDF", "OpenCV", "pyzbar", "Pydantic", "Python", "STG Rules Engine"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/MurtuzaShaikh26/IISC_Healthcare_PS1",
+      "caseStudy": "/projects/pmjay-adjudication"
+    },
+    "image": "/projects/pmjay-adjudication.png",
+    "category": "Healthcare/AI",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "PM-JAY hospitals submit large, messy claim packets-blurry scans, Hindi/English mixes, handwriting, and 20+ document types where pre- vs post-treatment reports look alike. Manual STG review cannot scale; wrong classification or missed negations (e.g. \"no pallor\") directly affect reimbursement decisions.",
+      "approach": "End-to-end pipeline: rasterize PDFs, two cached Gemma 3 12B calls per page (structure + package clinical flags), deterministic keyword layer with 40-char negation lookback, then intersection fusion (keyword AND VLM unless numeric vitals prove otherwise). Package-specific STG engines emit strict-schema JSON per page plus Pass/Conditional/Fail with provenance.",
+      "metrics": [
+        { "label": "Placement", "value": "Runner-Up · ₹3L" },
+        { "label": "Final score", "value": "~0.77" },
+        { "label": "Packages", "value": "4 STG codes" },
+        { "label": "VLM calls", "value": "2 / page" },
+        { "label": "Organizers", "value": "NHA × IISc" }
+      ],
+      "techDecisions": [
+        { "decision": "Intersection (kw ∧ gem) over pure VLM", "why": "Strict-label evaluation punishes false positives; empirically +3.4 clinical F1 vs Gemma-only override." },
+        { "decision": "Dual VLM pass with disk cache", "why": "Separates doc taxonomy from clinical fields; reruns cost zero tokens under the 25.5M budget." },
+        { "decision": "Filename + multi-page rank hints", "why": "Cheap signals recovered mandatory-doc F1 the VLM missed on Indian hospital naming conventions." },
+        { "decision": "Per-package schema strip", "why": "HI.txt rejects any key-order or link-field mismatch-output is compliance-critical, not approximate JSON." }
+      ]
+    }
+  },
+  {
+    "id": "aadhaar-zero",
+    "title": "Aadhaar-Zero",
+    "subtitle": "Privacy-Preserving KYC with Zero-Knowledge Proofs",
+    "badge": "DSCI CSIC 1.0 · Stage III Shortlist",
+    "badgeColor": "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
+    "track": "web3",
+    "highlights": [
+      "Shortlisted among top teams nationwide for Stage III (CSIC 1.0, DSCI) - Privacy-Preserving KYC under Cryptography",
+      "End-to-end digital identity wallet: Aadhaar, PAN, DL, passport credentials with selective attribute disclosure",
+      "Groth16 age verification in-browser (Circom AgeVerifier + snarkjs) with on-chain nullifier anti-replay",
+      "Six smart contracts deployed and verified on Base Sepolia - consent, revocation, issuer/verifier registries, audit trail",
+      "4-step enrollment: AI document forensics, multi-modal liveness, BBS+-style proofs, QR verifier portal",
+      "DPDP Act compliance dashboard - on-chain consent, data minimization, erasure API, Merkle-anchored audit logs"
+    ],
+    "tech": ["Next.js", "React", "Solidity", "Foundry", "Prisma", "PostgreSQL", "snarkjs", "Circom", "viem", "wagmi", "FastAPI"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/aadhaar-zero-new",
+      "caseStudy": "/projects/aadhaar-zero"
+    },
+    "image": "/projects/aadhaar-zero.png",
+    "category": "Web3/Identity",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "KYC forces users to overshare PII-banks and apps see full ID scans while fraudsters replay stolen documents. India’s DPDP Act demands consent trails, minimization, erasure, and unlinkable verification, but most stacks still centralize raw Aadhaar/PAN images.",
+      "approach": "Aadhaar-Zero issues wallet credentials after AI document + liveness checks, then lets holders generate selective-disclosure proofs (attribute pick-list + QR). Groth16 proves age thresholds without revealing DOB; Poseidon nullifiers and on-chain registries block replay and record consent/revocation. PostgreSQL stores session state; Base Sepolia anchors trust; verifier API runs cryptographic + chain checks before approval.",
+      "metrics": [
+        { "label": "Recognition", "value": "CSIC Stage III Shortlist" },
+        { "label": "Organizer", "value": "DSCI · CSIC 1.0" },
+        { "label": "Contracts", "value": "6 on Base Sepolia" },
+        { "label": "API routes", "value": "37+" },
+        { "label": "ZK", "value": "Groth16 + BBS+ flow" }
+      ],
+      "techDecisions": [
+        { "decision": "Dual ZK: Groth16 age + selective disclosure proofs", "why": "Age gates need arithmetic constraints in-circuit; attribute sharing needs a separate proof format for everyday KYC." },
+        { "decision": "On-chain registries over single monolith", "why": "Separates issuer trust, verifier trust, nullifiers, consent, and revocation so each policy rule maps to an auditable contract." },
+        { "decision": "Next.js API routes + Prisma", "why": "One deployable demo app with typed DB models for credentials, verifications, risk, and audit batches." },
+        { "decision": "Merkle audit batches anchored on-chain", "why": "Tamper-evident event log without putting full PII on-chain-only roots and hashes." },
+        { "decision": "AI gate before issuance", "why": "Document forensics and liveness reduce fake enrollments before any credential is signed or anchored." }
+      ]
+    }
+  },
+  {
+    "id": "regulatory-intelligence-engine",
+    "title": "Regulatory Intelligence Engine",
+    "subtitle": "AI-Assisted RDTII Digital Trade Compliance",
+    "badge": "UN Digital Trade Hackathon · 2026",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "ml",
+    "highlights": [
+      "UN Global Hackathon on Using AI for Digital Trade Regulatory Analysis - evidence engine for RDTII indicators",
+      "15-package hexagonal monorepo: frozen contracts, pillar YAML as legal knowledge (12 pillars, depth on 6 & 7)",
+      "LangGraph pipeline: ingest → extract (structure graph) → hybrid RAG → classify → 4-gate verify → HITL review → coverage",
+      "Anti-hallucination design: LLM emits span IDs only; deterministic ID-replacement citations; Layer-2 scores are recommendations",
+      "FastAPI + Postgres + Qdrant; Streamlit and React audit viewers with Accept/Correct/Reject"
+    ],
+    "tech": ["Python", "LangGraph", "FastAPI", "Qdrant", "BGE-M3", "Docling", "PyMuPDF", "Pydantic", "React", "Postgres"],
+    "links": {
+      "demo": "",
+      "github": "",
+      "caseStudy": "/projects/regulatory-intelligence-engine"
+    },
+    "image": "/projects/regulatory-intelligence-engine.png",
+    "category": "LegalTech/AI",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "UN digital-trade benchmarking (RDTII) requires mapping real statutes to policy indicators with defensible evidence. Legal RAG systems routinely hallucinate citations; isolated clause retrieval misses exceptions and definitions in other sections; a confident \"0\" without measured recall is epistemically unsafe for regulators.",
+      "approach": "Regulatory Intelligence Engine (RIE): parent-document hybrid retrieval over a legal structure graph; constrained decoding for indicator IDs; four verification gates (deterministic span checks + NLI + second LLM + self-consistency). Layer 1 is verifiable extraction; Layer 2 is a recommended score band that always requires human confirmation. Pillars and indicators live in YAML-not Python-so all 12 RDTII pillars extend by configuration.",
+      "metrics": [
+        { "label": "Event", "value": "UN Digital Trade · 2026" },
+        { "label": "MVP pillars", "value": "6 & 7 (data governance)" },
+        { "label": "Packages", "value": "15 (uv workspace)" },
+        { "label": "Verification", "value": "4 gates + HITL" },
+        { "label": "Pillar config", "value": "12 (YAML-driven)" }
+      ],
+      "techDecisions": [
+        { "decision": "ID-replacement citations", "why": "The model never authors citation strings-only span IDs resolved by deterministic code, blocking ghost references." },
+        { "decision": "Two-layer output", "why": "Extraction is automatable and gate-checked; scoring is legal judgment and stays a reviewer-confirmed recommendation." },
+        { "decision": "Parent-document retrieval", "why": "Child-chunk search with parent+neighbourhood context recovers cross-section exceptions standard chunking severs." },
+        { "decision": "Pillar-as-data", "why": "Engine stays generic; legal expertise ships in validated YAML + gold sets-add a pillar without refactoring core code." },
+        { "decision": "LangGraph + Postgres checkpointer", "why": "Durable state and interrupt-based human review for flagged claims and absence cases." }
       ]
     }
   },
@@ -92,7 +221,7 @@
     "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
     "track": "ml",
     "highlights": [
-      "Smart India Hackathon 2024 Winner — deployed in defense sector",
+      "Smart India Hackathon 2024 Winner - deployed in defense sector",
       "79% OCR accuracy on complex military documents using a custom-trained pipeline",
       "Vision-Language model integration for multimodal document analysis (text + scans + imagery)",
       "RAG pipeline enabling semantic search across classified document repositories",
@@ -109,8 +238,8 @@
     "featured": true,
     "completeness": true,
     "caseStudy": {
-      "problem": "Defense intelligence relies on dense, multi-page mixed-format documents — scans, maps, captioned imagery — that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
-      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal — a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
+      "problem": "Defense intelligence relies on dense, multi-page mixed-format documents - scans, maps, captioned imagery - that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
+      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal - a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
       "metrics": [
         { "label": "OCR accuracy", "value": "79%" },
         { "label": "Modality", "value": "Vision + Language" },
@@ -119,7 +248,7 @@
       ],
       "techDecisions": [
         { "decision": "Custom OCR over Tesseract", "why": "Military fonts and degraded scans dropped standard pipelines below usable threshold." },
-        { "decision": "Vision-Language embeddings", "why": "A single index serves both text and image queries — no separate image search to maintain." },
+        { "decision": "Vision-Language embeddings", "why": "A single index serves both text and image queries - no separate image search to maintain." },
         { "decision": "RAG over fine-tuning", "why": "Analyst queries are open-ended and document corpora rotate; retrieval beats memorization." },
         { "decision": "LangChain abstraction", "why": "Easy swap of LLM provider as the program of record evolves." }
       ]
@@ -134,7 +263,7 @@
     "track": "ml",
     "highlights": [
       "Submitted to the Meta × PyTorch × Hugging Face OpenEnv Hackathon ($30K prize pool; top finalists interview at Meta and Hugging Face AI teams)",
-      "OpenEnv-compliant RL environment modelling LLM serving as a control problem — batching, KV-cache budget, speculative decoding, quantization, prefill/decode split, priority routing",
+      "OpenEnv-compliant RL environment modelling LLM serving as a control problem - batching, KV-cache budget, speculative decoding, quantization, prefill/decode split, priority routing",
       "Reference PPO agent reliably outperforms Orca / vLLM-style hand-coded heuristics across static, bursty, and adversarial-multitenant workloads",
       "Three deterministic tasks with per-step shaped rewards over throughput, SLO compliance, memory pressure, and cost",
       "Deployed as a Hugging Face Docker Space with the full OpenEnv API surface (/reset, /step, /grader, /baseline, /web)"
@@ -150,7 +279,7 @@
     "featured": true,
     "completeness": true,
     "caseStudy": {
-      "problem": "LLM serving systems make many interdependent decisions per second — batching, KV-cache budget, speculative decoding depth, quantization tier, prefill/decode disaggregation, priority routing — under non-stationary workloads. Hand-coded policies (Orca, vLLM-style heuristics) plateau because the trade-offs shift with every traffic pattern. The Meta × PyTorch × Hugging Face hackathon asked for a true RL environment that exposes this as a learnable control problem.",
+      "problem": "LLM serving systems make many interdependent decisions per second - batching, KV-cache budget, speculative decoding depth, quantization tier, prefill/decode disaggregation, priority routing - under non-stationary workloads. Hand-coded policies (Orca, vLLM-style heuristics) plateau because the trade-offs shift with every traffic pattern. The Meta × PyTorch × Hugging Face hackathon asked for a true RL environment that exposes this as a learnable control problem.",
       "approach": "An OpenEnv-compliant environment modelling the serving control loop. Action space is a typed ServeAction (batch_cap, kv_budget_fraction, speculation_depth, quantization_tier, prefill_decode_split, priority_routing). Observations surface queue depth, p50/p99 TTFT, inter-token latency, throughput, KV occupancy, GPU memory, SLO compliance, and cost-per-1k. Per-step shaped reward over throughput + SLO + memory + cost. Three deterministic tasks (static / bursty / adversarial-multitenant). Reference PPO trained on CPU on the simulator; an OpenAI baseline path is wired in for submission compliance.",
       "metrics": [
         { "label": "Hackathon", "value": "Meta × PyTorch × HF · OpenEnv" },
@@ -161,11 +290,55 @@
         { "label": "Runtime", "value": "Docker Space on Hugging Face" }
       ],
       "techDecisions": [
-        { "decision": "OpenEnv typed Action / Observation contract", "why": "Round-1 grading is automated against the OpenEnv spec — typed schemas plus reset / step / grader / baseline endpoints are non-optional for submission." },
+        { "decision": "OpenEnv typed Action / Observation contract", "why": "Round-1 grading is automated against the OpenEnv spec - typed schemas plus reset / step / grader / baseline endpoints are non-optional for submission." },
         { "decision": "CPU-only deterministic simulator", "why": "Keeps training, grading, and reproducibility cheap and ships the environment as a small Docker image to a Hugging Face Space." },
         { "decision": "Per-step shaped reward (throughput + SLO + memory + cost)", "why": "Pure terminal rewards collapse on bursty/adversarial workloads; per-step shaping gives the policy gradient a stable signal." },
-        { "decision": "PPO as the reference RL agent", "why": "Sample-efficient on the small simulator and a known-good baseline — the goal was demonstrating RL beats heuristics, not chasing SOTA." },
+        { "decision": "PPO as the reference RL agent", "why": "Sample-efficient on the small simulator and a known-good baseline - the goal was demonstrating RL beats heuristics, not chasing SOTA." },
         { "decision": "OpenAI baseline path via in-process runtime", "why": "Submission requires the official OpenAI client; in-process avoids the server having to call itself over HTTP and stays robust on Docker Spaces." }
+      ]
+    }
+  },
+  {
+    "id": "quantumscribe",
+    "title": "QuantumScribe",
+    "subtitle": "OpenEnv RL Environment for LLM Quantum Error Correction",
+    "badge": "META RL Phase 2 · OpenEnv",
+    "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
+    "track": "ml",
+    "highlights": [
+      "OpenEnv-compliant RL environment that teaches Qwen2.5-3B-Instruct to decode rotated surface-code syndromes using Stim ground truth and PyMatching baselines",
+      "Two-stage training on a free Colab T4: SFT on 3k PyMatching-labeled syndromes, then 1,500 GRPO steps with five independent verifiable rewards (no learned reward model)",
+      "96.4% logical correction rate at L2_target (d=3, 3 rounds, p=1e-3) - up from 92% base Qwen with the same prompt template; 73.4% exact-match with PyMatching",
+      "Deployed Hugging Face Docker Space with full OpenEnv API (/reset, /step, /healthz) plus published LoRA weights on the Hub",
+      "Inspired by DeepMind AlphaQubit (Nature 2024); honest eval discloses 0% PyMatching beat-rate on the primary slice"
+    ],
+    "tech": ["Python", "PyTorch", "GRPO", "LoRA", "Unsloth", "Qwen2.5", "Stim", "PyMatching", "OpenEnv", "FastAPI", "TRL", "Hugging Face Spaces"],
+    "links": {
+      "demo": "https://huggingface.co/spaces/ronitraj/QuantumScribe",
+      "github": "https://github.com/Ronit-Raj9/Meta_RL_Phase2",
+      "caseStudy": "/projects/quantumscribe"
+    },
+    "image": "/projects/quantumscribe.png",
+    "category": "AI/ML",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Quantum processors need decoders that map stabilizer syndromes to Pauli corrections without measuring data qubits directly. PyMatching is a strong classical baseline (sparse blossom on detector graphs). DeepMind's AlphaQubit showed a transformer can beat it on hard cases, but at large-scale TPU training cost. The META RL Phase 2 track asked for an OpenEnv environment where an off-the-shelf LLM learns decoding from verifiable physics rewards.",
+      "approach": "Built QuantumScribe (Qubit-Medic): a FastAPI OpenEnv server over Stim's surface_code:rotated_memory_z circuits with SI1000 noise. The LLM emits a terminal Pauli frame (X_ERRORS / Z_ERRORS); five independent rewards score logical correction, final-round syndrome consistency, Jaccard overlap vs PyMatching, format compliance, and a pymatching_beat bonus only when the model is right and PyMatching is wrong. Curriculum runs L1_warmup → L2_target → L3_stretch. Training: LoRA SFT on PyMatching labels, then GRPO with diversity-focused rollouts (temperature 1.2) so reward variance does not collapse.",
+      "metrics": [
+        { "label": "Logical correction (GRPO)", "value": "96.4%" },
+        { "label": "Base Qwen (same prompt)", "value": "92.0%" },
+        { "label": "Exact-match PyMatching", "value": "73.4%" },
+        { "label": "PyMatching beat-rate", "value": "0% (disclosed)" },
+        { "label": "Training", "value": "Colab T4 · ~3 h" },
+        { "label": "Model", "value": "Qwen2.5-3B + LoRA" }
+      ],
+      "techDecisions": [
+        { "decision": "Five independent verifiable rewards", "why": "GRPO games single scalars; decomposed Stim/PyMatching checks block empty-collapse, mimicry, and format spam by construction." },
+        { "decision": "GRPO over offline labels only", "why": "SFT ceiling is PyMatching imitation; RL needs on-policy rollouts against real syndromes to sharpen format and logical correction." },
+        { "decision": "OpenEnv HTTP contract", "why": "Same submission pattern as InferenceGym - typed reset/step, deployable Docker Space, trainer swaps local vs remote client." },
+        { "decision": "Stim + PyMatching (not a custom simulator)", "why": "Aligns with AlphaQubit/Willow literature and gives unfakeable logical_correction ground truth." },
+        { "decision": "Honest pymatching_beat reporting", "why": "Primary eval shows match-not-beat; portfolio claims stay defensible for reviewers." }
       ]
     }
   },
@@ -220,7 +393,7 @@
     "track": "web3",
     "highlights": [
       "PvP typing game on Monad blockchain with staking mechanics",
-      "Real-time 1v1 duels — speed and accuracy determine on-chain winners",
+      "Real-time 1v1 duels - speed and accuracy determine on-chain winners",
       "Next.js + Monad architecture for high-throughput transactions",
       "Deployed on NodeOpsHQ"
     ],
@@ -237,25 +410,95 @@
   {
     "id": "param",
     "title": "PARAM",
-    "subtitle": "Blockchain-Based Academic Credential Management System",
-    "badge": "ABV-IIITM Gwalior",
+    "subtitle": "Blockchain-Based Academic Credential Verification for ABV-IIITM Gwalior",
+    "badge": "C3iHub · ABV-IIITM Gwalior",
     "badgeColor": "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
     "track": "web3",
     "highlights": [
-      "ERC-721 NFT credentials on Base Sepolia for tamper-proof academic records",
-      "Multi-level approval workflows for semester results and degree certificates",
-      "Privy-managed wallets — zero crypto friction for students",
-      "Public verification via shareable links with QR codes and on-chain proof"
+      "Portal for Academic Records and Management - tamper-proof semester transcripts, degrees, and certificates for ABV-IIITM Gwalior",
+      "Semester workflow CSV → DRAFT → REVIEWED → APPROVED → ISSUED (NFT); degree flow with credit/backlog validation and academic + admin gates",
+      "ERC-721 on Base Sepolia (84532): SemesterNFT, DegreeNFT, CertificateNFT, CollegeRegistry, StudentRecords - SHA-256 PDF anchoring + revocation",
+      "Six roles: Student, Faculty, Academic, Staff, Admin (Privy); public Verifier - share links (7/30/90 days), QR on PDFs, API verify by token/hash/tokenId",
+      "Isolated BullMQ worker (blockchain · csv · notifications) - API container HTTP-only; on-demand Puppeteer PDFs; curriculum versioning + corrections/revaluation",
+      "Production: Vercel (Next.js 16, arn1) → EC2 eu-north-1 (Caddy, Express 5, worker, Redis) + Supabase Postgres; CI: Vitest, Forge, Playwright"
     ],
-    "tech": ["Next.js", "Express.js", "PostgreSQL", "Prisma", "Redis", "Solidity", "Privy"],
+    "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind", "shadcn/ui", "SWR", "Express 5", "Prisma", "PostgreSQL", "Redis", "BullMQ", "ethers.js", "Solidity", "Foundry", "Privy", "Puppeteer", "Base Sepolia"],
     "links": {
-      "demo": "",
-      "github": "https://github.com/iiitm-gwalior/param"
+      "demo": "https://param-iiitm.vercel.app",
+      "github": "https://github.com/iiitm-gwalior/param",
+      "caseStudy": "/projects/param"
     },
     "image": "/projects/param.png",
     "category": "EdTech/Blockchain",
     "featured": true,
-    "completeness": true
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Universities issue transcripts and degrees as paper or static PDFs that are slow to verify and easy to forge. Registrars need configurable approval chains, curriculum versioning, SGPA/CGPA rules, and immutable audit trails. Students should never need crypto wallets; employers need sub-second verification with on-chain proof and optional deep-verify by document hash or NFT token ID.",
+      "approach": "PARAM is a monorepo with six deployment layers: browsers (admin, academic, faculty, student, public verifier); Vercel edge (Next.js 16 App Router, HMAC param_session middleware, /api/v1 rewrites to EC2); AWS EC2 docker-compose (Caddy TLS → Express 5 api + isolated param-worker for BullMQ/cron); Supabase Postgres 15 + Prisma (30+ models); Base Sepolia via ethers.js v6; Privy JWT auth, Razorpay verify-flow, SMTP, Sentry. Feature modules cover students, curriculum, results, approvals, degrees, credentials, issuance, verification, and audit. Faculty grades → academic review → admin mint → student share → verifier confirms.",
+      "metrics": [
+        { "label": "Institute", "value": "ABV-IIITM Gwalior" },
+        { "label": "Prisma models", "value": "30+" },
+        { "label": "Integration tests", "value": "30+ Vitest suites" },
+        { "label": "On-chain", "value": "Base Sepolia · 84532" },
+        { "label": "Roles", "value": "6 surfaces" },
+        { "label": "BullMQ queues", "value": "3 (mint · csv · email)" },
+        { "label": "Pilot", "value": "param-iiitm.vercel.app" }
+      ],
+      "techDecisions": [
+        { "decision": "Separate api + param-worker containers", "why": "Puppeteer, CSV ingest, blockchain mint, and five cron sweeps must never starve the HTTP Prisma pool - README mandates worker isolation." },
+        { "decision": "On-demand PDF at GET /credentials/:id/pdf", "why": "No PDF object storage or background PDF queue - transcripts generated at download with DRAFT/APPROVED watermarks." },
+        { "decision": "Privy embedded wallets provisioned at login", "why": "Zero student seed-phrase friction; institute-controlled minting wallet for issuance." },
+        { "decision": "Dual state machines (semester + degree)", "why": "Results: DRAFT→REVIEWED→APPROVED→ISSUED; degrees: PENDING_ACADEMIC→PENDING_ADMIN→ISSUED only when credits ≥ required and no backlogs." },
+        { "decision": "Public verify without auth", "why": "Time-limited ShareLink tokens, QR embedding, and JSON API for automated employer checks - Verifier role needs no account." },
+        { "decision": "Zod-validated Express modules + full audit export", "why": "Every action logs actor, entity, metadata, and IP for registrar compliance; soft deletes on critical records." }
+      ]
+    }
+  },
+  {
+    "id": "gitgambit",
+    "title": "GitGambit",
+    "subtitle": "One Place for a Developer's Public GitHub Story",
+    "badge": "Developer Analytics",
+    "badgeColor": "bg-violet-500/20 text-violet-600 dark:text-violet-400 border-violet-500/30",
+    "track": "full-stack-ai",
+    "highlights": [
+      "Unified GitHub profile viewer - contributions, PRs, inline diffs (diff2html), and review threads without tab-hopping; no account required",
+      "External-work-first analytics: splits internal vs cross-org PRs/issues, org watchlist from saved profiles, and repo-grouped project trees",
+      "GitGambit Score (0–100): five sub-scores - velocity, quality, collaboration, consistency, range - from merge rate, time-to-merge, streaks, and language reach",
+      "Rule-based developer archetypes (OSS Ambassador, Night-Shift Builder, Polyglot, Refactorer, etc.) - pure heuristics, no LLM",
+      "Side-by-side compare up to 3 developers; timeline, insights heatmaps, language breakdown, and \"what's new since last visit\" on watchlist",
+      "SQLite + Drizzle cache: 1h fresh / 24h stale profile bundles; permanent PR diff cache; GraphQL pagination up to ~900 PRs per profile"
+    ],
+    "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Octokit", "GraphQL", "Drizzle ORM", "SQLite", "better-sqlite3", "diff2html", "Recharts", "TanStack Virtual"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/PRism",
+      "caseStudy": "/projects/gitgambit"
+    },
+    "image": "/projects/gitgambit.png",
+    "category": "Developer Tools",
+    "featured": true,
+    "completeness": true,
+    "caseStudy": {
+      "problem": "Reviewing a developer's real impact on GitHub means juggling profile, PR list, diff, and comment tabs - and own-repo commits hide the signal in cross-org OSS work. Recruiters and maintainers need external contributions, review quality, and activity patterns in one view, without building a custom script or burning API quota on every refresh.",
+      "approach": "GitGambit (package github_analyzer) is a Next.js 16 App Router app that ingests a username via GitHub GraphQL (profile, up to 18 pages of PRs, 9 of issues, 5 of contributed repos) plus REST for per-PR file diffs. Results normalize into a ProfileBundle, cache in SQLite with stale-while-revalidate semantics, and render across routes: overview KPIs and heatmaps, org/repo drill-down, in-app PR viewer with unified/split diff modes and session-persisted viewed files, insights tab with archetype + composite score, timeline, and /compare for up to three profiles. Local watchlist (saved_users) tracks last-visited timestamps to surface what's new.",
+      "metrics": [
+        { "label": "PR depth", "value": "Up to ~900 / profile" },
+        { "label": "GitGambit Score", "value": "5 sub-scores" },
+        { "label": "Archetypes", "value": "8 rule-based" },
+        { "label": "Compare", "value": "3 users max" },
+        { "label": "Cache TTL", "value": "1h fresh · 24h max" },
+        { "label": "Routes", "value": "9 App Router pages" }
+      ],
+      "techDecisions": [
+        { "decision": "GraphQL bundle + REST diffs", "why": "GraphQL aggregates PRs, issues, reviews, and calendar in fewer round-trips; REST /pulls/files returns patch hunks diff2html needs." },
+        { "decision": "SQLite profile + PR diff caches", "why": "Personal tool model - no Redis required; merged PR diffs are immutable and stored permanently keyed by repo#number." },
+        { "decision": "External-first classification", "why": "PRs where owner ≠ username are the clearest OSS signal; overview dashboard leads with external merged count." },
+        { "decision": "Slim RSC payloads for repo sidebar", "why": "Full PRNode bodies/comments stripped to SlimPR in project trees - MB-scale profiles shrink to tens of KB." },
+        { "decision": "Heuristic archetype + score (no AI)", "why": "Deterministic, explainable labels for hiring screens; thresholds documented and tunable in lib/archetype.ts and lib/gitgambit-score.ts." },
+        { "decision": "Inflight dedupe on cold profile fetch", "why": "Layout + page both request the same bundle; Map-based coalescing avoids duplicate GraphQL bursts on cache miss." }
+      ]
+    }
   },
   {
     "id": "healthbooker",
@@ -289,7 +532,7 @@
     "badgeColor": "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
     "track": "full-stack-ai",
     "highlights": [
-      "NTA-replica exam interface with adaptive testing — 1,360+ precision-targeted questions",
+      "NTA-replica exam interface with adaptive testing - 1,360+ precision-targeted questions",
       "OCR-powered handwritten-answer assessment with real-time evaluation",
       "Three-tier admin (super-admin / admin / student) serving 50+ active students",
       "Selected for CrftHQ Cohort 1 accelerator program"
@@ -305,7 +548,7 @@
     "featured": true,
     "completeness": true,
     "caseStudy": {
-      "problem": "Indian competitive exam prep (JEE, NEET, etc.) needs an NTA-replica testing experience plus assessment of handwritten subjective answers — not just MCQs. Existing platforms are MCQ-only or rely on manual grading that doesn't scale beyond a handful of students.",
+      "problem": "Indian competitive exam prep (JEE, NEET, etc.) needs an NTA-replica testing experience plus assessment of handwritten subjective answers - not just MCQs. Existing platforms are MCQ-only or rely on manual grading that doesn't scale beyond a handful of students.",
       "approach": "Next.js + Express + MongoDB stack with a dedicated FastAPI service for OCR-based evaluation of scanned handwritten responses. Adaptive testing engine across a 1,360+ question bank. Three-tier admin (super-admin / admin / student) for test, question, and user management. Selected for CrftHQ Cohort 1.",
       "metrics": [
         { "label": "Active students", "value": "50+" },
@@ -315,9 +558,9 @@
       ],
       "techDecisions": [
         { "decision": "Two-service split (Next.js + FastAPI)", "why": "Keeps ML dependencies off the Node runtime; OCR service scales independently of the web app." },
-        { "decision": "MongoDB for the question bank", "why": "Schema flexibility — questions are heterogeneous (numerical, MCQ, subjective with image)." },
+        { "decision": "MongoDB for the question bank", "why": "Schema flexibility - questions are heterogeneous (numerical, MCQ, subjective with image)." },
         { "decision": "Adaptive over fixed-test", "why": "Students see progress instead of hitting fixed-difficulty walls; better retention." },
-        { "decision": "OCR for handwriting", "why": "Students upload scans of their actual handwritten work — no forced switch to a tablet flow." }
+        { "decision": "OCR for handwriting", "why": "Students upload scans of their actual handwritten work - no forced switch to a tablet flow." }
       ]
     }
   },
@@ -325,15 +568,15 @@
     "id": "genetrust",
     "title": "GeneTrust AI Studio",
     "subtitle": "AI-Powered CRISPR Intelligence Platform",
-    "badge": "Hackhazard 25' Winner",
+    "badge": "HackHazards '25 Winner",
     "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
     "track": "ml",
     "highlights": [
       "DNABERT-based genetic sequence analysis served via FastAPI + PyTorch",
       "Next.js + TypeScript front-end with real-time ranking + prediction",
       "RAG over published literature for cited-source results",
-      "On-chain provenance via Base Chain — every analysis hash anchored",
-      "Hackhazards 25' Winner — top of 800+ projects"
+      "On-chain provenance via Base Chain - every analysis hash anchored",
+      "HackHazards '25 Winner — top of 800+ projects"
     ],
     "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT", "RAG", "Base Chain"],
     "links": {
@@ -353,13 +596,13 @@
         { "label": "Inference", "value": "PyTorch + FastAPI" },
         { "label": "Provenance", "value": "Base Chain" },
         { "label": "Front-end", "value": "Next.js + TypeScript" },
-        { "label": "Recognition", "value": "Hackhazard 25' Winner (800+ projects)" }
+        { "label": "Recognition", "value": "HackHazards '25 Winner (800+ projects)" }
       ],
       "techDecisions": [
         { "decision": "DNABERT over training from scratch", "why": "Pre-trained genome embeddings give a credible starting point for downstream classification with limited labeled data." },
         { "decision": "FastAPI inference layer", "why": "Async by default; easy per-tenant scaling once research traffic grows." },
         { "decision": "Base Chain anchoring", "why": "Research integrity matters more than tokenization; L2 economics keep cost per analysis well under $0.01." },
-        { "decision": "RAG over literature", "why": "Biologists need the cited paper, not just a number — RAG keeps the model honest." }
+        { "decision": "RAG over literature", "why": "Biologists need the cited paper, not just a number - RAG keeps the model honest." }
       ]
     }
   },
@@ -458,5 +701,27 @@
     "category": "EdTech/AI",
     "featured": false,
     "completeness": false
+  },
+  {
+    "id": "first-website",
+    "title": "First Website",
+    "subtitle": "Where It All Started - Static HTML/CSS, 2019",
+    "badge": "First Commit · 2019",
+    "badgeColor": "bg-slate-500/20 text-slate-600 dark:text-slate-400 border-slate-500/30",
+    "highlights": [
+      "My first public repo (July 2019): a Radisson Blu–inspired hotel landing page - two HTML pages, no framework",
+      "Responsive navbar with mobile sidenav, destination cards, and read-more toggles in vanilla JavaScript",
+      "Learned layout with flexbox, media queries at 900px, and Git workflow (feature branch + merged PRs)",
+      "The arc from this static clone to production apps (PARAM, GitGambit, portfolio) is the real story"
+    ],
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "demo": "",
+      "github": "https://github.com/Ronit-Raj9/first-website"
+    },
+    "image": "/projects/first-website.png",
+    "category": "Web Dev",
+    "featured": false,
+    "completeness": true
   }
 ]

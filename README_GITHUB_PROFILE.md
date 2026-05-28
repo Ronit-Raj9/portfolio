@@ -23,13 +23,13 @@
 ```text
 🎓  B.Tech in Mathematics & Scientific Computing @ IIIT Gwalior (2023-27) | CGPA: 8.35
 🤖  AI/ML Engineer focused on LLMs, Vision-Language Models & Graph Neural Networks
-⛓️  Exploring the intersection of AI × Blockchain — from military RAG to on-chain gaming
-🚀  Co-Founded Garudex Labs — Won IDE'25 national innovation award by Govt. of India
-🏆  Smart India Hackathon 2024 National Winner — Military intelligence RAG system
-🔧  Open Source Maintainer @ GitMesh — Product signal aggregation platform
+⛓️  Exploring the intersection of AI × Blockchain - from military RAG to on-chain gaming
+🚀  Co-Founded Garudex Labs - Won IDE'25 national innovation award by Govt. of India
+🏆  Smart India Hackathon 2024 National Winner - Military intelligence RAG system
+🔧  Open Source Maintainer @ GitMesh - Product signal aggregation platform
 ```
 
-> _"Life is like an electron — full of potential and always moving!"_ ⚡
+> _"Life is like an electron - full of potential and always moving!"_ ⚡
 
 ---
 
@@ -38,12 +38,12 @@
 | Year | Achievement | Details |
 |------|------------|---------|
 | 🏅 2026 | **LNMHacks 8.0** | Built PvP typing game on Monad blockchain with staking mechanics |
-| 🥇 2025 | **HackHazards 25' Winner** | AI-Powered CRISPR Intelligence Platform — 1st out of 800+ projects |
-| 🥈 2025 | **2nd Place — Trillion Dollar GenAI Hackathon** | 4 awards at IIT Bhubaneswar for LegalEase (Best Innovation, Best Tech, Best Presentation) |
-| 🚀 2025 | **CrftHQ Accelerator — Selected** | Accepted into Cohort 1 for iONIA exam platform |
-| 🏢 2025 | **Co-Founded Garudex Labs** | Won IDE'25 Innovation & Entrepreneurship award — Govt. of India initiative |
-| 🌐 2025 | **OSS Maintainer — GitMesh** | Multi-source feedback aggregation across GitHub, Reddit, X, Discord & more |
-| 🏅 2024 | **Smart India Hackathon Winner** | Military RAG-MLLM system — 79% OCR accuracy, runs locally |
+| 🥇 2025 | **HackHazards 25' Winner** | AI-Powered CRISPR Intelligence Platform - 1st out of 800+ projects |
+| 🥈 2025 | **2nd Place - Trillion Dollar GenAI Hackathon** | 4 awards at IIT Bhubaneswar for LegalEase (Best Innovation, Best Tech, Best Presentation) |
+| 🚀 2025 | **CrftHQ Accelerator - Selected** | Accepted into Cohort 1 for iONIA exam platform |
+| 🏢 2025 | **Co-Founded Garudex Labs** | Won IDE'25 Innovation & Entrepreneurship award - Govt. of India initiative |
+| 🌐 2025 | **OSS Maintainer - GitMesh** | Multi-source feedback aggregation across GitHub, Reddit, X, Discord & more |
+| 🏅 2024 | **Smart India Hackathon Winner** | Military RAG-MLLM system - 79% OCR accuracy, runs locally |
 
 ---
 
@@ -66,7 +66,7 @@
 
 ### 🧬 [GeneTrust AI Studio](https://genetrust.vercel.app/)
 **AI-Powered CRISPR Intelligence Platform**
-> DNABERT model integration for genetic sequence analysis. Won HackHazards 25' — 1st out of 800+ projects.
+> DNABERT model integration for genetic sequence analysis. Won HackHazards 25' - 1st out of 800+ projects.
 
 `Next.js` `PyTorch` `FastAPI` `RAG` `Base Chain`
 
@@ -132,10 +132,10 @@
 
 | Role | Organization | Period |
 |------|-------------|--------|
-| 🔧 **Open Source Maintainer** | [GitMesh](https://gitmesh.dev) | Nov 2024 — Present |
-| 💻 **Full-Stack Developer** | Ionia | Dec 2024 — Jun 2025 |
-| 🚀 **Co-Founder & Lead Developer** | Zentoro AI | Nov 2024 — Mar 2025 |
-| 🏢 **Co-Founder & Lead Developer** | Garudex Labs | Nov 2024 — Mar 2025 |
+| 🔧 **Open Source Maintainer** | [GitMesh](https://gitmesh.dev) | Nov 2024 - Present |
+| 💻 **Full-Stack Developer** | Ionia | Dec 2024 - Jun 2025 |
+| 🚀 **Co-Founder & Lead Developer** | Zentoro AI | Nov 2024 - Mar 2025 |
+| 🏢 **Co-Founder & Lead Developer** | Garudex Labs | Nov 2024 - Mar 2025 |
 
 ---
 
@@ -250,8 +250,8 @@
 
 ## 🌐 Open Source Contributions
 
-- 🔧 **[GitMesh](https://gitmesh.dev)** — Maintaining product signal aggregation platform (5+ platform integrations)
-- 🐛 **[kubeedge/ianvs](https://github.com/kubeedge/ianvs)** — Fixed logical operator bugs across 4 core modules (10 instances)
+- 🔧 **[GitMesh](https://gitmesh.dev)** - Maintaining product signal aggregation platform (5+ platform integrations)
+- 🐛 **[kubeedge/ianvs](https://github.com/kubeedge/ianvs)** - Fixed logical operator bugs across 4 core modules (10 instances)
 - 🤝 Active contributor across **100+ repositories** with **1,200+ contributions** in the past year
 
 ---

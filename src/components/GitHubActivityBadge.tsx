@@ -28,17 +28,14 @@ export default function GitHubActivityBadge() {
 
   const fetchGitHubStats = async () => {
     try {
-      console.log('[GitHub Badge] Fetching GitHub activity...')
-      
       // Use the existing API route which has proper GraphQL data
       const response = await fetch('/api/github?year=all', { cache: 'no-store' })
-      
+
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`)
       }
 
       const data = await response.json()
-      console.log('[GitHub Badge] API Response:', data)
 
       // Get today's date
       const today = new Date().toISOString().split('T')[0]
@@ -55,13 +52,11 @@ export default function GitHubActivityBadge() {
         // Find today's contributions
         const todayData = days.find((d: { date: string }) => d.date === today)
         todayCommits = todayData?.count || 0
-        console.log('[GitHub Badge] Today commits:', todayCommits)
 
         // Calculate week's contributions
         weekCommits = days
           .filter((d: { date: string }) => d.date >= oneWeekAgo && d.date <= today)
           .reduce((sum: number, d: { count: number }) => sum + d.count, 0)
-        console.log('[GitHub Badge] Week commits:', weekCommits)
 
         // Calculate streak - count consecutive days with contributions going backwards from today
         const sortedDays = [...days].sort((a: { date: string }, b: { date: string }) => 
@@ -77,12 +72,10 @@ export default function GitHubActivityBadge() {
             break
           }
         }
-        console.log('[GitHub Badge] Streak:', streak, 'days')
       }
 
       // Year contributions from API
       const yearContributions = data.contributions?.total || data.contributionCalendar?.totalContributions || 0
-      console.log('[GitHub Badge] Year contributions:', yearContributions)
 
       setStats({
         todayCommits,
@@ -92,8 +85,7 @@ export default function GitHubActivityBadge() {
         loading: false
       })
 
-    } catch (error) {
-      console.error('[GitHub Badge] Error fetching stats:', error)
+    } catch {
       setStats(prev => ({ ...prev, loading: false }))
     }
   }

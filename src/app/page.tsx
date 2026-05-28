@@ -10,7 +10,6 @@ import { FaXTwitter } from "react-icons/fa6"
 import { SiKaggle } from "react-icons/si"
 import { BsArrowRight, BsStars, BsLightningChargeFill, BsGraphUp, BsCodeSlash, BsCheckCircleFill } from "react-icons/bs"
 import { HiOutlineDocumentDownload, HiOutlineMail, HiAcademicCap, HiCode, HiLightningBolt } from "react-icons/hi"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
@@ -31,8 +30,6 @@ import {
   allSkills as ALL_SKILLS,
   type Project
 } from '@/data'
-
-const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false })
 
 // ============================================================================
 // COMPONENTS - Adithya-style minimalist approach
@@ -152,7 +149,7 @@ function ProjectCardDetailed({ project, index, isExpanded, onToggle }: {
           <ul className="space-y-0.5 mb-2">
             {(isExpanded ? project.highlights : project.highlights.slice(0, 1)).map((highlight, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
-                <span className="text-muted-foreground/50">—</span>
+                <span className="text-muted-foreground/50">-</span>
                 <span>{highlight}</span>
               </li>
             ))}
@@ -257,20 +254,24 @@ function getColorLevel(count: number): string {
 function GitHubSection() {
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all')
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true)
+      setError(false)
       try {
         const params = selectedYear === 'all' ? '?year=all' : `?year=${selectedYear}`
         const response = await fetch(`/api/github${params}`, { cache: 'no-store' })
         if (response.ok) {
           const data = await response.json()
           setGithubData(data)
+        } else {
+          setError(true)
         }
-      } catch (error) {
-        console.error('GitHub fetch error:', error)
+      } catch {
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -278,7 +279,23 @@ function GitHubSection() {
     fetchData()
   }, [selectedYear])
 
-  if (loading || !githubData) return <Skeleton className="h-48 w-full rounded-lg max-w-5xl mx-auto" />
+  if (loading) return <Skeleton className="h-48 w-full rounded-lg max-w-5xl mx-auto" />
+
+  if (error || !githubData) return (
+    <Card className="max-w-5xl mx-auto">
+      <CardContent className="p-6 flex flex-col items-center text-center gap-3">
+        <p className="text-sm text-muted-foreground">GitHub stats unavailable right now</p>
+        <a
+          href="https://github.com/Ronit-Raj9"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-foreground text-background px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
+        >
+          <FaGithub className="h-4 w-4" /> View GitHub Profile
+        </a>
+      </CardContent>
+    </Card>
+  )
 
   return (
     <Card className="max-w-5xl mx-auto">
@@ -870,7 +887,7 @@ export default function Home() {
                   className="p-5 rounded-lg border border-border bg-background hover:border-foreground/20 transition-colors">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <span className="text-sm text-muted-foreground">{achievement.year}</span>
-                    <span className="text-muted-foreground/30">—</span>
+                    <span className="text-muted-foreground/30">-</span>
                     <h3 className="font-medium">{achievement.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground mb-1">{achievement.subtitle}</p>
@@ -1033,22 +1050,22 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href="mailto:dev.ronitraj@gmail.com"
+              <a href={`mailto:${profile.email}`}
                 onClick={trackEmailClick}
                 className="flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-md font-medium hover:opacity-90 transition-all">
-                <HiOutlineMail className="w-5 h-5" /> dev.ronitraj@gmail.com
+                <HiOutlineMail className="w-5 h-5" /> {profile.email}
               </a>
-              <a href="https://github.com/Ronit-Raj9" target="_blank" rel="noopener noreferrer"
+              <a href={profile.social.github} target="_blank" rel="noopener noreferrer"
                 onClick={() => trackSocialClick('github')}
                 className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
                 <FaGithub className="w-5 h-5" /> GitHub
               </a>
-              <a href="https://www.linkedin.com/in/ronitrajai/" target="_blank" rel="noopener noreferrer"
+              <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer"
                 onClick={() => trackSocialClick('linkedin')}
                 className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
                 <FaLinkedin className="w-5 h-5" /> LinkedIn
               </a>
-              <a href="https://x.com/ronit__raj" target="_blank" rel="noopener noreferrer"
+              <a href={profile.social.twitter} target="_blank" rel="noopener noreferrer"
                 onClick={() => trackSocialClick('twitter')}
                 className="flex items-center gap-2 px-6 py-3 border border-border bg-background hover:bg-accent/50 transition-all rounded-md font-medium">
                 <FaXTwitter className="w-5 h-5" /> X

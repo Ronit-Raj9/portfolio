@@ -16,7 +16,7 @@ export default function Blog() {
         >
           <h1 className="text-[32px] font-bold mb-4">Writing soon</h1>
           <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-            I'm planning long-form posts on what I'm actually building — GRPO fine-tuning on AMD MI300X, vision-language RAG in production, x402 micropayments in CLI tools.
+            I'm planning long-form posts on what I'm actually building - GRPO fine-tuning on AMD MI300X, vision-language RAG in production, x402 micropayments in CLI tools.
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed mb-8">
             In the meantime, I post threads and shorter takes on X.

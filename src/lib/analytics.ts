@@ -8,8 +8,11 @@ declare global {
 
 // Track page views
 export const pageview = (url: string) => {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+  // No-op when GA ID is unset or still the placeholder
+  if (!gaId || gaId === 'G-XXXXXXXXXX') return
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX', {
+    window.gtag('config', gaId, {
       page_path: url,
     })
   }

@@ -1,24 +1,52 @@
 [
   {
-  "id": "ossindia2026",
-  "year": "2026",
-  "title": "Speaker - Open Source Summit India 2026",
-  "subtitle": "Linux Foundation · 40-Minute Session",
-  "description": "Accepted to speak at Open Source Summit India 2026 (June 16-17, Hyderabad) on 'Governing the Ungovernable: Security and Compliance for AI Agents in Open Source Projects'. Originally submitted as a lightning talk — upgraded to a full 40-minute session by the program committee."
+    "id": "nha-pmjay-hackathon-2026",
+    "year": "2026",
+    "title": "Runner-Up - AB PM-JAY Healthcare Hackathon",
+    "subtitle": "NHA × IISc Bangalore · Clinical Document Classification & STG Compliance",
+    "description": "Built an automated Ayushman Bharat claim adjudication pipeline: Gemma 3 12B VLM (dual pass per page for OCR/classification + clinical checks), negation-aware keyword fusion, and package-specific STG rule engines for four PM-JAY codes. Handled blurry multilingual scans, 20+ overlapping doc types, and false positives from phrases like \"denies fever.\" Achieved ~0.77 F1 on the live evaluator; ₹3L prize; pitched live to NHA leadership. Team: Khushi Singh, Ronit Raj, Murtuza Shaikh (IIIT Gwalior)."
+  },
+  {
+    "id": "un-digital-trade-rie-2026",
+    "year": "2026",
+    "title": "UN Global Hackathon - Digital Trade Regulatory Analysis",
+    "subtitle": "Regulatory Intelligence Engine (RIE) · RDTII Pillars 6 & 7",
+    "description": "Built a hexagonal monorepo that maps statutory legal text to RDTII digital-governance indicators with span-level citations: Docling/PyMuPDF extraction, BGE-M3 + Qdrant hybrid retrieval, constrained LLM classification, 4-gate verification (span/verbatim/NLI/self-consistency), and two-layer output (verified evidence + human-confirmed score recommendation). LangGraph orchestration with HITL audit UI (Streamlit + React) and FastAPI."
+  },
+  {
+    "id": "csic-aadhaar-zero-2026",
+    "year": "2026",
+    "title": "Shortlisted - CSIC 1.0 Stage III (DSCI)",
+    "subtitle": "Privacy-Preserving KYC · Cryptography Track · Top 50 Nationwide",
+    "description": "Submission \"Privacy Preserving KYC Verification System\" (Aadhaar-Zero) shortlisted among the top teams nationwide for Stage III Prototype Development under DSCI's Cyber Security Innovation Challenge (CSIC) 1.0, after technical evaluation on feasibility, originality, and impact. Building the functional prototype: ZK selective disclosure, Groth16 age proofs, AI liveness/document checks, DPDP-aligned on-chain consent/revocation, and six contracts on Base Sepolia. Top 20 teams advance to the Grand Finale with a ₹50,000 maturation grant."
+  },
+  {
+    "id": "quantumscribe-meta-rl-2026",
+    "year": "2026",
+    "title": "META HUGGING FACE RL Hackathon Finalist",
+    "subtitle": "OpenEnv · Quantum Error Correction",
+    "description": "Built an OpenEnv RL environment training Qwen2.5-3B to decode surface-code syndromes with Stim-verified rewards. Reached 96.4% logical correction on L2_target after SFT+GRPO on Colab T4; deployed HF Space and Hub LoRA weights."
+  },
+  {
+    "id": "ossindia2026",
+    "year": "2026",
+    "title": "Speaker - Open Source Summit India 2026",
+    "subtitle": "Linux Foundation · Mumbai · 40-Minute Session",
+    "description": "Official acceptance from The Linux Foundation Events Team for OSS India 2026 (16–17 June, Jio World Convention Centre, Mumbai). Session: \"Governing the Ungovernable: Security and Compliance for AI Agents in Open Source Projects\" - originally submitted as a lightning talk and upgraded to a full 40-minute breakout by the program committee for deeper technical coverage and audience Q&A."
   },
   {
   "id": "monadblitz2026",
   "year": "2026",
   "title": "4th Place - Monad Blitz New Delhi",
   "subtitle": "Consumer AI Agent Track",
-  "description": "Built ZeroKeyCLI — AdSense for the terminal. Watch a 5-second ASCII ad, earn $0.001 USDC on Monad, get a free AI coding response. Two x402 micropayment transactions settle on-chain before the ad finishes. No wallet setup, no subscription, no gas fees."
+  "description": "Built ZeroKeyCLI - AdSense for the terminal. Watch a 5-second ASCII ad, earn $0.001 USDC on Monad, get a free AI coding response. Two x402 micropayment transactions settle on-chain before the ad finishes. No wallet setup, no subscription, no gas fees."
   },
   {
     "id": "amdrlhackathon2026",
     "year": "2026",
     "title": "Special Mention - AMD AI RL Hackathon",
     "subtitle": "IIT Delhi · Track 2: Deep RL for Minesweeper",
-    "description": "Built AlphaQ — a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
+    "description": "Built AlphaQ - a GRPO-trained RL agent on Qwen2.5-14B to play Minesweeper on grids up to 50×50. Phase-stratified training across 6 difficulty levels on AMD Instinct MI300X (192GB HBM3). Recognised by AMD team for sophisticated technical implementation."
   },
   {
     "id": "aisehack2026-phase2",
@@ -35,11 +63,18 @@
   "description": "Developed competitive typing game on Monad blockchain with PvP staking mechanics. Players compete in 1-minute duels where speed and accuracy determine winners"
   },
   {
+    "id": "param-pilot-2025",
+    "year": "2025",
+    "title": "PARAM Production Pilot - ABV-IIITM Gwalior",
+    "subtitle": "C3iHub, IIT Kanpur · Blockchain Academic Credentials",
+    "description": "Shipped and piloted PARAM during a Software Engineer internship at C3iHub, IIT Kanpur - a blockchain academic credential platform for ABV-IIITM Gwalior. Covers semester transcripts and degree certificates (CSV bulk upload → DRAFT → REVIEWED → APPROVED → ISSUED), curriculum versioning, SGPA/CGPA, correction/revaluation flows, ERC-721 mint on Base Sepolia (84532) with document-hash anchoring, Privy-managed student wallets, and public verification (share links, QR, API). Production stack: Vercel (Next.js 16) + EC2 (Caddy, Express 5, BullMQ worker, Redis) + Supabase Postgres; 30+ Prisma models; Vitest, Forge, and Playwright test tiers in CI."
+  },
+  {
   "id": "gitmesh",
   "year": "2025",
   "title": "OSS Maintainer - GitMesh",
-  "subtitle": "Product Signal Aggregation",
-  "description": "Building open-source platform consolidating customer feedback from 5+ sources with intelligent deduplication and two-way project management sync"
+  "subtitle": "Linux Foundation Decentralized Trust · Agent Governance",
+  "description": "Maintainer on GitMesh: open-source platform for governed AI agents in OSS projects (Linux Foundation Decentralized Trust). Policy-as-code for agent actions, GitHub/GitLab sync, audit logging, maintainer approvals, and multi-source feedback aggregation. Helped grow the project to 130+ GitHub stars."
   },
   {
   "id": "crfthq2025",
@@ -58,7 +93,7 @@
   {
     "id": "hackhazards",
     "year": "2025",
-    "title": "HackHazards 25' Winner",
+    "title": "HackHazards '25 Winner",
     "subtitle": "Blockchain Hackathon",
     "description": "AI-Powered CRISPR Intelligence Platform. Came first out of 800+ projects."
   },

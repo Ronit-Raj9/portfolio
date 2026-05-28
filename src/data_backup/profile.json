@@ -24,13 +24,13 @@
       {
         "title": "My Journey in AI",
         "paragraphs": [
-          "My path into AI started with a simple question: how can we make complex systems actually work? What began as tinkering with neural networks at IIIT Gwalior evolved into building full-stack AI systems—from military intelligence platforms to blockchain applications. Winning Smart India Hackathon 2024 with a 79% accuracy RAG system taught me that great AI isn't about fancy architectures—it's about shipping solutions that work reliably in production."
+          "My path into AI started with a simple question: how can we make complex systems actually work? What began as tinkering with neural networks at IIIT Gwalior evolved into building full-stack AI systems-from military intelligence platforms to blockchain applications. Winning Smart India Hackathon 2024 with a 79% accuracy RAG system taught me that great AI isn't about fancy architectures-it's about shipping solutions that work reliably in production."
         ]
       },
       {
         "title": "AI Meets Blockchain",
         "paragraphs": [
-          "I'm fascinated by systems that combine intelligence with decentralization. From on-chain gaming platforms on Monad to tamper-proof academic credentials using NFTs, I explore how AI and blockchain work together. It's about reimagining what's possible when you combine machine learning with cryptographic guarantees—not just putting AI in smart contracts, but building trustless systems where predictions and data provenance are verifiable on-chain."
+          "I'm fascinated by systems that combine intelligence with decentralization. From on-chain gaming platforms on Monad to tamper-proof academic credentials using NFTs, I explore how AI and blockchain work together. It's about reimagining what's possible when you combine machine learning with cryptographic guarantees-not just putting AI in smart contracts, but building trustless systems where predictions and data provenance are verifiable on-chain."
         ]
       },
       {
@@ -42,7 +42,7 @@
       {
         "title": "Technical Approach",
         "paragraphs": [
-          "I build AI systems with strong foundations and pragmatic choices—PyTorch and Transformers for models, FastAPI and Next.js for deployment, smart contracts when decentralization adds real value. As an open-source maintainer, I focus on creating solutions other developers can understand and deploy. Because the best AI is the one that ships and keeps working."
+          "I build AI systems with strong foundations and pragmatic choices-PyTorch and Transformers for models, FastAPI and Next.js for deployment, smart contracts when decentralization adds real value. As an open-source maintainer, I focus on creating solutions other developers can understand and deploy. Because the best AI is the one that ships and keeps working."
         ]
       }
     ]

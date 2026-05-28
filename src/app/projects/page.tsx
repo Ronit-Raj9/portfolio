@@ -98,7 +98,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
               <ul className="space-y-0.5 mb-2">
                 {(isExpanded ? project.highlights : project.highlights.slice(0, 1)).map((highlight, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
-                    <span className="text-muted-foreground/50">—</span>
+                    <span className="text-muted-foreground/50">-</span>
                     <span>{highlight}</span>
                   </li>
                 ))}

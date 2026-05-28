@@ -4,16 +4,36 @@
   "role": "Maintainer",
   "company": "GitMesh",
   "period": "November 2024 - Present",
-  "description": "Open-source product signal aggregation platform that consolidates customer feedback from GitHub, Reddit, X, Discord, and Stack Overflow, with two-way sync to Jira, GitHub, and Linear.",
+  "description": "Maintainer on GitMesh: open-source platform for governed AI agents in OSS projects (Linux Foundation Decentralized Trust). Policy-as-code for agent actions, GitHub/GitLab sync, audit logging, maintainer approvals, and multi-source feedback aggregation. Helped grow the project to 130+ GitHub stars. Focus on collaboration, governance, and automation for maintainers.",
   "highlights": [
-    "Contributed to multi-source feedback aggregation system integrating 5+ platforms (GitHub, Reddit, X, Discord, Stack Overflow)",
-    "Reduced manual triage and context switching by consolidating customer feedback alongside existing issues and sprints"
+    "Multi-agent orchestration on a governed MCP platform for OSS projects",
+    "Selected into Linux Foundation Decentralized Trust",
+    "Policy-as-code for AI agents: GitHub/GitLab sync, audit logging, maintainer-controlled approvals",
+    "Reached 130+ GitHub stars, improving collaboration, governance, and automation for OSS teams"
   ],
   "current": true,
   "icon": "/images/companies/gitmesh.png",
   "badge": "Open Source",
   "locationType": "Remote",
   "link": "https://gitmesh.dev"
+  },
+  {
+    "id": "c3ihub-iitk",
+    "role": "Software Engineer Intern",
+    "company": "C3iHub, IIT Kanpur",
+    "period": "May 2025 - August 2025",
+    "description": "Built PARAM (Portal for Academic Records and Management) - blockchain credential system for ABV-IIITM Gwalior: semester/degree NFT issuance, multi-level approvals, curriculum versioning, and public verification at production pilot scale.",
+    "highlights": [
+      "Monorepo: Next.js 16 + React 19 frontend (Privy, shadcn); Express 5 API; isolated BullMQ worker for CSV, mint, email, and cron on AWS EC2 eu-north-1",
+      "End-to-end workflows - faculty grades → academic review → admin approve → mint on Base Sepolia; degree proposals with credit/backlog eligibility checks",
+      "30+ Prisma models; modules for students, curriculum, results, approvals, degrees, credentials, issuance, verification, audit; Zod-validated APIs",
+      "ERC-721 credentials (SemesterNFT, DegreeNFT, CertificateNFT) + SHA-256 anchoring; public /verify with share links, QR, and hash/tokenId API",
+      "CI matrix: Vitest integration + supertest, Foundry contracts, Playwright e2e; live pilot at param-iiitm.vercel.app (Vercel arn1 + Supabase Postgres)"
+    ],
+    "current": false,
+    "badge": "Internship",
+    "locationType": "Remote",
+    "link": "https://c3ihub.org/"
   },
   {
     "id": "ionia",
@@ -44,8 +64,8 @@
   "current": false,
   "icon": "/images/companies/zentoro.png",
   "badge": "Building a Startup",
-  "locationType": "Onsite",
-  "link": "https://garudexlabs.com"
+  "locationType": "On Site",
+  "link": ""
   },
 
   {
@@ -62,7 +82,7 @@
   "current": false,
   "icon": "/images/companies/garudex.png",
   "badge": "Building a Startup",
-  "locationType": "Onsite",
+  "locationType": "On Site",
   "link": ""
   }
 ]
