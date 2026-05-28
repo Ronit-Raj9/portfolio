@@ -37,7 +37,7 @@ import {
 // COMPONENTS - Adithya-style minimalist approach
 // ============================================================================
 
-// Sticky Contact Button — bottom-right FAB, above mobile nav
+// Sticky Contact Button - bottom-right FAB, above mobile nav
 function StickyContactButton() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -80,7 +80,7 @@ function StickyContactButton() {
   )
 }
 
-// Compact project card — rectangular thumb, tags, all link buttons
+// Compact project card - rectangular thumb, tags, all link buttons
 function ProjectCardCompact({ project, index }: { project: Project; index: number }) {
   const trackLabel =
     project.track === 'ml' ? 'ML' : project.track === 'full-stack-ai' ? 'Full-Stack AI' : project.track === 'web3' ? 'Web3' : null
@@ -97,7 +97,7 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
       <div className="relative w-full aspect-[2.1/1] shrink-0 overflow-hidden bg-muted/40">
         <Image
           src={project.image}
-          alt={`${project.title} — ${project.subtitle}`}
+          alt={`${project.title} - ${project.subtitle}`}
           fill
           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -170,7 +170,7 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
           </div>
         </div>
 
-        {/* Actions — pinned to bottom */}
+        {/* Actions - pinned to bottom */}
         <div className="flex flex-wrap gap-1.5 pt-3 mt-auto border-t border-border/70">
           {project.links.demo && (
             <a
@@ -885,7 +885,7 @@ export default function Home() {
               <div>
                 <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight">Featured Projects</h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Production AI, full-stack apps, and on-chain systems — with demos and case studies.
+                  Production AI, full-stack apps, and on-chain systems - with demos and case studies.
                 </p>
               </div>
               <Link

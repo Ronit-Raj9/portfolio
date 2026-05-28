@@ -91,7 +91,7 @@
     "id": "regulatory-intelligence-engine",
     "year": 2026,
     "title": "ClauseMark",
-    "subtitle": "Verified Regulatory Evidence Engine — UN Digital Trade (RDTII)",
+    "subtitle": "Verified Regulatory Evidence Engine - UN Digital Trade (RDTII)",
     "badge": "UN Digital Trade Hackathon · 2026",
     "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
     "track": "ml",
@@ -458,7 +458,7 @@
       "Next.js + TypeScript front-end with real-time ranking + prediction",
       "RAG over published literature for cited-source results",
       "On-chain provenance via Base Chain - every analysis hash anchored",
-      "HackHazards '25 Winner — top of 800+ projects"
+      "HackHazards '25 Winner - top of 800+ projects"
     ],
     "tech": ["Next.js", "TypeScript", "PyTorch", "FastAPI", "DNABERT", "RAG", "Base Chain"],
     "links": {
@@ -744,9 +744,9 @@
     "track": "full-stack-ai",
     "highlights": [
       "2nd overall + 3 category awards (Best Innovative Use Case, Best Technical Implementation, Best Presentation) at the Trillion Dollar GenAI Hackathon, IIT Bhubaneswar",
-      "6 specialized AI agents — Tax Filing Copilot, Compliance Health, Notice Responder, Document Generator, Trademark Assistant, and General Assistant",
+      "6 specialized AI agents - Tax Filing Copilot, Compliance Health, Notice Responder, Document Generator, Trademark Assistant, and General Assistant",
       "Automated ITR filing, GST returns, and compliance tracking with deadline alerts and a real-time compliance score",
-      "Blockchain document notarization — SHA-256 hashes anchored on Base via LegalEaseDocRegistry.sol for immutable verification",
+      "Blockchain document notarization - SHA-256 hashes anchored on Base via LegalEaseDocRegistry.sol for immutable verification",
       "Next.js + FastAPI microservices with WebSocket live automation, OCR document management, and MongoDB Atlas"
     ],
     "tech": ["Next.js", "FastAPI", "Python", "LangChain", "OpenAI", "MongoDB", "Solidity", "Base", "WebSocket", "OCR"],

@@ -1,7 +1,7 @@
 {
   "name": "Ronit Raj",
   "title": "Full-Stack AI & ML Engineer",
-  "tagline": "Full-stack AI & ML engineer who likes shipping — from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 9x hackathon podiums, two startups, and GitMesh — a Linux Foundation (LFDT) project I maintain.",
+  "tagline": "Full-stack AI & ML engineer who likes shipping - from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 9x hackathon podiums, two startups, and GitMesh - a Linux Foundation (LFDT) project I maintain.",
   "credentials": "SIH 2024 Winner · NHA PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh Maintainer",
   "proofPoints": [
     "OSS Mumbai India 2026 Speaker",
@@ -24,7 +24,7 @@
     "message": "Open to Full-Stack AI / ML Engineer roles and startup collaborations."
   },
   "about": {
-    "summary": "I build because I can't not — give me a hard problem and a weekend and I'll have something running. That took me from a static HTML site in 2019 to fine-tuning LLMs on AMD MI300X and shipping production AI that holds up under real traffic and messy data. Along the way: 9 hackathon wins, two startups, and GitMesh — an LFDT AI-agent governance project I maintain. Now focused on full-stack AI and AI-infra — turning demos into systems people depend on.",
+    "summary": "I build because I can't not - give me a hard problem and a weekend and I'll have something running. That took me from a static HTML site in 2019 to fine-tuning LLMs on AMD MI300X and shipping production AI that holds up under real traffic and messy data. Along the way: 9 hackathon wins, two startups, and GitMesh - an LFDT AI-agent governance project I maintain. Now focused on full-stack AI and AI-infra - turning demos into systems people depend on.",
     "sections": [
       {
         "title": "Where It Started",

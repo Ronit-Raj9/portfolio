@@ -63,7 +63,7 @@ function ProjectCard({ project, index, isExpanded, onToggle }: {
           </div>
           <Image
             src={project.image}
-            alt={`${project.title} — ${project.subtitle}`}
+            alt={`${project.title} - ${project.subtitle}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"

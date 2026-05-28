@@ -14,9 +14,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const project = getProjectBySlug(params.slug)
   if (!project) return { title: "Project not found" }
 
-  const fullTitle = `${project.title} — ${project.subtitle}`
+  const fullTitle = `${project.title} - ${project.subtitle}`
   const desc = (
-    [project.subtitle, project.highlights?.[0]].filter(Boolean).join(" — ") ||
+    [project.subtitle, project.highlights?.[0]].filter(Boolean).join(" - ") ||
     project.subtitle
   ).slice(0, 160)
 
@@ -146,7 +146,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden border border-border bg-accent/10 mb-10">
           <Image
             src={project.image}
-            alt={`${project.title} — ${project.subtitle}`}
+            alt={`${project.title} - ${project.subtitle}`}
             fill
             priority
             className="object-cover"

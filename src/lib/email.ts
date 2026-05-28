@@ -17,7 +17,7 @@ export function getMailtoUrl({ email, subject, body }: EmailComposeOptions): str
   return query ? `mailto:${email}?${query}` : `mailto:${email}`
 }
 
-/** Gmail web compose — works on desktop/Linux without a local mail client */
+/** Gmail web compose - works on desktop/Linux without a local mail client */
 export function getGmailComposeUrl({ email, subject, body }: EmailComposeOptions): string {
   const params = new URLSearchParams({
     view: 'cm',

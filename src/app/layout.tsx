@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://roniii.vercel.app'),
   title: {
-    default: 'Ronit Raj — Full-Stack AI & ML Engineer',
+    default: 'Ronit Raj - Full-Stack AI & ML Engineer',
     template: '%s | Ronit Raj'
   },
   description: 'Full-stack AI & ML engineer. SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer. Production AI & on-chain systems.',
@@ -37,12 +37,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://roniii.vercel.app',
     siteName: 'Ronit Raj Portfolio',
-    title: 'Ronit Raj — Full-Stack AI & ML Engineer',
+    title: 'Ronit Raj - Full-Stack AI & ML Engineer',
     description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ronit Raj — Full-Stack AI & ML Engineer',
+    title: 'Ronit Raj - Full-Stack AI & ML Engineer',
     description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
     creator: '@ronit__raj',
   },
@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* Google tag (gtag.js) — GA4 */}
+        {/* Google tag (gtag.js) - GA4 */}
         {isGoogleAnalyticsEnabled && (
           <>
             <Script
@@ -110,7 +110,7 @@ export default function RootLayout({
                 '@type': 'CollegeOrUniversity',
                 name: 'IIIT Gwalior'
               },
-              knowsAbout: ['Graph Neural Networks', 'Multimodal LLMs', 'RAG Systems', 'LLM Fine-tuning', 'Full Stack Development', 'Open Source AI Agents', 'Blockchain'],
+              knowsAbout: ['LLM Fine-tuning (GRPO, LoRA)', 'RAG Systems', 'AI Infrastructure & LLM Serving', 'Reinforcement Learning', 'Graph Neural Networks', 'Recommender Systems', 'Multimodal / Vision-Language Models', 'AI Agent Governance (MCP)', 'Full-Stack Development', 'Open Source'],
               award: [
                 'Smart India Hackathon 2024 Winner',
                 "HackHazards '25 Winner",
@@ -125,10 +125,23 @@ export default function RootLayout({
               ],
               hasOccupation: {
                 '@type': 'Occupation',
-                name: 'AI/ML & Full-Stack Engineer',
+                name: 'Full-Stack AI & ML Engineer',
                 occupationLocation: { '@type': 'Country', name: 'India' },
-                skills: 'PyTorch, Transformers, RAG, LLM fine-tuning, Graph Neural Networks, FastAPI, Next.js, Solidity'
+                skills: 'PyTorch, Transformers, RAG, LLM fine-tuning (GRPO/LoRA), vLLM, LangGraph, Graph Neural Networks, FastAPI, Next.js, Solidity'
               }
+            })
+          }}
+        />
+        {/* WebSite structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Ronit Raj - Portfolio',
+              url: 'https://roniii.vercel.app',
+              author: { '@type': 'Person', name: 'Ronit Raj', url: 'https://roniii.vercel.app' }
             })
           }}
         />

@@ -11,7 +11,7 @@ import { EmailLink } from '@/components/EmailLink'
 export const metadata = {
   title: 'Resume',
   description:
-    'Resume of Ronit Raj — Full-Stack AI & ML Engineer. Experience, projects, skills, education, and awards.',
+    'Resume of Ronit Raj - Full-Stack AI & ML Engineer. Experience, projects, skills, education, and awards.',
   alternates: { canonical: '/resume' },
 }
 

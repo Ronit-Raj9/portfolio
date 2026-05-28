@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Ronit Raj - AI/ML & Full-Stack Engineer'
+export const alt = 'Ronit Raj - Full-Stack AI & ML Engineer'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -37,7 +37,7 @@ export default function Image() {
             marginTop: 16,
           }}
         >
-          AI/ML &amp; Full-Stack Engineer
+          Full-Stack AI &amp; ML Engineer
         </div>
         <div
           style={{
