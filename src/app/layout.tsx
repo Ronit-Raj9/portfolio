@@ -101,7 +101,7 @@ export default function RootLayout({
                 'https://x.com/ronit__raj'
               ],
               jobTitle: 'Full-Stack AI & ML Engineer',
-              description: 'Full-stack AI & ML engineer building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer.',
+              description: 'Full-stack AI & ML engineer building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. Patent pending (Indian App No. 202521020743, multi-modal surveillance). SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer.',
               worksFor: {
                 '@type': 'Organization',
                 name: 'Garudex Labs'

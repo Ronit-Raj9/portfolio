@@ -1,5 +1,13 @@
 [
   {
+    "id": "patent-multimodal-surveillance-2025",
+    "year": "2025",
+    "title": "Patent (Pending) — A Multi-Modal Surveillance System",
+    "subtitle": "Indian Patent Application No. 202521020743 · Filed Mar 2025 · Co-Author",
+    "description": "Filed a patent for a multi-modal surveillance system fusing a Vision Transformer (400M params, 27 layers) with an NLP model (1.7B params, 28 layers) for real-time traffic analysis. Scored 92/100 on COCO/BDD100K benchmarks and edge-deployed with ~2-hour battery life on consumer hardware. (Indian App No. 202521020743, SSR Ref. 402645.)",
+    "category": "patent"
+  },
+  {
     "id": "nha-pmjay-hackathon-2026",
     "year": "2026",
     "title": "Runner-Up - AB PM-JAY Healthcare Hackathon",
@@ -123,14 +131,6 @@
     "title": "PARAM Production Pilot - ABV-IIITM Gwalior",
     "subtitle": "C3iHub, IIT Kanpur · Blockchain Academic Credentials",
     "description": "Shipped and piloted PARAM during a Software Engineer internship at C3iHub, IIT Kanpur - a blockchain academic credential platform for ABV-IIITM Gwalior. Covers semester transcripts and degree certificates (CSV bulk upload → DRAFT → REVIEWED → APPROVED → ISSUED), curriculum versioning, SGPA/CGPA, correction/revaluation flows, ERC-721 mint on Base Sepolia (84532) with document-hash anchoring, Privy-managed student wallets, and public verification (share links, QR, API). Production stack: Vercel (Next.js 16) + EC2 (Caddy, Express 5, BullMQ worker, Redis) + Supabase Postgres; 30+ Prisma models; Vitest, Forge, and Playwright test tiers in CI.",
-    "category": "other"
-  },
-  {
-    "id": "un-digital-trade-rie-2026",
-    "year": "2026",
-    "title": "UN Global Hackathon - Digital Trade Regulatory Analysis",
-    "subtitle": "Regulatory Intelligence Engine (RIE) · RDTII Pillars 6 & 7",
-    "description": "Built a hexagonal monorepo that maps statutory legal text to RDTII digital-governance indicators with span-level citations: Docling/PyMuPDF extraction, BGE-M3 + Qdrant hybrid retrieval, constrained LLM classification, 4-gate verification (span/verbatim/NLI/self-consistency), and two-layer output (verified evidence + human-confirmed score recommendation). LangGraph orchestration with HITL audit UI (Streamlit + React) and FastAPI.",
     "category": "other"
   }
 ]

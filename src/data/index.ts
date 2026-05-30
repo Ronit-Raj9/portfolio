@@ -50,7 +50,7 @@ export interface Experience {
   link?: string
 }
 
-export type AchievementCategory = 'featured' | 'speaker' | 'other'
+export type AchievementCategory = 'patent' | 'featured' | 'speaker' | 'other'
 
 export interface Achievement {
   id: string
@@ -68,9 +68,10 @@ export interface AchievementCategoryGroup {
   items: Achievement[]
 }
 
-const ACHIEVEMENT_CATEGORY_ORDER: AchievementCategory[] = ['speaker', 'featured', 'other']
+const ACHIEVEMENT_CATEGORY_ORDER: AchievementCategory[] = ['patent', 'speaker', 'featured', 'other']
 
 export const ACHIEVEMENT_CATEGORY_LABELS: Record<AchievementCategory, string> = {
+  patent: 'Patent',
   featured: 'Hackathon Wins',
   speaker: 'Speaking',
   other: 'More Achievements',

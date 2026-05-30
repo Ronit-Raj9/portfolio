@@ -8,7 +8,7 @@ Ronit Raj is a full-stack AI & ML engineer and open-source maintainer. He mainta
 - Role: Full-Stack AI & ML Engineer · Open Source Maintainer
 - Location: India
 - Education: B.Tech Mathematics & Scientific Computing, IIIT Gwalior (2023–2027), CGPA 8.35
-- Credentials: SIH 2024 Winner · NHA × IISc PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh (LFDT) Maintainer
+- Credentials: Patent Pending (multi-modal surveillance) · SIH 2024 Winner · NHA × IISc PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh (LFDT) Maintainer
 - Focus: LLM fine-tuning (GRPO/LoRA), RAG, AI infrastructure & LLM serving, full-stack AI apps
 - Site: https://roniii.vercel.app
 
@@ -31,6 +31,9 @@ Ronit Raj is a full-stack AI & ML engineer and open-source maintainer. He mainta
 - [Aadhaar-Zero](https://roniii.vercel.app/projects/aadhaar-zero) - Privacy-preserving KYC with ZK proofs (Groth16) on Base Sepolia; CSIC 1.0 Stage III shortlist. (Solidity, snarkjs, Circom)
 - [TypeNad](https://roniii.vercel.app/projects/typenad) - Competitive on-chain typing arena on Monad with staking. (Next.js, Monad, Solidity)
 - [HealthBooker](https://roniii.vercel.app/projects/healthbooker) - Blockchain medical records; AES-256 on IPFS, Ethereum access control. (React, Ethereum, IPFS, Solidity)
+
+## Patent
+- A Multi-Modal Surveillance System (Pending) - Co-Author. Indian Patent Application No. 202521020743, filed Mar 2025 (SSR Ref. 402645). Fuses a Vision Transformer (400M params) with an NLP model (1.7B params) for real-time traffic analysis; 92/100 on COCO/BDD100K; edge-deployed with ~2-hour battery on consumer hardware.
 
 ## Awards & recognition
 - NHA × IISc AB PM-JAY Healthcare Hackathon - Runner-Up (₹3L) (2026)
