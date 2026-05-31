@@ -1,39 +1,35 @@
 [
   {
-  "id": "gitmesh",
-  "role": "Maintainer",
-  "company": "GitMesh",
-  "period": "November 2024 - Present",
-  "description": "Maintainer of GitMesh - an AI-agent governance platform selected into the Linux Foundation Decentralized Trust (LFDT). Grew it to 130+ GitHub stars.",
-  "highlights": [
-    "Multi-agent orchestration on a governed MCP platform for OSS projects",
-    "Selected into Linux Foundation Decentralized Trust",
-    "Policy-as-code for AI agents: GitHub/GitLab sync, audit logging, maintainer-controlled approvals",
-    "Reached 130+ GitHub stars, improving collaboration, governance, and automation for OSS teams"
-  ],
-  "current": true,
-  "icon": "/images/companies/gitmesh.png",
-  "badge": "Open Source",
-  "locationType": "Remote",
-  "link": "https://gitmesh.dev"
+    "id": "gitmesh",
+    "role": "Core Maintainer",
+    "company": "GitMesh",
+    "period": "July 2025 - Present",
+    "description": "Core Maintainer of GitMesh — a Linux Foundation multi-agent orchestration runtime with OPA policy-as-code and MCP governance. Grew adoption to 140+ GitHub stars.",
+    "highlights": [
+      "Championed a Linux Foundation multi-agent orchestration runtime, growing adoption to 140+ stars by collaborating on an OPA policy-as-code layer to strictly govern autonomous AI tools via MCP",
+      "Led the Phase Two architecture pivot to an LF-aligned TypeScript monorepo, scaling the project to 20 active contributors and achieving OpenSSF certification, by optimizing an ACP (JSON-RPC 2.0) orchestrator and a Postgres audit log"
+    ],
+    "current": true,
+    "icon": "/images/companies/gitmesh.png",
+    "badge": "Open Source",
+    "locationType": "Remote",
+    "link": "https://gitmesh.dev"
   },
   {
     "id": "c3ihub-iitk",
     "role": "Software Engineer Intern",
     "company": "C3iHub, IIT Kanpur",
     "period": "May 2025 - August 2025",
-    "description": "Built and shipped PARAM - a blockchain academic-credential platform for ABV-IIITM Gwalior, live at production-pilot scale.",
+    "description": "Directed PARAM — a production blockchain academic-credential platform with a live pilot across 6 departments and 6 degree programs at ABV-IIITM Gwalior.",
     "highlights": [
-      "Monorepo: Next.js 16 + React 19 frontend (Privy, shadcn); Express 5 API; isolated BullMQ worker for CSV, mint, email, and cron on AWS EC2 eu-north-1",
-      "End-to-end workflows - faculty grades → academic review → admin approve → mint on Base Sepolia; degree proposals with credit/backlog eligibility checks",
-      "30+ Prisma models; modules for students, curriculum, results, approvals, degrees, credentials, issuance, verification, audit; Zod-validated APIs",
-      "ERC-721 credentials (SemesterNFT, DegreeNFT, CertificateNFT) + SHA-256 anchoring; public /verify with share links, QR, and hash/tokenId API",
-      "CI matrix: Vitest integration + supertest, Foundry contracts, Playwright e2e; live pilot at param-iiitm.vercel.app (Vercel arn1 + Supabase Postgres)"
+      "Live pilot across 6 departments and 6 degree programs — Next.js 16 + Express 5 monorepo with Privy auth and 5-role RBAC",
+      "Scalable credential issuance pipeline validated by 100+ automated tests — Redis-backed BullMQ workers for async NFT mints and a 37-model Postgres schema",
+      "ERC-721 credentials on Base Sepolia with SHA-256 anchoring; public verification with share links, QR, and hash/tokenId API"
     ],
     "current": false,
     "badge": "Internship",
     "locationType": "Remote",
-    "link": "https://c3ihub.org/"
+    "link": "https://param-iiitm.vercel.app/"
   },
   {
     "id": "ionia",
@@ -51,38 +47,19 @@
     "locationType": "Remote"
   },
   {
-  "id": "zentoro",
-  "role": "Co-Founder & Lead Developer",
-  "company": "Zentoro AI",
-  "period": "November 2024 - March 2025",
-  "description": "Co-founded Zentoro AI - an autonomous multi-agent engine that plans, builds, and launches projects end-to-end. 700+ visitors from 44 countries in early validation.",
-  "highlights": [
-    "Developed autonomous AI agent system for end-to-end project execution across campaigns, apps, and financial models",
-    "Achieved strong early validation with 700+ visitors from 44 countries and endorsement from 50+ YC alumni",
-    "Learned critical lesson on speed-to-market: launching fast over perfect iteration"
-  ],
-  "current": false,
-  "icon": "/images/companies/zentoro.png",
-  "badge": "Building a Startup",
-  "locationType": "On Site",
-  "link": ""
-  },
-
-  {
-  "id": "garudex",
-  "role": "Co-Founder & Lead Developer",
-  "company": "Garudex Labs",
-  "period": "November 2024 - March 2025",
-  "description": "Co-founded Garudex Labs - built an AI product for the government sector and won the Government of India's national IDE'25 entrepreneurship award.",
-  "highlights": [
-    "Worked on end-to-end product development for TRAFFIC - AI solution addressing government sector needs",
-    "Navigated 3+ year government validation cycles and procurement challenges",
-    "Gained critical insights on market selection and startup sustainability in regulated sectors"
-  ],
-  "current": false,
-  "icon": "/images/companies/garudex.png",
-  "badge": "Building a Startup",
-  "locationType": "On Site",
-  "link": ""
+    "id": "garudex",
+    "role": "Founding Engineer",
+    "company": "Garudex Labs",
+    "period": "Nov 2024 - June 2025",
+    "description": "Founding Engineer at Garudex Labs — real-time traffic edge system (patent + AICTE IDE 2025 Best Startup Pitch) and 15-agent AI SaaS backend.",
+    "highlights": [
+      "Pioneered a real-time traffic edge system, yielding a co-authored patent and presenting the Best Startup Pitch at AICTE IDE 2025",
+      "Designed a fault-tolerant backend for a 15-agent AI SaaS, ensuring resilience by analyzing external API latency and introducing exponential-backoff retries to mitigate cascading failures"
+    ],
+    "current": false,
+    "icon": "/images/companies/garudex.png",
+    "badge": "Startup",
+    "locationType": "On Site",
+    "link": ""
   }
 ]

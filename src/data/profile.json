@@ -2,7 +2,7 @@
   "name": "Ronit Raj",
   "title": "Full-Stack AI & ML Engineer",
   "tagline": "Full-stack AI & ML engineer who likes shipping - from training and serving models (GRPO on AMD MI300X, vision-language RAG) to the full-stack apps and infra around them. 9x hackathon podiums, a startup, and GitMesh - a Linux Foundation (LFDT) project I maintain.",
-  "credentials": "SIH 2024 Winner · NHA PM-JAY Runner-Up · OSS India 2026 Speaker · GitMesh Maintainer",
+  "credentials": "SIH 2024 Winner · NHA PM-JAY Top 3 Runner-Up · OSS India 2026 Speaker · GitMesh Maintainer",
   "proofPoints": [
     "OSS Mumbai India 2026 Speaker",
     "9x Hackathon Winner",
@@ -24,12 +24,12 @@
     "message": "Open to Full-Stack AI / ML Engineer roles and startup collaborations."
   },
   "about": {
-    "summary": "I build because I can't not - give me a hard problem and a weekend and I'll have something running. That took me from a static HTML site in 2019 to fine-tuning LLMs on AMD MI300X and shipping production AI that holds up under real traffic and messy data. Along the way: 9 hackathon wins, a startup, and GitMesh - an LFDT AI-agent governance project I maintain. Now focused on full-stack AI and AI-infra - turning demos into systems people depend on.",
+    "summary": "I build because I enjoy solving hard problems. What started with a static HTML website in 2019 has grown into production AI systems — PM-JAY claim adjudication, ClauseMark regulatory evidence, InferenceGym for LLM serving, and PARAM on-chain credentials. Along the way, I've earned 9 hackathon podiums ($5,000+ in prizes), co-founded a startup, and maintain GitMesh, an LFDT AI-agent governance project at 140+ stars. Today, I focus on full-stack AI and AI infrastructure, turning prototypes into systems people can rely on.",
     "sections": [
       {
         "title": "Where It Started",
         "paragraphs": [
-          "In 2019 I shipped my first website - a static hotel landing page with responsive layout, a mobile side nav, and vanilla JavaScript (still on GitHub as first-website). No framework, no backend - just HTML, CSS, and curiosity. That foundation is the through-line to today: PARAM on Base Sepolia, GitGambit over the GitHub API, PM-JAY pipelines on Gemma, and a 40-minute session at OSS India 2026."
+          "In 2019 I shipped my first website - a static hotel landing page with responsive layout, a mobile side nav, and vanilla JavaScript (still on GitHub as first-website). No framework, no backend - just HTML, CSS, and curiosity. That foundation is the through-line to today: PM-JAY pipelines on Gemma, ClauseMark for UN digital trade, PARAM on Base Sepolia, InferenceGym for LLM serving, and a 40-minute session at OSS India 2026."
         ]
       },
       {

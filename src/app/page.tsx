@@ -113,7 +113,7 @@ function ProjectCardCompact({ project, index }: { project: Project; index: numbe
           ) : (
             <span />
           )}
-          {!project.completeness && (
+          {(!project.completeness || project.wip) && (
             <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-orange-500/90 text-white shrink-0">
               In Progress
             </span>
@@ -562,11 +562,11 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={trackResumeDownload}
-                    className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-2 md:py-2.5 border border-border rounded-lg hover:bg-accent/30 transition-colors"
-                    aria-label="Resume"
+                    className="flex items-center gap-1.5 md:gap-2 px-3 md:px-3.5 py-2 md:py-2.5 rounded-lg bg-foreground text-background font-semibold shadow-sm hover:opacity-90 active:scale-[0.98] transition-all"
+                    aria-label="Download resume PDF"
                   >
                     <HiOutlineDocumentDownload className="w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-xs md:text-sm font-medium">CV</span>
+                    <span className="text-xs md:text-sm font-semibold">CV</span>
                   </a>
                 </div>
               </motion.div>
@@ -850,7 +850,7 @@ export default function Home() {
                   {/* Left Content */}
                   <div className="flex-1 min-w-0">
                     <h3 className="text-base font-semibold text-foreground mb-0.5">
-                      Indian Institute of Information Technology Gwalior
+                      Indian Institute of Information Technology and Management, Gwalior
                     </h3>
                     <p className="text-sm font-medium font-mono text-muted-foreground mb-1">
                       B.Tech in Mathematics and Scientific Computing
@@ -959,12 +959,20 @@ export default function Home() {
                       {group.label}
                     </h3>
                     {group.key === 'featured' && group.items.length > 0 && (
-                      <span
-                        className="inline-flex items-center justify-center min-w-[2.25rem] px-2.5 py-1 text-sm font-bold leading-none rounded-lg bg-foreground text-background tabular-nums"
-                        aria-label={`${group.items.length} hackathon wins`}
-                      >
-                        {group.items.length}×
-                      </span>
+                      <>
+                        <span
+                          className="inline-flex items-center justify-center min-w-[2.25rem] px-2.5 py-1 text-sm font-bold leading-none rounded-lg bg-foreground text-background tabular-nums"
+                          aria-label={`${group.items.length} hackathon wins`}
+                        >
+                          {group.items.length}×
+                        </span>
+                        <span
+                          className="inline-flex items-center px-2.5 py-1 text-sm font-semibold leading-none rounded-lg border border-border text-foreground tabular-nums"
+                          aria-label="Total hackathon prize money"
+                        >
+                          $5,000+
+                        </span>
+                      </>
                     )}
                   </div>
                   <div className="space-y-1.5">

@@ -1,9 +1,9 @@
-// IndexNow submitter — instant-index roniii.vercel.app on Bing/Yandex.
+// IndexNow submitter - instant-index the portfolio on Bing/Yandex.
 // Run AFTER deploying (the key file must be live first), else 403.
 //   node scripts/indexnow.mjs
 import fs from 'node:fs'
 
-const HOST = 'roniii.vercel.app'
+const HOST = process.env.SITE_HOST ?? 'roniii.vercel.app'
 const KEY = '6bb1b030e21c4d57bbf912bac0d0b535'
 const BASE = `https://${HOST}`
 

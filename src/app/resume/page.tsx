@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { HiOutlineDocumentDownload } from 'react-icons/hi'
 import {
   profile,
   experience,
@@ -11,7 +12,7 @@ import { EmailLink } from '@/components/EmailLink'
 export const metadata = {
   title: 'Resume',
   description:
-    'Resume of Ronit Raj - Full-Stack AI & ML Engineer. Experience, projects, skills, education, and awards.',
+    'Resume of Ronit Raj — Full-Stack AI & ML Engineer. GitMesh maintainer, C3iHub/PARAM intern, Garudex founding engineer. PM-JAY Top 3 runner-up, OSS India 2026 speaker, 9× hackathon podiums.',
   alternates: { canonical: '/resume' },
 }
 
@@ -53,7 +54,7 @@ export default function ResumePage() {
             {profile.location}
           </p>
 
-          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <ul className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
             <li>
               <EmailLink
                 email={profile.email}
@@ -102,13 +103,14 @@ export default function ResumePage() {
                 Kaggle
               </a>
             </li>
-            <li>
+            <li className="w-full sm:w-auto sm:ml-auto pt-1 sm:pt-0">
               <a
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground hover:underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-3.5 py-2 text-sm font-semibold text-background shadow-sm transition-all hover:opacity-90 active:scale-[0.98]"
               >
+                <HiOutlineDocumentDownload className="h-4 w-4 shrink-0" />
                 Download PDF
               </a>
             </li>
@@ -234,7 +236,7 @@ export default function ResumePage() {
           <article>
             <div className="flex flex-wrap items-baseline justify-between gap-x-3">
               <h3 className="text-base md:text-lg font-semibold">
-                Indian Institute of Information Technology Gwalior
+                Indian Institute of Information Technology and Management, Gwalior
               </h3>
               <span className="text-sm text-muted-foreground">2023 - 2027</span>
             </div>

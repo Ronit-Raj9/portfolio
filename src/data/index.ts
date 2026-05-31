@@ -68,7 +68,7 @@ export interface AchievementCategoryGroup {
   items: Achievement[]
 }
 
-const ACHIEVEMENT_CATEGORY_ORDER: AchievementCategory[] = ['patent', 'speaker', 'featured', 'other']
+const ACHIEVEMENT_CATEGORY_ORDER: AchievementCategory[] = ['speaker', 'featured', 'patent', 'other']
 
 export const ACHIEVEMENT_CATEGORY_LABELS: Record<AchievementCategory, string> = {
   patent: 'Patent',
@@ -116,6 +116,7 @@ export interface Project {
   year: number
   featured: boolean
   completeness: boolean
+  wip?: boolean
   caseStudy?: CaseStudy
 }
 

@@ -1,74 +1,292 @@
 {
   "technical": {
-    "Vision-Language Models": ["PaliGemma", "CLIP", "ViT architectures", "Multi-modal fusion"],
-    "Graph Neural Networks": ["PyTorch Geometric", "DGL", "Message passing algorithms"],
-    "LLM Fine-tuning & RAG": ["Retrieval-Augmented Generation", "LoRA/QLoRA", "Vector databases"],
-    "Production Infrastructure": ["FastAPI (99.9% uptime)", "Docker", "AWS/GCP", "CI/CD pipelines"]
+    "Vision-Language Models": [
+      "PaliGemma",
+      "CLIP",
+      "ViT architectures",
+      "Multi-modal fusion"
+    ],
+    "Graph Neural Networks": [
+      "PyTorch Geometric",
+      "DGL",
+      "Message passing algorithms"
+    ],
+    "LLM Fine-tuning & RAG": [
+      "Retrieval-Augmented Generation",
+      "LoRA/QLoRA",
+      "Vector databases"
+    ],
+    "Production Infrastructure": [
+      "FastAPI (99.9% uptime)",
+      "Docker",
+      "AWS/GCP",
+      "CI/CD pipelines"
+    ]
   },
   "all": [
-    { "name": "PyTorch", "category": "AI/ML/DL" },
-    { "name": "Transformers", "category": "AI/ML/DL" },
-    { "name": "RAG", "category": "AI/ML/DL" },
-    { "name": "Reinforcement Learning", "category": "AI/ML/DL" },
-    { "name": "GRPO", "category": "AI/ML/DL" },
-    { "name": "PPO", "category": "AI/ML/DL" },
-    { "name": "LoRA", "category": "AI/ML/DL" },
-    { "name": "PEFT", "category": "AI/ML/DL" },
-    { "name": "Unsloth", "category": "AI/ML/DL" },
-    { "name": "TRL", "category": "AI/ML/DL" },
-    { "name": "Bitsandbytes", "category": "AI/ML/DL" },
-    { "name": "LangChain", "category": "AI/ML/DL" },
-    { "name": "LangGraph", "category": "AI/ML/DL" },
-    { "name": "Graph Neural Networks", "category": "AI/ML/DL" },
-    { "name": "Recommender Systems", "category": "AI/ML/DL" },
-    { "name": "Hugging Face", "category": "AI Infra & MLOps" },
-    { "name": "vLLM", "category": "AI Infra & MLOps" },
-    { "name": "Docker", "category": "AI Infra & MLOps" },
-    { "name": "ROCm", "category": "AI Infra & MLOps" },
-    { "name": "MCP", "category": "AI Infra & MLOps" },
-    { "name": "Weights & Biases", "category": "AI Infra & MLOps" },
-    { "name": "GitHub Actions", "category": "AI Infra & MLOps" },
-    { "name": "NumPy", "category": "Python Libs" },
-    { "name": "Pandas", "category": "Python Libs" },
-    { "name": "Pydantic", "category": "Python Libs" },
-    { "name": "FastAPI", "category": "Python Libs" },
-    { "name": "Flask", "category": "Python Libs" },
-    { "name": "OpenCV", "category": "Python Libs" },
-    { "name": "BeautifulSoup", "category": "Python Libs" },
-    { "name": "Selenium", "category": "Python Libs" },
-    { "name": "Next.js", "category": "Web" },
-    { "name": "React.js", "category": "Web" },
-    { "name": "Node.js", "category": "Web" },
-    { "name": "Express", "category": "Web" },
-    { "name": "GraphQL", "category": "Web" },
-    { "name": "WebSocket", "category": "Web" },
-    { "name": "React Native", "category": "Web" },
-    { "name": "Tailwind", "category": "Web" },
-    { "name": "PostgreSQL", "category": "Databases" },
-    { "name": "MongoDB", "category": "Databases" },
-    { "name": "Redis", "category": "Databases" },
-    { "name": "Supabase", "category": "Databases" },
-    { "name": "Prisma", "category": "Databases" },
-    { "name": "Drizzle", "category": "Databases" },
-    { "name": "Neo4j", "category": "Databases" },
-    { "name": "SQLite", "category": "Databases" },
-    { "name": "Pinecone", "category": "Databases" },
-    { "name": "FAISS", "category": "Databases" },
-    { "name": "Qdrant", "category": "Databases" },
-    { "name": "ChromaDB", "category": "Databases" },
-    { "name": "Solidity", "category": "Blockchain" },
-    { "name": "ethers.js", "category": "Blockchain" },
-    { "name": "Foundry", "category": "Blockchain" },
-    { "name": "Base", "category": "Blockchain" },
-    { "name": "AWS", "category": "Cloud" },
-    { "name": "Vercel", "category": "Cloud" },
-    { "name": "Cloudflare", "category": "Cloud" },
-    { "name": "Python", "category": "Languages" },
-    { "name": "TypeScript", "category": "Languages" },
-    { "name": "JavaScript", "category": "Languages" },
-    { "name": "SQL", "category": "Languages" },
-    { "name": "C/C++", "category": "Languages" },
-    { "name": "HTML", "category": "Languages" },
-    { "name": "CSS", "category": "Languages" }
+    {
+      "name": "PyTorch",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Transformers",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "RAG",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Reinforcement Learning",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "GRPO",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "PPO",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "LoRA",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "PEFT",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Unsloth",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "TRL",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Bitsandbytes",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "LangChain",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "LangGraph",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Graph Neural Networks",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Recommender Systems",
+      "category": "AI/ML/DL"
+    },
+    {
+      "name": "Hugging Face",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "vLLM",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "Docker",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "Kubernetes",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "ROCm",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "MCP",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "Weights & Biases",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "AI Infra & MLOps"
+    },
+    {
+      "name": "NumPy",
+      "category": "Python Libs"
+    },
+    {
+      "name": "Pandas",
+      "category": "Python Libs"
+    },
+    {
+      "name": "Pydantic",
+      "category": "Python Libs"
+    },
+    {
+      "name": "FastAPI",
+      "category": "Python Libs"
+    },
+    {
+      "name": "Flask",
+      "category": "Python Libs"
+    },
+    {
+      "name": "OpenCV",
+      "category": "Python Libs"
+    },
+    {
+      "name": "BeautifulSoup",
+      "category": "Python Libs"
+    },
+    {
+      "name": "Selenium",
+      "category": "Python Libs"
+    },
+    {
+      "name": "Next.js",
+      "category": "Web"
+    },
+    {
+      "name": "React.js",
+      "category": "Web"
+    },
+    {
+      "name": "Node.js",
+      "category": "Web"
+    },
+    {
+      "name": "Express",
+      "category": "Web"
+    },
+    {
+      "name": "GraphQL",
+      "category": "Web"
+    },
+    {
+      "name": "WebSocket",
+      "category": "Web"
+    },
+    {
+      "name": "React Native",
+      "category": "Web"
+    },
+    {
+      "name": "Tailwind",
+      "category": "Web"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Databases"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Databases"
+    },
+    {
+      "name": "Redis",
+      "category": "Databases"
+    },
+    {
+      "name": "Supabase",
+      "category": "Databases"
+    },
+    {
+      "name": "Prisma",
+      "category": "Databases"
+    },
+    {
+      "name": "Drizzle",
+      "category": "Databases"
+    },
+    {
+      "name": "Neo4j",
+      "category": "Databases"
+    },
+    {
+      "name": "SQLite",
+      "category": "Databases"
+    },
+    {
+      "name": "Pinecone",
+      "category": "Databases"
+    },
+    {
+      "name": "FAISS",
+      "category": "Databases"
+    },
+    {
+      "name": "Qdrant",
+      "category": "Databases"
+    },
+    {
+      "name": "ChromaDB",
+      "category": "Databases"
+    },
+    {
+      "name": "Solidity",
+      "category": "Blockchain"
+    },
+    {
+      "name": "ethers.js",
+      "category": "Blockchain"
+    },
+    {
+      "name": "Foundry",
+      "category": "Blockchain"
+    },
+    {
+      "name": "Base",
+      "category": "Blockchain"
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud"
+    },
+    {
+      "name": "GCP",
+      "category": "Cloud"
+    },
+    {
+      "name": "Vercel",
+      "category": "Cloud"
+    },
+    {
+      "name": "Cloudflare",
+      "category": "Cloud"
+    },
+    {
+      "name": "Python",
+      "category": "Languages"
+    },
+    {
+      "name": "TypeScript",
+      "category": "Languages"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Languages"
+    },
+    {
+      "name": "SQL",
+      "category": "Languages"
+    },
+    {
+      "name": "C/C++",
+      "category": "Languages"
+    },
+    {
+      "name": "HTML",
+      "category": "Languages"
+    },
+    {
+      "name": "CSS",
+      "category": "Languages"
+    }
   ]
 }

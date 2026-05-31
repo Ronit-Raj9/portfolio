@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { FaGithub } from "react-icons/fa"
 import { cn } from "@/lib/utils"
 import { allProjects, getProjectBySlug } from "@/data"
+import { SITE_URL } from "@/lib/site-config"
 
 export function generateStaticParams() {
   return allProjects.map((p) => ({ slug: p.id }))
@@ -65,19 +66,19 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://roniii.vercel.app/",
+        item: `${SITE_URL}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Projects",
-        item: "https://roniii.vercel.app/projects",
+        item: `${SITE_URL}/projects`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: project.title,
-        item: `https://roniii.vercel.app/projects/${project.id}`,
+        item: `${SITE_URL}/projects/${project.id}`,
       },
     ],
   }
@@ -90,10 +91,10 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
     author: {
       "@type": "Person",
       name: "Ronit Raj",
-      url: "https://roniii.vercel.app",
+      url: SITE_URL,
     },
-    url: `https://roniii.vercel.app/projects/${project.id}`,
-    image: `https://roniii.vercel.app${project.image}`,
+    url: `${SITE_URL}/projects/${project.id}`,
+    image: `${SITE_URL}${project.image}`,
     keywords: project.tech.join(", "),
   }
 

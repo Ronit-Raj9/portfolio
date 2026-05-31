@@ -8,17 +8,21 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Analytics from '@/components/Analytics'
 import { GA_MEASUREMENT_ID, isGoogleAnalyticsEnabled } from '@/lib/ga-config'
+import { SITE_URL } from '@/lib/site-config'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const SEO_DESCRIPTION =
+  'Full-stack AI & ML engineer. SIH 2024 winner, NHA PM-JAY Top 3 runner-up, OSS India 2026 speaker, GitMesh maintainer (140+ stars). Production AI & infrastructure.'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://roniii.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Ronit Raj - Full-Stack AI & ML Engineer',
     template: '%s | Ronit Raj'
   },
-  description: 'Full-stack AI & ML engineer. SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer. Production AI & on-chain systems.',
-  authors: [{ name: 'Ronit Raj', url: 'https://roniii.vercel.app' }],
+  description: SEO_DESCRIPTION,
+  authors: [{ name: 'Ronit Raj', url: SITE_URL }],
   creator: 'Ronit Raj',
   publisher: 'Ronit Raj',
   robots: {
@@ -35,15 +39,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://roniii.vercel.app',
+    url: SITE_URL,
     siteName: 'Ronit Raj Portfolio',
     title: 'Ronit Raj - Full-Stack AI & ML Engineer',
-    description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
+    description: SEO_DESCRIPTION,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ronit Raj - Full-Stack AI & ML Engineer',
-    description: 'Full-stack AI & ML engineer · SIH 2024 winner · NHA PM-JAY runner-up · OSS India 2026 speaker. Building production AI and on-chain systems.',
+    description: SEO_DESCRIPTION,
     creator: '@ronit__raj',
   },
   alternates: {
@@ -93,43 +97,57 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Ronit Raj',
-              url: 'https://roniii.vercel.app',
-              image: 'https://roniii.vercel.app/images/profile.jpeg',
+              url: SITE_URL,
+              image: `${SITE_URL}/images/profile.jpeg`,
               sameAs: [
                 'https://github.com/Ronit-Raj9',
                 'https://www.linkedin.com/in/ronitrajai/',
-                'https://x.com/ronit__raj'
+                'https://x.com/ronit__raj',
+                'https://www.kaggle.com/ronitraj1',
               ],
               jobTitle: 'Full-Stack AI & ML Engineer',
-              description: 'Full-stack AI & ML engineer building production AI (GRPO on AMD MI300X, vision-language RAG) and on-chain systems. Patent pending (Indian App No. 202521020743, multi-modal surveillance). SIH 2024 winner, NHA PM-JAY runner-up, OSS India 2026 speaker, GitMesh maintainer.',
+              description:
+                'Full-stack AI & ML engineer and open-source maintainer. Core Maintainer of GitMesh (LFDT, 140+ stars). PM-JAY Top 3 runner-up, OSS India 2026 speaker. Builds production AI (Gemma pipelines, LangGraph RAG, InferenceGym LLM serving) and blockchain credential systems (PARAM). Patent pending (Indian App No. 202521020743).',
               worksFor: {
                 '@type': 'Organization',
-                name: 'Garudex Labs'
+                name: 'GitMesh',
+                url: 'https://gitmesh.dev',
               },
               alumniOf: {
                 '@type': 'CollegeOrUniversity',
-                name: 'IIIT Gwalior'
+                name: 'Indian Institute of Information Technology and Management, Gwalior',
               },
-              knowsAbout: ['LLM Fine-tuning (GRPO, LoRA)', 'RAG Systems', 'AI Infrastructure & LLM Serving', 'Reinforcement Learning', 'Graph Neural Networks', 'Recommender Systems', 'Multimodal / Vision-Language Models', 'AI Agent Governance (MCP)', 'Full-Stack Development', 'Open Source'],
+              knowsAbout: [
+                'LLM Fine-tuning (GRPO, LoRA)',
+                'RAG Systems',
+                'AI Infrastructure & LLM Serving',
+                'Reinforcement Learning',
+                'Vision-Language Models',
+                'AI Agent Governance (MCP, OPA)',
+                'Full-Stack Development',
+                'Open Source',
+              ],
               award: [
+                '9× Hackathon Wins & Podiums ($5,000+ in prizes)',
                 'Smart India Hackathon 2024 Winner',
-                "HackHazards '25 Winner",
-                "IDE'25 Innovation Development & Entrepreneurship Award (Government of India)",
-                'NHA × IISc PM-JAY Healthcare Hackathon Runner-Up',
-                'Trillion Dollar GenAI Hackathon 2nd Place (IIT Bhubaneswar)',
+                'NHA × IISc PM-JAY Healthcare Hackathon Top 3 Runner-Up',
+                "HackHazards '25 Winner (1st Prize)",
+                'LNMHacks 8.0 Winner',
+                'Trillion Dollar GenAI Hackathon 2nd Place',
                 'Monad Blitz New Delhi 4th Place',
-                'AMD AI RL Hackathon Special Mention (IIT Delhi)',
-                'META × Hugging Face RL Hackathon Finalist',
-                'DSCI CSIC 1.0 Stage III Shortlist',
-                'Open Source Summit India 2026 Speaker (Linux Foundation)'
+                'Best Startup Pitch - AICTE IDE 2025',
+                'Winner - CrftHQ Hackathon (iONIA)',
+                'Open Source Summit India 2026 Speaker (Linux Foundation)',
+                'AMD AI RL Hackathon Special Mention',
               ],
               hasOccupation: {
                 '@type': 'Occupation',
                 name: 'Full-Stack AI & ML Engineer',
                 occupationLocation: { '@type': 'Country', name: 'India' },
-                skills: 'PyTorch, Transformers, RAG, LLM fine-tuning (GRPO/LoRA), vLLM, LangGraph, Graph Neural Networks, FastAPI, Next.js, Solidity'
-              }
-            })
+                skills:
+                  'PyTorch, Transformers, RAG, LLM fine-tuning (GRPO/LoRA), vLLM, LangGraph, FastAPI, Next.js, MCP, Kubernetes, Solidity',
+              },
+            }),
           }}
         />
         {/* WebSite structured data */}
@@ -140,9 +158,9 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Ronit Raj - Portfolio',
-              url: 'https://roniii.vercel.app',
-              author: { '@type': 'Person', name: 'Ronit Raj', url: 'https://roniii.vercel.app' }
-            })
+              url: SITE_URL,
+              author: { '@type': 'Person', name: 'Ronit Raj', url: SITE_URL },
+            }),
           }}
         />
       </head>

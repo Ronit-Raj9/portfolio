@@ -92,29 +92,31 @@
     "id": "pmjay-adjudication",
     "year": 2026,
     "title": "PM-JAY Claim Adjudication",
-    "subtitle": "Automated STG Compliance for Ayushman Bharat",
-    "badge": "NHA × IISc · Runner-Up · $3,100",
+    "subtitle": "Automated Evidence Verification for Ayushman Bharat",
+    "badge": "NHA × IISc · Top 3 Runner-Up · $3,100",
     "badgeColor": "bg-teal-500/20 text-teal-600 dark:text-teal-400 border-teal-500/30",
     "track": "ml",
     "highlights": [
-      "Runner-Up at NHA × IISc AB PM-JAY Healthcare Hackathon (April 2026) - ₹3L prize",
-      "Dual Gemma 3 12B pass per page: document OCR/classification + per-package clinical assessment",
-      "Keyword ∩ VLM intersection fusion (+3.4 clinical F1 vs pure-VLM override on live evaluator)",
-      "Four PM-JAY packages (Severe Anemia, Cholecystectomy, Enteric Fever, TKR) with strict per-page JSON schemas",
-      "Negation-aware extraction, blur scoring, multilingual OCR, filename hints, multi-page rank consistency"
+      "Top 3 Runner-Up, National Health Authority × IISc AB-PMJAY Hackathon 2026 — ₹3L prize",
+      "End-to-end pipeline: ingest mixed-quality PDFs → multimodal extraction → episode timeline → STG rule engine → explainable Pass / Conditional / Fail",
+      "Primary + secondary Gemma 3 12B calls per page (doc taxonomy + per-package clinical flags) with two-tier disk cache for zero-token reruns",
+      "Hybrid VLM + rules: intersection fusion raised clinical F1 from 0.7567 → 0.7909 (+3.4 pts) vs pure-VLM on strict-label evaluator",
+      "Handles blur, 4 Indian languages + English, handwriting, stamps/signatures, QR/barcodes, negation-aware keywords, and multi-page rank consistency"
     ],
     "tech": [
       "Gemma 3 12B",
       "PyMuPDF",
       "OpenCV",
+      "Pillow",
       "pyzbar",
       "Pydantic",
-      "Python",
-      "STG Rules Engine"
+      "json-repair",
+      "pandas",
+      "Python"
     ],
     "links": {
       "demo": "",
-      "github": "https://github.com/MurtuzaShaikh26/IISC_Healthcare_PS1",
+      "github": "https://github.com/Ronit-Raj9/IISc_Healthcare",
       "caseStudy": "/projects/pmjay-adjudication"
     },
     "image": "/projects/pmjay-adjudication.png",
@@ -122,46 +124,54 @@
     "featured": true,
     "completeness": true,
     "caseStudy": {
-      "problem": "PM-JAY hospitals submit large, messy claim packets-blurry scans, Hindi/English mixes, handwriting, and 20+ document types where pre- vs post-treatment reports look alike. Manual STG review cannot scale; wrong classification or missed negations (e.g. \"no pallor\") directly affect reimbursement decisions.",
-      "approach": "End-to-end pipeline: rasterize PDFs, two cached Gemma 3 12B calls per page (structure + package clinical flags), deterministic keyword layer with 40-char negation lookback, then intersection fusion (keyword AND VLM unless numeric vitals prove otherwise). Package-specific STG engines emit strict-schema JSON per page plus Pass/Conditional/Fail with provenance.",
+      "problem": "AB-PMJAY hospitals submit claim packets as blurry scans, photos, and multilingual PDFs — Hindi, Bengali, Gujarati, Assamese mixed with English, handwriting, rubber stamps, and 20+ document types where pre- vs post-treatment reports look alike. Manual Standard Treatment Guideline (STG) review cannot scale; missed negations (e.g. \"no pallor\"), hallucinated dates, and weak visual proof directly affect reimbursement.",
+      "approach": "Five-stage claim adjudication pipeline: (1) ingest and normalize pages via PyMuPDF rasterization at 1.5× → 1024px JPEG; (2) multimodal extraction with dual cached Gemma 3 12B calls — primary for doc_type, OCR snippet, entities, and visual flags; secondary for 3–4 per-package clinical binary flags; (3) reconstruct episode timeline from earliest event occurrences; (4) negation-aware keyword layer + intersection fusion (VLM proposes → rules verify → both must agree, with numeric vitals bypass); (5) STG rule engine aggregates per-page outputs into case-level Pass (0.95), Conditional (0.75), or Fail (0.90) with full provenance (page · doc_type · confidence · evidence_excerpt).",
       "metrics": [
         {
           "label": "Placement",
-          "value": "Runner-Up · ₹3L"
+          "value": "Top 3 Runner-Up · ₹3L"
         },
         {
-          "label": "Final score",
-          "value": "~0.77"
+          "label": "Clinical F1 gain",
+          "value": "+3.4 pts (hybrid)"
         },
         {
-          "label": "Packages",
-          "value": "4 STG codes"
+          "label": "Pure VLM → Hybrid",
+          "value": "0.7567 → 0.7909"
+        },
+        {
+          "label": "STG packages",
+          "value": "4 modules"
         },
         {
           "label": "VLM calls",
-          "value": "2 / page"
+          "value": "2 / page (cached)"
         },
         {
-          "label": "Organizers",
-          "value": "NHA × IISc"
+          "label": "Token budget",
+          "value": "~750k total"
         }
       ],
       "techDecisions": [
         {
-          "decision": "Intersection (kw ∧ gem) over pure VLM",
-          "why": "Strict-label evaluation punishes false positives; empirically +3.4 clinical F1 vs Gemma-only override."
+          "decision": "Intersection fusion (keyword ∧ Gemma) over pure VLM",
+          "why": "Pure VLM hallucinates dates and confuses similar doc types; pure keywords miss handwriting and multilingual context. Intersection commits only when both agree — +3.4 clinical F1 on the live strict-label evaluator."
         },
         {
-          "decision": "Dual VLM pass with disk cache",
-          "why": "Separates doc taxonomy from clinical fields; reruns cost zero tokens under the 25.5M budget."
+          "decision": "Two-tier prompt-versioned disk cache (vlm_cache + vlm_clinical_cache)",
+          "why": "Cache hits cost zero tokens and zero latency; reruns stay within the ~750k token budget across 4 packages, cases, and pages."
         },
         {
-          "decision": "Filename + multi-page rank hints",
-          "why": "Cheap signals recovered mandatory-doc F1 the VLM missed on Indian hospital naming conventions."
+          "decision": "Laplacian blur score (threshold 80) + pyzbar visual detect",
+          "why": "Flags poor-quality pages without dropping them; stamps, signatures, and QR/barcodes feed mandatory visual proof checks."
         },
         {
-          "decision": "Per-package schema strip",
-          "why": "HI.txt rejects any key-order or link-field mismatch-output is compliance-critical, not approximate JSON."
+          "decision": "40-char negation-aware keyword lookback + numeric gates",
+          "why": "Stops false positives from \"no pallor\" / \"denies fever\"; Severe Anemia requires Hb < 7.0 g/dL on any page, not diagnosis text alone."
+        },
+        {
+          "decision": "RANK_MAP + SG039C continuity + per-package schema strip",
+          "why": "Multi-page PDFs share canonical file rank when titles appear only on page 1; output must match PACKAGE_SCHEMAS key order exactly for compliance grading."
         }
       ]
     }
@@ -171,7 +181,7 @@
     "year": 2026,
     "title": "ClauseMark",
     "subtitle": "Verified Regulatory Evidence Engine - UN Digital Trade (RDTII)",
-    "badge": "UN Digital Trade Hackathon · 2026 · Building",
+    "badge": "UN Digital Trade Hackathon · 2026",
     "badgeColor": "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
     "track": "ml",
     "highlights": [
@@ -269,9 +279,9 @@
       "Portal for Academic Records and Management - tamper-proof semester transcripts, degrees, and certificates for ABV-IIITM Gwalior",
       "Semester workflow CSV → DRAFT → REVIEWED → APPROVED → ISSUED (NFT); degree flow with credit/backlog validation and academic + admin gates",
       "ERC-721 on Base Sepolia (84532): SemesterNFT, DegreeNFT, CertificateNFT, CollegeRegistry, StudentRecords - SHA-256 PDF anchoring + revocation",
-      "Six roles: Student, Faculty, Academic, Staff, Admin (Privy); public Verifier - share links (7/30/90 days), QR on PDFs, API verify by token/hash/tokenId",
+      "Five roles: Student, Faculty, Academic, Staff, Admin (Privy); public Verifier - share links (7/30/90 days), QR on PDFs, API verify by token/hash/tokenId",
       "Isolated BullMQ worker (blockchain · csv · notifications) - API container HTTP-only; on-demand Puppeteer PDFs; curriculum versioning + corrections/revaluation",
-      "Production: Vercel (Next.js 16, arn1) → EC2 eu-north-1 (Caddy, Express 5, worker, Redis) + Supabase Postgres; CI: Vitest, Forge, Playwright"
+      "Live pilot across 6 departments and 6 degree programs on AWS EC2 (Caddy, Express 5, worker, Redis) + Supabase Postgres; 100+ automated tests in GitHub Actions CI (Vitest, Foundry, Playwright)"
     ],
     "tech": [
       "Next.js 16",
@@ -303,7 +313,7 @@
     "completeness": true,
     "caseStudy": {
       "problem": "Universities issue transcripts and degrees as paper or static PDFs that are slow to verify and easy to forge. Registrars need configurable approval chains, curriculum versioning, SGPA/CGPA rules, and immutable audit trails. Students should never need crypto wallets; employers need sub-second verification with on-chain proof and optional deep-verify by document hash or NFT token ID.",
-      "approach": "PARAM is a monorepo with six deployment layers: browsers (admin, academic, faculty, student, public verifier); Vercel edge (Next.js 16 App Router, HMAC param_session middleware, /api/v1 rewrites to EC2); AWS EC2 docker-compose (Caddy TLS → Express 5 api + isolated param-worker for BullMQ/cron); Supabase Postgres 15 + Prisma (30+ models); Base Sepolia via ethers.js v6; Privy JWT auth, Razorpay verify-flow, SMTP, Sentry. Feature modules cover students, curriculum, results, approvals, degrees, credentials, issuance, verification, and audit. Faculty grades → academic review → admin mint → student share → verifier confirms.",
+      "approach": "PARAM is a monorepo with six deployment layers: browsers (admin, academic, faculty, student, public verifier); Vercel edge (Next.js 16 App Router, HMAC param_session middleware, /api/v1 rewrites to EC2); AWS EC2 docker-compose (Caddy TLS → Express 5 api + isolated param-worker for BullMQ/cron); Supabase Postgres 15 + Prisma (37 models); Base Sepolia via ethers.js v6; Privy JWT auth, 5-role RBAC, Razorpay verify-flow, SMTP, Sentry. Feature modules cover students, curriculum, results, approvals, degrees, credentials, issuance, verification, and audit. Live pilot across 6 departments and 6 degree programs — faculty grades → academic review → admin mint → student share → verifier confirms.",
       "metrics": [
         {
           "label": "Institute",
@@ -311,11 +321,11 @@
         },
         {
           "label": "Prisma models",
-          "value": "30+"
+          "value": "37"
         },
         {
-          "label": "Integration tests",
-          "value": "30+ Vitest suites"
+          "label": "Automated tests",
+          "value": "100+"
         },
         {
           "label": "On-chain",
@@ -323,15 +333,15 @@
         },
         {
           "label": "Roles",
-          "value": "6 surfaces"
+          "value": "5-role RBAC"
+        },
+        {
+          "label": "Pilot scope",
+          "value": "6 depts · 6 programs"
         },
         {
           "label": "BullMQ queues",
           "value": "3 (mint · csv · email)"
-        },
-        {
-          "label": "Pilot",
-          "value": "param-iiitm.vercel.app"
         }
       ],
       "techDecisions": [
@@ -366,24 +376,24 @@
     "id": "shakti",
     "year": 2024,
     "title": "SHAKTI",
-    "subtitle": "Vision-Language RAG System for Military Intelligence",
+    "subtitle": "Vision-Language Model (SHAKTI-2B) for Military Intelligence",
     "badge": "SIH 2024 Winner · $300",
     "badgeColor": "bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30",
     "track": "ml",
     "highlights": [
-      "Smart India Hackathon 2024 Winner - deployed in defense sector",
-      "79% OCR accuracy on complex military documents using a custom-trained pipeline",
-      "Vision-Language model integration for multimodal document analysis (text + scans + imagery)",
-      "RAG pipeline enabling semantic search across classified document repositories",
-      "FastAPI service layer; LangChain + Transformers for swappable LLMs"
+      "SIH 2024 National Winner - built in a 40-hour sprint for problem statement PS1604",
+      "Fine-tuned mPLUG-Owl3 (SHAKTI-2B) with MS-SWIFT: VQAv2 80.1, POPE 87.4, NextQA 73.6, NLVR2 85.6",
+      "OCR accuracy 95% (printed) / 65% (handwritten) on degraded military documents",
+      "Redis batching cut the inference queue 2.5x on 4GB VRAM",
+      "Cross-modal RAG over mixed text + imagery; runs fully offline for air-gapped deployment"
     ],
     "tech": [
-      "PyTorch",
+      "mPLUG-Owl3",
+      "MS-SWIFT",
       "RAG",
-      "OCR",
       "FastAPI",
-      "Transformers",
-      "LangChain"
+      "Redis",
+      "PyTorch"
     ],
     "links": {
       "demo": "https://shakti-ai.vercel.app/",
@@ -396,23 +406,31 @@
     "completeness": true,
     "caseStudy": {
       "problem": "Defense intelligence relies on dense, multi-page mixed-format documents - scans, maps, captioned imagery - that traditional OCR + keyword search misses. Analysts under time pressure need a system that retrieves semantically across both text and imagery, not just exact-match keywords.",
-      "approach": "Vision-Language RAG. A custom OCR pipeline (79% accuracy on military document samples) extracts text from degraded scans; a VL backbone produces multimodal embeddings indexed in a vector store. Retrieval is cross-modal - a text query can surface captioned imagery, a snippet can surface the source document. FastAPI service layer with swappable LLM backends via LangChain.",
+      "approach": "SHAKTI-2B is a fine-tuned mPLUG-Owl3 vision-language model (trained with MS-SWIFT) for OCR on degraded scans and cross-modal retrieval over text + imagery. Redis batching cut the inference queue 2.5x on 4GB VRAM; the whole stack runs offline for air-gapped deployment. Built in a 40-hour sprint for SIH 2024 problem statement PS1604.",
       "metrics": [
         {
-          "label": "OCR accuracy",
-          "value": "79%"
-        },
-        {
-          "label": "Modality",
-          "value": "Vision + Language"
-        },
-        {
           "label": "Recognition",
-          "value": "SIH 2024 Winner"
+          "value": "SIH 2024 National Winner"
         },
         {
-          "label": "Domain",
-          "value": "Defense / Military"
+          "label": "Benchmarks",
+          "value": "VQAv2 80.1 · POPE 87.4 · NextQA 73.6 · NLVR2 85.6"
+        },
+        {
+          "label": "OCR",
+          "value": "95% printed / 65% handwritten"
+        },
+        {
+          "label": "Base model",
+          "value": "mPLUG-Owl3 (SHAKTI-2B)"
+        },
+        {
+          "label": "Hardware",
+          "value": "4GB VRAM · 2.5x faster via Redis batching"
+        },
+        {
+          "label": "Sprint",
+          "value": "40 hours"
         }
       ],
       "techDecisions": [
@@ -1027,7 +1045,7 @@
     "id": "zerokey",
     "year": 2026,
     "title": "ZeroKeyCLI",
-    "subtitle": "AdSense for the Terminal",
+    "subtitle": "Pay With Attention, Not Per Prompt",
     "badge": "Monad Blitz · 4th Place · $200",
     "badgeColor": "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
     "track": "full-stack-ai",
